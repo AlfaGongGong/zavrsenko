@@ -51,6 +51,7 @@ h6 {
 
 h1 {
     font-size: 24px;
+    font-weight: bold;
 }
 
 h2 {
@@ -366,8 +367,6 @@ button {
     order: 2;
 }
 
-/* Bootstrap 4 text input with search icon */
-
 .has-search .form-control {
     padding-left: 2.375rem;
 }
@@ -529,11 +528,9 @@ a:hover {
 
 #slide-arrow-prev {
     left: 0;
-    border-radius: 0 2rem 2rem 0;
 }
 #slide-arrow-next {
     right: 0;
-    border-radius: 2rem 0 0 2rem;
 }
 .slider-control {
     display: flex;
