@@ -1,6 +1,7 @@
 $btnHover: #f26522;
 $background: #2b2a29;
-
+$primBackground: #ac27da;
+$primtextcolor: #ffc745;
 * {
     box-sizing: border-box !important;
     transition: ease all 0.5s;
@@ -12,7 +13,8 @@ html {
 }
 
 body {
-    color: #666666;
+    color: $primtextcolor;
+    background-color: $primBackground;
     font-size: 14px;
     line-height: 1.80857;
     font-weight: normal;
@@ -350,10 +352,6 @@ button {
     box-shadow: none;
 }
 
-/* opennav bar end */
-
-/* Styles for wrapping the search box start */
-
 .main {
     flex: 1;
     margin: 0px 30px;
@@ -378,8 +376,6 @@ button {
     pointer-events: none;
     color: #aaa;
 }
-
-/* Styles for wrapping the search box end */
 
 .login_menu {
     display: flex;
@@ -413,16 +409,6 @@ button {
     padding-left: 10px;
 }
 
-/* flage css start */
-
-.lang_box {
-    display: flex;
-    float: right;
-    background: #fff;
-    border-radius: 5px;
-    margin-right: 20px;
-}
-
 .nav-link {
     display: block;
     padding: 0.4rem 1rem;
@@ -432,12 +418,6 @@ a:hover {
     color: #f26522;
     text-decoration: underline;
 }
-
-/* flage css end */
-
-/* header section end */
-
-/* banner section start */
 
 .banner_section {
     width: 100%;
@@ -504,11 +484,8 @@ a:hover {
 #my_slider .carousel-control-prev:focus,
 #my_slider .carousel-control-prev:hover {
     color: #fff;
+    background-color: $btnHover;
 }
-
-/* banner section end */
-
-/* fashion section start */
 
 .fashion_section {
     width: 100%;

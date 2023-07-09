@@ -9,7 +9,8 @@ html {
 }
 
 body {
-  color: #666666;
+  color: #ffc745;
+  background-color: #ac27da;
   font-size: 14px;
   line-height: 1.80857;
   font-weight: normal;
@@ -337,8 +338,6 @@ button {
   box-shadow: none;
 }
 
-/* opennav bar end */
-/* Styles for wrapping the search box start */
 .main {
   flex: 1;
   margin: 0px 30px;
@@ -363,7 +362,6 @@ button {
   color: #aaa;
 }
 
-/* Styles for wrapping the search box end */
 .login_menu {
   display: flex;
   text-align: right;
@@ -396,15 +394,6 @@ button {
   padding-left: 10px;
 }
 
-/* flage css start */
-.lang_box {
-  display: flex;
-  float: right;
-  background: #fff;
-  border-radius: 5px;
-  margin-right: 20px;
-}
-
 .nav-link {
   display: block;
   padding: 0.4rem 1rem;
@@ -415,9 +404,6 @@ a:hover {
   text-decoration: underline;
 }
 
-/* flage css end */
-/* header section end */
-/* banner section start */
 .banner_section {
   width: 100%;
   float: left;
@@ -483,10 +469,9 @@ a:hover {
 #my_slider .carousel-control-prev:focus,
 #my_slider .carousel-control-prev:hover {
   color: #fff;
+  background-color: #f26522;
 }
 
-/* banner section end */
-/* fashion section start */
 .fashion_section {
   width: 100%;
   float: left;
