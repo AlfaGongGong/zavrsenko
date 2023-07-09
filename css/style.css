@@ -253,7 +253,10 @@ button {
 
 .header_section {
   width: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
   display: flex;
+  flex-direction: column;
 }
 
 .containt_main {
@@ -422,6 +425,11 @@ a:hover {
   text-transform: uppercase;
 }
 
+@media screen and (max-width: 768px) {
+  .banner_taital {
+    font-size: 24px;
+  }
+}
 .buynow_bt {
   width: 170px;
   margin: 0 auto;
@@ -447,13 +455,18 @@ a:hover {
 }
 
 .slider-wrapper {
-  margin: 1rem;
-  position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  scroll-snap-type: mandatory;
+  scroll-behavior: smooth;
+  scroll-snap-align: start;
 }
 
 .slides-container {
-  height: calc(100vh - 2rem);
   width: 100%;
   display: flex;
   list-style: none;
@@ -484,7 +497,6 @@ a:hover {
 
 .slide-arrow {
   display: flex;
-  margin: 30px;
   height: 4rem;
   background-color: white;
   color: black;
@@ -513,6 +525,16 @@ a:hover {
 #slide-arrow-next {
   right: 0;
   border-radius: 2rem 0 0 2rem;
+}
+
+.slider-control {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
 .banner-img {
