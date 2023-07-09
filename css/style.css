@@ -412,11 +412,10 @@ a:hover {
 
 .banner_taital {
   width: 100%;
-  font-size: 60px;
-  color: #ffffff;
+  font-size: 30px;
+  color: #ffc745;
   text-align: center;
   text-transform: uppercase;
-  font-weight: bold;
 }
 
 .buynow_bt {
@@ -443,18 +442,18 @@ a:hover {
   color: #ffffff;
 }
 
-#my_slider a.carousel-control-next {
+a.carousel-control-next {
   right: 0px;
   top: 40px;
 }
 
-#my_slider a.carousel-control-prev {
+a.carousel-control-prev {
   left: 0px;
   top: 40px;
 }
 
-#my_slider .carousel-control-next,
-#my_slider .carousel-control-prev {
+.carousel-control-next,
+.carousel-control-prev {
   width: 45px;
   height: 45px;
   background: rgba(242, 222, 172, 0.8);
@@ -464,10 +463,8 @@ a:hover {
   border-radius: 100px;
 }
 
-#my_slider .carousel-control-next:focus,
-#my_slider .carousel-control-next:hover,
-#my_slider .carousel-control-prev:focus,
-#my_slider .carousel-control-prev:hover {
+.carousel-control-next:hover,
+.carousel-control-prev:hover {
   color: #fff;
   background-color: #f26522;
 }
