@@ -206,7 +206,12 @@ button {
     width: 100%;
     float: left;
     background-image: url("https://c4.wallpaperflare.com/wallpaper/651/727/590/gaming-setup-steelseries-keyboards-headphones-mouse-pad-hd-wallpaper-thumb.jpg");
-    height: auto;
+    background-size: auto;
+    background-repeat: no-repeat;
+
+    height: fit-content;
+    min-height: 500px;
+
     background-size: 100%;
     background-repeat: no-repeat;
 }
@@ -457,34 +462,74 @@ a:hover {
     color: #ffffff;
 }
 
-a.carousel-control-next {
-    right: 0px;
-    top: 40px;
+.slider-wrapper {
+    margin: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+.slides-container {
+    height: calc(100vh - 2rem);
+    width: 100%;
+    display: flex;
+    list-style: none;
+    gap: 15px;
+    padding: 0;
+    overflow: scroll;
+    scroll-behavior: smooth;
+}
+.slide {
+    display: flex;
+    padding: 15px;
+    width: 100%;
+    height: 100%;
+    flex: 1 0 100%;
+}
+.slides-container {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+/* WebKit */
+.slides-container::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+.slide-arrow {
+    display: flex;
+    margin: 30px;
+    height: 4rem;
+    background-color: white;
+    color: black;
+    border: none;
+    width: 2rem;
+    font-size: 3rem;
+    padding: 0;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 100ms;
+    align-items: center;
+    justify-content: center;
 }
 
-a.carousel-control-prev {
-    left: 0px;
-    top: 40px;
-}
-
-.carousel-control-next,
-.carousel-control-prev {
-    width: 45px;
-    height: 45px;
-    background: rgb(242, 222, 172, 0.8);
+.slide-arrow:hover {
     opacity: 1;
-    font-size: 20px;
-    color: #000;
-    border-radius: 100px;
+    background-color: red;
+    color: white;
 }
 
-.carousel-control-next:hover,
-.carousel-control-prev:hover {
-    color: #fff;
-    background-color: $btnHover;
+#slide-arrow-prev {
+    left: 0;
+    border-radius: 0 2rem 2rem 0;
 }
-
-.fashion_section {
+#slide-arrow-next {
+    right: 0;
+    border-radius: 2rem 0 0 2rem;
+}
+.banner-img {
+    width: 100%;
+    height: 200px;
+    margin: 10px;
+}
+.product_section {
     width: 100%;
     float: left;
     padding-bottom: 150px;
@@ -498,7 +543,7 @@ a.carousel-control-prev {
     font-weight: bold;
 }
 
-.fashion_section_2 {
+.product_section_2 {
     width: 100%;
     margin-top: 30px;
 }
@@ -529,11 +574,11 @@ a.carousel-control-prev {
     margin: 0px;
 }
 
-.tshirt_img {
+.product_img {
     width: 100%;
     text-align: center;
     margin: 50px 0px;
-    min-height: 370px;
+    min-height: 130px;
 }
 
 .btn_main {
@@ -579,18 +624,8 @@ a.carousel-control-prev {
     color: #f26522;
 }
 
-#main_slider a.carousel-control-next {
-    right: 615px;
-    top: 105%;
-}
-
-#main_slider a.carousel-control-prev {
-    left: 615px;
-    top: 105%;
-}
-
-#main_slider .carousel-control-next,
-#main_slider .carousel-control-prev {
+.carousel-control-next,
+.carousel-control-prev {
     width: 55px;
     height: 55px;
     background-color: #30302e;
@@ -599,10 +634,10 @@ a.carousel-control-prev {
     color: #ffffff;
 }
 
-#main_slider .carousel-control-next:focus,
-#main_slider .carousel-control-next:hover,
-#main_slider .carousel-control-prev:focus,
-#main_slider .carousel-control-prev:hover {
+.carousel-control-next:focus,
+.carousel-control-next:hover,
+.carousel-control-prev:focus,
+.carousel-control-prev:hover {
     color: #fff;
     background-color: #f26522;
 }

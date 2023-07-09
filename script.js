@@ -302,22 +302,29 @@ $(function () {
 
 });
 
-let headerSlider = document.getElementsByClassName('header-slider');
-let slideChange = () => {
-	for (let i = 0; i < headerSlider.length; i++) {
-		headerSlider[i].classList.remove('d-block');
-	}
-	if (headerSlider.classList === 'd-none') {
-		headerSlider.classList.add('d-block');
+const slidesContainer = document.getElementById("slides-container");
+const slide = document.querySelector(".slide");
+const prevButton = document.getElementById("slide-arrow-prev");
+const nextButton = document.getElementById("slide-arrow-next");
+nextButton.addEventListener("click", () => {
+	const slideWidth = slide.clientWidth;
+	slidesContainer.scrollLeft += slideWidth;
+});
+prevButton.addEventListener("click", () => {
+	const slideWidth = slide.clientWidth;
+	slidesContainer.scrollLeft -= slideWidth;
+});
 
-	}
-	else {
-		headerSlider.classList.remove('d-block');
-	}
-	if (headerSlider.classList === 'd-block') {
-		headerSlider.classList.add('d-none');
-	}
-	else {
-		headerSlider.classList.remove('d-none');
-	}
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
