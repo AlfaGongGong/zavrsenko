@@ -315,6 +315,22 @@ prevButton.addEventListener("click", () => {
 	slidesContainer.scrollLeft -= slideWidth;
 });
 
+const gamesContainer = document.getElementById("gamesSliderContainer");
+const gamesSlide = document.querySelector("gamesSlide");
+const gamesPrev = document.getElementById("games-arrow-prev");
+const gamesNext = document.getElementById("games-arrow-next");
+
+gamesNext.addEventListener("click", () => {
+	const slideWidth = slide.clientWidth;
+	gamesContainer.scrollRight += slideWidth;
+});
+
+gamesPrev.addEventListener("click", () => {
+	const slideWidth = slide.clientWidth;
+	gamesContainer.scrollLeft -= slideWidth;
+});
+
+
 
 
 

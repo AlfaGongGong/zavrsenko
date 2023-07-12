@@ -471,10 +471,8 @@ a:hover {
 .slider-wrapper {
     overflow: hidden;
     display: flex;
-    flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    flex-wrap: wrap;
     scroll-snap-type: mandatory;
     scroll-behavior: smooth;
     scroll-snap-align: start;
@@ -550,10 +548,10 @@ a:hover {
 .product_section {
     width: 100%;
     float: left;
-    padding-bottom: 150px;
+    padding-bottom: 50px;
 }
 
-.fashion_taital {
+.product_taital {
     width: 100%;
     font-size: 40px;
     color: #30302e;
@@ -565,7 +563,43 @@ a:hover {
     width: 100%;
     margin-top: 30px;
 }
+.product-card-slider {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-align: start;
+    padding: 10px;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+}
+@media screen and (max-width: 768px) {
+    .product-card-slider {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        padding: 10px;
+        gap: 10px;
+        margin-bottom: 20px;
+        overflow: hidden;
+    }
+}
 
+.left {
+    float: left;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.right {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
 .box_main {
     width: 100%;
     background-color: #ffffff;
@@ -575,7 +609,7 @@ a:hover {
     margin-bottom: 20px;
 }
 
-.shirt_text {
+.product_text {
     width: 100%;
     font-size: 20px;
     color: #30302e;
@@ -595,8 +629,32 @@ a:hover {
 .product_img {
     width: 100%;
     text-align: center;
-    margin: 50px 0px;
-    min-height: 130px;
+}
+.gamesSlide {
+    display: flex;
+    padding: 15px;
+    width: 100%;
+    height: 100%;
+    flex: 1 0 100%;
+}
+.productCard {
+    width: 33%;
+    height: 400px;
+    min-height: 330px;
+    margin: 10px;
+    padding: 10px;
+    box-shadow: 0px 0 30px 10px #f0f0f0;
+    background-color: #ffffff;
+    text-align: center;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
 }
 
 .btn_main {
@@ -621,6 +679,9 @@ a:hover {
 .buy_bt a:hover {
     background-color: transparent;
     color: #262626;
+}
+button.btn.btn-dark.see_all:hover {
+    background-color: $btnHover;
 }
 
 .seemore_bt {
@@ -660,92 +721,6 @@ a:hover {
     background-color: #f26522;
 }
 
-/* fashion section end */
-
-/* electronic section start */
-
-.electronic_img {
-    width: 100%;
-    text-align: center;
-    margin: 50px 0px;
-    min-height: 293px;
-}
-
-#electronic_main_slider a.carousel-control-next {
-    right: 615px;
-    top: 105%;
-}
-
-#electronic_main_slider a.carousel-control-prev {
-    left: 615px;
-    top: 105%;
-}
-
-#electronic_main_slider .carousel-control-next,
-#electronic_main_slider .carousel-control-prev {
-    width: 55px;
-    height: 55px;
-    background-color: #30302e;
-    opacity: 1;
-    font-size: 30px;
-    color: #ffffff;
-}
-
-#electronic_main_slider .carousel-control-next:focus,
-#electronic_main_slider .carousel-control-next:hover,
-#electronic_main_slider .carousel-control-prev:focus,
-#electronic_main_slider .carousel-control-prev:hover {
-    color: #fff;
-    background-color: #f26522;
-}
-
-/* electronic section end */
-
-/* jewellery section start */
-
-.jewellery_section {
-    width: 100%;
-    float: left;
-    padding-bottom: 50px;
-}
-
-.jewellery_img {
-    width: 100%;
-    text-align: center;
-    margin: 50px 0px;
-    min-height: 293px;
-}
-
-#jewellery_main_slider a.carousel-control-next {
-    right: 615px;
-    top: 75%;
-}
-
-#jewellery_main_slider a.carousel-control-prev {
-    left: 615px;
-    top: 75%;
-}
-
-#jewellery_main_slider .carousel-control-next,
-#jewellery_main_slider .carousel-control-prev {
-    width: 55px;
-    height: 55px;
-    background-color: #30302e;
-    opacity: 1;
-    font-size: 30px;
-    color: #ffffff;
-}
-
-#jewellery_main_slider .carousel-control-next:focus,
-#jewellery_main_slider .carousel-control-next:hover,
-#jewellery_main_slider .carousel-control-prev:focus,
-#jewellery_main_slider .carousel-control-prev:hover {
-    color: #fff;
-    background-color: #f26522;
-}
-
-/* loader bar css start */
-
 .loader_main {
     width: 100%;
     text-align: center;
@@ -784,16 +759,12 @@ a:hover {
     }
 }
 
-/* loader bar css end */
-
-/* jewellery section end */
-
-/* footer section start */
-
-/* footer section start */
-
 .footer_section {
     width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
     float: left;
     background-color: #252525;
     height: auto;
@@ -801,55 +772,21 @@ a:hover {
 
 .footer_logo {
     width: 100%;
+    height: auto;
     text-align: center;
 }
-
-.input_bt {
-    width: 60%;
-    margin: 0 auto;
-    text-align: center;
+.footer_logo a {
     display: flex;
-    border-bottom: 1px solid #ffffff !important;
-}
-
-.mail_bt {
-    width: 100%;
-    float: left;
-    font-size: 18px;
-    color: #fff;
-    background-color: transparent;
-    padding: 5px 0px 5px 0px;
-    height: 60px;
-    border: 0px;
+    justify-content: center;
 }
 
 input.mail_bt::placeholder {
     color: #fff;
 }
 
-.subscribe_bt {
-    width: 30%;
-    float: right;
-    font-size: 16px;
-    color: #f26522;
-    background-color: transparent;
-    padding: 20px 0px 5px 0px;
-    border-radius: 30px;
-    border: 0px;
-    text-transform: uppercase;
-    text-align: right;
-}
-
-.subscribe_bt a {
-    color: #f26522;
-}
-
-.subscribe_bt a:hover {
-    color: #ffffff;
-}
-
 .footer_menu {
     width: 100%;
+
     margin: 0 auto;
     text-align: center;
 }
@@ -897,10 +834,6 @@ input.mail_bt::placeholder {
     color: #f26522;
 }
 
-/* footer section end */
-
-/* copyright section start */
-
 .copyright_section {
     width: 100%;
     float: left;
@@ -928,5 +861,3 @@ input.mail_bt::placeholder {
 .margin_top90 {
     margin-top: 90px;
 }
-
-/* copyright section end */
