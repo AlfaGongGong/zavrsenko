@@ -173,6 +173,7 @@ table tbody td:last-child {
   text-align: right;
 }
 
+#calendar-container,
 #orders-today-container,
 #registered-users-container,
 #products-games-container,
@@ -193,8 +194,87 @@ table tbody td:last-child {
   align-content: flex-start;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
   border-radius: 10px;
+  gap: 20px;
 }
 
+.btn-secondary {
+  color: #fff;
+  background-color: #30302e;
+  border-color: #30302e;
+}
+
+.btn-secondary:hover {
+  color: #fff;
+  background-color: #f26522;
+  border-color: #30302e;
+}
+
+.show > .btn-secondary.dropdown-toggle:focus {
+  box-shadow: none;
+}
+
+#clock-container {
+  display: flex;
+  width: 100%;
+  height: auto;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  margin: 30px;
+  border: #fff solid 2px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+  background: #9b59b6;
+  color: #fff;
+  font-size: 3rem;
+  font-family: Bangers;
+  font-weight: bold;
+  line-height: 100px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+.clock {
+  height: 40%;
+  width: 100%;
+  min-width: 300px;
+  max-width: 500px;
+  color: #fee;
+  font-size: 15vw;
+  display: flex;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  align-items: center;
+  justify-content: space-evenly;
+  align-content: space-around;
+}
+
+.clock > div {
+  display: flex;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.tick {
+  line-height: 17vh;
+}
+
+.tick-hidden {
+  opacity: 0;
+}
+
+.move {
+  animation: move linear 1s infinite;
+}
+
+@keyframes move {
+  from {
+    transform: translateY(0vh);
+  }
+  to {
+    transform: translateY(-20vh);
+  }
+}
 .logo {
   display: flex;
   justify-content: center;
