@@ -117,10 +117,13 @@ function updateNumber(element, number) {
 
 setInterval(updateTime, 100);
 
+
+
 /*list products games*/
 const mysql = require('mysql');
 const connection = mysql.createConnection({
-    host: 'localhost',
+    host: 'JASA-Laptop',
+    socket: 'mysql',
     user: 'admin',
     password: 'Danizock1708',
     database: 'ggdatabase',
