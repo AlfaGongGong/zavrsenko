@@ -116,3 +116,56 @@ function updateNumber(element, number) {
 }
 
 setInterval(updateTime, 100);
+
+/*list products games*/
+const mysql = require('mysql');
+const connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'admin',
+    password: 'Danizock1708',
+    database: 'ggdatabase',
+    port: '3306'
+
+});
+connection.connect((err) => {
+    if (err) {
+        console.error('Error connecting to the database:', err);
+        return;
+    }
+    console.log('Connected to the database!');
+});
+
+connection.query('SELECT * FROM products_games', (err, results) => {
+    if (err) {
+        console.error('Error executing query:', err);
+        return;
+    }
+    console.log('Query results:', results);
+});
+
+
+const gamesTable = document.querySelector('products');
+const rowId = document.querySelector('product-id');
+const rowName = document.querySelector('product-name');
+const rowPrice = document.querySelector('product-price');
+const rowDescription = document.querySelector('product-description');
+const rowImage = document.querySelector('product-image');
+getProducts = () => {
+    fetch
+}
+listProducts = () => {
+    const products = getProducts();
+    products.forEach(product => {
+        const row = document.createElement('tr');
+        rowId.textContent = product.id;
+        rowName.textContent = product.name;
+        rowPrice.textContent = product.price;
+        rowDescription.textContent = product.description;
+        rowImage.src = product.image;
+        gamesTable.appendChild(row);
+    });
+
+
+}
+
+listProducts();
