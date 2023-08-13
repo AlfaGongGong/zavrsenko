@@ -120,18 +120,19 @@ setInterval(updateTime, 100);
 
 
 /*list products games*/
-const mysql = require('mysql');
+const mysql = require('mysql2');
 
 const connection = mysql.createConnection({
     host: 'JASA-Laptop',
     user: 'admin',
     password: 'Danizock1708',
     database: 'ggdatabase',
-    port: '3306'
-
-
-
+    port: '3306',
+    multipleStatements: true,
+    sql: true
 });
+
+
 connection.connect((err) => {
     if (err) {
         console.error('Error connecting to the database:', err);
