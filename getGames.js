@@ -1,56 +1,48 @@
 document.addEventListener('DOMContentLoaded', () => {
-      const gameCardsContainer = document.getElementById('game-cards-container');
+      const gameCardsContainer = document.getElementById('gameCards');
 
-      fetch('/get_games')
-
+      fetch('/games')
             .then(response => response.json())
-            .then(games => {
-                  displayGames(games);
-            })
-            .catch(error => {
-                  console.error('Error fetching games:', error);
+            .then(data => {
+                  data.forEach(game => {
+                        const card = createGameCard(game);
+                        gameCardsContainer.appendChild(card);
+                  });
             });
-
-      function displayGames(games) {
-            games.forEach(game => {
-                  const gameCard = createGameCard(game);
-                  gameCardsContainer.appendChild(gameCard);
-            });
-      }
-
-      function createGameCard(game) {
-            const gameCard = document.createElement('div');
-            gameCard.className = 'game-card';
-
-            const cardContent = document.createElement('div');
-            cardContent.className = 'card-content';
-
-            const gameImage = document.createElement('img');
-            gameImage.src = game.game_image;
-            gameImage.alt = game.game_name;
-            cardContent.appendChild(gameImage);
-
-            const gameName = document.createElement('h3');
-            gameName.textContent = game.game_name;
-            cardContent.appendChild(gameName);
-
-            const gameDescription = document.createElement('p');
-            gameDescription.className = 'game-description';
-            gameDescription.textContent = game.game_description;
-            cardContent.appendChild(gameDescription);
-
-            const gamePrice = document.createElement('p');
-            gamePrice.className = 'game-price';
-            gamePrice.textContent = '$' + game.game_price;
-            cardContent.appendChild(gamePrice);
-
-            const gameGenre = document.createElement('p');
-            gameGenre.className = 'game-genre';
-            gameGenre.textContent = game.game_genre;
-            cardContent.appendChild(gameGenre);
-
-            gameCard.appendChild(cardContent);
-
-            return gameCard;
-      }
 });
+
+function createGameCard(game) {
+      const card = document.createElement('div');
+      card.classList.add('game-card');
+
+      const content = document.createElement('div');
+      content.classList.add('card-content');
+
+      const image = document.createElement('img');
+      image.src = game.game_image;
+      image.alt = game.game_name;
+      content.appendChild(image);
+
+      const name = document.createElement('h3');
+      name.textContent = game.game_name;
+      content.appendChild(name);
+
+      const description = document.createElement('p');
+      description.classList.add('game-description');
+      description.textContent = game.game_description;
+      content.appendChild(description);
+
+      const price = document.createElement('p');
+      price.classList.add('game-price');
+      price.textContent = `$${game.game_price}`;
+      content.appendChild(price);
+
+      const genre = document.createElement('p');
+      genre.classList.add('game-genre');
+      genre.textContent = game.game_genre;
+      content.appendChild(genre);
+
+      card.appendChild(content);
+
+      return card;
+}

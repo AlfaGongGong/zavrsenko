@@ -39,7 +39,7 @@
 
    <link rel="stylesheet" type="text/css" href="css/style.css" />
 
-   <script src="./server.js"></script>
+   <script src="server.js"></script>
 
 </head>
 
@@ -192,10 +192,12 @@
    </div>
    <!-- banner bg main end -->
 
-   <div class="game-cards-container" id="game-cards-container">
-      <!-- Game cards will be dynamically added here -->
+   <div class="game-cards-container">
+      <div class="game-cards" id="gameCards">
+      </div>
+      <script src="getGames.js"></script>
    </div>
-   <script src="getGames.js"></script>
+
    <!-- games section start -->
    <section>
       <div class="product_section">
@@ -684,7 +686,7 @@
          document.getElementById("mySidenav").style.width = "0";
       }
    </script>
-   <script src="./script.js" type="text/javascript" defer></script>
+   <script src="script.js" type="text/javascript" defer></script>
 
 
 </body>

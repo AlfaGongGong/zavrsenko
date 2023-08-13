@@ -1,8 +1,12 @@
 const config = {
-      host: 'JASA-Laptop',
+      dialect: 'mysql',
+      port: 3306,
+      host: 'localhost',
+
       user: 'admin',
-      password: 'Adminpassword',
+      password: 'admin',
       database: 'gg_database'
+
 };
 
 module.exports = config;
