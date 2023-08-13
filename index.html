@@ -38,6 +38,9 @@
       rel="stylesheet" />
 
    <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+   <script src="./server.js"></script>
+
 </head>
 
 <body>
@@ -189,7 +192,10 @@
    </div>
    <!-- banner bg main end -->
 
-
+   <div class="game-cards-container" id="game-cards-container">
+      <!-- Game cards will be dynamically added here -->
+   </div>
+   <script src="getGames.js"></script>
    <!-- games section start -->
    <section>
       <div class="product_section">
@@ -197,7 +203,7 @@
             <div class="carousel-inner">
                <div class="carousel-item active">
                   <div class="container">
-                     <h1 class="banner_taital">Free To Play</h1>
+                     <h1 class="banner_taital">FEATURED GAMES</h1>
                      <hr>
                      <div class="product_section_2">
 
@@ -334,6 +340,16 @@
 
    </section>
    <!-- product section end -->
+   <section class="hero-banner">
+      <div class="hero-content">
+         <h1>Experience Epic Adventures</h1>
+         <p>Immerse yourself in a world of thrilling PC games.</p>
+         <a href="#" class="cta-button">Explore Now</a>
+      </div>
+      <div class="hero-image">
+         <img src="https://gagadget.com/media/cache/f3/b0/f3b0870837f379b02cf425e457c626aa.jpg" alt="Featured Game">
+      </div>
+   </section>
    <!--trending section start-->
    <section>
       <div class="product_section">
@@ -668,7 +684,8 @@
          document.getElementById("mySidenav").style.width = "0";
       }
    </script>
-   <script src="script.js"></script>
+   <script src="./script.js" type="text/javascript" defer></script>
+
 
 </body>
 
