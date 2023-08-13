@@ -884,23 +884,34 @@ input.mail_bt::placeholder {
   transform: scale(1.05);
 }
 
-.card-content img {
+.game-image {
   max-width: 100%;
   height: auto;
   margin-bottom: 10px;
 }
 
-.game-description {
-  font-size: 14px;
-  margin-bottom: 10px;
-}
-
-.game-price {
+.game-name {
+  font-size: 18px;
   font-weight: bold;
-  color: #4CAF50;
   margin-bottom: 5px;
 }
 
 .game-genre {
   color: #666;
+}
+
+.game-price {
+  font-weight: bold;
+  color: #4CAF50;
+  margin-top: 5px;
+}
+
+.game-description {
+  display: none;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.game-card:hover .game-description {
+  display: block;
 }/*# sourceMappingURL=style.css.map */
