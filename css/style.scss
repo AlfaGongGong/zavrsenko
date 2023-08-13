@@ -898,6 +898,18 @@ input.mail_bt::placeholder {
     margin: 0 auto;
 }
 
+.most-purchased-section, .re {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 30px;
+    padding: 30px;
+    margin: 30px;
+
+}
+
 .game-cards-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
