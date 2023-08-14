@@ -2,6 +2,24 @@ $btnHover: #f26522;
 $background: #2b2a29;
 $primBackground: #ac27da;
 $primtextcolor: #ffc745;
+// color scheme
+$primaryBrandColor: #FD3A13; // For call-to-action buttons, cart icon, headings
+$secondaryBrandColor:#2F4858; // For navbar, footers, borders
+$bacgroundColor:#FFFFFF; //For background
+$textColor: #4c4c4c; //For text color
+$mutedTextColor: #8f8f8f; //	For meta text, captions
+$highlightColor: #f7ef8a; // For highlight sales, promotions
+
+//font
+@import "https://fonts.fontstorage.com/import/opensans.css";
+@import "https://fonts.fontstorage.com/import/poppins.css";
+@import "https://fonts.fontstorage.com/import/bebasneue.css";
+@import "https://fonts.fontstorage.com/import/oswald.css";
+
+$headings: "Poppins"(Sans-serif);
+$bodyText: "Open Sans"(Sans-serif);
+$button: "Bebas Neue"(Display);
+$price: "Oswald"(Sans-serif);
 
 * {
     box-sizing: border-box !important;
@@ -14,13 +32,16 @@ html {
 }
 
 body {
-    color: $primtextcolor;
-    background-color: $primBackground;
+    color: $textColor;
+    background-color: $bacgroundColor;
     font-size: 14px;
     line-height: 1.80857;
     font-weight: normal;
     overflow-x: hidden;
-    font-family: "Poppins", sans-serif;
+    font-family: $bodyText;
+    background-image: url('bg-pattern.svg');
+    background-repeat: repeat;
+    background-size: 300px 300px;
 }
 
 a {
@@ -898,7 +919,8 @@ input.mail_bt::placeholder {
     margin: 0 auto;
 }
 
-.most-purchased-section, .re {
+.most-purchased-section,
+.re {
     display: flex;
     flex-direction: column;
     align-items: center;
