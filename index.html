@@ -55,8 +55,7 @@
 </head>
 
 <body>
-   <!-- API's -->
-   <script src="js/api.js" type="text/javascript" defer></script>
+
 
 
    <!-- banner bg main start -->
@@ -293,13 +292,13 @@
 
    </div>
    <!-- reacent games section -->
-
-   <div class="recent-cards-container">
-      <h1>RECENT GAMES</h1>
-      <hr>
-      <!-- Product cards will be dynamically generated here -->
-   </div>
-   <script src="getRecent.js"></script>
+   <section class="upcoming-section">
+      <div class="cards-container" id="upcomingCardsContainer">
+         <h1>UPCOMING</h1>
+         <hr>
+         <!-- Product cards will be dynamically generated here -->
+      </div>
+   </section>
    <!-- reacent games section -->
 
 
@@ -338,8 +337,6 @@
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"></script>
-   <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
-      crossorigin="anonymous"></script>
    <!-- sidebar -->
    <script>
       function openNav() {
@@ -351,9 +348,7 @@
       }
    </script>
 
-   <script src="script.js" type="text/javascript" defer></script>
-
-   <script src="./js/techNewsApi.js"></script>
+   <script src="./src/index.js"></script>
 </body>
 
 </html>
