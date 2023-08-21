@@ -26,6 +26,38 @@ const connection = mysql.createConnection(
       }
 );
 
+// Create connection pool
+const pool = mysql.createPool({
+      host: 'localhost',
+      port: 3000,
+      user: 'admin',
+      password: 'admin',
+      database: 'gg_database'
+});
+
+// Handle disconnects 
+pool.on('connection', (connection) => {
+      connection.on('error', (err) => {
+            if (!err.fatal) {
+                  connection.connect();
+            }
+      });
+});
+
+// Handle errors
+pool.on('error', (err) => {
+      console.error('DB connection pool error:', err);
+});
+
+// Make test query
+pool.query('SELECT 1', (err, results) => {
+      if (err) throw err;
+
+      console.log('Query results:', results);
+      logger.info('Query results:', results);
+
+});
+
 connection.connect((err) => {
       if (err) {
             logger.error(err);
@@ -176,4 +208,7 @@ app.get('/card', async (req, res) => {
 app.listen(3000);
 console.log(connection);
 
-module.exports = app;
+module.exports = {
+      app,
+      pool
+};
