@@ -14,7 +14,7 @@ html {
 
 body {
   color: #4c4c4c;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   font-size: 14px;
   line-height: 1.80857;
   font-weight: normal;
@@ -138,7 +138,7 @@ img {
   outline: 0;
 }
 
-.paddind_bottom_0 {
+.padding_bottom_0 {
   padding-bottom: 0 !important;
 }
 
@@ -267,11 +267,11 @@ button {
   flex-direction: column;
 }
 
-.containt_main {
+.contain_main {
   display: flex;
 }
 
-/* opennav bar start */
+/* open navbar start */
 .sidenav {
   height: 100%;
   width: 0;
@@ -921,7 +921,7 @@ input.mail_bt::placeholder {
 
 .game-price {
   font-weight: bold;
-  color: #4CAF50;
+  color: #4caf50;
   margin-top: 5px;
 }
 

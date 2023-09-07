@@ -22,6 +22,3 @@ document.querySelectorAll(".icon").forEach((element) => {
 		element.classList.remove("animate__animated", "animate__flip");
 	});
 });
-
-
-
