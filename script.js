@@ -1,8 +1,4 @@
-const app = require('./api');
-require('./html/ejs templates');
-app.listen(3000, () => {
-	console.log("Server running on port 3000");
-});
+
 
 const slidesContainer = document.getElementById("slides-container");
 const slide = document.querySelector(".slide");
@@ -26,3 +22,6 @@ document.querySelectorAll(".icon").forEach((element) => {
 		element.classList.remove("animate__animated", "animate__flip");
 	});
 });
+
+
+

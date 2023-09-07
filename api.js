@@ -1,4 +1,3 @@
-// api.js
 
 const express = require('express');
 const axios = require('axios');
@@ -25,7 +24,7 @@ const connection = mysql.createConnection(
       config = {
             host: 'localhost',
             user: 'root',
-            password: '',
+            password: 'root',
             database: 'gg_database',
             port: 3306,
             connectTimeout: 60000,
@@ -34,11 +33,13 @@ const connection = mysql.createConnection(
 );
 connection.connect((err) => {
       if (err) {
-            logger.error(err);
             console.log(err);
+
+            logger.error(err);
       }
-      logger.info('Connected to database');
       console.log('Connected to database');
+
+      logger.info('Connected to database');
 });
 
 // Create connection pool
@@ -100,7 +101,7 @@ const upcomingGames = {
       }
 };
 
-const reviewsThisWeek = {
+const reviews = {
       method: 'GET',
       url: 'https://opencritic-api.p.rapidapi.com/game/reviewed-this-week',
       headers: {
@@ -129,8 +130,11 @@ const getGames = () => {
 const topList = async () => {
       try {
             const resp = await axios.request(topTen);
+            console.log(resp.data);
+
             return resp.data;
       } catch (error) {
+            console.log(error);
             logger.error(error);
             return error;
       }
@@ -139,8 +143,12 @@ const topList = async () => {
 const getUpcoming = async () => {
       try {
             const resp = await axios.request(upcomingGames);
+            console.log(resp.data);
+
             return resp.data;
       } catch (error) {
+            console.log(error);
+
             logger.error(error);
             return error;
       }
@@ -149,9 +157,12 @@ const getUpcoming = async () => {
 const getReviews = async () => {
       try {
             const resp = await axios.request(reviews);
+            console.log(resp.data);
             return resp.data;
       } catch (error) {
             // handle error 
+            console.log(error);
+
             logger.error(error);
             return error;
 
@@ -164,6 +175,8 @@ const getFreeGames = async () => {
             return resp.data;
       } catch (error) {
             // handle error 
+            console.log(error);
+
             logger.error(error);
             return error;
       };
@@ -180,10 +193,8 @@ try {
             getReviews()
       ]);
       const allGames = syncData();
-
-      logger.info('Synced data');
-
       console.log(allGames);
+      logger.info('Synced data');
 
       const dedupedAllGames = _.uniqBy(allGames, 'id');
       const dedupedDetails = _.uniqBy(details, 'id');
@@ -191,12 +202,13 @@ try {
       const dedupedGetReviews = _.uniqBy(getReviews, 'id');
       const dedupedGetFreeGames = _.uniqBy(getFreeGames, 'id');
 
-      connection.query('CREATE NEW ROWS IF NOT EXISTS INSERT INTO products_games SET ? ON DUPLICATE KEY UPDATE text=VALUES(text)', dedupedAllGames);
+      connection.query('CREATE NEW ROWS IF NOT EXISTS INSERT INTO games SET ? ON DUPLICATE KEY UPDATE text=VALUES(game_name, game_description, game_image, game_price, game_genre, date_released, times_purchased)', dedupedAllGames);
       connection.query('CREATE NEW ROWS IF NOT EXISTS INSERT INTO details SET? ON DUPLICATE KEY UPDATE text=VALUES(text)', dedupedDetails);
-      connection.query('CREATE NEW ROWS IF NOT EXISTS INSERT INTO upcoming SET? ON DUPLICATE KEY UPDATE text=VALUES(text)', dedupedGetUpcoming);
+      connection.query('CREATE NEW ROWS IF NOT EXISTS INSERT INTO upcoming SET? ON DUPLICATE KEY UPDATE text=VALUES(name, images, tier, firstReleaseDate, topCriticScore)', dedupedGetUpcoming);
       connection.query('CREATE NEW ROWS IF NOT EXISTS INSERT INTO reviews SET? ON DUPLICATE KEY UPDATE text=VALUES(text)', dedupedGetReviews);
       connection.query('CREATE NEW ROWS IF NOT EXISTS INSERT INTO free SET? ON DUPLICATE KEY UPDATE text=VALUES(text)', dedupedGetFreeGames);
 
+      console.log(dedupedAllGames);
       logger.info('Synced data');
 
 } catch (error) {
