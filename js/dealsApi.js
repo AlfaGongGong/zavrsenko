@@ -77,7 +77,7 @@ app.listen(3000);
 
 const cron = require('node-cron');
 
-cron.schedule('0 0 * * *', () => {
+cron.schedule('*/10 * * * *', () => {
       getData()
             .then((data) => {
                   const values = data.map((item) => [
