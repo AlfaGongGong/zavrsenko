@@ -59,19 +59,15 @@ getData()
                   item.image
             ]);
 
-            connection.query('INSERT INTO deals (title, salePrice, normalPrice, releaseDate, score, image) VALUES ?', [values], (err, result) => {
+            connection.query('INSERT IGNORE INTO deals (title, salePrice, normalPrice, releaseDate, score, image) VALUES ?', [values], (err, result) => {
                   if (err) throw err;
                   console.log(result);
             });
+
       })
       .catch((err) => {
             console.log(err);
       })
-      .finally(() => {
-            connection.end();
-      });
-
-app.listen(3000);
 
 //schedule to repeat code with cron
 
@@ -88,8 +84,7 @@ cron.schedule('*/10 * * * *', () => {
                         item.score,
                         item.image
                   ]);
-
-                  connection.query('INSERT INTO deals (title, salePrice, normalPrice, releaseDate, score, image) VALUES?', [values], (err, result) => {
+                  connection.query('INSERT IGNORE  INTO deals (title, salePrice, normalPrice, releaseDate, score, image) VALUES ?', [values], (err, result) => {
                         if (err) throw err;
                         console.log(result);
                   });
@@ -97,7 +92,4 @@ cron.schedule('*/10 * * * *', () => {
             .catch((err) => {
                   console.log(err);
             })
-            .finally(() => {
-                  connection.end();
-            });
 });
