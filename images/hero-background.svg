@@ -1,0 +1,71 @@
+ <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1920 1080"
+          preserveAspectRatio="xMidYMid slice"
+        >
+          <!-- Background gradient -->
+          <defs>
+            <linearGradient
+              id="backgroundGradient"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="100%"
+            >
+              <stop offset="0%" style="stop-color: #0099ff; stop-opacity: 1" />
+              <stop
+                offset="100%"
+                style="stop-color: #ff0066; stop-opacity: 1"
+              />
+            </linearGradient>
+          </defs>
+
+          <!-- Background rectangle with gradient -->
+          <rect
+            x="0"
+            y="0"
+            width="100%"
+            height="100%"
+            fill="url(#backgroundGradient)"
+          />
+
+          <!-- Neon lights -->
+          <circle cx="300" cy="700" r="50" fill="#FF0066" />
+          <circle cx="600" cy="400" r="60" fill="#0099FF" />
+          <circle cx="900" cy="900" r="70" fill="#FF0066" />
+          <!-- Add more neon lights as needed -->
+
+          <!-- Hologram-like elements -->
+          <ellipse
+            cx="1200"
+            cy="550"
+            rx="80"
+            ry="30"
+            stroke="#0099FF"
+            stroke-width="3"
+            fill="none"
+          />
+          <ellipse
+            cx="1500"
+            cy="750"
+            rx="60"
+            ry="20"
+            stroke="#FF0066"
+            stroke-width="3"
+            fill="none"
+          />
+          <!-- Add more hologram-like elements as needed -->
+
+          <!-- Your content goes here -->
+          <text
+            x="50%"
+            y="50%"
+            text-anchor="middle"
+            dy="80"
+            font-size="48"
+            font-weight="bold"
+            fill="#FFFFFF"
+          >
+            Welcome to the Gaming World
+          </text>
+        </svg>
