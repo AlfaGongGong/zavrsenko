@@ -4,7 +4,7 @@
 fetch('http://localhost:3000/deals')
       .then(response => response.json())
       .then(dealsCards => {
-            const dealsCardsContainer = document.getElementById('dealsCardsContainer');
+            const dealsCardsContainer = document.querySelector('.dealsCardsContainer');
 
             // Loop through the product cards and append them to the container
             dealsCards.forEach(card => {
