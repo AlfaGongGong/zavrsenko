@@ -58,6 +58,13 @@ body {
   padding: 0;
 }
 
+section h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 20px 0;
+  text-align: center;
+}
+
 /* Hero Section */
 .hero {
   position: relative;
@@ -538,7 +545,14 @@ input.mail_bt::placeholder {
   border-radius: 10px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
-
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  cursor: pointer;
+  flex-basis: calc(30% - 20px);
+  z-index: 1;
+  min-width: 100px;
   @media (max-width: 768px) {
     flex-basis: calc(50% - 20px);
   }
@@ -548,7 +562,7 @@ input.mail_bt::placeholder {
   }
   img {
     width: 100%;
-    height: 100%;
+    height: 200px;
     object-fit: cover;
   }
   h2 {
@@ -560,16 +574,10 @@ input.mail_bt::placeholder {
     -ms-text-size-adjust: auto;
   }
   p {
-    font-size: 14px;
-    margin-bottom: 10px;
     color: #ffffff;
-    text-align: center;
-    text-transform: uppercase;
-    text-decoration: none;
     cursor: pointer;
     transition: all 0.3s ease;
     height: 100%;
-    width: 100%;
   }
   a {
     text-decoration: none;
@@ -640,12 +648,7 @@ input.mail_bt::placeholder {
 }
 .product-price-info {
   font-size: 2rem;
-  margin-top: 10px;
   color: #ffffff;
-  text-align: left;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
 }
 
 .product-description {
@@ -688,6 +691,18 @@ section.genre-section,
   align-items: center;
   gap: 20px;
   margin: 20px;
+}
+
+.dealsCardsContainer {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+  margin: 20px;
+  padding: 20px;
 }
 
 .icon-container {
@@ -854,24 +869,31 @@ section.genre-section,
 }
 .navbar {
   background-color: #333;
-  color: #fff;
+  color: $mainColor;
   padding: 10px 0;
 }
 
 .navbar-toggler {
-  border: none; /* Remove border from the toggle button */
+  border: none;
+  outline: none;
+  padding: 0;
+  cursor: pointer;
+  margin: 0;
+  line-height: 30px;
+  font-size: 1.25rem;
+  color: $mainColor;
 }
 
 .navbar-toggler:focus {
-  outline: none; /* Remove focus outline from the toggle button */
+  outline: none;
 }
 
 .navbar-toggler span {
-  color: #fff;
+  color: $mainColor;
 }
 
 .navbar-toggler:hover span {
-  color: #007bff; /* Change toggle button color on hover */
+  color: $highlightColor;
 }
 
 .navbar-nav .nav-item {
@@ -880,7 +902,7 @@ section.genre-section,
 }
 
 .navbar-nav .nav-link {
-  color: #fff;
+  color: $mainColor;
   text-decoration: none;
 }
 
@@ -897,14 +919,4 @@ section.genre-section,
     margin-right: 0;
     margin-bottom: 10px;
   }
-}
-.dealsCardsContainer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  list-style: auto;
-  align-items: center;
-  gap: 20px;
-  margin: 20px;
-  padding: 20px;
 }

@@ -1,5 +1,37 @@
 const replaceImg = ('https://cdn.xxl.thumbs.canstockphoto.com/image-not-available-written-in-chalk-on-a-blackboard-stock-image_csp8317846.jpg');
 // Make a GET request to fetch the JSON data from the server
+
+fetch('http://localhost:3000/games')
+      .then(response => response.json())
+      .then(gamesCards => {
+            const gamesCardsContainer = document.querySelector('.mostPurchasedCardsContainer');
+            gamesCards.forEach(card => {
+                  // Create a product card element
+                  const cardElement = document.createElement('div');
+                  cardElement.classList.add('product-card', 'col-md-4');
+
+                  // Set the card content using the deal data
+                  cardElement.innerHTML = `
+        <img src="${card.game_image}" alt="${replaceImg}" class="product-image"/>
+        <h2 class="product-name">${card.game_name}</h2>
+
+        <p class='product-description-'>
+        lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+        <p class='product-genre-info'>${card.game_genre}</p>
+        <p class="product-price-info">${card.game_price}</p>
+      <a href="cart.html" class="btn cta-button"><i class="fas fa-shopping-cart"></i>Add to Cart</a>
+      `;
+
+                  // Append the card to the container
+                  gamesCardsContainer.appendChild(cardElement);
+            });
+
+      })
+      .catch(error => {
+            console.error('Error fetching games cards:', error);
+
+      })
+
 fetch('http://localhost:3000/deals')
       .then(response => response.json())
       .then(dealsCards => {
@@ -40,36 +72,6 @@ fetch('http://localhost:3000/deals')
             console.error('Error fetching deals cards:', error);
       });
 
-fetch('http://localhost:3000/games')
-      .then(response => response.json())
-      .then(gamesCards => {
-            const gamesCardsContainer = document.querySelector('.mostPurchasedCardsContainer');
-            gamesCards.forEach(card => {
-                  // Create a product card element
-                  const cardElement = document.createElement('div');
-                  cardElement.classList.add('product-card', 'col-md-4');
-
-                  // Set the card content using the deal data
-                  cardElement.innerHTML = `
-        <img src="${card.game_image}" alt="${replaceImg}" class="product-image"/>
-        <h2 class="product-name">${card.game_name}</h2>
-
-        <p class='product-description-'>
-        lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-        <p class='product-genre-info'>${card.game_genre}</p>
-        <p class="product-price-info">${card.game_price}</p>
-      <a href="cart.html" class="btn cta-button"><i class="fas fa-shopping-cart"></i>Add to Cart</a>
-      `;
-
-                  // Append the card to the container
-                  gamesCardsContainer.appendChild(cardElement);
-            });
-
-      })
-      .catch(error => {
-            console.error('Error fetching games cards:', error);
-
-      })
 fetch('http://localhost:3000/gaming_accessories')
       .then(response => response.json())
       .then(gamingAccessoriesCards => {
@@ -98,3 +100,56 @@ fetch('http://localhost:3000/gaming_accessories')
             console.error('Error fetching gaming accessories cards:', error);
 
       })
+
+fetch('http://localhost:3000/upcoming_games')
+      .then(response => response.json())
+      .then(upcomingCards => {
+            const upcomingCardsContainer = document.querySelector('.upcomingCardsContainer');
+            upcomingCards.forEach(card => {
+                  // Create a product card element
+                  const cardElement = document.createElement('div');
+                  cardElement.classList.add('product-card', 'col-md-4');
+                  cardElement.innerHTML = `
+        <img src="${card.image}" alt="${replaceImg}" class="product-image"/>
+        <h2 class="product-name">${card.title}</h2>
+        <p class='product-date-info'>Release Date: ${card.releaseDate}</p>
+        <p class='product-description-'>
+        lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+        <p class='product-rating-info'>Score: ${card.score}</p>
+        <a href="cart.html" class="cta-button"><i class="fas fa-shopping-cart"></i>Preorder Now</a>
+      `;
+
+                  // Append the card to the container
+                  upcomingCardsContainer.appendChild(cardElement);
+
+            });
+      })
+      .catch(error => {
+            console.error('Error fetching upcoming games cards:', error);
+      })
+
+fetch('http://localhost:3000/free_games')
+      .then(response => response.json())
+      .then(freeGamesCards => {
+            const freeGamesCardsContainer = document.querySelector('.freeGamesCardsContainer');
+            freeGamesCards.forEach(card => {
+                  // Create a product card element
+                  const cardElement = document.createElement('div');
+                  cardElement.classList.add('product-card', 'col-md-4');
+                  cardElement.innerHTML = `
+        <img src="${card.image}" alt="${replaceImg}" class="product-image"/>
+        <h2 class="product-name">${card.title}</h2>
+        <p class='product-description'>
+        ${card.description}</p>
+        <p class='product-description'>Publisher: ${card.publisher}</p>
+        <p class='product-description'>Developer: ${card.developer}</p>
+        <p class='product-genre-info'>${card.genre}</p>
+        <a href="${card.free_to_play}" target="_blank" class="cta-button"><i class="fas fa-shopping-cart"></i>Play Now for Free</a>
+      `;
+
+            })
+      })
+
+      .catch(error => {
+            console.error('Error fetching free games cards:', error);
+      });

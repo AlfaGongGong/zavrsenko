@@ -57,6 +57,29 @@ app.get('/gaming_accessories', (req, res) => {
       });
 });
 
+app.get('/upcoming_games', (req, res) => {
+      db.query('SELECT * FROM upcoming_games ORDER BY RAND() LIMIT 6', (err, results) => {
+            if (err) {
+                  console.error('Error executing MySQL query:', err);
+                  res.status(500).send('Error fetching data from the database');
+                  return;
+            }
+            res.json(results);
+      });
+});
+
+app.get('/free_games', (req, res) => {
+      db.query('SELECT * FROM free_games ORDER BY RAND() LIMIT 6', (err, results) => {
+            if (err) {
+                  console.error('Error executing MySQL query:', err);
+                  res.status(500).send('Error fetching data from the database');
+                  return;
+            }
+            res.json(results);
+      });
+
+});
+
 app.listen(3000, () => {
       console.log('Server running on port 3000');
 });

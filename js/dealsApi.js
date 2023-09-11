@@ -93,4 +93,5 @@ cron.schedule('*/10 * * * *', () => {
             .catch((err) => {
                   console.log(err);
             })
+
 });
