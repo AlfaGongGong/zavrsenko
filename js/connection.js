@@ -24,13 +24,35 @@ db.connect((err) => {
 });
 
 app.get('/deals', (req, res) => {
-      db.query('SELECT * FROM deals ORDER BY salePrice ASC LIMIT 6', (err, results) => {
+      db.query('SELECT * FROM deals ORDER BY RAND() DESC LIMIT 6;', (err, results) => {
             if (err) {
                   console.error('Error executing MySQL query:', err);
                   res.status(500).send('Error fetching data from the database');
                   return;
             }
 
+            res.json(results);
+      });
+});
+
+app.get('/games', (req, res) => {
+      db.query('SELECT * FROM games ORDER BY RAND() DESC LIMIT 6', (err, results) => {
+            if (err) {
+                  console.error('Error executing MySQL query:', err);
+                  res.status(500).send('Error fetching data from the database');
+                  return;
+            }
+            res.json(results);
+      });
+});
+
+app.get('/gaming_accessories', (req, res) => {
+      db.query('SELECT * FROM gaming_accessories ORDER BY RAND() LIMIT 6', (err, results) => {
+            if (err) {
+                  console.error('Error executing MySQL query:', err);
+                  res.status(500).send('Error fetching data from the database');
+                  return;
+            }
             res.json(results);
       });
 });

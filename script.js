@@ -10,17 +10,6 @@ document.querySelectorAll(".icon-container").forEach((element) => {
 	});
 });
 
-// Make a GET request to fetch the JSON data from the server
-fetch('http://localhost:3000/deals')
-	.then(response => response.json())
-	.then(dealsCards => {
-		const dealsCardsContainer = document.getElementById('dealsCardsContainer');
+//Limit card numbers to 6
 
-		// Loop through the product cards and append them to the container
-		dealsCards.forEach(card => {
-			dealsCardsContainer.appendChild(card);
-		});
-	})
-	.catch(error => {
-		console.error('Error fetching deals cards:', error);
-	});
+

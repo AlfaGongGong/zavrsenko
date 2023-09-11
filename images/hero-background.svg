@@ -33,6 +33,8 @@
           <circle cx="300" cy="700" r="50" fill="#FF0066" />
           <circle cx="600" cy="400" r="60" fill="#0099FF" />
           <circle cx="900" cy="900" r="70" fill="#FF0066" />
+
+
           <!-- Add more neon lights as needed -->
 
           <!-- Hologram-like elements -->
@@ -54,18 +56,10 @@
             stroke-width="3"
             fill="none"
           />
+
           <!-- Add more hologram-like elements as needed -->
 
-          <!-- Your content goes here -->
-          <text
-            x="50%"
-            y="50%"
-            text-anchor="middle"
-            dy="80"
-            font-size="48"
-            font-weight="bold"
-            fill="#FFFFFF"
-          >
-            Welcome to the Gaming World
-          </text>
+          
+
+         
         </svg>

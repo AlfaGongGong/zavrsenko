@@ -17,9 +17,10 @@ const mapData = (data) => {
                   title: item.title,
                   salePrice: item.salePrice,
                   normalPrice: item.normalPrice,
-                  releaseDate: fromUnixTime(item.releaseDate), // Convert timestamp to date
+                  releaseDate: fromUnixTime(item.releaseDate).toLocaleDateString('en-GB'), // Convert timestamp to date
                   score: item.metacriticScore,
                   image: item.thumb,
+
             };
       });
 };
