@@ -80,6 +80,70 @@ app.get('/free_games', (req, res) => {
 
 });
 
+const bodyParser = require('body-parser');
+const port = 3000;
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+// Serve static HTML and CSS
+app.use(express.static('public'));
+
+// User registration endpoint
+app.post('/register', (req, res) => {
+      const { username, email, password } = req.body;
+      // Check if the username or email is already registered
+      const checkDuplicateUserQuery = 'SELECT * FROM users WHERE username = ? OR email = ?';
+      db.query(checkDuplicateUserQuery, [username, email], (err, results) => {
+            if (err) {
+                  console.error('MySQL error:', err);
+                  return res.status(500).json({ message: 'Internal server error' });
+            }
+            if (results.length > 0) {
+                  return res.status(400).json({ message: 'Username or email already exists' });
+            }
+            // Hash the password
+            bcrypt.hash(password, 10, (err, hashedPassword) => {
+                  if (err) {
+                        console.error('Error hashing password:', err);
+                        return res.status(500).json({ message: 'Internal server error' });
+                  }
+                  // Insert the new user into the database
+                  const insertUserQuery = 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)';
+                  db.query(insertUserQuery, [username, email, hashedPassword], (err) => {
+                        if (err) {
+                              console.error('MySQL error:', err);
+                              return res.status(500).json({ message: 'Internal server error' });
+                        }
+                        res.status(201).json({ message: 'Registration successful' });
+                  });
+            });
+      });
+});
+
+// User login endpoint
+app.post('/login', (req, res) => {
+      const { username, password } = req.body;
+      // Retrieve user data by username
+      const getUserQuery = 'SELECT * FROM users WHERE username = ?';
+      db.query(getUserQuery, [username], (err, results) => {
+            if (err) {
+                  console.error('MySQL error:', err);
+                  return res.status(500).json({ message: 'Internal server error' });
+            }
+            if (results.length === 0) {
+                  return res.status(401).json({ message: 'Invalid credentials' });
+            }
+            const user = results[0];
+            // Compare the hashed password
+            bcrypt.compare(password, user.password, (err, result) => {
+                  if (err || !result) {
+                        return res.status(401).json({ message: 'Invalid credentials' });
+                  }
+                  res.json({ message: 'Login successful' });
+            });
+      });
+});
 app.listen(3000, () => {
       console.log('Server running on port 3000');
 });

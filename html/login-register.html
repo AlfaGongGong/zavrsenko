@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/login-register-styles.css" />
+    <title>User Login/Registration</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="form-container">
+        <form id="login-form">
+          <h2>Login</h2>
+          <input
+            type="text"
+            placeholder="Username"
+            id="login-username"
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            id="login-password"
+            required
+          />
+          <button type="submit">Login</button>
+        </form>
+        <form id="register-form">
+          <h2>Register</h2>
+          <input
+            type="text"
+            placeholder="Username"
+            id="register-username"
+            required
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            id="register-email"
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            id="register-password"
+            required
+          />
+          <button type="submit">Register</button>
+        </form>
+      </div>
+    </div>
+    <script src="../js/login-register.js"></script>
+  </body>
+</html>
