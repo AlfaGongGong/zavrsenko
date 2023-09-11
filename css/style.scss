@@ -5,16 +5,6 @@ $btnText: #ffff00;
 $accentColor: #ffff00;
 $background: #000000;
 
-/*     Header/Footer Backgrounds: Stealth Black
-    Header/Footer Text: Electric Blue
-    Navigation Menu Background: Electric Blue
-    Navigation Menu Text: Laser Green
-    Product Listings Background: Stealth Black
-    Product Listings Text: Electric Blue
-    Product Listings Borders: Laser Green
-    Call-to-Action Buttons: Radical Red
-    Hover Effects (Buttons/Links): Cyber Yellow */
-
 $main: "Open Sans", sans-serif;
 
 $title: "Orbitron", sans-serif;
@@ -628,6 +618,14 @@ input.mail_bt::placeholder {
   -o-transition: all 0.3s ease;
 }
 
+.card-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 100px;
+}
+
 .product-genre,
 .product-score {
   color: #ffffff;
@@ -653,11 +651,14 @@ input.mail_bt::placeholder {
 
 .product-description {
   font-size: 14px;
-  margin-top: 10px;
+  height: 100px;
+  color: #ffffff;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
 }
 .product-date-info {
   font-size: 14px;
-  margin-top: 10px;
   color: #ffffff;
   text-align: left;
   text-decoration: none;
@@ -666,8 +667,27 @@ input.mail_bt::placeholder {
 .product-rating {
   display: flex;
   align-items: center;
-  margin-top: 10px;
   color: #f66;
+}
+
+.product-developer,
+.product-publisher {
+  font-size: 14px;
+  color: #ffffff;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  height: 100px;
+}
+
+.product-genre-info {
+  font-size: 14px;
+  color: #ffffff;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .stars {
@@ -691,18 +711,6 @@ section.genre-section,
   align-items: center;
   gap: 20px;
   margin: 20px;
-}
-
-.dealsCardsContainer {
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
-  gap: 20px;
-  margin: 20px;
-  padding: 20px;
 }
 
 .icon-container {

@@ -73,18 +73,6 @@
       <div class="container">
         <div class="carousel-container">
           <div id="gameCarousel" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-              <li
-                data-target="#gameCarousel"
-                data-slide-to="0"
-                class="active"
-              ></li>
-              <li data-target="#gameCarousel" data-slide-to="1"></li>
-              <li data-target="#gameCarousel" data-slide-to="2"></li>
-              <!-- Add more indicators for each trailer -->
-            </ol>
-
             <!-- Slides -->
             <div class="carousel-inner">
               <div class="carousel-item active">
@@ -223,7 +211,7 @@
         <h1>OUR MOST PURCHASED GAMES</h1>
         <hr />
         <div class="row mostPurchasedCardsContainer">
-          <script src="js/deals-card-render.js"></script>
+          <script src="js/mostPurchasedCardRender.js"></script>
         </div>
       </div>
     </section>
@@ -289,7 +277,7 @@
 
     <!--Browse by genre section end-->
 
-    <!-- hero banner -->
+    <!-- first banner -->
 
     <section class="banner">
       <div class="banner-content">
@@ -304,15 +292,15 @@
       <p>Immerse yourself in a world of action.</p>
       <a href="#" class="cta-button">Explore Now</a>
     </section>
-    <!-- hero banner end -->
+    <!-- first  banner end -->
 
     <section class="deals-section">
-      <div class="game-cards-container" id="dealsContainer">
+      <div class="game-cards-container container-fluid" id="dealsContainer">
         <h1>DON'T MISS OUT ON THESE HOT DEALS</h1>
         <hr />
-        <ul class="dealsCardsContainer">
-          <script src="./js/card-render.js"></script>
-        </ul>
+        <div class="row dealsCardsContainer">
+          <script src="js/dealsCardRender.js"></script>
+        </div>
       </div>
     </section>
     <!-- great deals section end -->
@@ -323,13 +311,88 @@
       <div class="container-fluid accessories-container">
         <h1>PC GAMING ACCESSORIES</h1>
         <hr />
-        <div class="row p-0 accessoriesCardsContainer">
-          <script src="js/card-render.js"></script>
+        <div class="row accessoriesCardsContainer">
+          <script src="js/gamingAccessoriesCardRender.js"></script>
         </div>
       </div>
     </section>
 
     <!-- gaming accessories section end -->
+
+    <!--second banner section -->
+
+    <section class="second-carousel">
+      <div class="container">
+        <div class="carousel-container">
+          <div
+            id="secondCarousel"
+            class="carousel slide"
+            data-ride="carousel"
+            data-interval="3000"
+          >
+            <!-- Slides -->
+            <div class="carousel-inner">
+              <a href="allGames.html" class="btn cta-button">Browse Games</a>
+              <div>
+                <img
+                  src="https://c4.wallpaperflare.com/wallpaper/284/354/381/batman-joker-scarecrow-character-two-face-wallpaper-preview.jpg"
+                  alt="batman/joker/scarecrow/two-face"
+                  class="banner-image"
+                />
+              </div>
+            </div>
+            <div class="carousel-item">
+              <a href="allGames.html" class="btn cta-button">Browse Games</a>
+              <div>
+                <img
+                  src="https://c4.wallpaperflare.com/wallpaper/777/366/331/video-games-ubisoft-collage-hd-wallpaper-preview.jpg"
+                  alt="ubisoft"
+                  class="banner-img"
+                />
+              </div>
+            </div>
+            <div class="carousel-item">
+              <a href="allGames.html" class="btn cta-button">Browse Games</a>
+              <div>
+                <img
+                  src="https://c4.wallpaperflare.com/wallpaper/88/882/447/hitman-the-witcher-3-wild-hunt-mirror-s-edge-battlefield-wallpaper-preview.jpg"
+                  alt="hitman-the-witcher-3-wild-hunt-mirror-s-edge-battlefield"
+                  class="banner-img"
+                />
+              </div>
+            </div>
+            <div class="carousel-control-btn-wrapper">
+              <a
+                class="carousel-control carousel-control-prev"
+                href="#gameCarousel"
+                role="button"
+                data-slide="prev"
+              >
+                <span
+                  class="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a
+                class="carousel-control carousel-control-next"
+                href="#gameCarousel"
+                role="button"
+                data-slide="next"
+              >
+                <span
+                  class="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- second banner section end -->
 
     <!-- Upcoming section -->
 
@@ -338,7 +401,7 @@
         <h1>UPCOMING GAMES FOR PREORDER</h1>
         <hr />
         <div class="row upcomingCardsContainer">
-          <script src="js/deals-card-render.js"></script>
+          <script src="js/upcomingCardsRender.js"></script>
         </div>
       </div>
     </section>
@@ -352,7 +415,7 @@
         <h1>FREE GAMES</h1>
         <hr />
         <div class="row freeGamesCardsContainer">
-          <script src="js/card-render.js"></script>
+          <script src="js/freeCardsRender.js"></script>
         </div>
       </div>
     </section>
