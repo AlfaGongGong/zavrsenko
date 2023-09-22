@@ -1,9 +1,14 @@
 const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
+const bcrypt = require('bcrypt');
+const bodyParser = require('body-parser');
+
 const app = express();
 
 app.use(cors());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // Create a MySQL connection
 const db = mysql.createConnection({
@@ -80,8 +85,45 @@ app.get('/free_games', (req, res) => {
 
 });
 
-const bodyParser = require('body-parser');
 const port = 3000;
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+// Serve static HTML and CSS
+app.use(express.static('public'));
+
+// User registration endpoint
+app.post('/register', (req, res) => {
+      const { username, email, password } = req.body;
+      // Check if the username or email is already registered
+      const checkDuplicateUserQuery = 'SELECT * FROM users WHERE username = ? OR email = ?';
+      db.query(checkDuplicateUserQuery, [username, email], (err, results) => {
+            if (err) {
+                  console.error('MySQL error:', err);
+                  return res.status(500).json({ message: 'Internal server error' });
+            }
+            if (results.length > 0) {
+                  return res.status(400).json({ message: 'Username or email already exists' });
+            }
+            // Hash the password
+            bcrypt.hash(password, 10, (err, hashedPassword) => {
+                  if (err) {
+                        console.error('Error hashing password:', err);
+                        return res.status(500).json({ message: 'Internal server error' });
+                  }
+                  // Insert the new user into the database
+                  const insertUserQuery = 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)';
+                  db.query(insertUserQuery, [username, email, hashedPassword], (err) => {
+                        if (err) {
+                              console.error('MySQL error:', err);
+                              return res.status(500).json({ message: 'Internal server error' });
+                        }
+                        res.status(201).json({ message: 'Registration successful' });
+                  });
+            });
+      });
+});
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
