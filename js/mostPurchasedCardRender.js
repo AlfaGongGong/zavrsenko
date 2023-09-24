@@ -1,4 +1,3 @@
-const replaceImg = ('https://cdn.xxl.thumbs.canstockphoto.com/image-not-available-written-in-chalk-on-a-blackboard-stock-image_csp8317846.jpg');
 // Make a GET request to fetch the JSON data from the server
 
 fetch('http://localhost:3000/games')
@@ -12,7 +11,7 @@ fetch('http://localhost:3000/games')
 
                   // Set the card content using the deal data
                   cardElement.innerHTML = `
-        <img src="${card.game_image}" alt="${replaceImg}" class="product-image"/>
+        <img src="${card.game_image}" alt="${card.game_name}" class="product-image"/>
         <h2 class="product-name">${card.game_name}</h2>
 
         <p class='product-description-'>

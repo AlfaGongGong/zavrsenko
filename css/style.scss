@@ -48,13 +48,6 @@ body {
   padding: 0;
 }
 
-section h1 {
-  font-size: 2rem;
-  font-weight: bold;
-  margin: 20px 0;
-  text-align: center;
-}
-
 /* Hero Section */
 .hero {
   position: relative;
@@ -155,39 +148,8 @@ section h1 {
     margin: 20px 0;
     text-align: center;
   }
-  carousel-item a.btn.cta-button {
-    text-decoration: none;
-    margin: 10px 0;
-    color: $accentColor;
-    transition: all 0.3s ease;
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    -ms-transition: all 0.3s ease;
-    font-family: $callToAction;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-  }
 }
 
-.carousel-item a.btn.cta-button:hover {
-  color: $background;
-  transition: all 0.3s ease;
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  -ms-transition: all 0.3s ease;
-  text-shadow:
-    0 0 5px #fff,
-    0 0 10px #fff,
-    0 0 15px #fff,
-    0 0 20px #ff0066,
-    0 0 30px #ff0066,
-    0 0 40px #ff0066,
-    0 0 55px #ff0066,
-    0 0 75px #ff0066;
-  background-color: darken ($btnColor, 10%);
-}
 .carousel-control-btn-wrapper {
   display: flex;
   align-items: center;
@@ -317,7 +279,7 @@ section h1 {
 
 .cta-button:hover {
   background-color: darken ($btnColor, 10%);
-  color: $background;
+  color: #fff;
   transition: all 0.3s ease;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
@@ -339,9 +301,10 @@ section h1 {
 .hero-img {
   width: 50%;
   height: auto;
-  margin-bottom: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
-
 /* Navbar Styles */
 .navbar {
   background-color: #0099ff;
@@ -368,11 +331,11 @@ section h1 {
 }
 
 /* Style for the Admin Dashboard item */
-.navbar li:last-child {
+#adminDashboard {
   margin-right: 0;
 }
 
-.navbar li:last-child a {
+#adminDashboard a {
   background-color: #ff0066;
   padding: 10px 20px;
   border-radius: 5px;
@@ -380,7 +343,7 @@ section h1 {
   transition: background-color 0.3s ease;
 }
 
-.navbar li:last-child a:hover {
+#adminDashboard a:hover {
   background-color: darken ($btnColor, 10%);
 }
 
@@ -528,7 +491,6 @@ input.mail_bt::placeholder {
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex-wrap: wrap;
   justify-content: space-evenly;
   height: 100%;
   border: 1px solid #ffffff;
@@ -567,7 +529,11 @@ input.mail_bt::placeholder {
     color: #ffffff;
     cursor: pointer;
     transition: all 0.3s ease;
-    height: 100%;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    height: 50px;
   }
   a {
     text-decoration: none;
@@ -607,6 +573,15 @@ input.mail_bt::placeholder {
   font-size: 16px;
   font-weight: bold;
   color: #ffffff;
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #fff,
+    0 0 15px #fff,
+    0 0 20px #ff0066,
+    0 0 30px #ff0066,
+    0 0 40px #ff0066,
+    0 0 55px #ff0066,
+    0 0 75px #ff0066;
   text-align: center;
   text-transform: uppercase;
   text-decoration: none;
@@ -618,31 +593,16 @@ input.mail_bt::placeholder {
   -o-transition: all 0.3s ease;
 }
 
-.card-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  height: 100px;
-}
-
 .product-genre,
 .product-score {
   color: #ffffff;
 }
 
-.product-price-sale,
-.product-price-normal {
-  font-weight: bold;
-  color: #f66;
-  text-align: left;
-  text-decoration: none;
-
-  margin-top: 5px;
-}
-
 .product-price-normal {
   text-decoration: line-through;
+  color: #ffffff;
+  font-size: 2rem;
+  text-decoration-line-color: $highlightColor;
 }
 .product-price-info {
   font-size: 2rem;
@@ -653,15 +613,24 @@ input.mail_bt::placeholder {
   font-size: 14px;
   height: 100px;
   color: #ffffff;
-  text-align: left;
+  text-shadow:
+    0 1px 0 #fff,
+    0 -1px 0 #fff,
+    1px 0 0 #fff,
+    -1px 0 0 #fff;
+  text-align: center;
   text-decoration: none;
   cursor: pointer;
 }
 .product-date-info {
   font-size: 14px;
   color: #ffffff;
-  text-align: left;
   text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  height: 100px;
+  text-align: center;
+  margin: 10px;
 }
 
 .product-rating {
@@ -684,10 +653,21 @@ input.mail_bt::placeholder {
 .product-genre-info {
   font-size: 14px;
   color: #ffffff;
+
   text-align: center;
   text-decoration: none;
   cursor: pointer;
   transition: all 0.3s ease;
+  //neon glow texture
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #fff,
+    0 0 15px #fff,
+    0 0 20px #ff0066,
+    0 0 30px #ff0066,
+    0 0 40px #ff0066,
+    0 0 55px #ff0066,
+    0 0 75px #ff0066;
 }
 
 .stars {
@@ -876,8 +856,8 @@ section.genre-section,
   }
 }
 .navbar {
-  background-color: #333;
-  color: $mainColor;
+  background-color: $mainColor;
+  color: #ffffff;
   padding: 10px 0;
 }
 
@@ -889,7 +869,7 @@ section.genre-section,
   margin: 0;
   line-height: 30px;
   font-size: 1.25rem;
-  color: $mainColor;
+  color: #ffffff;
 }
 
 .navbar-toggler:focus {
@@ -897,11 +877,11 @@ section.genre-section,
 }
 
 .navbar-toggler span {
-  color: $mainColor;
+  color: $highlightColor;
 }
 
 .navbar-toggler:hover span {
-  color: $highlightColor;
+  color: #ffffff;
 }
 
 .navbar-nav .nav-item {
@@ -910,7 +890,7 @@ section.genre-section,
 }
 
 .navbar-nav .nav-link {
-  color: $mainColor;
+  color: #ffffff;
   text-decoration: none;
 }
 
@@ -920,7 +900,7 @@ section.genre-section,
 
 @media (max-width: 768px) {
   .navbar-nav {
-    text-align: center; /* Center align the links on smaller screens */
+    text-align: center;
   }
 
   .navbar-nav .nav-item {

@@ -79,10 +79,11 @@
                 <h2>Assassins Creed</h2>
                 <p>Embark on an epic adventure</p>
                 <a
-                  href="https://www.ubisoft.com/en-gb/game/assassins-creed/mirage#"
-                  class="btn cta-button"
-                  >Check Out</a
+                  class="cta-button"
+                  href="https://www.ubisoft.com/en-gb/game/assassins-creed/mirage"
+                  >Explore</a
                 >
+
                 <div>
                   <iframe
                     width="560"
@@ -98,8 +99,8 @@
               <div class="carousel-item">
                 <h2>Deals from Ubisoft</h2>
                 <p>Get the best deals on Ubisoft games</p>
-                <a href="https://www.ubisoft.com/en-us/" class="btn cta-button"
-                  >Check Out</a
+                <a href="https://www.ubisoft.com/en-us/" class="cta-button"
+                  >Explore Ubisoft Store</a
                 >
                 <div>
                   <img
@@ -112,9 +113,7 @@
               <div class="carousel-item">
                 <h2>Gear Up</h2>
                 <p>ROCCAT PC peripherals are ready to play</p>
-                <a href="https://eu.roccat.com/" class="btn cta-button"
-                  >Check Out</a
-                >
+                <a href="https://eu.roccat.com/" class="cta-button">Game On</a>
                 <div>
                   <iframe
                     width="560"
@@ -165,6 +164,7 @@
         </div>
       </div>
     </section>
+
     <!-- nav section -->
     <nav class="navbar navbar-expand-md navbar-collapse mb-3">
       <button
@@ -181,27 +181,95 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a href="#" class="nav-link"
+            <a href="index.html" class="nav-link"
               >Home <i class="fa fa-home" aria-hidden="true"></i
             ></a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link"
-              >Browse <i class="fa fa-search" aria-hidden="true"></i
+            <a href="./html/gamesList.html" class="nav-link nav-item"
+              >Browse All Games <i class="fa fa-gamepad" aria-hidden="true"></i
             ></a>
           </li>
-          <li class="nav-item">
-            <a href="./html/login-register.html" class="nav-link"
-              >Log In / Register <i class="fa fa-user" aria-hidden="true"></i
-            ></a>
-          </li>
-
-          <!--  Admin Dashboard -->
-          <li class="nav-item" id="admin-dashboard">
-            <a href="#">Admin Dashboard</a>
-          </li>
+          <form class="form-inline">
+            <input class="form-control" type="search" />
+          </form>
+          <button type="submit" class="btn btn-danger" id="searchBtn">
+            Search <i class="fa fa-search" aria-hidden="true"></i>
+          </button>
         </ul>
       </div>
+      <span
+        id="logInRegister"
+        type="button"
+        class="nav-link dropdown-toggle"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="fa fa-user" aria-hidden="true">Log In / Register </i>
+      </span>
+      <div class="dropdown-menu" id="logIn">
+        <form id="login-form" class="dropdown-item">
+          <h2>Login</h2>
+          <input
+            type="text"
+            placeholder="Username"
+            id="login-username"
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            id="login-password"
+            required
+          />
+          <button type="submit">Login</button>
+        </form>
+      </div>
+
+      <div class="dropdown-menu" id="register">
+        <form id="register-form" class="dropdown-item">
+          <h2>Register</h2>
+          <input
+            type="text"
+            placeholder="Username"
+            id="register-username"
+            required
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            id="register-email"
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            id="register-password"
+            required
+          />
+          <input
+            type="password"
+            placeholder="Confirm Password"
+            id="register-confirm-password"
+            required
+          />
+          <button type="submit">Register</button>
+        </form>
+      </div>
+      <ul class="navbar-nav" id="myAccount" style="display: none">
+        <li class="nav-item">
+          <button
+            type="button"
+            class="btn btn-secondary dropdown-toggle"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Welcome back <i class="fa fa-user" aria-hidden="true"></i>
+          </button>
+        </li>
+      </ul>
     </nav>
 
     <!-- nav section end -->
@@ -450,7 +518,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
     <script src="script.js"></script>
   </body>

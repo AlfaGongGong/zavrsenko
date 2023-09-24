@@ -3,6 +3,7 @@ const mysql = require('mysql2');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
+const session = require('express-session');
 
 const app = express();
 
@@ -10,7 +11,14 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Create a MySQL connection
+app.use(
+      session({
+            secret: 'your-secret-key',
+            resave: false,
+            saveUninitialized: true,
+      })
+);
+
 const db = mysql.createConnection({
       host: 'localhost',
       user: 'root',
@@ -19,7 +27,6 @@ const db = mysql.createConnection({
       port: 3306,
 });
 
-// Connect to the database
 db.connect((err) => {
       if (err) {
             console.error('Error connecting to MySQL:', err);
@@ -82,16 +89,18 @@ app.get('/free_games', (req, res) => {
             }
             res.json(results);
       });
-
 });
 
-const port = 3000;
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-// Serve static HTML and CSS
 app.use(express.static('public'));
+
+// Check user login status
+app.get('/checkloginstatus', (req, res) => {
+      if (req.session.user) {
+            res.json({ loggedIn: true, username: req.session.user.username });
+      } else {
+            res.json({ loggedIn: false });
+      }
+});
 
 // User registration endpoint
 app.post('/register', (req, res) => {
@@ -119,44 +128,8 @@ app.post('/register', (req, res) => {
                               console.error('MySQL error:', err);
                               return res.status(500).json({ message: 'Internal server error' });
                         }
-                        res.status(201).json({ message: 'Registration successful' });
-                  });
-            });
-      });
-});
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-// Serve static HTML and CSS
-app.use(express.static('public'));
-
-// User registration endpoint
-app.post('/register', (req, res) => {
-      const { username, email, password } = req.body;
-      // Check if the username or email is already registered
-      const checkDuplicateUserQuery = 'SELECT * FROM users WHERE username = ? OR email = ?';
-      db.query(checkDuplicateUserQuery, [username, email], (err, results) => {
-            if (err) {
-                  console.error('MySQL error:', err);
-                  return res.status(500).json({ message: 'Internal server error' });
-            }
-            if (results.length > 0) {
-                  return res.status(400).json({ message: 'Username or email already exists' });
-            }
-            // Hash the password
-            bcrypt.hash(password, 10, (err, hashedPassword) => {
-                  if (err) {
-                        console.error('Error hashing password:', err);
-                        return res.status(500).json({ message: 'Internal server error' });
-                  }
-                  // Insert the new user into the database
-                  const insertUserQuery = 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)';
-                  db.query(insertUserQuery, [username, email, hashedPassword], (err) => {
-                        if (err) {
-                              console.error('MySQL error:', err);
-                              return res.status(500).json({ message: 'Internal server error' });
-                        }
+                        // Set user session
+                        req.session.user = { username, email };
                         res.status(201).json({ message: 'Registration successful' });
                   });
             });
@@ -182,10 +155,21 @@ app.post('/login', (req, res) => {
                   if (err || !result) {
                         return res.status(401).json({ message: 'Invalid credentials' });
                   }
+                  // Set user session
+                  req.session.user = { username, email: user.email };
                   res.json({ message: 'Login successful' });
             });
       });
 });
-app.listen(3000, () => {
+
+// Logout endpoint
+app.post('/logout', (req, res) => {
+      req.session.destroy();
+      res.json({ message: 'Logout successful' });
+});
+
+const port = 3000;
+
+app.listen(port, () => {
       console.log('Server running on port 3000');
 });
