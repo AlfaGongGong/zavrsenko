@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <p class='product-developer'>Developer: ${card.developer}</p>
         <p class='product-genre-info'>${card.genre}</p>
         </div>
-        <a href="${card.free_to_play}" target="_blank" class="cta-button"><i class="fas fa-shopping-cart"></i>Play Now for Free</a>
+        <a href="${card.free_to_play}" target="_blank" class="btn cta-btn">Play Now for Free</a>
       `;
 
                         // Append the product card element to the container   element    

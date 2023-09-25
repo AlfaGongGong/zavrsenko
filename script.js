@@ -9,94 +9,155 @@ document.querySelectorAll('.icon-container').forEach((element) => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Function to display an alert message in the container
   function displayAlert(message, type) {
     const alertDiv = document.createElement('div');
     alertDiv.className = `alert alert-${type}`;
     alertDiv.textContent = message;
-    document.getElementById('container').innerHTML = '';
-    document.getElementById('container').appendChild(alertDiv);
+    document.body.appendChild(alertDiv);
   }
 
   // Function to clear the container
   function clearContainer() {
-    document.getElementById('container').innerHTML = '';
+    const container = document.querySelector('.container');
+    container.innerHTML = '';
   }
 
   // User registration form logic
   document.getElementById('register-form').addEventListener('submit', async (e) => {
-    e.preventDefault(); // Prevent the default form submission
+    e.preventDefault();
     const username = document.getElementById('register-username').value;
     const email = document.getElementById('register-email').value;
     const password = document.getElementById('register-password').value;
     const confirmPassword = document.getElementById('register-confirm-password').value;
-    const registerContainer = document.getElementById('register');
+
     if (password !== confirmPassword) {
       displayAlert('Passwords do not match', 'danger');
       return;
-    } else {
-      try {
-        const response = await fetch('http://localhost:3000/register', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ username, email, password }),
-        });
+    }
 
-        if (response.ok) {
-          displayAlert('Registration successful', 'success');
-          // Reload the page after a successful registration
-          setTimeout(() => {
-            window.location.reload();
-          }, 2000);
-          // Hide the register form
-          registerContainer.style.display = 'none';
-        } else {
-          const errorText = await response.text();
-          displayAlert(`Registration failed: ${errorText}`, 'danger');
-          console.error('Registration failed:', errorText);
-          setTimeout(() => {
-            window.location.reload();
-          }, 2000);
-        }
-      } catch (error) {
-        console.error('Error during registration:', error);
+    try {
+      const response = await fetch('http://localhost:3000/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, email, password }),
+      });
+
+      if (response.ok) {
+        displayAlert('Registration successful', 'success');
+
+        // Hide the register form
+        document.getElementById('register-form').style.display = 'none';
+
+      } else {
+        const errorText = await response.text();
+        displayAlert(`Registration failed: ${errorText}`, 'danger');
+        console.error('Registration failed:', errorText);
       }
+    } catch (error) {
+      console.error('Error during registration:', error);
     }
   });
 
-  // User login form logic
-  document.getElementById('login-form').addEventListener('submit', async (e) => {
-    e.preventDefault(); // Prevent the default form submission
-    const username = document.getElementById('login-username').value;
-    const password = document.getElementById('login-password').value;
+  // Function to handle user login
+  function loginUser() {
+    preventDefault();
+    const username = $('#login-username').val();
+    const password = $('#login-password').val();
 
-    if (username === '' || password === '') {
-      displayAlert('All fields are required', 'danger');
-    } else {
-      try {
-        const response = await fetch('http://localhost:3000/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ username, password }),
-        });
+    $.ajax({
+      type: 'POST',
+      url: 'http://localhost:3000/login',
+      data: JSON.stringify({ username, password }),
+      contentType: 'application/json',
+      success: handleLoginSuccess,
+      error: handleLoginError,
+    });
+  }
 
-        if (response.ok) {
-          // Handle successful login (e.g., redirect)
-          displayAlert('Login successful', 'success');
-          // Optionally, redirect or perform other actions
-        } else {
-          const errorText = await response.text();
-          displayAlert(`Login failed: ${errorText}`, 'danger');
-          console.error('Login failed:', errorText);
-        }
-      } catch (error) {
-        console.error('Error during login:', error);
-      }
+  // Function to handle successful login
+  function handleLoginSuccess(response) {
+    const token = response.token;
+    // Store the token securely in local storage
+    localStorage.setItem('token', token);
+    $('#message').text(response.message);
+
+    updateUIOnLogin();
+  }
+
+  // Function to handle login error
+  function handleLoginError() {
+    $('#message').text('Login failed');
+  }
+
+  // Function to check if the user is already logged in
+  function checkLoggedIn() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      updateUIOnLogin();
     }
+  }
+
+  // Function to update the UI after login
+  function updateUIOnLogin() {
+    $('#logInRegister').hide();
+    $('#login-form').hide();
+    $('#register-form').hide();
+    $('#myAccount').show();
+    $('#logOut').show();
+  }
+
+  // Function to access protected route
+  function accessProtectedRoute() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      $('#message').text('Not authenticated. Please log in.');
+      return;
+    }
+
+    // Send a GET request to the protected route
+    $.ajax({
+      type: 'GET',
+      url: 'http://localhost:3000/protected',
+      headers: {
+        Authorization: token,
+      },
+      success: handleProtectedAccessSuccess,
+      error: handleProtectedAccessError,
+    });
+  }
+
+  // Function to handle successful access to protected route
+  function handleProtectedAccessSuccess(response) {
+    $('#message').text(response.message);
+  }
+
+  // Function to handle access to protected route error
+  function handleProtectedAccessError() {
+    $('#message').text('Access denied');
+  }
+
+  // Function to log out
+  function logoutUser() {
+    localStorage.removeItem('token');
+
+    $('#logInRegister').show();
+    $('#login-form').show();
+    $('#register-form').show();
+    $('#myAccount').hide();
+    $('#logOut').hide();
+    $('#message').text('Logged out');
+  }
+
+  $(document).ready(function () {
+    // Attach event handlers to buttons
+    $('#login').click(loginUser);
+    $('#accessProtected').click(accessProtectedRoute);
+    $('#logout').click(logoutUser);
+
+    // Check if the user is already logged in
+    checkLoggedIn();
   });
 
   // Check user login status and update the UI accordingly
@@ -111,33 +172,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (response.ok) {
         const data = await response.json();
-        const username = document.getElementById('dropdownMenuButton');
-        const logoutButton = document.getElementById('logOutButton');
-        const myAccount = document.getElementById('myAccount');
+        const usernameElement = document.getElementById('username');
+        const myAccountElement = document.getElementById('myAccount');
+        const logOutButtonElement = document.getElementById('logOutButton');
 
-        // Display username and show the logout button
-        username.textContent = 'Welcome back ' + data.username;
-
-        logoutButton.style.display = 'block';
-        myAccount.style.display = 'block';
+        if (usernameElement && myAccountElement && logOutButtonElement) {
+          usernameElement.textContent = 'Welcome back, ' + data.username;
+          myAccountElement.style.display = 'block';
+          logOutButtonElement.style.display = 'block';
+        }
       } else {
-        // User is not logged in
-        // Hide the logout button
-        const logoutButton = document.getElementById('logOutButton');
-        const myAccount = document.getElementById('myAccount');
+        const myAccountElement = document.getElementById('myAccount');
+        const logOutButtonElement = document.getElementById('logOutButton');
 
-        logoutButton.style.display = 'none';
-        myAccount.style.display = 'none';
+        if (myAccountElement && logOutButtonElement) {
+          myAccountElement.style.display = 'none';
+          logOutButtonElement.style.display = 'none';
+        }
       }
     } catch (error) {
       console.error('Error checking user login status:', error);
     }
   }
 
-  // Call the function to check user login status when the page loads
-  window.addEventListener('load', checkUserLoginStatus);
+  checkUserLoginStatus();
 
-  // Add an event listener to the logout button
   document.getElementById('logOutButton').addEventListener('click', async (e) => {
     e.preventDefault();
 
@@ -150,9 +209,13 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       if (response.ok) {
-        // Redirect to the home page after logout
         window.location.href = 'index.html';
         console.log('Logout successful');
+        document.getElementById('myAccount').style.display = 'none';
+        document.getElementById('logOutButton').style.display = 'none';
+        document.getElementById('login-form').style.display = 'block';
+        document.getElementById('register-form').style.display = 'block';
+
       } else {
         console.error('Logout failed:', await response.text());
       }

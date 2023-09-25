@@ -16,6 +16,10 @@ app.use(
             secret: 'your-secret-key',
             resave: false,
             saveUninitialized: true,
+            cookie: {
+                  sameSite: 'None',
+                  secure: true,
+            },
       })
 );
 
@@ -93,18 +97,10 @@ app.get('/free_games', (req, res) => {
 
 app.use(express.static('public'));
 
-// Check user login status
-app.get('/checkloginstatus', (req, res) => {
-      if (req.session.user) {
-            res.json({ loggedIn: true, username: req.session.user.username });
-      } else {
-            res.json({ loggedIn: false });
-      }
-});
-
-// User registration endpoint
+// Endpoint for user registration
 app.post('/register', (req, res) => {
       const { username, email, password } = req.body;
+
       // Check if the username or email is already registered
       const checkDuplicateUserQuery = 'SELECT * FROM users WHERE username = ? OR email = ?';
       db.query(checkDuplicateUserQuery, [username, email], (err, results) => {
@@ -136,40 +132,85 @@ app.post('/register', (req, res) => {
       });
 });
 
-// User login endpoint
+// Endpoint for user login
 app.post('/login', (req, res) => {
       const { username, password } = req.body;
-      // Retrieve user data by username
-      const getUserQuery = 'SELECT * FROM users WHERE username = ?';
-      db.query(getUserQuery, [username], (err, results) => {
+
+      // Check if the username exists in the database
+      const checkUserQuery = 'SELECT * FROM users WHERE username = ?';
+      db.query(checkUserQuery, [username], (err, results) => {
             if (err) {
                   console.error('MySQL error:', err);
                   return res.status(500).json({ message: 'Internal server error' });
             }
             if (results.length === 0) {
-                  return res.status(401).json({ message: 'Invalid credentials' });
+                  return res.status(401).json({ message: 'Login failed' });
             }
             const user = results[0];
-            // Compare the hashed password
-            bcrypt.compare(password, user.password, (err, result) => {
-                  if (err || !result) {
-                        return res.status(401).json({ message: 'Invalid credentials' });
+
+            // Compare the provided password with the hashed password in the database
+            bcrypt.compare(password, user.password, (err, passwordMatch) => {
+                  if (err) {
+                        console.error('Error comparing passwords:', err);
+                        return res.status(500).json({ message: 'Internal server error' });
                   }
+                  if (!passwordMatch) {
+                        return res.status(401).json({ message: 'Login failed' });
+                  }
+
                   // Set user session
-                  req.session.user = { username, email: user.email };
-                  res.json({ message: 'Login successful' });
+                  req.session.user = { username: user.username, email: user.email };
+                  res.status(200).json({ message: 'Login successful', token: 'your-auth-token' });
             });
       });
 });
 
-// Logout endpoint
+// Endpoint for checking user login status
+app.get('/checkloginstatus', (req, res) => {
+      if (req.session.user) {
+            // User is logged in, send user data
+            res.status(200).json({ loggedIn: true, username: req.session.user.username });
+      } else {
+            // User is not logged in
+            res.status(401).json({ loggedIn: false });
+      }
+});
+
+// Protected route
+app.get('/protected', (req, res) => {
+      if (req.session.user) {
+            // User is authenticated, provide access to protected resource
+            res.status(200).json({ message: 'Access granted to protected resource' });
+      } else {
+            // User is not authenticated
+            res.status(401).json({ message: 'Access denied' });
+      }
+});
+
+// Endpoint for user logout
 app.post('/logout', (req, res) => {
       req.session.destroy();
-      res.json({ message: 'Logout successful' });
+      res.status(200).json({ message: 'Logout successful' });
+});
+
+app.listen(port, () => {
+      console.log('Server running on port 3000');
+});
+
+// Setting Permissions Policy header
+app.use((req, res, next) => {
+      res.setHeader('Permissions-Policy', 'geolocation=(self)');
+      next();
 });
 
 const port = 3000;
 
 app.listen(port, () => {
       console.log('Server running on port 3000');
+});
+
+// Setting Permissions Policy header
+app.use((req, res, next) => {
+      res.setHeader('Permissions-Policy', 'geolocation=(self)');
+      next();
 });
