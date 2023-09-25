@@ -12,11 +12,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         cardElement.innerHTML = `
         <img src="${card.image}" alt="${replaceImg}" class="product-image"/>
         <h2 class="product-name">${card.title}</h2>
+        <div class="card-info">
         <p class='product-date-info'>Release Date: ${card.releaseDate}</p>
         <p class='product-description-'>
         lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
         <p class='product-rating-info'>Score: ${card.score}</p>
-        <a href="cart.html" class="cta-button"><i class="fas fa-shopping-cart"></i>Preorder Now</a>
+        <a href="cart.html" class="btn cta-btn">Preorder Now</a>
+        </div>
       `;
 
                         // Append the card to the container

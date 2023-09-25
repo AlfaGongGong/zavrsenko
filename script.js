@@ -1,5 +1,3 @@
-
-
 // Animate genre icons
 document.querySelectorAll('.icon-container').forEach((element) => {
   element.addEventListener('mouseover', () => {
@@ -61,7 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
           setTimeout(() => {
             window.location.reload();
           }, 2000);
-
         }
       } catch (error) {
         console.error('Error during registration:', error);
@@ -110,17 +107,16 @@ document.addEventListener('DOMContentLoaded', () => {
         headers: {
           'Content-Type': 'application/json',
         },
-
       });
 
       if (response.ok) {
         const data = await response.json();
         const username = document.getElementById('dropdownMenuButton');
-        const logoutButton = document.getElementById('logout-button');
+        const logoutButton = document.getElementById('logOutButton');
         const myAccount = document.getElementById('myAccount');
 
         // Display username and show the logout button
-        username.textContent = username.textContent + data.username;
+        username.textContent = 'Welcome back ' + data.username;
 
         logoutButton.style.display = 'block';
         myAccount.style.display = 'block';

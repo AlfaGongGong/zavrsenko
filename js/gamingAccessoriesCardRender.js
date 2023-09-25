@@ -20,8 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
           <p class='product-genre-info'>${card.product_brand}</p>
           <p class='product-genre-info'>${card.product_type}</p>
           <p class="product-price-info">$${card.product_price}</p>
+          <a href="../html/productDetails.html" class="btn cta-btn">More Info</a>
           </div>
-          <a href="cart.html" class="btn cta-button"><i class="fas fa-shopping-cart"></i>Add to Cart</a>
+
         `;
 
                         // Append the card to the container

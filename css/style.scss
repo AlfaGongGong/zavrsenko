@@ -552,113 +552,127 @@ input.mail_bt::placeholder {
     transition: all 0.3s ease;
     height: 50px;
   }
+}
 
-  .product-card:hover {
-    transform: scale(1.05);
-  }
+.product-card:hover {
+  transform: scale(1.05);
+}
+.card-info {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  background-color: #252525;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.product-image {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
 
-  .product-image {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 10px;
-  }
+.product-name {
+  font-size: 16px;
+  color: #ffffff;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
 
-  .product-name {
-    font-size: 16px;
-    color: #ffffff;
-    text-align: center;
-    text-transform: uppercase;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #fff,
+    0 0 15px #fff,
+    0 0 20px #ff0066,
+    0 0 30px #ff0066,
+    0 0 40px #ff0066,
+    0 0 55px #ff0066,
+    0 0 75px #ff0066;
+}
 
-    text-shadow:
-      0 0 5px #fff,
-      0 0 10px #fff,
-      0 0 15px #fff,
-      0 0 20px #ff0066,
-      0 0 30px #ff0066,
-      0 0 40px #ff0066,
-      0 0 55px #ff0066,
-      0 0 75px #ff0066;
-  }
+.product-genre,
+.product-score {
+  font-size: 14px;
+  color: #ffffff;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
 
-  .product-genre,
-  .product-score {
-    font-size: 14px;
-    color: #ffffff;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
+.product-price-normal {
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
 
-  .product-price-normal {
-    color: #ffffff;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
+.product-price-info {
+  font-size: 2rem;
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
 
-  .product-price-info {
-    font-size: 2rem;
-    color: #ffffff;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
+.product-description {
+  font-size: 12px;
+  height: 100px;
+  color: #ffffff;
+  text-align: center;
+  cursor: pointer;
 
-  .product-description {
-    font-size: 12px;
-    height: 100px;
-    color: #ffffff;
-    text-align: center;
-    cursor: pointer;
+  text-shadow:
+    0 1px 0 #fff,
+    0 -1px 0 #fff,
+    1px 0 0 #fff,
+    -1px 0 0 #fff;
+}
 
-    text-shadow:
-      0 1px 0 #fff,
-      0 -1px 0 #fff,
-      1px 0 0 #fff,
-      -1px 0 0 #fff;
-  }
+.product-date-info {
+  font-size: 14px;
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
 
-  .product-date-info {
-    font-size: 14px;
-    color: #ffffff;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-align: center;
-  }
+.product-date {
+  font-size: 14px;
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
 
-  .product-date {
-    font-size: 14px;
-    color: #ffffff;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
+.product-developer,
+.product-publisher,
+.product-genre-info,
+.product-rating-info {
+  font-size: 14px;
+  color: #ffffff;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
 
-  .product-developer,
-  .product-publisher,
-  .product-genre-info {
-    font-size: 14px;
-    color: #ffffff;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-
-    text-shadow:
-      0 0 5px #fff,
-      0 0 10px #fff,
-      0 0 15px #fff,
-      0 0 20px #ff0066,
-      0 0 30px #ff0066,
-      0 0 40px #ff0066,
-      0 0 55px #ff0066,
-      0 0 75px #ff0066;
-  }
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #fff,
+    0 0 15px #fff,
+    0 0 20px #ff0066,
+    0 0 30px #ff0066,
+    0 0 40px #ff0066,
+    0 0 55px #ff0066,
+    0 0 75px #ff0066;
 }
 
 .stars {

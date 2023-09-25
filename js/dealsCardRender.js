@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <p class='product-rating-info'>Score: ${card.score}</p>
           <p class="product-price-normal">Regular price: ${card.normalPrice}</p>
           <p class="product-price-sale">Now: ${card.salePrice}</p>
-        <a href="../html/gameInfo.html" class="btn cta-btn">More Info</a>
+        <a href="../html/productInfo.html" class="btn cta-btn">More Info</a>
         </div>
 
       `;
