@@ -56,27 +56,46 @@ body {
   background-attachment: fixed;
   scroll-snap-align: start;
   transition: all 0.2s;
-  -webkit-transition: all 0.2s;
-  -moz-transition: all 0.2s;
-  -o-transition: all 0.2s;
-  -ms-transition: all 0.2s;
-  padding: 0;
-  margin: 0;
-  border: 0;
-  border-radius: 0;
-  box-shadow: none;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  -o-box-shadow: none;
-  -ms-box-shadow: none;
-  overflow: hidden;
-  scroll-padding-top: 15px;
-  scroll-snap-align: start;
   transition: all 0.2s;
   font-size: 20px;
   transition: all 0.2s;
 }
 
+.hero {
+  padding: 50px 0;
+}
+.hero .carousel-container {
+  padding: 20px;
+}
+@media (max-width: 768px) {
+  .hero .carousel-container {
+    padding: 10px;
+  }
+}
+.hero .carousel-item {
+  text-align: center;
+}
+@media (max-width: 768px) {
+  .hero .carousel-item {
+    text-align: center;
+  }
+}
+.hero .hero-content {
+  text-align: center;
+  margin-top: 20px;
+}
+@media (max-width: 768px) {
+  .hero .hero-content {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-brand {
+    text-align: center;
+    width: 100%;
+  }
+}
 .carousel-container {
   position: relative;
   max-height: 500px;
@@ -254,36 +273,6 @@ body {
   margin-right: auto;
 }
 
-/* Navbar Styles */
-.navbar {
-  background-color: #0099ff;
-  padding: 15px 0;
-}
-
-.navbar ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-
-.navbar li {
-  display: inline-block;
-  margin-right: 20px;
-}
-
-.navbar a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-/* Style for the Admin Dashboard item */
-#adminDashboard {
-  margin-right: 0;
-}
-
 #adminDashboard a {
   background-color: #ff0066;
   padding: 10px 20px;
@@ -294,6 +283,17 @@ body {
 
 #adminDashboard a:hover {
   background-color: darken #ff0066, 10%;
+}
+
+.nav-link {
+  color: #ff0066;
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  cursor: pointer;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff0066, 0 0 30px #ff0066, 0 0 40px #ff0066, 0 0 55px #ff0066, 0 0 75px #ff0066;
 }
 
 .banner {
@@ -549,7 +549,6 @@ input.mail_bt::placeholder {
   text-decoration: line-through;
   color: #ffffff;
   font-size: 2rem;
-  text-decoration-line-color: #00ff00;
 }
 
 .product-price-info {
@@ -688,87 +687,10 @@ section.genre-section,
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.hero {
-  padding: 50px 0;
-}
-.hero .carousel-container {
-  padding: 20px;
-}
-@media (max-width: 768px) {
-  .hero .carousel-container {
-    padding: 10px;
-  }
-}
-.hero .carousel-item {
-  text-align: center;
-}
-@media (max-width: 768px) {
-  .hero .carousel-item {
-    text-align: center;
-  }
-}
-.hero .hero-content {
-  text-align: center;
-  margin-top: 20px;
-}
-@media (max-width: 768px) {
-  .hero .hero-content {
-    margin-top: 10px;
-  }
-}
-
-.navbar {
-  background-color: #0099ff;
-  color: #ffffff;
-  padding: 10px 0;
-}
-
-.navbar-toggler {
-  border: none;
-  outline: none;
-  padding: 0;
-  cursor: pointer;
-  margin: 0;
-  line-height: 30px;
-  font-size: 1.25rem;
-  color: #ffffff;
-}
-
-.navbar-toggler:focus {
-  outline: none;
-}
-
-.navbar-toggler span {
-  color: #00ff00;
-}
-
-.navbar-toggler:hover span {
-  color: #ffffff;
-}
-
-.navbar-nav .nav-item {
-  margin-right: 20px;
-  position: relative;
-}
-
-.navbar-nav .nav-link {
-  color: #ffffff;
-  text-decoration: none;
-}
-
 #admin-dashboard {
   display: none;
 }
 
-@media (max-width: 768px) {
-  .navbar-nav {
-    text-align: center;
-  }
-  .navbar-nav .nav-item {
-    margin-right: 0;
-    margin-bottom: 10px;
-  }
-}
 .second-carousel-section {
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -782,4 +704,12 @@ section.genre-section,
   gap: 20px;
   margin: 20px;
   padding: 20px;
+}
+
+#login-form,
+#register-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }/*# sourceMappingURL=style.css.map */
