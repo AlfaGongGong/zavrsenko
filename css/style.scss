@@ -53,7 +53,7 @@ body {
   position: relative;
   background-color: transparent;
   overflow: hidden;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   display: flex;
   align-items: center;
@@ -76,34 +76,32 @@ body {
   font-size: 20px;
   transition: all 0.2s;
 }
-.hero {
-  padding: 50px 0;
 
-  .carousel-container {
-    padding: 20px;
+.carousel-container {
+  padding: 20px;
 
-    @media (max-width: 768px) {
-      padding: 10px;
-    }
-  }
-
-  .carousel-item {
-    text-align: center;
-
-    @media (max-width: 768px) {
-      text-align: center;
-    }
-  }
-
-  .hero-content {
-    text-align: center;
-    margin-top: 20px;
-
-    @media (max-width: 768px) {
-      margin-top: 10px;
-    }
+  @media (max-width: 768px) {
+    padding: 10px;
   }
 }
+
+.carousel-item {
+  text-align: center;
+
+  @media (max-width: 768px) {
+    text-align: center;
+  }
+}
+
+.hero-content {
+  text-align: center;
+  margin-top: 20px;
+
+  @media (max-width: 768px) {
+    margin-top: 10px;
+  }
+}
+
 @media (max-width: 768px) {
   .navbar-brand {
     text-align: center;
@@ -123,7 +121,6 @@ body {
 }
 
 .carousel-item {
-  position: relative;
   h2 {
     font-size: 2rem;
     font-weight: bold;
@@ -210,15 +207,6 @@ body {
   cursor: pointer;
   z-index: 1;
   margin: 10px;
-  box-shadow:
-    0 0 5px #fff,
-    0 0 10px #fff,
-    0 0 15px #fff,
-    0 0 20px #ff0066,
-    0 0 30px #ff0066,
-    0 0 40px #ff0066,
-    0 0 55px #ff0066,
-    0 0 75px #ff0066;
 }
 .carousel-control-prev {
   width: 50px;
@@ -250,62 +238,63 @@ body {
 .hero-content h1 {
   font-size: 36px;
   font-weight: bold;
-  margin-top: 20px;
+  margin: 20px;
+  color: $background;
+  font-family: $title;
+  transition: all 0.3s ease;
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #fff,
+    0 0 15px #fff,
+    0 0 20px #ff0066,
+    0 0 30px #ff0066,
+    0 0 40px #ff0066,
+    0 0 55px #ff0066,
+    0 0 75px #ff0066;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
 }
 
 .hero-content p {
   font-size: 18px;
   margin-bottom: 30px;
+  color: $background;
+  font-family: $title;
+  transition: all 0.3s ease;
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #fff,
+    0 0 15px #fff,
+    0 0 20px #ff0066,
+    0 0 30px #ff0066,
+    0 0 40px #ff0066,
+    0 0 55px #ff0066,
+    0 0 75px #ff0066;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
 }
 
-.cta-button {
-  display: inline-block;
-  padding: 15px 30px;
+.cta-btn {
   background-color: #ff0066;
   color: #fff;
-  font-size: 18px;
+  font-size: 14px;
   text-decoration: none;
   border-radius: 5px;
   transition: background-color 0.3s ease;
-  -webkit-transition: background-color 0.3s ease;
-  -moz-transition: background-color 0.3s ease;
-  -o-transition: background-color 0.3s ease;
-  -ms-transition: background-color 0.3s ease;
   cursor: pointer;
-  z-index: 1;
-  margin-top: 30px;
-  margin-bottom: 30px;
   font-family: $callToAction;
   transition: all 0.3s ease;
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  -ms-transition: all 0.3s ease;
   text-align: center;
-  text-shadow:
-    0 0 5px #fff,
-    0 0 10px #fff,
-    0 0 15px #fff,
-    0 0 20px #ff0066,
-    0 0 30px #ff0066,
-    0 0 40px #ff0066,
-    0 0 55px #ff0066,
-    0 0 75px #ff0066;
 }
 
-.cta-button i {
-  margin-right: 10px;
-  transition: all 0.3s ease;
-}
-
-.cta-button:hover {
+.cta-btn:hover {
   background-color: darken ($btnColor, 10%);
   color: #fff;
   transition: all 0.3s ease;
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  -ms-transition: all 0.3s ease;
   text-shadow:
     0 0 5px #fff,
     0 0 10px #fff,
@@ -316,7 +305,6 @@ body {
     0 0 55px #ff0066,
     0 0 75px #ff0066;
   cursor: pointer;
-  z-index: 1;
 }
 
 .hero-img {
@@ -339,7 +327,7 @@ body {
   background-color: darken ($btnColor, 10%);
 }
 .nav-link {
-  color: #ff0066;
+  color: $accentColor;
   transition: all 0.3s ease;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
@@ -355,6 +343,33 @@ body {
     0 0 40px #ff0066,
     0 0 55px #ff0066,
     0 0 75px #ff0066;
+}
+.navbar {
+  background-color: $mainColor;
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  cursor: pointer;
+  z-index: 1;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+  margin: 0 0 10px 0;
+}
+.navbar-brand {
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  cursor: pointer;
+  z-index: 1;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+  margin: 0;
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+  border-radius: 50%;
 }
 
 .banner {
@@ -499,22 +514,17 @@ input.mail_bt::placeholder {
 .product-card {
   margin: 5px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  height: 100%;
   border: 1px solid #ffffff;
   border-radius: 10px;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  -ms-transition: all 0.3s ease;
   cursor: pointer;
   flex-basis: calc(30% - 20px);
-  z-index: 1;
   min-width: 100px;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-end;
+
   @media (max-width: 768px) {
     flex-basis: calc(50% - 20px);
   }
@@ -522,161 +532,133 @@ input.mail_bt::placeholder {
   @media (max-width: 576px) {
     flex-basis: 100%;
   }
+
   img {
     width: 100%;
     height: 200px;
     object-fit: cover;
   }
+
   h2 {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;
-    height: 50px;
     width: 100%;
-    -ms-text-size-adjust: auto;
   }
+
   p {
     color: #ffffff;
     cursor: pointer;
     transition: all 0.3s ease;
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    -ms-transition: all 0.3s ease;
     height: 50px;
   }
-  a {
-    text-decoration: none;
-    color: #ffffff;
-    transition: all 0.3s ease;
-    position: relative;
-    z-index: 1;
-    display: inline-block;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-    -webkit-transition: background-color 0.3s ease;
-    -moz-transition: background-color 0.3s ease;
-    -o-transition: background-color 0.3s ease;
-    -ms-transition: background-color 0.3s ease;
-    cursor: pointer;
+
+  .product-card:hover {
+    transform: scale(1.05);
   }
-}
-.product-card:hover {
-  transform: scale(1.05);
-}
 
-.product-image {
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 10px;
-}
-.container,
-.container-fluid,
-.row {
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  height: 100%;
-}
+  .product-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
 
-.product-name {
-  font-size: 16px;
-  font-weight: bold;
-  color: #ffffff;
-  text-shadow:
-    0 0 5px #fff,
-    0 0 10px #fff,
-    0 0 15px #fff,
-    0 0 20px #ff0066,
-    0 0 30px #ff0066,
-    0 0 40px #ff0066,
-    0 0 55px #ff0066,
-    0 0 75px #ff0066;
-  text-align: center;
-  text-transform: uppercase;
-  text-decoration: none;
+  .product-name {
+    font-size: 16px;
+    color: #ffffff;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
 
-  cursor: pointer;
-  transition: all 0.3s ease;
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-}
+    text-shadow:
+      0 0 5px #fff,
+      0 0 10px #fff,
+      0 0 15px #fff,
+      0 0 20px #ff0066,
+      0 0 30px #ff0066,
+      0 0 40px #ff0066,
+      0 0 55px #ff0066,
+      0 0 75px #ff0066;
+  }
 
-.product-genre,
-.product-score {
-  color: #ffffff;
-}
+  .product-genre,
+  .product-score {
+    font-size: 14px;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
 
-.product-price-normal {
-  text-decoration: line-through;
-  color: #ffffff;
-  font-size: 2rem;
-}
-.product-price-info {
-  font-size: 2rem;
-  color: #ffffff;
-}
+  .product-price-normal {
+    color: #ffffff;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
 
-.product-description {
-  font-size: 14px;
-  height: 100px;
-  color: #ffffff;
-  text-shadow:
-    0 1px 0 #fff,
-    0 -1px 0 #fff,
-    1px 0 0 #fff,
-    -1px 0 0 #fff;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-}
-.product-date-info {
-  font-size: 14px;
-  color: #ffffff;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  height: 100px;
-  text-align: center;
-  margin: 10px;
-}
+  .product-price-info {
+    font-size: 2rem;
+    color: #ffffff;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
 
-.product-rating {
-  display: flex;
-  align-items: center;
-  color: #f66;
-}
+  .product-description {
+    font-size: 12px;
+    height: 100px;
+    color: #ffffff;
+    text-align: center;
+    cursor: pointer;
 
-.product-developer,
-.product-publisher {
-  font-size: 14px;
-  color: #ffffff;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  height: 100px;
-}
+    text-shadow:
+      0 1px 0 #fff,
+      0 -1px 0 #fff,
+      1px 0 0 #fff,
+      -1px 0 0 #fff;
+  }
 
-.product-genre-info {
-  font-size: 14px;
-  color: #ffffff;
+  .product-date-info {
+    font-size: 14px;
+    color: #ffffff;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+  }
 
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  //neon glow texture
-  text-shadow:
-    0 0 5px #fff,
-    0 0 10px #fff,
-    0 0 15px #fff,
-    0 0 20px #ff0066,
-    0 0 30px #ff0066,
-    0 0 40px #ff0066,
-    0 0 55px #ff0066,
-    0 0 75px #ff0066;
+  .product-date {
+    font-size: 14px;
+    color: #ffffff;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .product-developer,
+  .product-publisher,
+  .product-genre-info {
+    font-size: 14px;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    text-shadow:
+      0 0 5px #fff,
+      0 0 10px #fff,
+      0 0 15px #fff,
+      0 0 20px #ff0066,
+      0 0 30px #ff0066,
+      0 0 40px #ff0066,
+      0 0 55px #ff0066,
+      0 0 75px #ff0066;
+  }
 }
 
 .stars {
