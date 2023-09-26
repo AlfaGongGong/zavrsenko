@@ -186,11 +186,17 @@
           </li>
           <li class="nav-item">
             <form class="form-inline" id="searchForm">
-              <input class="form-control" type="search" />
-              <button type="submit" class="btn btn-danger ml-2" id="searchButton">Search</button>
+              <div class="input-group">
+                <input class="form-control" type="search" />
+                <div class="input-group-append">
+                  <button type="submit" class="btn cta-btn ml-2" id="searchButton">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
+              </div>
             </form>
-          </li>
-          <li class="nav-item dropdown" id="loginRegisterDropdown" >
+            </li>
+          <li class="nav-item dropdown" id="logInRegister" >
             <a
               class="nav-link dropdown-toggle"
               href="#"
@@ -218,7 +224,7 @@
     name="password" 
     required
   />
-  <button type="submit" class="btn btn-danger" id="login">Login</button>
+  <button type="submit" class="btn cta-btn" id="login">Login</button>
 </form>
 <!-- Register Form -->
 <form id="register-form" class="dropdown-item">
@@ -250,16 +256,16 @@
     id="register-confirm-password"
     required
   />
-  <button type="submit" class="btn btn-danger" id="register">Register</button>
+  <button type="submit" class="btn cta-btn" id="register">Register</button>
 </form>
 </div>
 
           </li>
           <li class="nav-item" id="myAccount" style="display: none">
-            <a href="./html/myAcc.html">My Account</a>
+            <a href="./html/myAcc.html" class="nav-link" >My Account</a>
           </li>
           <li class="nav-item" id="logOut" style="display: none">
-            <button type="button" class="btn btn-danger" id="logOutButton">
+            <button type="button" class="btn cta-btn" id="logOutButton">
               Log Out
             </button>
           </li>

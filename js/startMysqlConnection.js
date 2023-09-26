@@ -109,14 +109,16 @@ app.post('/register', (req, res) => {
                   return res.status(500).json({ message: 'Internal server error' });
             }
             if (results.length > 0) {
-                  return res.status(400).json({ message: 'Username or email already exists' });
+                  return res.status(409).json({ message: 'Username or email already registered' });
             }
+
             // Hash the password
             bcrypt.hash(password, 10, (err, hashedPassword) => {
                   if (err) {
                         console.error('Error hashing password:', err);
                         return res.status(500).json({ message: 'Internal server error' });
                   }
+
                   // Insert the new user into the database
                   const insertUserQuery = 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)';
                   db.query(insertUserQuery, [username, email, hashedPassword], (err) => {
@@ -193,9 +195,26 @@ app.post('/logout', (req, res) => {
       res.status(200).json({ message: 'Logout successful' });
 });
 
-app.listen(port, () => {
-      console.log('Server running on port 3000');
-});
+// Endpoint for games details
+app.get('/details/:id',
+      (req, res) => {
+            // Get game details
+            const id = req.params.id;
+
+            const getProductQuery = `SELECT * FROM games WHERE product_id = ?`;
+
+            // Execute the query
+            db.query(getProductQuery, [id], (err, results) => {
+                  if (err) {
+                        console.error('MySQL error:', err);
+                        return res.status(500).json({ message: 'Internal server error' });
+                  }
+                  if (results.length === 0) {
+                        return res.status(404).json({ message: 'Product not found' });
+                  }
+                  res.json(results[0]);
+            });
+      });
 
 // Setting Permissions Policy header
 app.use((req, res, next) => {
@@ -207,10 +226,4 @@ const port = 3000;
 
 app.listen(port, () => {
       console.log('Server running on port 3000');
-});
-
-// Setting Permissions Policy header
-app.use((req, res, next) => {
-      res.setHeader('Permissions-Policy', 'geolocation=(self)');
-      next();
 });

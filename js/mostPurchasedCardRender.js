@@ -18,7 +18,8 @@ fetch('http://localhost:3000/games')
         lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
         <p class='product-genre-info'>${card.game_genre}</p>
         <p class="product-price-info">${card.game_price}</p>
-      <a href="../html/productDetails.html" class="btn cta-btn">More Info</a>
+        <a href="html/productDetails.html?id=${card.product_id}" class="btn cta-btn more-info" data-product-id="${card.product_id}"
+        >More Info</a>
       </div>
       `;
 

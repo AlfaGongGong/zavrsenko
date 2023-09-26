@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
     $('#login-form').show();
     $('#register-form').show();
     $('#myAccount').hide();
-    $('#logOut').hide();
+    $('#logOutButton').hide();
     $('#message').text('Logged out');
   }
 
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Attach event handlers to buttons
     $('#login').click(loginUser);
     $('#accessProtected').click(accessProtectedRoute);
-    $('#logout').click(logoutUser);
+    $('#logOutButton').click(logoutUser);
 
     // Check if the user is already logged in
     checkLoggedIn();
@@ -222,5 +222,14 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (error) {
       console.error('Error during logout:', error);
     }
+  });
+});
+// Event listener for the "More Info" buttons with class "more-info"
+document.querySelectorAll('.more-info').forEach((button) => {
+  button.addEventListener('click', () => {
+    const product_id = button.getAttribute('data-product-id');
+
+    // Redirect to productDetail.html with the product ID in the URL
+    window.location.href = `productDetail.html?id=${product_id}`;
   });
 });
