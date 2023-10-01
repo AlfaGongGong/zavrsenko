@@ -6,37 +6,39 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 
 const app = express();
+const port = process.env.PORT || 3000;
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error('Error:', err);
+  res.status(500).json({ message: 'Internal server error' });
+});
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(
-      session({
-            secret: 'your-secret-key',
-            resave: false,
-            saveUninitialized: true,
-            cookie: {
-                  sameSite: 'None',
-                  secure: true,
-            },
-      })
+  session({
+    secret: process.env.SESSION_SECRET || 'your-secret-key',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      sameSite: 'None',
+      secure: true,
+    },
+  })
 );
 
-const db = mysql.createConnection({
-      host: 'localhost',
-      user: 'root',
-      password: 'root',
-      database: 'gg_database',
-      port: 3306,
-});
-
-db.connect((err) => {
-      if (err) {
-            console.error('Error connecting to MySQL:', err);
-            return;
-      }
-      console.log('Connected to MySQL');
+const db = mysql.createPool({
+  host: 'localhost',
+  user: 'root',
+  password: 'root',
+  database: 'gg_database',
+  port: 3306,
+  waitForConnections: true,
+  connectionLimit: 10, // Adjust according to your needs
+  queueLimit: 0,
 });
 
 app.get('/deals', (req, res) => {
@@ -215,15 +217,20 @@ app.get('/details/:id',
                   res.json(results[0]);
             });
       });
+      app.use(express.static('public'));
 
-// Setting Permissions Policy header
-app.use((req, res, next) => {
-      res.setHeader('Permissions-Policy', 'geolocation=(self)');
-      next();
-});
-
-const port = 3000;
-
-app.listen(port, () => {
-      console.log('Server running on port 3000');
-});
+      // Setting Permissions Policy header
+      app.use((req, res, next) => {
+        res.setHeader('Permissions-Policy', 'geolocation=(self)');
+        next();
+      });
+      
+      app.listen(port, () => {
+        console.log(`Server running on port ${port}`);
+      });
+      
+      
+      
+      
+      
+      
