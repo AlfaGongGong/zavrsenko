@@ -164,7 +164,6 @@ async function fetchAndUpdateData() {
     };
 
     console.log('Fetching and updating data for page', pageNumber);
-    console.time('Fetching and Updating data');
 
     const response = await axios.request(options);
     const gamesData = response.data.results;
