@@ -1,5 +1,5 @@
 const express = require('express');
-const mysql = require('mysql2/promise'); // Use mysql2/promise for connection pooling
+const mysql = require('mysql2/promise'); 
 const axios = require('axios');
 const cors = require('cors');
 
@@ -15,7 +15,7 @@ const pool = mysql.createPool({
   user: 'root',
   password: 'root',
   database: 'gg_database',
-  connectionLimit: 10, // Adjust the connection limit as needed
+  connectionLimit: 10, 
   port: 3306,
 });
 
@@ -46,8 +46,8 @@ const mapData = (games) => {
     console.log('Mapping data...');
     console.time('Mapping data');
     return games.map((item) => {
-      const esrbRating = item.esrb_rating || {}; // Handle optional field
-      const platforms = item.platforms || []; // Handle optional field
+      const esrbRating = item.esrb_rating || {}; 
+      const platforms = item.platforms || [];
 
       // Map API fields to database columns
       return [
@@ -89,7 +89,7 @@ const insertData = async (mappedData) => {
   try {
     console.log('Inserting data...');
     console.time('Inserting data');
-    connection = await pool.getConnection(); // Get a connection from the pool
+    connection = await pool.getConnection(); 
 
     console.log('Connected to MySQL');
 
@@ -141,21 +141,15 @@ const insertData = async (mappedData) => {
 // Maintain a Set to store unique game slugs that have been inserted
 const insertedGameSlugs = new Set();
 
-// ...
+
 
 // Initialize lastFetchedTimestamp to an empty string
 let lastFetchedTimestamp = '';
 
-// ...
-
-// ...
 
 // Initialize lastFetchedId to an empty string
 let lastFetchedId = '';
 
-// ...
-
-// ...
 
 // Initialize page number to 1
 let pageNumber = 1;
@@ -202,5 +196,4 @@ async function fetchAndUpdateData() {
   }
 }
 
-// Start the initial data fetch and update
 fetchAndUpdateData();
