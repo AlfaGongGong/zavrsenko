@@ -37,7 +37,7 @@ const db = mysql.createPool({
   database: 'gg_database',
   port: 3306,
   waitForConnections: true,
-  connectionLimit: 10, // Adjust according to your needs
+  connectionLimit: 10, 
   queueLimit: 0,
 });
 
@@ -54,7 +54,7 @@ app.get('/deals', (req, res) => {
 });
 
 app.get('/games', (req, res) => {
-      db.query('SELECT * FROM games ORDER BY RAND() DESC LIMIT 6', (err, results) => {
+      db.query('SELECT * FROM games ORDER BY metacritic DESC LIMIT 6', (err, results) => {
             if (err) {
                   console.error('Error executing MySQL query:', err);
                   res.status(500).send('Error fetching data from the database');
@@ -64,8 +64,8 @@ app.get('/games', (req, res) => {
       });
 });
 
-app.get('/gaming_accessories', (req, res) => {
-      db.query('SELECT * FROM gaming_accessories ORDER BY RAND() LIMIT 6', (err, results) => {
+app.get('/gaming_gear', (req, res) => {
+      db.query('SELECT * FROM gaming_gear ORDER BY RAND() LIMIT 6', (err, results) => {
             if (err) {
                   console.error('Error executing MySQL query:', err);
                   res.status(500).send('Error fetching data from the database');
@@ -75,8 +75,8 @@ app.get('/gaming_accessories', (req, res) => {
       });
 });
 
-app.get('/upcoming_games', (req, res) => {
-      db.query('SELECT * FROM upcoming_games ORDER BY RAND() LIMIT 6', (err, results) => {
+app.get('/upcoming', (req, res) => {
+      db.query('SELECT * FROM upcoming ORDER BY RAND() LIMIT 6', (err, results) => {
             if (err) {
                   console.error('Error executing MySQL query:', err);
                   res.status(500).send('Error fetching data from the database');

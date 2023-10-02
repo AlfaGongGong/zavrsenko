@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         const cardElement = document.createElement('div');
                         cardElement.classList.add('product-card', 'col-md-4');
                         cardElement.innerHTML = `
-        <img src="${card.image}" alt="${replaceImg}" class="product-image"/>
+        <img src="${card.image}" alt="${card.title}" class="product-image"/>
         <h2 class="product-name">${card.title}</h2>
         <div class="card-info">
         <p class='product-description'>
