@@ -32,4 +32,3 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 });
 
-//start script when page loads

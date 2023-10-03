@@ -13,6 +13,14 @@
   - [Most Purchased Games Section](#most-purchased-games-section)
   - [Gaming Gear Section](#gaming-gear-section)
   - [Upcoming Games Section](#upcoming-games-section)
+  - [User Interface Components](#user-interface-components)
+    - [Admin Login Form](#admin-login-form)
+    - [Admin Dashboard](#admin-dashboard)
+    - [Shopping Cart](#shopping-cart)
+    - [Checkout](#checkout)
+    - [Product Info Pages](#product-info-pages)
+    - [All Games Page](#all-games-page)
+    - [All Accessories Page](#all-accessories-page)
   - [Error Handling](#error-handling)
   - [Middleware](#middleware)
     - [The server includes the following middleware:](#the-server-includes-the-following-middleware)
@@ -124,7 +132,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
 javascript
 ```
+document.addEventListener('DOMContentLoaded', () => {
+fetch('http://localhost:3000/games')
+      .then(response => response.json())
+      .then(gamesCards => {
+            const gamesCardsContainer = document.querySelector('.mostPurchasedCardsContainer');
+            gamesCards.forEach(card => {
+                  // Create a product card element
+                  const cardElement = document.createElement('div');
+                  cardElement.classList.add('product-card', 'col-md-4');
 
+                  cardElement.innerHTML = `
+        <img src="${card.background_image}" alt="${card.game_name}" class="product-image"/>
+        <h2 class="product-name">${card.name}</h2>
+        <div class="card-info">
+
+        <p class='product-description-'>
+        Pokem ipsum dolor sit amet Porygon-Z Mewtwo Strikes Back to train them is my cause Nuzleaf Solosis bicycle. Charmeleon Lombre Cresselia Unown Gulpin Stunfisk Claydol. Flying Forretress Raikou Haxorus Diglett Lucario Mime Jr. Glitch City Mime Jr Nurse Joy Vileplume Staravia Blastoise Dig. Quis nostrud exercitation ullamco laboris nisi Vanillite Golem Kingler Strength Zigzagoon Marshtomp.</p>
+        <p class='product-genre-info'>${card.genre}</p>
+        <p class="product-price-info">${card.price} KM</p>
+        <a href="html/productDetails.html?id=${card.product_id}" class="btn cta-btn more-info" data-product-id="${card.product_id}"
+        >More Info</a>
+      </div>
+      `;
+
+                  gamesCardsContainer.appendChild(cardElement);
+            });
+
+      })
+      .catch(error => {
+            console.error('Error fetching games cards:', error);
+
+      });
+});
 ```
 
 
@@ -133,41 +173,115 @@ javascript
 javascript
 ```
 
+document.addEventListener('DOMContentLoaded', () => {
+   fetch('http://localhost:3000/gaming_gear')
+            .then(response => response.json())
+            .then(gamingAccessoriesCards => {
+                  const accessoriesCardsContainer = document.querySelector('.accessoriesCardsContainer');
+                  gamingAccessoriesCards.forEach(card => {
+                        // Create a product card element
+                        const cardElement = document.createElement('div');
+                        cardElement.classList.add('product-card', 'col-md-4');
+                        // Set the card content using the data from the fetch response
+                        cardElement.innerHTML = `
+          <img src="${card.image}" alt="${card.name}" class="product-image"/>
+          <h2 class="product-name">${card.name}</h2>
+          <div class="card-info">
+          <p class='product-description-'>
+          ${card.description}</p>
+          <p class="product-price-info">$${card.price}</p>
+          <a href="../html/productDetails.html" class="btn cta-btn">More Info</a>
+          </div>
+
+        `;
+accessoriesCardsContainer.appendChild(cardElement);
+                  });
+            })
+            .catch(error => {
+                  console.error('Error fetching gaming accessories cards:', error);
+            });
+});
+
+
 ```
 
 ## Upcoming Games Section
 
 javascript
 ```
+document.addEventListener('DOMContentLoaded', () => {
+     fetch('http://localhost:3000/upcoming')
+            .then(response => response.json())
+            .then(upcomingCards => {
+                  const upcomingCardsContainer = document.querySelector('.upcomingCardsContainer');
+                  upcomingCards.forEach(card => {
+                        // Create a product card element
+                        const cardElement = document.createElement('div');
+                        cardElement.classList.add('product-card', 'col-md-4');
+                        cardElement.innerHTML = `
+        <img src="${card.image}" alt="${card.title}" class="product-image"/>
+        <h2 class="product-name">${card.title}</h2>
+        <div class="card-info">
+        <p class='product-date-info'>Release Date: ${card.releaseDate}</p>
+        <p class='product-description-'>
+        Pokem ipsum dolor sit amet Porygon-Z Mewtwo Strikes Back to train them is my cause Nuzleaf Solosis bicycle. Charmeleon Lombre Cresselia Unown Gulpin Stunfisk Claydol. Flying Forretress Raikou Haxorus Diglett Lucario Mime Jr. Glitch City Mime Jr Nurse Joy Vileplume Staravia Blastoise Dig. Quis nostrud exercitation ullamco laboris nisi Vanillite Golem Kingler Strength Zigzagoon Marshtomp. 
+        </p>
 
-```
+        <p class='product-rating-info'>Score: ${card.score}</p>
+        <a href="cart.html" class="btn cta-btn">Preorder Now</a>
+        </div>
+      `;
+                        upcomingCardsContainer.appendChild(cardElement);
+
+                  });
+            })
+            .catch(error => {
+                  console.error('Error fetching upcoming games cards:', error);
+            })
+});
+``` 
 
 These code snippets demonstrate how to fetch data from the server and dynamically generate product cards in the respective HTML sections.
 
 
-User Interface Components
-Admin Dashboard (Complete)
-The admin dashboard is a secure section for administrators to manage content, users, and monitor user activity. Administrators can:
+## User Interface Components
 
-Add, edit, or remove game listings.
-Manage user accounts and permissions.
-Monitor user activity and data.
-Shopping Cart (Complete)
+The user interface includes the following components:
+
+### Admin Login Form
+
+The login form allows users to login to the admin dashboard. It includes:
+- Username
+- Password
+
+### Admin Dashboard
+
+The admin dashboard is a secure section for administrators to manage content, users, and monitor user activity. Administrators can:
+- Add, edit, or remove game listings.
+- Manage user accounts and permissions.
+- Monitor user activity and data.
+
+### Shopping Cart 
+
 The shopping cart allows users to add products (games or gaming gear) to their cart, review cart contents, update quantities, and proceed to checkout.
 
-Checkout (Complete)
+### Checkout 
 The checkout process enables users to complete their purchases securely. It includes:
 
-Entering shipping and billing information.
-Selecting payment methods.
-Confirming and placing orders.
-Product Info Pages (Complete)
+- Entering shipping and billing information.
+- Selecting payment methods.
+- Confirming and placing orders.
+
+
+### Product Info Pages 
+
 Individual product pages provide detailed information about games and gaming gear. Users can view product descriptions, images, pricing, and related information.
 
-All Games Page (Complete)
+### All Games Page 
+
 An HTML page displaying all available games. Users can browse and filter games by genre, popularity, and other criteria.
 
-All Accessories Page (Complete)
+### All Accessories Page 
 An HTML page showcasing all available gaming accessories. Users can explore and select gaming gear based on their preferences.
 
 
