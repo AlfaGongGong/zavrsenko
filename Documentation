@@ -8,25 +8,45 @@
   - [Prerequisites](#prerequisites)
   - [Getting Started](#getting-started)
   - [Frontend Documentation](#frontend-documentation)
-  - [Deals Section](#deals-section)
-  - [Free Games Section](#free-games-section)
-  - [Most Purchased Games Section](#most-purchased-games-section)
-  - [Gaming Gear Section](#gaming-gear-section)
-  - [Upcoming Games Section](#upcoming-games-section)
-  - [User Interface Components](#user-interface-components)
-    - [Admin Login Form](#admin-login-form)
-    - [Admin Dashboard](#admin-dashboard)
-    - [Shopping Cart](#shopping-cart)
-    - [Checkout](#checkout)
-    - [Product Info Pages](#product-info-pages)
-    - [All Games Page](#all-games-page)
-    - [All Accessories Page](#all-accessories-page)
-  - [Error Handling](#error-handling)
-  - [Middleware](#middleware)
-    - [The server includes the following middleware:](#the-server-includes-the-following-middleware)
-  - [Routes](#routes)
-    - [The server includes the following routes:](#the-server-includes-the-following-routes)
-    - [Server Details](#server-details)
+      - [Client-Side Fetching](#client-side-fetching)
+      - [Deals Section](#deals-section)
+      - [Free Games Section](#free-games-section)
+      - [Most Purchased Games Section](#most-purchased-games-section)
+      - [Gaming Gear Section](#gaming-gear-section)
+      - [Upcoming Games Section](#upcoming-games-section)
+      - [User Interface Components](#user-interface-components)
+        - [Admin Login Form](#admin-login-form)
+        - [Admin Dashboard](#admin-dashboard)
+        - [Shopping Cart](#shopping-cart)
+        - [Checkout](#checkout)
+        - [Product Info Pages](#product-info-pages)
+        - [All Games Page](#all-games-page)
+        - [All Accessories Page](#all-accessories-page)
+      - [Error Handling](#error-handling)
+      - [Middleware](#middleware)
+      - [Routes](#routes)
+        - [Server Details](#server-details)
+        - [Permissions Policy](#permissions-policy)
+        - [Database Architecture](#database-architecture)
+        - [User Paths](#user-paths)
+        - [IT Diagrams](#it-diagrams)
+        - [Sitemap](#sitemap)
+
+      - [Server-Side Fetching](#server-side-fetching)
+      
+      - [Server-Side Rendering](#server-side-rendering)
+
+  - [Backend Documentation](#backend-documentation)
+      - [Server Details](#server-details)
+      - [Permissions Policy](#permissions-policy)
+      - [Database Architecture](#database-architecture)
+      - [User Paths](#user-paths)
+      - [Sitemap](#sitemap)
+      - [Information Technology (IT) Diagram][def]
+
+
+
+  
 
 ## Introduction   
 
@@ -47,8 +67,7 @@ Start the server using npm start.
 
 ## Frontend Documentation
 
-Frontend Documentation
-Client-Side Fetching
+### Client-Side Fetching
 The GG PC Games and Gaming Accessories web app uses JavaScript for client-side fetching and dynamic content generation. Below are JavaScript code snippets demonstrating various functionalities:
 
 ## Deals Section
@@ -79,7 +98,6 @@ javascript
         </div>
       `;
 
-                        // Append the card to the container
                         dealsCardsContainer.appendChild(cardElement);
                   })
 
@@ -331,81 +349,45 @@ cors is a Node.js web application middleware for enabling CORS (Cross-Origin Res
 
 ### Server Details
 
-
-Permissions Policy
+ ## Permissions Policy
 Sets the Permissions Policy header for geolocation permissions.
-Frontend Documentation
-Client-Side Fetching
-The GG PC Games and Gaming Accessories web app uses JavaScript for client-side fetching and dynamic content generation. Below are JavaScript code snippets demonstrating various functionalities:
 
-Deals Section
-javascript
-Copy code
-// Code snippet for fetching and displaying deals
-// (Provided in previous update)
-Free Games Section
-javascript
-Copy code
-// Code snippet for fetching and displaying free games
-// (Provided in previous update)
-Gaming Gear Section
-javascript
-Copy code
-// Code snippet for fetching and displaying gaming gear
-// (Provided in previous update)
-User Interface Components
-Admin Dashboard (Complete)
-The admin dashboard is a secure section for administrators to manage content, users, and monitor user activity. Administrators can:
 
-Add, edit, or remove game listings.
-Manage user accounts and permissions.
-Monitor user activity and data.
-Shopping Cart (Complete)
-The shopping cart allows users to add products (games or gaming gear) to their cart, review cart contents, update quantities, and proceed to checkout.
+## Database Architecture
 
-Checkout (Complete)
-The checkout process enables users to complete their purchases securely. It includes:
-
-Entering shipping and billing information.
-Selecting payment methods.
-Confirming and placing orders.
-Product Info Pages (Complete)
-Individual product pages provide detailed information about games and gaming gear. Users can view product descriptions, images, pricing, and related information.
-
-All Games Page (Complete)
-An HTML page displaying all available games. Users can browse and filter games by genre, popularity, and other criteria.
-
-All Accessories Page (Complete)
-An HTML page showcasing all available gaming accessories. Users can explore and select gaming gear based on their preferences.
-
-Database Architecture
 Database Name: gg_database
-Tables:
-deals: Stores deal data.
-games: Stores game data.
-gaming_gear: Stores gaming gear data.
-upcoming: Stores upcoming release data.
-free_games: Stores free game data.
-users: Stores user data (for registration and login).
-User Paths
-User Path
+
+Database Tables:
+
+- deals: Stores deal data.
+- games: Stores game data.
+- gaming_gear: Stores gaming gear data.
+- upcoming: Stores upcoming release data.
+- free_games: Stores free game data.
+- users: Stores user data (for registration and login).
+
+
+## User Paths
+
 A user path diagram illustrates the typical journey a user takes when interacting with the GG PC Games and Gaming Accessories web app. It helps identify key actions and steps a user goes through to achieve their goals. The user path includes:
 
-Visit the Homepage: Users start by visiting the homepage, where they see carousel banners highlighting featured content.
+- Visit the Homepage: Users start by visiting the homepage, where they see carousel banners highlighting featured content.
 
-Explore Sections: Users can navigate to different sections like "Games," "Deals," "Upcoming Releases," and "Free Games" from the navigation menu.
+- Explore Sections: Users can navigate to different sections like "Games," "Deals," "Upcoming Releases," and "Free Games" from the navigation menu.
 
-Browse Games: If a user clicks on the "Games" section, they can browse games by genre, view game details, and click the "More Info" button to learn more.
+- Browse Games: If a user clicks on the "Games" section, they can browse games by genre, view game details, and click the "More Info" button to learn more.
 
-Registration: To access additional features like saving favorite games, users can register for an account. They provide a username, email, and password.
+- Registration: To access additional features like saving favorite games, users can register for an account. They provide a username, email, and password.
 
-Login: Registered users can log in using their credentials.
+- Login: Registered users can log in using their credentials.
 
-User Dashboard: After logging in, users can access their dashboard, which may include features like saved games, profile settings, and logout.
+- User Dashboard: After logging in, users can access their dashboard, which may include features like saved games, profile settings, and logout.
 
-Logout: Users can log out from their account to end their session.
+- Logout: Users can log out from their account to end their session.
 
-Sitemap
+
+## Sitemap
+
 A sitemap is a visual representation of the web app's structure and the relationship between its various pages and sections. It helps users and developers understand how different parts of the web app are interconnected. In the GG PC Games and Gaming Accessories web app, the sitemap should include:
 
 The homepage and its sections.
@@ -424,3 +406,6 @@ The MySQL database ("gg_database") storing game, deal, user, and other data.
 Client-side components like HTML, CSS, and JavaScript for the frontend.
 API endpoints for data retrieval and user authentication.
 Data flows between the server and the database, as well as between the server and the client.
+
+
+[def]: #information-technology-it-diagram
