@@ -351,7 +351,7 @@ An IT (Information Technology) diagram provides an overview of the web app's tec
 - Data flows between the server and the database, as well as between the server and the client.
 
 
-![image](https://gitmind.com/app/docs/mcuxciuo?lang=bs)
+[IT Diagram](https://gitmind.com/app/docs/mcuxciuo?lang=bs) 
 
 ### Sitemap
 
