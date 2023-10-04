@@ -3,6 +3,11 @@
 ## Table of Contents
 
 - [Introduction](#introduction)
+  - [Description](#description)
+  - [Key Features](#KeyFeatures)
+  - [Technologies Used](#technology-used)
+  - [License](#License)
+  - [Authors](#Authors) 
 - [Prerequisites](#prerequisites)
 - [Getting Started](#getting-started)
 - [Frontend Documentation](#frontend-documentation)
@@ -35,27 +40,26 @@
 
 ## Introduction   
 
-Description:
+#### Description:
 The GameShop Web App is a comprehensive online platform that offers PC games and gaming accessories to users. It features client-side fetching, user-friendly interfaces, secure login, and a wide range of gaming products. Whether you're a gamer looking for the latest releases or an admin managing content, GameShop provides a seamless experience.
 
-Key Features:
+#### Key Features:
 
-    Extensive game catalog with detailed product information.
-    Deals, free games, and upcoming releases sections.
-    User-friendly shopping cart and secure checkout process.
-    Admin dashboard for content management and user monitoring.
-    Robust error handling and security measures.
-
-Technologies Used:
-Node.js, Express.js, MySQL, JavaScript, HTML, CSS, bcrypt, body-parser, express-session, cors.
-
-License:
-[Open Source]
-
-Authors:
-[AlfaGongGong](https://alfagonggong.github.io/Portfolio/) 
+- Extensive game catalog with detailed product information.    - Deals, free games, and upcoming releases sections.
+- User-friendly shopping cart and secure checkout process.
+- Admin dashboard for content management and user monitoring.
+- Robust error handling and security measures.
 
 This documentation provides an overview of the GameShop web app, including server details, database architecture with diagram, user paths with diagram, and sitemap diagram.
+
+#### Technologies Used:
+Node.js, Express.js, MySQL, JavaScript, HTML, CSS, bcrypt, body-parser, express-session, cors.
+
+#### License:
+[Open Source]
+
+#### Authors:
+[AlfaGongGong](https://alfagonggong.github.io/Portfolio/) 
 
 ## Prerequisites
 
