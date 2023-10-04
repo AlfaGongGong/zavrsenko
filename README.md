@@ -5,7 +5,7 @@
 - [Introduction](#introduction)
   - [Description](#description)
   - [Key Features](#KeyFeatures)
-  - [Technologies Used](#technologies-used)
+  - [Technologies Used(#technologies-used)
   - [License](#License)
   - [Authors](#Authors) 
 - [Prerequisites](#prerequisites)
