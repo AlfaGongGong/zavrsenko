@@ -1,4 +1,4 @@
-# Title: GameShop Web App Documentation
+# Title: GG Gamestore Web App Documentation
 
 ## Table of Contents
 
@@ -41,7 +41,7 @@
 ## Introduction   
 
 #### Description:
-The GameShop Web App is a comprehensive online platform that offers PC games and gaming accessories to users. It features client-side fetching, user-friendly interfaces, secure login, and a wide range of gaming products. Whether you're a gamer looking for the latest releases or an admin managing content, GameShop provides a seamless experience.
+GG Gamestore Web App is a comprehensive online platform that offers PC games and gaming accessories to users. It features client-side fetching, user-friendly interfaces, secure login, and a wide range of gaming products. Whether you're a gamer looking for the latest releases or an admin managing content, GameShop provides a seamless experience.
 
 #### Key Features:
 
