@@ -351,7 +351,7 @@ An IT (Information Technology) diagram provides an overview of the web app's tec
 - Data flows between the server and the database, as well as between the server and the client.
 
 
-![image](https://user-images.githubusercontent.com/78864132/122646985-0b0b6b00-d11a-11eb-9b9a-4b0b8b8b0b0a.png)
+![image](https://gitmind.com/app/docs/mcuxciuo?lang=bs)
 
 ### Sitemap
 
@@ -364,7 +364,7 @@ A sitemap is a visual representation of the web app's structure and the relation
 - User registration and login pages.
 - The user account dashboard.
 
-![image](https://user-images.githubusercontent.com/78864132/122647000-1a8ab400-d11a-11eb-8b0a-3b6b0b0b2b0a.png)
+![image](https://gitmind.com/app/docs/my0wgu9r?lang=bs)
 
 ## Backend Documentation
 
@@ -410,7 +410,7 @@ A user path diagram illustrates the typical journey a user takes when interactin
 
 - Logout: Users can log out from their account to end their session.
 
-![image](./images/User%20Path%20Diagram.png)
+![image](https://gitmind.com/app/docs/malzlc2u?lang=bs)
 
 
 ## Conclusion
