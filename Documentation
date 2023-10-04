@@ -2,51 +2,36 @@
 
 ## Table of Contents
 
-- [Title: GameShop Web App Documentation](#title-gameshop-web-app-documentation)
-  - [Table of Contents](#table-of-contents)
-  - [Introduction](#introduction)
-  - [Prerequisites](#prerequisites)
-  - [Getting Started](#getting-started)
-  - [Frontend Documentation](#frontend-documentation)
-      - [Client-Side Fetching](#client-side-fetching)
-      - [Deals Section](#deals-section)
-      - [Free Games Section](#free-games-section)
-      - [Most Purchased Games Section](#most-purchased-games-section)
-      - [Gaming Gear Section](#gaming-gear-section)
-      - [Upcoming Games Section](#upcoming-games-section)
-      - [User Interface Components](#user-interface-components)
-        - [Admin Login Form](#admin-login-form)
-        - [Admin Dashboard](#admin-dashboard)
-        - [Shopping Cart](#shopping-cart)
-        - [Checkout](#checkout)
-        - [Product Info Pages](#product-info-pages)
-        - [All Games Page](#all-games-page)
-        - [All Accessories Page](#all-accessories-page)
-      - [Error Handling](#error-handling)
-      - [Middleware](#middleware)
-      - [Routes](#routes)
-        - [Server Details](#server-details)
-        - [Permissions Policy](#permissions-policy)
-        - [Database Architecture](#database-architecture)
-        - [User Paths](#user-paths)
-        - [IT Diagrams](#it-diagrams)
-        - [Sitemap](#sitemap)
-
-      - [Server-Side Fetching](#server-side-fetching)
-      
-      - [Server-Side Rendering](#server-side-rendering)
-
-  - [Backend Documentation](#backend-documentation)
-      - [Server Details](#server-details)
-      - [Permissions Policy](#permissions-policy)
-      - [Database Architecture](#database-architecture)
-      - [User Paths](#user-paths)
-      - [Sitemap](#sitemap)
-      - [Information Technology (IT) Diagram][def]
-
-
-
-  
+- [Introduction](#introduction)
+- [Prerequisites](#prerequisites)
+- [Getting Started](#getting-started)
+- [Frontend Documentation](#frontend-documentation)
+  - [Client-Side Fetching](#client-side-fetching)
+    - [Deals Section](#deals-section)
+    - [Free Games Section](#free-games-section)
+    - [Most Purchased Games Section](#most-purchased-games-section)
+    - [Gaming Gear Section](#gaming-gear-section)
+    - [Upcoming Games Section](#upcoming-games-section)
+  - [User Interface Components](#user-interface-components)
+    - [Admin Login Form](#admin-login-form)
+    - [Admin Dashboard](#admin-dashboard)
+    - [Shopping Cart](#shopping-cart)
+    - [Checkout](#checkout)
+    - [Product Info Pages](#product-info-pages)
+    - [All Games Page](#all-games-page)
+    - [All Accessories Page](#all-accessories-page)
+  - [Error Handling](#error-handling)
+  - [Middleware](#middleware)
+  - [Routes](#routes)
+  - [IT Diagrams](#it-diagrams)
+  - [Sitemap](#sitemap)
+- [Backend Documentation](#backend-documentation)
+  - [Server Details](#server-details)
+  - [Permissions Policy](#permissions-policy)
+  - [Database Architecture](#database-architecture)
+  - [User Paths](#user-paths)
+  - [Sitemap](#sitemap)
+- [Conclusion](#conclusion)
 
 ## Introduction   
 
@@ -60,19 +45,31 @@ This documentation provides an overview of the GameShop web app, including serve
 
 ## Getting Started
 
-Clone this repository to your local machine.
-Install the required npm packages using npm install.
-Configure your MySQL database settings in the code.
-Start the server using npm start.
+Follow these steps to get started with the GameShop web app:
+
+1. Clone this repository to your local machine.
+2. Install the required npm packages using 
+
+```node js
+npm install
+```
+3. Configure your MySQL database settings in the code.
+4. Start the server using 
+
+```node js
+npm start
+```
 
 ## Frontend Documentation
 
 ### Client-Side Fetching
+
 The GG PC Games and Gaming Accessories web app uses JavaScript for client-side fetching and dynamic content generation. Below are JavaScript code snippets demonstrating various functionalities:
 
-## Deals Section
-javascript
- ``` 
+
+#### Deals Section
+
+ ```javascript
  document.addEventListener('DOMContentLoaded', () => {
       fetch('http://localhost:3000/deals')
             .then(response => response.json())
@@ -107,12 +104,10 @@ javascript
             });
 });
 ```
+#### Free Games Section
 
-## Free Games Section
+```javascript
 
-javascript
-```
-Copy code
 document.addEventListener('DOMContentLoaded', () => {
       fetch('http://localhost:3000/free_games')
             .then(response => response.json())
@@ -135,7 +130,6 @@ document.addEventListener('DOMContentLoaded', () => {
         <a href="${card.free_to_play}" target="_blank" class="btn cta-btn">Play Now for Free</a>
       `;
 
-                        // Append the product card element to the container   element    
                         freeGamesCardsContainer.appendChild(cardElement);
                   })
 
@@ -146,17 +140,16 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 ```
 
-## Most Purchased Games Section
+#### Most Purchased Games Section
 
-javascript
-```
+```javascript
+
 document.addEventListener('DOMContentLoaded', () => {
 fetch('http://localhost:3000/games')
       .then(response => response.json())
       .then(gamesCards => {
             const gamesCardsContainer = document.querySelector('.mostPurchasedCardsContainer');
             gamesCards.forEach(card => {
-                  // Create a product card element
                   const cardElement = document.createElement('div');
                   cardElement.classList.add('product-card', 'col-md-4');
 
@@ -186,10 +179,10 @@ fetch('http://localhost:3000/games')
 ```
 
 
-## Gaming Gear Section
+#### Gaming Gear Section
 
-javascript
-```
+```javascript
+
 
 document.addEventListener('DOMContentLoaded', () => {
    fetch('http://localhost:3000/gaming_gear')
@@ -197,10 +190,8 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(gamingAccessoriesCards => {
                   const accessoriesCardsContainer = document.querySelector('.accessoriesCardsContainer');
                   gamingAccessoriesCards.forEach(card => {
-                        // Create a product card element
                         const cardElement = document.createElement('div');
                         cardElement.classList.add('product-card', 'col-md-4');
-                        // Set the card content using the data from the fetch response
                         cardElement.innerHTML = `
           <img src="${card.image}" alt="${card.name}" class="product-image"/>
           <h2 class="product-name">${card.name}</h2>
@@ -223,17 +214,16 @@ accessoriesCardsContainer.appendChild(cardElement);
 
 ```
 
-## Upcoming Games Section
+#### Upcoming Games Section
 
-javascript
-```
+```javascript
+
 document.addEventListener('DOMContentLoaded', () => {
      fetch('http://localhost:3000/upcoming')
             .then(response => response.json())
             .then(upcomingCards => {
                   const upcomingCardsContainer = document.querySelector('.upcomingCardsContainer');
                   upcomingCards.forEach(card => {
-                        // Create a product card element
                         const cardElement = document.createElement('div');
                         cardElement.classList.add('product-card', 'col-md-4');
                         cardElement.innerHTML = `
@@ -262,28 +252,30 @@ document.addEventListener('DOMContentLoaded', () => {
 These code snippets demonstrate how to fetch data from the server and dynamically generate product cards in the respective HTML sections.
 
 
-## User Interface Components
-
+### User Interface Components
 The user interface includes the following components:
 
-### Admin Login Form
-
+#### Admin Login Form
 The login form allows users to login to the admin dashboard. It includes:
+
 - Username
 - Password
+- Login button
 
-### Admin Dashboard
+#### Admin Dashboard
 
 The admin dashboard is a secure section for administrators to manage content, users, and monitor user activity. Administrators can:
+
 - Add, edit, or remove game listings.
 - Manage user accounts and permissions.
 - Monitor user activity and data.
 
-### Shopping Cart 
+
+#### Shopping Cart
 
 The shopping cart allows users to add products (games or gaming gear) to their cart, review cart contents, update quantities, and proceed to checkout.
 
-### Checkout 
+#### Checkout
 The checkout process enables users to complete their purchases securely. It includes:
 
 - Entering shipping and billing information.
@@ -291,49 +283,49 @@ The checkout process enables users to complete their purchases securely. It incl
 - Confirming and placing orders.
 
 
-### Product Info Pages 
+#### Product Info Pages
 
 Individual product pages provide detailed information about games and gaming gear. Users can view product descriptions, images, pricing, and related information.
 
-### All Games Page 
+#### All Games Page
 
 An HTML page displaying all available games. Users can browse and filter games by genre, popularity, and other criteria.
 
-### All Accessories Page 
+#### All Accessories Page
+
 An HTML page showcasing all available gaming accessories. Users can explore and select gaming gear based on their preferences.
 
-
-
-## Error Handling
-
+### Error Handling
 The server includes error handling middleware to catch and log errors, responding with a 500 Internal Server Error message when errors occur.
 
-## Middleware
+### Middleware
+- Express.js:
 
-### The server includes the following middleware:
+ Express.js is a Node.js web application framework that provides a robust set of features for building web applications.
 
-- Express.js
-Express.js is a Node.js web application framework that provides a robust set of features for building web applications.
+- MySQL:
 
-- MySQL
 MySQL is an open-source relational database management system (RDBMS) that stores and retrieves data from a database.
 
-- bcrypt
+- bcrypt:
+
 bcrypt is a password hashing and salt generation library for Node.js.
 
-- body-parser
+- body-parser:
+
 body-parser is a Node.js web application middleware for parsing incoming request bodies in a middleware-compatible format.
 
-- express-session
-express-session is a session management middleware for Node.js
+- express-session:
 
-- cors
-cors is a Node.js web application middleware for enabling CORS (Cross-Origin Resource Sharing)
+express-session is a session management middleware for Node.js.
 
+- cors:
 
-## Routes
+cors is a Node.js web application middleware for enabling CORS (Cross-Origin Resource Sharing).
 
-### The server includes the following routes:
+### Routes
+
+The server includes the following routes:
 
 - GET /deals
 - GET /games
@@ -347,17 +339,51 @@ cors is a Node.js web application middleware for enabling CORS (Cross-Origin Res
 - POST /logout
 - GET /details/:id
 
+
+### IT Diagrams
+
+An IT (Information Technology) diagram provides an overview of the web app's technical infrastructure and how different components interact. In the GG PC Games and Gaming Accessories web app, the IT diagram would depict:
+
+- The web server (Express.js) running on a specified port.
+- The MySQL database ("gg_database") storing game, deal, user, and other data.
+- Client-side components like HTML, CSS, and JavaScript for the frontend.
+- API endpoints for data retrieval and user authentication.
+- Data flows between the server and the database, as well as between the server and the client.
+
+
+![image](https://user-images.githubusercontent.com/78864132/122646985-0b0b6b00-d11a-11eb-9b9a-4b0b8b8b0b0a.png)
+
+### Sitemap
+
+A sitemap is a visual representation of the web app's structure and the relationship between its various pages and sections. It helps users and developers understand how different parts of the web app are interconnected. In the GG PC Games and Gaming Accessories web app, the sitemap should include:
+
+- The homepage and its sections.
+- Navigation links to different pages or sections.
+- Links to genre-specific game listings.
+- Links to deals, upcoming releases, and free games.
+- User registration and login pages.
+- The user account dashboard.
+
+![image](https://user-images.githubusercontent.com/78864132/122647000-1a8ab400-d11a-11eb-8b0a-3b6b0b0b2b0a.png)
+
+## Backend Documentation
+
 ### Server Details
 
- ## Permissions Policy
-Sets the Permissions Policy header for geolocation permissions.
+The GG PC Games and Gaming Accessories web app uses Express.js for the server and MySQL for the database. The server runs on port 3306 and connects to the database using the following credentials:
 
+- Host: localhost
+- Username: root
+- Password: root
+- Database: gg_database
+- Port: 3306
+
+### Permissions Policy
+The Permissions Policy header sets the permissions policy for the web app. It allows the web app to request access to the user's location.
 
 ## Database Architecture
 
-Database Name: gg_database
-
-Database Tables:
+The GG PC Games and Gaming Accessories web app uses a MySQL database to store game, deal, user, and other data. The database includes the following tables:
 
 - deals: Stores deal data.
 - games: Stores game data.
@@ -366,8 +392,7 @@ Database Tables:
 - free_games: Stores free game data.
 - users: Stores user data (for registration and login).
 
-
-## User Paths
+### User Paths
 
 A user path diagram illustrates the typical journey a user takes when interacting with the GG PC Games and Gaming Accessories web app. It helps identify key actions and steps a user goes through to achieve their goals. The user path includes:
 
@@ -385,27 +410,17 @@ A user path diagram illustrates the typical journey a user takes when interactin
 
 - Logout: Users can log out from their account to end their session.
 
-
-## Sitemap
-
-A sitemap is a visual representation of the web app's structure and the relationship between its various pages and sections. It helps users and developers understand how different parts of the web app are interconnected. In the GG PC Games and Gaming Accessories web app, the sitemap should include:
-
-The homepage and its sections.
-Navigation links to different pages or sections.
-Links to genre-specific game listings.
-Links to deals, upcoming releases, and free games.
-User registration and login pages.
-The user account dashboard.
-A sitemap is a valuable tool for planning the user experience and ensuring that users can easily navigate and access the content and features of the web app.
-
-Information Technology (IT) Diagram
-An IT (Information Technology) diagram provides an overview of the web app's technical infrastructure and how different components interact. In the GG PC Games and Gaming Accessories web app, the IT diagram would depict:
-
-The web server (Express.js) running on a specified port.
-The MySQL database ("gg_database") storing game, deal, user, and other data.
-Client-side components like HTML, CSS, and JavaScript for the frontend.
-API endpoints for data retrieval and user authentication.
-Data flows between the server and the database, as well as between the server and the client.
+![image](./images/User%20Path%20Diagram.png)
 
 
-[def]: #information-technology-it-diagram
+## Conclusion
+
+This comprehensive documentation provides all the necessary information for understanding and working with the GameShop web app. Follow the instructions in the ["Getting Started"](#getting-started) section to set up the app and explore the [frontend](#frontend-documentation) and [backend](#backend-documentation) details to gain a deeper understanding of its architecture and functionality.
+
+
+---
+
+---
+**[GG PC Games and Gaming Accessories](index.html)**  
+
+&copy; 2023 by AlfaGongGong
