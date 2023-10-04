@@ -50,13 +50,13 @@ Follow these steps to get started with the GameShop web app:
 1. Clone this repository to your local machine.
 2. Install the required npm packages using 
 
-```node js
+```bash
 npm install
 ```
 3. Configure your MySQL database settings in the code.
 4. Start the server using 
 
-```node js
+```bash
 npm start
 ```
 
