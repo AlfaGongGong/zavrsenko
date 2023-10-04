@@ -53,7 +53,7 @@ GG Gamestore Web App is a comprehensive online platform that offers PC games and
 This documentation provides an overview of the GameShop web app, including server details, database architecture with diagram, user paths with diagram, and sitemap diagram.
 
 #### Technologies Used:
-Node.js, Express.js, MySQL, JavaScript, HTML, CSS, bcrypt, body-parser, express-session, cors.
+JavaScript, HTML, SCSS, CSS, AnimateCSS, Bootstrap, Google Fonts, Font Awsome, JQuery, Node.JS, Express.JS, MySQL Server and Database on localhost, APIs from RAWG, FreeShark, RapidApi and Amazon Scraper, bcrypt, body-parser, express-session and cors.
 
 #### License:
 [Open Source]
