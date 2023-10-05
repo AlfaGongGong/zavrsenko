@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<data grt_format="2.0">
+  <value _ptr_="000001CB2E388D50" type="list" content-type="object" content-struct-name="db.mgmt.ServerInstance">
+    <value type="object" struct-name="db.mgmt.ServerInstance" id="{965F64FD-4F79-49B9-911C-AAB4F24345F5}" struct-checksum="0x367436e2">
+      <link type="object" struct-name="db.mgmt.Connection" key="connection">{94FAEEDD-8A1E-4001-BF84-A513A3FAAA8F}</link>
+      <value _ptr_="000001CB34CB68D0" type="dict" key="loginInfo">
+        <value type="string" key="wmi.hostName"></value>
+        <value type="string" key="wmi.userName"></value>
+      </value>
+      <value _ptr_="000001CB34CB6450" type="dict" key="serverInfo">
+        <value type="string" key="basedir">C:\Program Files\MySQL\MySQL Server 8.0\</value>
+        <value type="string" key="datadir">C:\ProgramData\MySQL\MySQL Server 8.0\Data\</value>
+        <value type="string" key="errorLogFilePath">JASA-LAPTOP.err</value>
+        <value type="string" key="generalLogFilePath">JASA-LAPTOP.log</value>
+        <value type="string" key="serverVersion">8.0.34</value>
+        <value type="int" key="setupPending">1</value>
+        <value type="int" key="slowLogEnabled">1</value>
+        <value type="string" key="slowLogFilePath">JASA-LAPTOP-slow.log</value>
+        <value type="string" key="sys.config.path"></value>
+        <value type="string" key="sys.config.section">mysqld</value>
+        <value type="string" key="sys.mysqld.service_name">HSMYSQL</value>
+        <value type="string" key="sys.preset">Custom</value>
+        <value type="string" key="sys.system">Windows</value>
+        <value type="int" key="sys.usesudo">0</value>
+        <value type="int" key="sys.usesudostatus">0</value>
+        <value type="int" key="windowsAdmin">1</value>
+      </value>
+      <value type="string" key="name">Local HSMYSQL</value>
+    </value>
+    <value type="object" struct-name="db.mgmt.ServerInstance" id="{83927C7B-9435-4B6F-B038-9657B5E4803B}" struct-checksum="0x367436e2">
+      <link type="object" struct-name="db.mgmt.Connection" key="connection">{7CD30F99-8EF8-4C2F-AC07-3F932ECB6BF5}</link>
+      <value _ptr_="000001CB34CB8E50" type="dict" key="loginInfo">
+        <value type="string" key="wmi.hostName"></value>
+        <value type="string" key="wmi.userName"></value>
+      </value>
+      <value _ptr_="000001CB34CB7D10" type="dict" key="serverInfo">
+        <value type="int" key="setupPending">1</value>
+        <value type="string" key="sys.config.path">C:\\Program Files (x86)\\IoVedo.RK\\Database\\my.ini</value>
+        <value type="int" key="sys.config.path.lock">1</value>
+        <value type="string" key="sys.config.section">mysqld</value>
+        <value type="string" key="sys.mysqld.service_name">IVMS320MYSQL</value>
+        <value type="string" key="sys.preset">Custom</value>
+        <value type="string" key="sys.system">Windows</value>
+        <value type="int" key="windowsAdmin">1</value>
+      </value>
+      <value type="string" key="name">Local IVMS320MYSQL</value>
+    </value>
+    <value type="object" struct-name="db.mgmt.ServerInstance" id="{A5DFCA69-7119-47CF-A3FC-73CC176F91E1}" struct-checksum="0x367436e2">
+      <link type="object" struct-name="db.mgmt.Connection" key="connection">{94FAEEDD-8A1E-4001-BF84-A513A3FAAA8F}</link>
+      <value _ptr_="000001CB34CB8670" type="dict" key="loginInfo">
+        <value type="string" key="wmi.hostName"></value>
+        <value type="string" key="wmi.userName"></value>
+      </value>
+      <value _ptr_="000001CB34CB89D0" type="dict" key="serverInfo">
+        <value type="int" key="setupPending">1</value>
+        <value type="string" key="sys.config.path"></value>
+        <value type="string" key="sys.config.section">mysqld</value>
+        <value type="string" key="sys.mysqld.service_name">HSMYSQL</value>
+        <value type="string" key="sys.preset">Custom</value>
+        <value type="string" key="sys.system">Windows</value>
+        <value type="int" key="windowsAdmin">1</value>
+      </value>
+      <value type="string" key="name">Local HSMYSQL</value>
+    </value>
+    <value type="object" struct-name="db.mgmt.ServerInstance" id="{50BB42D3-9A0A-4493-A99D-E5808D154FCB}" struct-checksum="0x367436e2">
+      <link type="object" struct-name="db.mgmt.Connection" key="connection">{7CD30F99-8EF8-4C2F-AC07-3F932ECB6BF5}</link>
+      <value _ptr_="000001CB34CB8850" type="dict" key="loginInfo">
+        <value type="string" key="wmi.hostName"></value>
+        <value type="string" key="wmi.userName"></value>
+      </value>
+      <value _ptr_="000001CB34CB8790" type="dict" key="serverInfo">
+        <value type="int" key="setupPending">1</value>
+        <value type="string" key="sys.config.path">C:\\Program Files (x86)\\IoVedo.RK\\Database\\my.ini</value>
+        <value type="int" key="sys.config.path.lock">1</value>
+        <value type="string" key="sys.config.section">mysqld</value>
+        <value type="string" key="sys.mysqld.service_name">IVMS320MYSQL</value>
+        <value type="string" key="sys.preset">Custom</value>
+        <value type="string" key="sys.system">Windows</value>
+        <value type="int" key="windowsAdmin">1</value>
+      </value>
+      <value type="string" key="name">Local IVMS320MYSQL</value>
+    </value>
+  </value>
+</data>

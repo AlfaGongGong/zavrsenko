@@ -1,8 +1,13 @@
-const { fromUnixTime } = require('date-fns');
-const express = require('express');
-const mysql = require('mysql2/promise');
-const axios = require('axios');
-const cors = require('cors');
+const express = require("express");
+const cors =  require("cors");
+const mysql = require("mysql2/promise");
+const axios = require("axios");
+const { config } = require("dotenv");
+const { fromUnixTime } = require("date-fns");
+
+
+config();
+
 
 const app = express();
 app.use(cors());
@@ -10,19 +15,19 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.API_PORT;
 
 const dbConfig = {
-  host: 'localhost',
-  user: 'root',
-  password: 'root',
-  database: 'gg_database',
-  port: 3306,
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DATABASE,
+  port: process.env.MYSQL_PORT,
   connectTimeout: 30000,
 };
 
 const apiConfig = {
-  url: 'https://www.cheapshark.com/api/1.0/deals',
+  url: "https://www.cheapshark.com/api/1.0/deals",
   params: {
     storeID: 1,
     upperPrice: 15,
@@ -38,7 +43,7 @@ const mapData = (data) => {
       title: item.title,
       salePrice: item.salePrice,
       normalPrice: item.normalPrice,
-      releaseDate: fromUnixTime(item.releaseDate).toLocaleDateString('en-GB'),
+      releaseDate: fromUnixTime(item.releaseDate).toLocaleDateString("en-GB"),
       score: item.metacriticScore,
       image: item.thumb,
     };
@@ -47,7 +52,9 @@ const mapData = (data) => {
 
 const fetchDataFromApi = async () => {
   try {
-    const response = await axios.get(apiConfig.url, { params: apiConfig.params });
+    const response = await axios.get(apiConfig.url, {
+      params: apiConfig.params,
+    });
     return response.data;
   } catch (error) {
     throw error;
@@ -67,7 +74,10 @@ const insertDataIntoDatabase = async (data) => {
 
   const connection = await connectionPool.getConnection();
   try {
-    await connection.query('INSERT IGNORE INTO deals (title, salePrice, normalPrice, releaseDate, score, image) VALUES ?', [values]);
+    await connection.query(
+      "INSERT IGNORE INTO deals (title, salePrice, normalPrice, releaseDate, score, image) VALUES ?",
+      [values]
+    );
   } catch (error) {
     throw error;
   } finally {
@@ -77,30 +87,33 @@ const insertDataIntoDatabase = async (data) => {
 
 const fetchAndInsertData = async () => {
   try {
-    console.log('Fetching data from the API...');
+    console.log("Fetching data from the API...");
     const apiData = await fetchDataFromApi();
-    console.log('Data fetched successfully from the API.');
+    console.log("Data fetched successfully from the API.");
 
-    console.log('Inserting data into the database...');
+    console.log("Inserting data into the database...");
     await insertDataIntoDatabase(apiData);
-    console.log('Data inserted successfully into the database.');
+    console.log("Data inserted successfully into the database.");
   } catch (error) {
-    console.error('Error:', error);
+    console.error("Error:", error);
   }
 };
 
 // Define a route to fetch and insert data
-app.get('/fetchData', (req, res) => {
+app.get("/fetchData", (_req, res) => {
   fetchAndInsertData()
     .then(() => {
-      res.status(200).json({ message: 'Data fetched and inserted successfully' });
+      res
+        .status(200)
+        .json({ message: "Data fetched and inserted successfully" });
     })
     .catch((err) => {
-      console.error('Error fetching and inserting data:', err);
-      res.status(500).json({ error: 'Error fetching and inserting data' });
+      console.error("Error fetching and inserting data:", err);
+      res.status(500).json({ error: "Error fetching and inserting data" });
     });
 });
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
