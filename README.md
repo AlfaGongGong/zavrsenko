@@ -1,11 +1,11 @@
-# Title: GameShop Web App Documentation
+# Title: GG Gamestore Web App Documentation
 
 ## Table of Contents
 
 - [Introduction](#introduction)
   - [Description](#description)
   - [Key Features](#KeyFeatures)
-  - [Technologies Used](#technology-used)
+  - [Technologies Used](#technologies-used) 
   - [License](#License)
   - [Authors](#Authors) 
 - [Prerequisites](#prerequisites)
@@ -41,7 +41,7 @@
 ## Introduction   
 
 #### Description:
-The GameShop Web App is a comprehensive online platform that offers PC games and gaming accessories to users. It features client-side fetching, user-friendly interfaces, secure login, and a wide range of gaming products. Whether you're a gamer looking for the latest releases or an admin managing content, GameShop provides a seamless experience.
+GG Gamestore Web App is a comprehensive online platform that offers PC games and gaming accessories to users. It features client-side fetching, user-friendly interfaces, secure login, and a wide range of gaming products. Whether you're a gamer looking for the latest releases or an admin managing content, GameShop provides a seamless experience.
 
 #### Key Features:
 
@@ -53,7 +53,7 @@ The GameShop Web App is a comprehensive online platform that offers PC games and
 This documentation provides an overview of the GameShop web app, including server details, database architecture with diagram, user paths with diagram, and sitemap diagram.
 
 #### Technologies Used:
-Node.js, Express.js, MySQL, JavaScript, HTML, CSS, bcrypt, body-parser, express-session, cors.
+JavaScript, HTML, SCSS, CSS, AnimateCSS, Bootstrap, Google Fonts, Font Awsome, JQuery, Node.JS, Express.JS, MySQL Server and Database on localhost, APIs from RAWG, FreeShark, RapidApi and Amazon Scraper, bcrypt, body-parser, express-session and cors.
 
 #### License:
 [Open Source]
