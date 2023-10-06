@@ -4,15 +4,24 @@ const cors = require("cors");
 const bcrypt = require("bcrypt");
 const bodyParser = require("body-parser");
 const session = require("express-session");
+const { config } = require("dotenv");
+
+if (process.env.NODE_ENV!== "production") {
+      config();
+}
+
+
+
 const PORT = process.env.APIS_PORT;
 
-require("dotenv").config();
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+
+
 
 const dbConfig = {
   host: process.env.DB_HOST,
@@ -47,20 +56,7 @@ app.use(
   })
 );
 
-app.get("/deals", (req, res) => {
-  db.query(
-    "SELECT * FROM deals ORDER BY RAND() DESC LIMIT 6;",
-    (err, results) => {
-      if (err) {
-        console.error("Error executing MySQL query:", err);
-        res.status(500).send("Error fetching data from the database");
-        return;
-      }
 
-      res.json(results);
-    }
-  );
-});
 
 app.get("/games", () => {
   app.get("/games", (req, res) => {
