@@ -3,7 +3,7 @@ const express = require('express');
 const mysql = require('mysql2');
 const axios = require('axios');
 const cors = require('cors');
-
+require('dotenv').config();
 const app = express();
 app.use(cors());
 
@@ -16,7 +16,7 @@ const fetchDataFromAPI = async () => {
     method: 'GET',
     url: 'https://free-to-play-games-database.p.rapidapi.com/api/games',
     headers: {
-      'X-RapidAPI-Key': 'f6d1f840a3msh19d03ebda2bde72p14ca93jsn16413aedab2d',
+      'X-RapidAPI-Key': process.env.RAPID_API_KEY,
       'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
     },
   };
@@ -29,6 +29,9 @@ const fetchDataFromAPI = async () => {
     throw error;
   }
 };
+
+
+
 
 // Function to map data from the API
 const mapData = (data) => {
@@ -107,4 +110,4 @@ const main = async () => {
   }
 };
 
-main();
+main(); 

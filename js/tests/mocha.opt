@@ -1,3 +1,9 @@
 --require ts-node/register
+--require ts-node
+--require tsconfig-paths/register
+--require tsconfig-paths
 --recursive
+--ts-node
 --exit
+--tsconfig-paths
+

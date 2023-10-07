@@ -6,14 +6,11 @@ const bodyParser = require("body-parser");
 const session = require("express-session");
 const { config } = require("dotenv");
 
-if (process.env.NODE_ENV!== "production") {
-      config();
+if (process.env.NODE_ENV !== "production") {
+  config();
 }
 
-
-
-const PORT = process.env.APIS_PORT;
-
+const PORT = process.env.PORT;
 
 const app = express();
 app.use(cors());
@@ -21,29 +18,18 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
-
-
 const dbConfig = {
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  database: process.env.DATABASE,
-  port: process.env.MYSQL_PORT,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT,
   connectTimeout: 30000,
 };
 
 const connectionPool = mysql.createPool(dbConfig);
 
-// Error handling middleware
 
-app.use((err, req, res, next) => {
-
-      console.error("Error:", err);
-
-      res.status(500).json({ message: "Internal server error" });
-});
-    
-    
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -56,6 +42,9 @@ app.use(
   })
 );
 
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
 
 
 app.get("/games", () => {

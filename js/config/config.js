@@ -1,35 +1,47 @@
-const { config } = require("dotenv");
-config();
+ require("dotenv").config();
+
+const {
+  DB_HOST,
+  DB_USER,
+  DB_PASSWORD,
+  DB_NAME,
+  DB_PORT,
+  PORT,
+  RAPID_API_KEY,
+  RAWG_API_KEY,
+  SESSION_SECRET,
+  CORS_ALLOWED_ORIGINS,
+} = process.env;
 
 module.exports = {
-    // Database configuration
-    database: {
-      host: 'localhost',          // Database host
-      user: 'root',              // Database username
-      password: 'root',          // Database password
-      databaseName: 'gg_database',// Name of your MySQL database
-      port: 3306                 // Database port
-    },
-  
-    // Server configuration
-    server: {
-      port: 3000,                // Port on which your Node.js server will run
-    },
-  
-    // API keys or other sensitive information
-    apiKeys: {
-      rapidApiKey: 'YOUR_RAPIDAPI_KEY', // Replace with your RapidAPI key
-      amazonScraperApiKey: 'YOUR_AMAZON_SCRAPER_API_KEY', // Replace with your Amazon Scraper API key
-    },
-  
-    // Session configuration
-    session: {
-      secret: 'YOUR_SESSION_SECRET', // Replace with a secret key for session management
-    },
-  
-    // CORS configuration
-    cors: {
-      allowedOrigins: ['http://localhost:8080'], // Replace with the origins you want to allow
-    }
-  };
-  
+  // Database configuration
+  database: {
+    host: DB_HOST,
+    user: DB_USER,
+    password: DB_PASSWORD,
+    databaseName: DB_NAME,
+    port: DB_PORT,
+  },
+
+  // Express server
+  server: {
+    port: PORT,
+  },
+
+  // API keys or other sensitive information
+  apiKeys: {
+    rapidApiKey: RAPID_API_KEY,
+    rawgApiKey: RAWG_API_KEY,
+  },
+
+  // Session configuration
+  session: {
+    secret: SESSION_SECRET,
+  },
+
+  // CORS configuration
+  cors: {
+    allowedOrigins: [CORS_ALLOWED_ORIGINS],
+  },
+};
+
