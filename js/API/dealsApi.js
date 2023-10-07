@@ -2,12 +2,13 @@ const express = require("express");
 const cors =  require("cors");
 const mysql = require("mysql2/promise");
 const axios = require("axios");
-const { config } = require("dotenv");
+const { database, rapidApiKey, port } = require("../config/config.js");
 const { fromUnixTime } = require("date-fns");
 
 
-config();
-
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
 
 const app = express();
 app.use(cors());
@@ -15,16 +16,9 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const PORT = process.env.API_PORT;
+const PORT = port;
 
-const dbConfig = {
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DATABASE,
-  port: process.env.MYSQL_PORT,
-  connectTimeout: 30000,
-};
+const dbConfig = database;
 
 const apiConfig = {
   url: "https://www.cheapshark.com/api/1.0/deals",

@@ -23,12 +23,12 @@ module.exports = {
     port: DB_PORT,
   },
 
-  // Express server
+  // Express server port
   server: {
     port: PORT,
   },
 
-  // API keys or other sensitive information
+  // API keys
   apiKeys: {
     rapidApiKey: RAPID_API_KEY,
     rawgApiKey: RAWG_API_KEY,

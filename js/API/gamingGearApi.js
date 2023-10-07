@@ -1,9 +1,15 @@
 const axios = require("axios");
 const mysql = require("mysql2/promise");
-const { database, rapidApiKey } = require("../config/config.js");
+const config = require("../config/config.js");
 
 // MySQL connection
-const dbConfig = database;
+const dbConfig = {
+  host: config.database.host,
+  user: config.database.user,
+  password: config.database.password,
+  database: config.database.databaseName,
+  port: config.database.port,
+};
 
 // Axios request options
 const apiOptions = {
@@ -14,7 +20,7 @@ const apiOptions = {
     country: "us",
   },
   headers: {
-    "X-RapidAPI-Key": rapidApiKey,
+    "X-RapidAPI-Key": config.apiKeys.rapidApiKey,
     "X-RapidAPI-Host": "amazon-merchant-data.p.rapidapi.com",
   },
 };

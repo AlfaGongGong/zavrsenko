@@ -1,10 +1,9 @@
-const { fromUnixTime } = require('date-fns');
-const express = require('express');
-const mysql = require('mysql2');
-const axios = require('axios');
-const cors = require('cors');
-require('dotenv').config();
-const app = express();
+const { fromUnixTime } = require("date-fns");
+const express = require("express");
+const mysql = require("mysql2");
+const axios = require("axios");
+const cors = require("cors");
+const config = require("../config/config");
 app.use(cors());
 
 app.use(express.json());
@@ -13,11 +12,11 @@ app.use(express.urlencoded({ extended: true }));
 // Function to fetch data from the API
 const fetchDataFromAPI = async () => {
   const options = {
-    method: 'GET',
-    url: 'https://free-to-play-games-database.p.rapidapi.com/api/games',
+    method: "GET",
+    url: "https://free-to-play-games-database.p.rapidapi.com/api/games",
     headers: {
-      'X-RapidAPI-Key': process.env.RAPID_API_KEY,
-      'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
+      "X-RapidAPI-Key": config.apiKeys.rapidApiKey,
+      "X-RapidAPI-Host": "free-to-play-games-database.p.rapidapi.com",
     },
   };
 
@@ -25,13 +24,10 @@ const fetchDataFromAPI = async () => {
     const response = await axios.request(options);
     return response.data;
   } catch (error) {
-    console.error('Error fetching data from the API:', error);
+    console.error("Error fetching data from the API:", error);
     throw error;
   }
 };
-
-
-
 
 // Function to map data from the API
 const mapData = (data) => {
@@ -44,7 +40,7 @@ const mapData = (data) => {
     platform: item.platform,
     publisher: item.publisher,
     developer: item.developer,
-    releaseDate: fromUnixTime(item.release_date).toLocaleDateString('en-GB'),
+    releaseDate: fromUnixTime(item.release_date).toLocaleDateString("en-GB"),
     free_to_play: item.freetogame_profile_url,
   }));
 };
@@ -52,19 +48,19 @@ const mapData = (data) => {
 // Function to insert data into MySQL database
 const insertDataIntoDatabase = async (data) => {
   const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'gg_database',
-    port: 3306,
+    host: config.database.host,
+    user: config.database.user,
+    password: config.database.password,
+    database: config.database.databaseName,
+    port: config.database.port,
   });
 
   connection.connect((err) => {
     if (err) {
-      console.error('Error connecting to MySQL:', err);
+      console.error("Error connecting to MySQL:", err);
       throw err;
     }
-    console.log('Connected to MySQL');
+    console.log("Connected to MySQL");
   });
 
   const values = data.map((item) => [
@@ -82,11 +78,11 @@ const insertDataIntoDatabase = async (data) => {
 
   try {
     connection.query(
-      'INSERT IGNORE INTO free_games (title, image, description, url, genre, platform, publisher, developer, releaseDate, free_to_play) VALUES ?',
+      "INSERT IGNORE INTO free_games (title, image, description, url, genre, platform, publisher, developer, releaseDate, free_to_play) VALUES ?",
       [values],
       (err, result) => {
         if (err) {
-          console.error('Error executing MySQL query:', err);
+          console.error("Error executing MySQL query:", err);
           throw err;
         }
         console.log(result);
@@ -94,7 +90,7 @@ const insertDataIntoDatabase = async (data) => {
       }
     );
   } catch (error) {
-    console.error('Error inserting data into the database:', error);
+    console.error("Error inserting data into the database:", error);
     throw error;
   }
 };
@@ -106,8 +102,8 @@ const main = async () => {
     const mappedData = mapData(apiData);
     await insertDataIntoDatabase(mappedData);
   } catch (error) {
-    console.error('An error occurred:', error);
+    console.error("An error occurred:", error);
   }
 };
 
-main(); 
+main();
