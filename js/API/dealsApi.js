@@ -1,24 +1,26 @@
 const express = require("express");
-const cors =  require("cors");
+const cors = require("cors");
 const mysql = require("mysql2/promise");
 const axios = require("axios");
-const { database, rapidApiKey, port } = require("../config/config.js");
+const config = require("../config/config.js");
 const { fromUnixTime } = require("date-fns");
-
-
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config();
-}
+const errorHandler = require("../middleware/errorHandling"); // Import the errorHandler middleware
 
 const app = express();
-app.use(cors());
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const PORT = port;
+const PORT = config.server.port;
 
-const dbConfig = database;
+const dbConfig = {
+  host: config.db.host,
+  user: config.db.user,
+  password: config.db.password,
+  database: config.db.databaseName,
+  port: config.db.port,
+};
 
 const apiConfig = {
   url: "https://www.cheapshark.com/api/1.0/deals",
@@ -107,7 +109,8 @@ app.get("/fetchData", (_req, res) => {
     });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+app.use(errorHandler);
 
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

@@ -1,6 +1,7 @@
 const axios = require("axios");
 const mysql = require("mysql2/promise");
 const config = require("../config/config.js");
+const errorHandler = require("../middleware/errorHandling");
 
 // MySQL connection
 const dbConfig = {
@@ -115,3 +116,5 @@ async function fetchAndInsertItems() {
 }
 
 fetchAndInsertItems();
+
+app.use(errorHandler);

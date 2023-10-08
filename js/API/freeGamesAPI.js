@@ -4,6 +4,7 @@ const mysql = require("mysql2");
 const axios = require("axios");
 const cors = require("cors");
 const config = require("../config/config");
+const errorHandler = require("../middleware/errorHandling");
 app.use(cors());
 
 app.use(express.json());
@@ -107,3 +108,5 @@ const main = async () => {
 };
 
 main();
+
+app.use(errorHandler);

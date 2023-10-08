@@ -3,6 +3,7 @@ const mysql = require("mysql2/promise");
 const axios = require("axios");
 const cors = require("cors");
 const config = require("../config/config.js");
+const errorHandler = require("../middleware/errorHandling");
 
 const app = express();
 
@@ -146,8 +147,6 @@ let lastFetchedTimestamp = "";
 let lastFetchedId = "";
 let pageNumber = 1;
 
-// ...
-
 async function fetchAndUpdateData() {
   try {
     const options = {
@@ -186,3 +185,5 @@ async function fetchAndUpdateData() {
 }
 
 fetchAndUpdateData();
+
+app.use(errorHandler);
