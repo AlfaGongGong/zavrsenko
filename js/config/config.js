@@ -1,4 +1,4 @@
- require("dotenv").config();
+require("dotenv").config();
 
 const {
   DB_HOST,
@@ -9,7 +9,6 @@ const {
   PORT,
   RAPID_API_KEY,
   RAWG_API_KEY,
-  SESSION_SECRET,
   CORS_ALLOWED_ORIGINS,
 } = process.env;
 
@@ -34,14 +33,8 @@ module.exports = {
     rawgApiKey: RAWG_API_KEY,
   },
 
-  // Session configuration
-  session: {
-    secret: SESSION_SECRET,
-  },
-
   // CORS configuration
   cors: {
     allowedOrigins: [CORS_ALLOWED_ORIGINS],
   },
 };
-

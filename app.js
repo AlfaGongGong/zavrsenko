@@ -47,18 +47,6 @@ app.listen(PORT, () => {
 });
 
 
-app.get("/games", () => {
-  app.get("/games", (req, res) => {
-    db.query("SELECT * FROM games", (err, results) => {
-      if (err) {
-        console.error("Error executing MySQL query:", err);
-        res.status(500).send("Error fetching data from the database");
-        return;
-      }
-      res.json(results);
-    });
-  });
-});
 
 app.get("/gaming_gear", (req, res) => {
   db.query(
