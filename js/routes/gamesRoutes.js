@@ -33,6 +33,24 @@ router.get("/:id", (req, res) => {
   });
 });
 
+// Get details of a specific game by ID
+router.get("/details/:id", (req, res) => {
+  const gameID = req.params.id;
+  db.query("SELECT * FROM games WHERE id = ?", [gameID], (err, results) => {
+    if (err) {
+      console.error("Error executing MySQL query:", err);
+      res.status(500).send("Error fetching game details from the database");
+      return;
+    }
+    if (results.length === 0) {
+      res.status(404).send("Game not found");
+    } else {
+      res.json(results[0]);
+    }
+  });
+
+});
+
 // Route to create a new game (you may need to add authentication and authorization)
 router.post("/", (req, res) => {
   const { title, description, platform } = req.body;

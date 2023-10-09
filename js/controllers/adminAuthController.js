@@ -1,18 +1,18 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const uuid = require("uuid");
-const jwt = require("jsonwebtoken"); 
-const config = require("../config/config"); 
+const jwt = require("jsonwebtoken");
+const config = require("../config/config");
 const router = express.Router();
 const db = require("../config/db");
 
-// Endpoint for user registration
+// Endpoint for admin registration
 router.post("/register", (req, res) => {
   const { username, email, password } = req.body;
 
   // Check if the username or email is already registered
   const checkDuplicateUserQuery =
-    "SELECT * FROM users WHERE username = ? OR email = ?";
+    "SELECT * FROM administrators WHERE username = ? OR email = ?";
   db.query(checkDuplicateUserQuery, [username, email], (err, results) => {
     if (err) {
       console.error("MySQL error:", err);
@@ -31,9 +31,9 @@ router.post("/register", (req, res) => {
         return res.status(500).json({ message: "Internal server error" });
       }
 
-      // Insert the new user into the database
+      // Insert the new admin into the database
       const insertUserQuery =
-        "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
+        "INSERT INTO administrators (username, email, password) VALUES (?, ?, ?)";
       db.query(insertUserQuery, [username, email, hashedPassword], (err) => {
         if (err) {
           console.error("MySQL error:", err);
@@ -46,12 +46,12 @@ router.post("/register", (req, res) => {
   });
 });
 
-// Endpoint for user login
+// Endpoint for admin login
 router.post("/login", (req, res) => {
   const { username, password } = req.body;
 
   // Check if the username exists in the database
-  const checkUserQuery = "SELECT * FROM users WHERE username = ?";
+  const checkUserQuery = "SELECT * FROM administrators WHERE username = ?";
   db.query(checkUserQuery, [username], (err, results) => {
     if (err) {
       console.error("MySQL error:", err);
@@ -80,7 +80,7 @@ router.post("/login", (req, res) => {
 
       // Store the token and secret in the database
       const storeTokenQuery =
-        "INSERT INTO user_tokens (user_id, token, secret) VALUES (?, ?, ?)";
+        "INSERT INTO administrators_tokens (user_id, token, secret) VALUES (?, ?, ?)";
       db.query(storeTokenQuery, [user.id, token, secret], (err) => {
         if (err) {
           console.error("MySQL error:", err);
@@ -100,7 +100,7 @@ router.post("/logout", (req, res) => {
 
   // Delete the token and secret from the database
   const deleteTokenQuery =
-    "DELETE FROM user_tokens WHERE token = ? AND secret = ?";
+    "DELETE FROM administrators_tokens WHERE token = ? AND secret = ?";
   db.query(deleteTokenQuery, [token, secret], (err) => {
     if (err) {
       console.error("MySQL error:", err);

@@ -2,7 +2,9 @@ const express = require("express");
 const router = express.Router();
 const db = require("../config/db");
 
-// Route to get all users
+// Admin routes
+
+// Get all users
 router.get("/", (req, res) => {
   db.query("SELECT * FROM users", (err, results) => {
     if (err) {
@@ -15,7 +17,7 @@ router.get("/", (req, res) => {
   });
 });
 
-// Route to get a specific user by ID
+// Get a specific user by ID
 router.get("/:id", (req, res) => {
   const userId = req.params.id;
   db.query("SELECT * FROM users WHERE id = ?", [userId], (err, results) => {
@@ -33,7 +35,7 @@ router.get("/:id", (req, res) => {
   });
 });
 
-// Route to create a new user (you may need to add authentication and authorization)
+// Create a new user (you may need to add authentication and authorization)
 router.post("/", (req, res) => {
   const { username, email, password } = req.body;
   // Add your validation and database insertion code here
@@ -43,7 +45,7 @@ router.post("/", (req, res) => {
   res.status(201).send("User created successfully");
 });
 
-// Route to update a user by ID (you may need to add authentication and authorization)
+// Update a user by ID (you may need to add authentication and authorization)
 router.put("/:id", (req, res) => {
   const userId = req.params.id;
   // Add your validation and database update code here
@@ -53,7 +55,7 @@ router.put("/:id", (req, res) => {
   res.status(200).send("User updated successfully");
 });
 
-// Route to delete a user by ID (you may need to add authentication and authorization)
+// Delete a user by ID (you may need to add authentication and authorization)
 router.delete("/:id", (req, res) => {
   const userId = req.params.id;
   // Add your validation and database deletion code here
