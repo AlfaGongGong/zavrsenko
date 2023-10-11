@@ -65,7 +65,6 @@ router.post("/", (req, res) => {
         .json({ message: "Unauthorized. Admin privileges required." });
     }
 
-    // Add your validation code here
     if (
       !title ||
       !salePrice ||
@@ -77,7 +76,6 @@ router.post("/", (req, res) => {
       return res.status(400).json({ message: "All fields are required" });
     }
 
-    // Add your database insertion code here
     const insertDealQuery = `
       INSERT INTO deals (title, salePrice, normalPrice, releaseDate, score, image)
       VALUES (?, ?, ?, ?, ?, ?)
