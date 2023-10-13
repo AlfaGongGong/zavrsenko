@@ -35,13 +35,13 @@ app.listen(PORT, () => {
 
 // Routes
 const authRoutes = require("./js/routes/authRoutes");
-const dealsRoutes = require("./js/routes/dealsRoutes"); // Add missing dots before js
+const dealsRoutes = require("./js/routes/dealsRoutes"); 
 const freeGamesRoutes = require("./js/routes/freeGamesRoutes"); // Add missing dots before js
 const gamesRoutes = require("./js/routes/gamesRoutes"); // Add missing dots before js
-const gamingGearRoutes = require("./js/routes/gamingGearRoutes"); // Add missing dots before js
-const upcomingRoutes = require("./js/routes/upcomingRoutes"); // Add missing dots before js
-const usersRoutes = require("./js/routes/usersRoutes"); // Add missing dots before js
-const userTokensRoutes = require("./js/routes/userTokensRoutes"); // Add missing dots before js
+const gamingGearRoutes = require("./js/routes/gamingGearRoutes"); 
+const upcomingRoutes = require("./js/routes/upcomingRoutes"); 
+const usersRoutes = require("./js/routes/usersRoutes"); 
+const userTokensRoutes = require("./js/routes/userTokensRoutes"); 
 
 app.use("/auth", authRoutes);
 app.use("/deals", dealsRoutes);
@@ -60,7 +60,7 @@ app.use((error, req, res, next) => {
       message: error.message,
     },
   });
-  console.error(error); // Log the error for debugging
+  console.error(error); 
 });
 
 // Database connection
@@ -69,5 +69,5 @@ connectionPool.on("connection", (connection) => {
 });
 
 connectionPool.on("error", (error) => {
-  console.error("Error connecting to database", error); // Log the error for debugging
+  console.error("Error connecting to database", error);
 });
