@@ -307,7 +307,9 @@ input.mail_bt::placeholder {
   width: 100%;
 }
 
-#password-form, #email-form, #address-form {
+#password-form,
+#email-form,
+#address-form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -323,16 +325,24 @@ input.mail_bt::placeholder {
           justify-content: center;
   width: 100%;
 }
-#password-form h2, #email-form h2, #address-form h2 {
+#password-form h2,
+#email-form h2,
+#address-form h2 {
   font-size: 2rem;
 }
-#password-form h3, #email-form h3, #address-form h3 {
+#password-form h3,
+#email-form h3,
+#address-form h3 {
   font-size: 1.5rem;
 }
-#password-form label, #email-form label, #address-form label {
+#password-form label,
+#email-form label,
+#address-form label {
   font-size: 1 rem;
 }
-#password-form input, #email-form input, #address-form input {
+#password-form input,
+#email-form input,
+#address-form input {
   width: 100%;
   height: 2rem;
   font-size: 1.5rem;
