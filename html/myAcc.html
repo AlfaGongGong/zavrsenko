@@ -7,7 +7,7 @@
     <!-- mobile metas -->
     <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
     <!-- site metas -->
-    <title>GG PC Games And Gaming Accessories</title>
+    <title>My Account</title>
     <meta
       name="keywords"
       content=" GG PC Games And Gaming Accessories, PC games, gaming accessories, pc games, gaming accessories  "
@@ -64,7 +64,7 @@
     />
 
     <!-- custom css -->
-    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../css/myAccStyle.css" />
 </head>
 <body>
     <header>
@@ -84,15 +84,7 @@
             <li class="nav-item">
               <a class="nav-link" href="index.html">Home </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="index.html"
-                >Home
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Home </a>
-            </li>
-            <li class="nav-item">
+           
               <a class="nav-link" href="./html/gamesList.html"
                 >Browse All Games
               </a>
@@ -134,19 +126,20 @@
     <main>
 
         <h1>My Account</h1>
+        <h2>Welcome back ${users.username}</h2>
 
 
         <section id="user-details">
             <!-- Display user information dynamicly -->
             <h2>User Details</h2>
-            <p><strong>Name:</strong> </p>
-            <p><strong>Email:</strong> </p>
-            <p><strong>Adress:</strong> </p>
+            <p>Name: ${users.first_name} </p>
+            <p>Email: ${users.last_name} </p>
+            <p>Adress: ${users.adress} </p>
 
-            <button id="edit-profile">Edit Profile</button>
+            <button id="edit-profile" class="cta-btn">Edit Profile</button>
         </section>
 
-        <section id="change-password">
+        <section id="change-password" style="display: none;">
             <h2>Change Password</h2>
             <form id="password-form">
                 <label for="current-password">Current Password:</label>
@@ -162,7 +155,7 @@
             </form>
         </section>
 
-        <section id="change-email">
+        <section id="change-email" style="display: none;">
             <h2>Change Email</h2>
             <form id="email-form">
                 <label for="current-email">Current Email:</label>
@@ -176,7 +169,7 @@
             </form>
         </section>
 
-        <section id="change-adress">
+        <section id="change-adress" style="display: none;">
             <h2>Change adress</h2>
             <form id="adress-form">
                 <label for="current-adress">Current adress:</label>
