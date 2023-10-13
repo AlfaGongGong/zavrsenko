@@ -262,18 +262,12 @@ input.mail_bt::placeholder {
   width: 100vh;
 }
 
-#forms {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
+
 
 #password-form,
 #email-form,
 #address-form {
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
