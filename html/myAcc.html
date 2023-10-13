@@ -139,6 +139,9 @@
                                         <h3>Address:</h3>
                                         <p id="address"> </p>
                                           </div>
+                                <button type="button" class="btn cta-btn" id="editButton">Change Email</button>
+                                <button type="button" class="btn cta-btn" id="editButton">Change Password</button>
+                                <button type="button" class="btn cta-btn mt-2" id="editButton">Change Address</button>
                                 <h3>Orders:</h3>
                                 <div class="order">
                                     <table class="order-details">
@@ -151,30 +154,30 @@
                                         <tr>
                                             <td>1</td>
                                             <td>12/12/2021</td>
-                                            <td>1000</td>
-                                            <td><a href="#">View</a></td>
+                                            <td>100 KM</td>
+                                            <td><a href="#" class="cta-btn">View</a></td>
                                         </tr>
                                         <tr>
                                             <td>2</td>
                                             <td>12/12/2021</td>
-                                            <td>1000</td>
-                                            <td><a href="#">View</a></td>
+                                            <td>56 KM</td>
+                                            <td><a href="#" class="cta-btn">View</a></td>
                                         </tr>
                                         <tr>
                                             <td>3</td>
                                             <td>12/12/2021</td>
-                                            <td>1000</td>
-                                            <td><a href="#">View</a></td>
+                                            <td>170 KM</td>
+                                            <td><a href="#" class="cta-btn">View</a></td>
                                         </tr>
                                     </table>
                                 </div>
                         </div>
                     </div>
             <!-- Right Column (Forms) -->
-            <div class="col-md-6">
-                <section id="edit-profile">
-                    <h2>Change Password</h2>
-                    <form id="password-form">
+            <div class="col-md-6" id="forms">
+                    <form id="password-form" style="display: none;">
+																					<h2>Change Password</h2>
+
 
                         <div class="form-group">
                             <label for="old-password">Old Password</label>
@@ -190,10 +193,12 @@
                             <label for="confirm-password">Confirm Password</label>
                             <input type="password" class="form-control" id="confirm-password" />
                         </div>
+                        <button type="submit" class="btn cta-btn" id="changePasswordBtn">Change Password</button>
                     </form>
 
-                    <h2>Change Email</h2>
-                    <form id="email-form">
+                    <form id="email-form" style="display: none;">
+																					<h2>Change Email</h2>
+
 
                                               <div class="form-group">
                             <label for="new-email">New Email</label>
@@ -204,17 +209,17 @@
                             <label for="confirm-email">Confirm Email</label>
                             <input type="email" class="form-control" id="confirm-email" />
                         </div>
+                        <button type="submit" class="btn cta-btn" id="changeEmailBtn">Change Email</button>
                     </form>
 
-                    <h2>Change Address</h2>
-                    <form id="address-form">
-
-                                              <div class="form-group">
+                    <form id="address-form" style="display: none;">
+																					<h2>Change Address</h2>
+																					<div class="form-group">
                             <label for="new-address">New Address</label>
                             <input type="text" class="form-control" id="new-address" />
                         </div>
+                        <button type="submit" class="btn cta-btn" id="changeAddressBtn">Change Address</button>
                     </form>
-                </section>
             </div>
         </div>
     </div>
