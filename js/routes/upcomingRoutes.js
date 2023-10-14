@@ -1,68 +1,133 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const db = require('../config/db');
+const mysql = require("mysql2/promise");
+require("dotenv").config(); // Load environment variables from the provided .env file
 
-// Route to get all upcoming deals
-router.get('/upcoming', (req, res) => {
-  db.query('SELECT * FROM upcoming_deals', (err, results) => {
-    if (err) {
-      console.error('Error executing MySQL query:', err);
-      res.status(500).send('Error fetching upcoming deals from the database');
-      return;
-    }
-
-    res.json(results);
-  });
+// Create a MySQL pool using environment variables
+const pool = mysql.createPool({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
 });
 
-// Route to get a specific upcoming deal by ID
-router.get('/upcoming/:id', (req, res) => {
-  const dealId = req.params.id;
-  db.query('SELECT * FROM upcoming_deals WHERE id = ?', [dealId], (err, results) => {
-    if (err) {
-      console.error('Error executing MySQL query:', err);
-      res.status(500).send('Error fetching upcoming deal details from the database');
-      return;
-    }
+// Route to get all upcoming items
+router.get("/upcoming", async (req, res) => {
+  try {
+    const connection = await pool.getConnection();
+    const [rows] = await connection.query("SELECT * FROM upcoming");
+    connection.release();
+    res.json(rows);
+  } catch (error) {
+    console.error("Error executing MySQL query:", error);
+    res
+      .status(500)
+      .json({ error: "Error fetching upcoming items from the database" });
+  }
+});
 
-    if (results.length === 0) {
-      res.status(404).send('Upcoming deal not found');
+// Route to get a specific upcoming item by ID
+router.get("/upcoming/:id", async (req, res) => {
+  const itemId = req.params.id;
+
+  try {
+    const connection = await pool.getConnection();
+    const [rows] = await connection.query(
+      "SELECT * FROM upcoming WHERE id = ?",
+      [itemId]
+    );
+    connection.release();
+
+    if (rows.length === 0) {
+      res.status(404).json({ error: "Upcoming item not found" });
     } else {
-      res.json(results[0]);
+      res.json(rows[0]);
     }
-  });
+  } catch (error) {
+    console.error("Error executing MySQL query:", error);
+    res
+      .status(500)
+      .json({
+        error: "Error fetching upcoming item details from the database",
+      });
+  }
 });
 
-//Admin routes
+// Admin routes
 
-// Create a new upcoming deal (you may need to add authentication and authorization)
-router.post('/upcoming', (req, res) => {
+// Create a new upcoming item (you may need to add authentication and authorization)
+router.post("/upcoming", async (req, res) => {
   const { title, description, startDate, endDate } = req.body;
-  // Add your validation and database insertion code here
-  // ...
 
-  // Send a response indicating success or failure
-  res.status(201).send('Upcoming deal created successfully');
+  // Example validation: Ensure required fields are present
+  if (!title || !description || !startDate || !endDate) {
+    return res.status(400).json({ error: "Missing required fields" });
+  }
+
+  try {
+    const connection = await pool.getConnection();
+    const [result] = await connection.query(
+      "INSERT INTO upcoming (title, description, start_date, end_date) VALUES (?, ?, ?, ?)",
+      [title, description, startDate, endDate]
+    );
+    connection.release();
+    res.status(201).json({ message: "Upcoming item created successfully" });
+  } catch (error) {
+    console.error("Error executing MySQL query:", error);
+    res.status(500).json({ error: "Error creating upcoming item" });
+  }
 });
 
-// Update an upcoming deal by ID (you may need to add authentication and authorization)
-router.put('/upcoming/:id', (req, res) => {
-  const dealId = req.params.id;
-  // Add your validation and database update code here
-  // ...
+// Update an upcoming item by ID (you may need to add authentication and authorization)
+router.put("/upcoming/:id", async (req, res) => {
+  const itemId = req.params.id;
+  const { title, description, startDate, endDate } = req.body;
 
-  // Send a response indicating success or failure
-  res.status(200).send('Upcoming deal updated successfully');
+  // Example validation: Ensure required fields are present
+  if (!title || !description || !startDate || !endDate) {
+    return res.status(400).json({ error: "Missing required fields" });
+  }
+
+  try {
+    const connection = await pool.getConnection();
+    const [result] = await connection.query(
+      "UPDATE upcoming SET title = ?, description = ?, start_date = ?, end_date = ? WHERE id = ?",
+      [title, description, startDate, endDate, itemId]
+    );
+    connection.release();
+
+    if (result.affectedRows === 0) {
+      res.status(404).json({ error: "Upcoming item not found" });
+    } else {
+      res.status(200).json({ message: "Upcoming item updated successfully" });
+    }
+  } catch (error) {
+    console.error("Error executing MySQL query:", error);
+    res.status(500).json({ error: "Error updating upcoming item" });
+  }
 });
 
-// Delete an upcoming deal by ID (you may need to add authentication and authorization)
-router.delete('/upcoming/:id', (req, res) => {
-  const dealId = req.params.id;
-  // Add your validation and database deletion code here
-  // ...
+// Delete an upcoming item by ID (you may need to add authentication and authorization)
+router.delete("/upcoming/:id", async (req, res) => {
+  const itemId = req.params.id;
 
-  // Send a response indicating success or failure
-  res.status(204).send();
+  try {
+    const connection = await pool.getConnection();
+    const [result] = await connection.query(
+      "DELETE FROM upcoming WHERE id = ?",
+      [itemId]
+    );
+    connection.release();
+
+    if (result.affectedRows === 0) {
+      res.status(404).json({ error: "Upcoming item not found" });
+    } else {
+      res.status(204).send();
+    }
+  } catch (error) {
+    console.error("Error executing MySQL query:", error);
+    res.status(500).json({ error: "Error deleting upcoming item" });
+  }
 });
 
 module.exports = router;

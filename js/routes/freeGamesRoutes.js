@@ -1,120 +1,128 @@
 const express = require("express");
 const router = express.Router();
-const db = require("../config/db");
+const mysql = require("mysql2/promise");
+require("dotenv").config();
 
-// Get all free games
-router.get("/free_games", (req, res) => {
-  db.query("SELECT * FROM free_games", (err, results) => {
-    if (err) {
-      console.error("Error executing MySQL query:", err);
-      res
-        .status(500)
-        .json({ error: "Error fetching free games from the database" });
-      return;
-    }
-
-    res.json(results);
-  });
+const pool = mysql.createPool({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT,
 });
 
-// Get a specific free game by ID
-router.get("/free_games/:id", (req, res) => {
-  const gameId = req.params.id;
-  db.query(
-    "SELECT * FROM free_games WHERE id = ?",
-    [gameId],
-    (err, results) => {
-      if (err) {
-        console.error("Error executing MySQL query:", err);
-        res
-          .status(500)
-          .json({
-            error: "Error fetching free game details from the database",
-          });
-        return;
-      }
+// Route to get all free games
+router.get("/free_games", async (req, res) => {
+  try {
+    const connection = await pool.getConnection();
+    const [rows] = await connection.query("SELECT * FROM free_games");
+    connection.release();
+    res.json(rows);
+  } catch (error) {
+    console.error("Error executing MySQL query:", error);
+    res
+      .status(500)
+      .json({ error: "Error fetching free games from the database" });
+  }
+});
 
-      if (results.length === 0) {
-        res.status(404).json({ error: "Free game not found" });
-      } else {
-        res.json(results[0]);
-      }
+// Route to get a specific free game by ID
+router.get("/free_games/:id", async (req, res) => {
+  const gameId = req.params.id;
+
+  try {
+    const connection = await pool.getConnection();
+    const [rows] = await connection.query(
+      "SELECT * FROM free_games WHERE id = ?",
+      [gameId]
+    );
+    connection.release();
+
+    if (rows.length === 0) {
+      res.status(404).json({ error: "Free game not found" });
+    } else {
+      res.json(rows[0]);
     }
-  );
+  } catch (error) {
+    console.error("Error executing MySQL query:", error);
+    res
+      .status(500)
+      .json({ error: "Error fetching free game details from the database" });
+  }
 });
 
 // Admin routes
 
-// Create a new free game (you may need to add authentication and authorization)
-router.post("/free_games", (req, res) => {
+// Create a new free game
+router.post("/free_games", async (req, res) => {
   const { title, description } = req.body;
-
-  // Example validation: Ensure required fields are present
   if (!title || !description) {
     return res.status(400).json({ error: "Missing required fields" });
   }
 
-  // Insert the new free game into the database
-  const insertQuery =
-    "INSERT INTO free_games (title, description) VALUES (?, ?)";
-  db.query(insertQuery, [title, description], (err) => {
-    if (err) {
-      console.error("Error executing MySQL query:", err);
-      res.status(500).json({ error: "Error creating free game" });
-      return;
-    }
-
+  try {
+    const connection = await pool.getConnection();
+    const [result] = await connection.query(
+      "INSERT INTO free_games (title, description) VALUES (?, ?)",
+      [title, description]
+    );
+    connection.release();
     res.status(201).json({ message: "Free game created successfully" });
-  });
+  } catch (error) {
+    console.error("Error executing MySQL query:", error);
+    res.status(500).json({ error: "Error creating free game" });
+  }
 });
 
-// Update a free game by ID (you may need to add authentication and authorization)
-router.put("/free_games/:id", (req, res) => {
+// Update a free game by ID
+router.put("/free_games/:id", async (req, res) => {
   const gameId = req.params.id;
   const { title, description } = req.body;
 
-  // Example validation: Ensure required fields are present
   if (!title || !description) {
     return res.status(400).json({ error: "Missing required fields" });
   }
 
-  // Update the free game in the database
-  const updateQuery =
-    "UPDATE free_games SET title = ?, description = ? WHERE id = ?";
-  db.query(updateQuery, [title, description, gameId], (err, results) => {
-    if (err) {
-      console.error("Error executing MySQL query:", err);
-      res.status(500).json({ error: "Error updating free game" });
-      return;
-    }
+  try {
+    const connection = await pool.getConnection();
+    const [result] = await connection.query(
+      "UPDATE free_games SET title = ?, description = ? WHERE id = ?",
+      [title, description, gameId]
+    );
+    connection.release();
 
-    if (results.affectedRows === 0) {
+    if (result.affectedRows === 0) {
       res.status(404).json({ error: "Free game not found" });
     } else {
       res.status(200).json({ message: "Free game updated successfully" });
     }
-  });
+  } catch (error) {
+    console.error("Error executing MySQL query:", error);
+    res.status(500).json({ error: "Error updating free game" });
+  }
 });
 
-// Delete a free game by ID (you may need to add authentication and authorization)
-router.delete("/free_games/:id", (req, res) => {
+// Delete a free game by ID
+router.delete("/free_games/:id", async (req, res) => {
   const gameId = req.params.id;
 
-  // Delete the free game from the database
-  const deleteQuery = "DELETE FROM free_games WHERE id = ?";
-  db.query(deleteQuery, [gameId], (err, results) => {
-    if (err) {
-      console.error("Error executing MySQL query:", err);
-      res.status(500).json({ error: "Error deleting free game" });
-      return;
-    }
+  try {
+    const connection = await pool.getConnection();
+    const [result] = await connection.query(
+      "DELETE FROM free_games WHERE id = ?",
+      [gameId]
+    );
+    connection.release();
 
-    if (results.affectedRows === 0) {
+    if (result.affectedRows === 0) {
       res.status(404).json({ error: "Free game not found" });
     } else {
       res.status(204).send();
     }
-  });
+  } catch (error) {
+    console.error("Error executing MySQL query:", error);
+    res.status(500).json({ error: "Error deleting free game" });
+  }
 });
 
 module.exports = router;

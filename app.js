@@ -1,11 +1,10 @@
 const express = require("express");
 const mysql = require("mysql2/promise");
 const cors = require("cors");
-const bcrypt = require("bcrypt");
 const bodyParser = require("body-parser");
-const config = require("./js/config/config");
+require("dotenv").config();
 
-const PORT = config.server.port;
+const PORT = process.env.EXPRESS_SERVER_PORT;
 
 const app = express();
 app.use(cors());
@@ -13,19 +12,19 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
-const dbConfig = {
-  host: config.database.host,
-  user: config.database.user,
-  password: config.database.password,
-  database: config.database.databaseName, 
-  port: config.database.port,
-};
+// Database connection pool
+const connectionPool = mysql.createPool({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT,
+});
 
-const connectionPool = mysql.createPool(dbConfig);
-
-// Setting Permissions Policy header
+// Security Headers
 app.use((req, res, next) => {
-  res.setHeader("Permissions-Policy", process.env.GEOLOCATION);
+  res.setHeader("Permissions-Policy", process.env.CORS_ALLOWED_ORIGINS);
+  res.setHeader("X-Content-Type-Options", "nosniff");
   next();
 });
 
@@ -34,14 +33,14 @@ app.listen(PORT, () => {
 });
 
 // Routes
-const authRoutes = require("./js/routes/authRoutes");
-const dealsRoutes = require("./js/routes/dealsRoutes"); 
-const freeGamesRoutes = require("./js/routes/freeGamesRoutes"); // Add missing dots before js
-const gamesRoutes = require("./js/routes/gamesRoutes"); // Add missing dots before js
-const gamingGearRoutes = require("./js/routes/gamingGearRoutes"); 
-const upcomingRoutes = require("./js/routes/upcomingRoutes"); 
-const usersRoutes = require("./js/routes/usersRoutes"); 
-const userTokensRoutes = require("./js/routes/userTokensRoutes"); 
+const authRoutes = require("./js/routes/usersRoutes");
+const dealsRoutes = require("./js/routes/dealsRoutes");
+const freeGamesRoutes = require("./js/routes/freeGamesRoutes");
+const gamesRoutes = require("./js/routes/gamesRoutes");
+const gamingGearRoutes = require("./js/routes/gamingGearRoutes");
+const upcomingRoutes = require("./js/routes/upcomingRoutes");
+const usersRoutes = require("./js/routes/usersRoutes");
+const userTokensRoutes = require("./js/routes/userTokensRoutes");
 
 app.use("/auth", authRoutes);
 app.use("/deals", dealsRoutes);
@@ -60,14 +59,14 @@ app.use((error, req, res, next) => {
       message: error.message,
     },
   });
-  console.error(error); 
+  console.error(error);
 });
 
 // Database connection
-connectionPool.on("connection", (connection) => {
-  console.log("Connected to database");
+connectionPool.on("connection", () => {
+  console.log("Connected to the database");
 });
 
 connectionPool.on("error", (error) => {
-  console.error("Error connecting to database", error);
+  console.error("Error connecting to the database", error);
 });
