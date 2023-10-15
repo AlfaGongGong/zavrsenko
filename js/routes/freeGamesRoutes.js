@@ -1,8 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const mysql = require("mysql2/promise");
+const authenticate = require("../authentication/authToken");
+const isAdmin = require("../authentication/isAdmin");
 require("dotenv").config();
 
+// MySQL pool
 const pool = mysql.createPool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -11,7 +14,7 @@ const pool = mysql.createPool({
   port: process.env.DB_PORT,
 });
 
-// Route to get all free games
+//  get all free games
 router.get("/free_games", async (req, res) => {
   try {
     const connection = await pool.getConnection();
@@ -26,7 +29,7 @@ router.get("/free_games", async (req, res) => {
   }
 });
 
-// Route to get a specific free game by ID
+//  get a specific free game by ID
 router.get("/free_games/:id", async (req, res) => {
   const gameId = req.params.id;
 
@@ -54,7 +57,7 @@ router.get("/free_games/:id", async (req, res) => {
 // Admin routes
 
 // Create a new free game
-router.post("/free_games", async (req, res) => {
+router.post("/free_games", authenticate, isAdmin, async (req, res) => {
   const { title, description } = req.body;
   if (!title || !description) {
     return res.status(400).json({ error: "Missing required fields" });
@@ -75,7 +78,7 @@ router.post("/free_games", async (req, res) => {
 });
 
 // Update a free game by ID
-router.put("/free_games/:id", async (req, res) => {
+router.put("/free_games/:id", authenticate, isAdmin, async (req, res) => {
   const gameId = req.params.id;
   const { title, description } = req.body;
 
@@ -103,7 +106,7 @@ router.put("/free_games/:id", async (req, res) => {
 });
 
 // Delete a free game by ID
-router.delete("/free_games/:id", async (req, res) => {
+router.delete("/free_games/:id", authenticate, isAdmin, async (req, res) => {
   const gameId = req.params.id;
 
   try {

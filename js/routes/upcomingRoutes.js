@@ -1,17 +1,20 @@
 const express = require("express");
 const router = express.Router();
 const mysql = require("mysql2/promise");
-require("dotenv").config(); // Load environment variables from the provided .env file
+const authenticate = require("../authentication/authToken");
+const isAdmin = require("../authentication/isAdmin");
+require("dotenv").config();
 
-// Create a MySQL pool using environment variables
+// MySQL pool
 const pool = mysql.createPool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT,
 });
 
-// Route to get all upcoming items
+//  get all upcoming items
 router.get("/upcoming", async (req, res) => {
   try {
     const connection = await pool.getConnection();
@@ -26,7 +29,7 @@ router.get("/upcoming", async (req, res) => {
   }
 });
 
-// Route to get a specific upcoming item by ID
+//  get a specific upcoming item by ID
 router.get("/upcoming/:id", async (req, res) => {
   const itemId = req.params.id;
 
@@ -45,21 +48,18 @@ router.get("/upcoming/:id", async (req, res) => {
     }
   } catch (error) {
     console.error("Error executing MySQL query:", error);
-    res
-      .status(500)
-      .json({
-        error: "Error fetching upcoming item details from the database",
-      });
+    res.status(500).json({
+      error: "Error fetching upcoming item details from the database",
+    });
   }
 });
 
 // Admin routes
 
-// Create a new upcoming item (you may need to add authentication and authorization)
-router.post("/upcoming", async (req, res) => {
+// Create a new upcoming item
+router.post("/upcoming", authenticate, isAdmin, async (req, res) => {
   const { title, description, startDate, endDate } = req.body;
 
-  // Example validation: Ensure required fields are present
   if (!title || !description || !startDate || !endDate) {
     return res.status(400).json({ error: "Missing required fields" });
   }
@@ -78,12 +78,11 @@ router.post("/upcoming", async (req, res) => {
   }
 });
 
-// Update an upcoming item by ID (you may need to add authentication and authorization)
-router.put("/upcoming/:id", async (req, res) => {
+// Update an upcoming item by ID
+router.put("/upcoming/:id", authenticate, isAdmin, async (req, res) => {
   const itemId = req.params.id;
   const { title, description, startDate, endDate } = req.body;
 
-  // Example validation: Ensure required fields are present
   if (!title || !description || !startDate || !endDate) {
     return res.status(400).json({ error: "Missing required fields" });
   }
@@ -107,8 +106,8 @@ router.put("/upcoming/:id", async (req, res) => {
   }
 });
 
-// Delete an upcoming item by ID (you may need to add authentication and authorization)
-router.delete("/upcoming/:id", async (req, res) => {
+// Delete an upcoming item by ID
+router.delete("/upcoming/:id", authenticate, isAdmin, async (req, res) => {
   const itemId = req.params.id;
 
   try {

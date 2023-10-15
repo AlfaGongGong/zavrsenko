@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const uuid = require("uuid");
 
-// Endpoint for creating an admin user
+// Endpoint for admin registration
 router.post("/admin/register", async (req, res) => {
   const { username, email, password } = req.body;
 
@@ -98,7 +98,7 @@ router.post("/admin/login", async (req, res) => {
     // Generate a token
     const token = jwt.sign(
       { userId: user.id, isAdmin: true },
-      process.env.JWT_ADMIN_SECRET,
+      process.env.ADMIN_JWT_SECRET,
       {
         expiresIn: "3h",
       }
@@ -134,7 +134,6 @@ router.post("/admin/logout", async (req, res) => {
   });
 
   try {
-    // Assuming you have a table for storing admin tokens, replace 'admin_tokens' with your table name
     const deleteTokenQuery = "DELETE FROM administrators WHERE token = ?";
     await pool.query(deleteTokenQuery, [token]);
 

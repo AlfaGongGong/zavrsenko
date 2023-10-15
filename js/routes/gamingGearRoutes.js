@@ -1,17 +1,20 @@
 const express = require("express");
 const router = express.Router();
 const mysql = require("mysql2/promise");
-require("dotenv").config(); // Load environment variables from the provided .env file
+const authenticate = require("../authentication/authToken");
+const isAdmin = require("../authentication/isAdmin");
+require("dotenv").config();
 
-// Create a MySQL pool using environment variables
+// MySQL pool
 const pool = mysql.createPool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT,
 });
 
-// Route to get all gaming gear items
+//  get all gaming gear items
 router.get("/", async (req, res) => {
   try {
     const connection = await pool.getConnection();
@@ -26,7 +29,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Route to get a specific gaming gear item by ID
+// get a specific gaming gear item by ID
 router.get("/:id", async (req, res) => {
   const itemId = req.params.id;
 
@@ -45,19 +48,18 @@ router.get("/:id", async (req, res) => {
     }
   } catch (error) {
     console.error("Error executing MySQL query:", error);
-    res
-      .status(500)
-      .json({
-        error: "Error fetching gaming gear item details from the database",
-      });
+    res.status(500).json({
+      error: "Error fetching gaming gear item details from the database",
+    });
   }
 });
 
-// Create a new gaming gear item (you may need to add authentication and authorization)
-router.post("/", async (req, res) => {
+// Admin routes
+
+// Create a new gaming gear item
+router.post("/", authenticate, isAdmin, async (req, res) => {
   const { name, description, price } = req.body;
 
-  // Example validation: Ensure required fields are present
   if (!name || !description || !price) {
     return res.status(400).json({ error: "Missing required fields" });
   }
@@ -76,8 +78,8 @@ router.post("/", async (req, res) => {
   }
 });
 
-// Update a gaming gear item by ID (you may need to add authentication and authorization)
-router.put("/:id", async (req, res) => {
+// Update a gaming gear item by ID
+router.put("/:id", authenticate, isAdmin, async (req, res) => {
   const itemId = req.params.id;
   const { name, description, price } = req.body;
 
@@ -107,8 +109,8 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// Delete a gaming gear item by ID (you may need to add authentication and authorization)
-router.delete("/:id", async (req, res) => {
+// Delete a gaming gear item by ID
+router.delete("/:id", authenticate, isAdmin, async (req, res) => {
   const itemId = req.params.id;
 
   try {

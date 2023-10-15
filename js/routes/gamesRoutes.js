@@ -1,9 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const mysql = require("mysql2/promise");
-require("dotenv").config(); // Load environment variables from the provided .env file
+const authenticate = require("../authentication/authToken");
+const isAdmin = require("../authentication/isAdmin");
+require("dotenv").config();
 
-// Create a MySQL pool using environment variables
+// MySQL pool
 const pool = mysql.createPool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -12,7 +14,7 @@ const pool = mysql.createPool({
   port: process.env.DB_PORT,
 });
 
-// Route to get all games
+//  get all games
 router.get("/", async (req, res) => {
   try {
     const connection = await pool.getConnection();
@@ -25,13 +27,15 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Route to get a specific game by ID
+// get a specific game by ID
 router.get("/:id", async (req, res) => {
   const gameId = req.params.id;
 
   try {
     const connection = await pool.getConnection();
-    const [rows] = await connection.query("SELECT * FROM games WHERE id = ?", [gameId]);
+    const [rows] = await connection.query("SELECT * FROM games WHERE id = ?", [
+      gameId,
+    ]);
     connection.release();
 
     if (rows.length === 0) {
@@ -41,24 +45,28 @@ router.get("/:id", async (req, res) => {
     }
   } catch (error) {
     console.error("Error executing MySQL query:", error);
-    res.status(500).json({ error: "Error fetching game details from the database" });
+    res
+      .status(500)
+      .json({ error: "Error fetching game details from the database" });
   }
 });
 
 // Admin routes
 
-// Create a new game (you may need to add authentication and authorization)
-router.post("/", async (req, res) => {
+// Create a new game
+router.post("/", authenticate, isAdmin, async (req, res) => {
   const { title, description, platform } = req.body;
 
-  // Example validation: Ensure required fields are present
   if (!title || !description || !platform) {
     return res.status(400).json({ error: "Missing required fields" });
   }
 
   try {
     const connection = await pool.getConnection();
-    const [result] = await connection.query("INSERT INTO games (title, description, platform) VALUES (?, ?, ?)", [title, description, platform]);
+    const [result] = await connection.query(
+      "INSERT INTO games (title, description, platform) VALUES (?, ?, ?)",
+      [title, description, platform]
+    );
     connection.release();
     res.status(201).json({ message: "Game created successfully" });
   } catch (error) {
@@ -67,19 +75,21 @@ router.post("/", async (req, res) => {
   }
 });
 
-// Update a game by ID (you may need to add authentication and authorization)
-router.put("/:id", async (req, res) => {
+// Update a game by ID
+router.put("/:id", authenticate, isAdmin, async (req, res) => {
   const gameId = req.params.id;
   const { title, description, platform } = req.body;
 
-  // Example validation: Ensure required fields are present
   if (!title || !description || !platform) {
     return res.status(400).json({ error: "Missing required fields" });
   }
 
   try {
     const connection = await pool.getConnection();
-    const [result] = await connection.query("UPDATE games SET title = ?, description = ?, platform = ? WHERE id = ?", [title, description, platform, gameId]);
+    const [result] = await connection.query(
+      "UPDATE games SET title = ?, description = ?, platform = ? WHERE id = ?",
+      [title, description, platform, gameId]
+    );
     connection.release();
 
     if (result.affectedRows === 0) {
@@ -93,13 +103,15 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// Delete a game by ID (you may need to add authentication and authorization)
-router.delete("/:id", async (req, res) => {
+// Delete a game by ID
+router.delete("/:id", authenticate, isAdmin, async (req, res) => {
   const gameId = req.params.id;
 
   try {
     const connection = await pool.getConnection();
-    const [result] = await connection.query("DELETE FROM games WHERE id = ?", [gameId]);
+    const [result] = await connection.query("DELETE FROM games WHERE id = ?", [
+      gameId,
+    ]);
     connection.release();
 
     if (result.affectedRows === 0) {
