@@ -25,7 +25,7 @@ fetch("http://localhost:8080/games")
       cardElement.innerHTML = `
         <img src="${game.background_image}" alt="${game.name}" class="product-image"/>
         <h2 class="product-name">${game.name}</h2>
-        <div class="card-info">
+        <div class="product-info">
           <p class="product-description">
             Released: ${game.platform_released_at}
           </p>
