@@ -1,25 +1,37 @@
-// Make a GET request to fetch the JSON data from the server
-fetch("http://localhost:3000/games")
-  .then((response) => response.json())
+fetch("http://localhost:8080/games")
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  })
   .then((gamesCards) => {
-    const gamesCardsContainer = document.querySelector(
-      ".mostPurchasedCardsContainer"
+    console.log("Data received:", gamesCards);
+
+    const gamesCardsContainer = document.getElementById(
+      "mostPurchasedCardsContainer"
     );
-    gamesCards.forEach((card) => {
-      // Create a product card element
+    console.log("Container element:", gamesCardsContainer);
+
+    // Shuffle the array of gamesCards
+    gamesCards.sort(() => Math.random() - 0.5);
+
+    // Render the first 6 cards
+    for (let i = 0; i < 6; i++) {
+      const game = gamesCards[i];
       const cardElement = document.createElement("div");
       cardElement.classList.add("product-card", "col-md-4");
 
       cardElement.innerHTML = `
-        <img src="${card.background_image}" alt="${card.name}" class="product-image"/>
-        <h2 class="product-name">${card.title}</h2>
+        <img src="${game.background_image}" alt="${game.name}" class="product-image"/>
+        <h2 class="product-name">${game.name}</h2>
         <div class="card-info">
           <p class="product-description">
-            ${card.description}
+            Released: ${game.platform_released_at}
           </p>
-          <p class="product-genre-info">${card.genre}</p>
-          <p class="product-price-info">${card.price} KM</p>
-          <a href="html/productDetails.html?id=${card.id}" class="btn cta-btn more-info" data-product-id="${card.id}">
+          <p class="product-genre-info">Genre: ${game.genre}</p>
+          <p class="product-price-info">Price: ${game.price} KM</p>
+          <a href="html/productDetails.html?id=${game.id}" class="btn cta-btn more-info" data-product-id="${game.id}">
             More Info
           </a>
         </div>
@@ -27,7 +39,10 @@ fetch("http://localhost:3000/games")
 
       // Append the card to the container
       gamesCardsContainer.appendChild(cardElement);
-    });
+      console.log("Card appended:", game);
+    }
+
+    console.log("Cards appended to the container:", gamesCardsContainer);
   })
   .catch((error) => {
     console.error("Error fetching games cards:", error);

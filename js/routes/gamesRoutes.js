@@ -1,50 +1,49 @@
 const express = require("express");
-const router = express.Router();
-const mysql = require("mysql2/promise");
+const gamesRouter = express.Router();
+const mysql = require("mysql2");
 const authenticate = require("../authentication/authToken");
 const isAdmin = require("../authentication/isAdmin");
-require("dotenv").config();
 
-// MySQL pool
-const pool = mysql.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-  port: process.env.DB_PORT,
-});
+// Database connection configuration
+const dbConfig = {
+  host: "localhost",
+  user: "root",
+  password: "root",
+  database: "gg_database",
+  port: 3306,
+};
 
-//  get all games
-router.get("/", async (req, res) => {
-  try {
-    const connection = await pool.getConnection();
-    const [rows] = await connection.query("SELECT * FROM games");
-    connection.release();
-    res.json(rows);
-  } catch (error) {
-    console.error("Error executing MySQL query:", error);
-    res.status(500).json({ error: "Error fetching games from the database" });
-  }
+// Create a MySQL connection pool
+const pool = mysql.createPool(dbConfig);
+
+// get all games
+gamesRouter.get("/", (req, res) => {
+  // Use the pool to query the database
+  pool.query("SELECT * FROM games", (error, results) => {
+    if (error) {
+      console.error("Error fetching games from the database:", error);
+      res.status(500).json({ error: "Error fetching games from the database" });
+    } else {
+      res.json(results);
+    }
+  });
 });
 
 // get a specific game by ID
-router.get("/:id", async (req, res) => {
+gamesRouter.get("/:id", async (req, res) => {
   const gameId = req.params.id;
 
   try {
-    const connection = await pool.getConnection();
-    const [rows] = await connection.query("SELECT * FROM games WHERE id = ?", [
-      gameId,
-    ]);
-    connection.release();
+    const response = await axios.get(`http://localhost:8080/games/${gameId}`);
+    const game = response.data;
 
-    if (rows.length === 0) {
+    if (!game) {
       res.status(404).json({ error: "Game not found" });
     } else {
-      res.json(rows[0]);
+      res.json(game);
     }
   } catch (error) {
-    console.error("Error executing MySQL query:", error);
+    console.error("Error fetching game details from the database:", error);
     res
       .status(500)
       .json({ error: "Error fetching game details from the database" });
@@ -54,7 +53,7 @@ router.get("/:id", async (req, res) => {
 // Admin routes
 
 // Create a new game
-router.post("/", authenticate, isAdmin, async (req, res) => {
+gamesRouter.post("/", authenticate, isAdmin, async (req, res) => {
   const { title, description, platform } = req.body;
 
   if (!title || !description || !platform) {
@@ -62,21 +61,22 @@ router.post("/", authenticate, isAdmin, async (req, res) => {
   }
 
   try {
-    const connection = await pool.getConnection();
-    const [result] = await connection.query(
-      "INSERT INTO games (title, description, platform) VALUES (?, ?, ?)",
-      [title, description, platform]
-    );
-    connection.release();
+    //  POST request to create a new game
+    const response = await axios.post("http://localhost:8080/games", {
+      title,
+      description,
+      platform,
+    });
+
     res.status(201).json({ message: "Game created successfully" });
   } catch (error) {
-    console.error("Error executing MySQL query:", error);
+    console.error("Error creating the game:", error);
     res.status(500).json({ error: "Error creating the game" });
   }
 });
 
 // Update a game by ID
-router.put("/:id", authenticate, isAdmin, async (req, res) => {
+gamesRouter.put("/:id", authenticate, isAdmin, async (req, res) => {
   const gameId = req.params.id;
   const { title, description, platform } = req.body;
 
@@ -85,44 +85,39 @@ router.put("/:id", authenticate, isAdmin, async (req, res) => {
   }
 
   try {
-    const connection = await pool.getConnection();
-    const [result] = await connection.query(
-      "UPDATE games SET title = ?, description = ?, platform = ? WHERE id = ?",
-      [title, description, platform, gameId]
-    );
-    connection.release();
+    // PUT request to update the game by ID
+    const response = await axios.put(`http://localhost:8080/games/${gameId}`, {
+      title,
+      description,
+      platform,
+    });
 
-    if (result.affectedRows === 0) {
-      res.status(404).json({ error: "Game not found" });
-    } else {
-      res.status(200).json({ message: "Game updated successfully" });
-    }
+    res.status(200).json({ message: "Game updated successfully" });
   } catch (error) {
-    console.error("Error executing MySQL query:", error);
+    console.error("Error updating the game:", error);
     res.status(500).json({ error: "Error updating the game" });
   }
 });
 
 // Delete a game by ID
-router.delete("/:id", authenticate, isAdmin, async (req, res) => {
+gamesRouter.delete("/:id", authenticate, isAdmin, async (req, res) => {
   const gameId = req.params.id;
 
   try {
-    const connection = await pool.getConnection();
-    const [result] = await connection.query("DELETE FROM games WHERE id = ?", [
-      gameId,
-    ]);
-    connection.release();
+    // DELETE request to delete the game by ID
+    const response = await axios.delete(
+      `http://localhost:8080/games/${gameId}`
+    );
 
-    if (result.affectedRows === 0) {
-      res.status(404).json({ error: "Game not found" });
-    } else {
+    if (response.status === 204) {
       res.status(204).send();
+    } else if (response.status === 404) {
+      res.status(404).json({ error: "Game not found" });
     }
   } catch (error) {
-    console.error("Error executing MySQL query:", error);
+    console.error("Error deleting the game:", error);
     res.status(500).json({ error: "Error deleting the game" });
   }
 });
 
-module.exports = router;
+module.exports = gamesRouter;

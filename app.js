@@ -1,60 +1,35 @@
 const express = require("express");
-const mysql = require("mysql2/promise");
+const mysql = require("mysql2");
 const bodyParser = require("body-parser");
-require("dotenv").config();
-
-const PORT = process.env.PORT || 3000;
+const cors = require("cors");
 
 const app = express();
 app.use(bodyParser.json());
+app.use(cors());
 
-// Database connection pool
-const connectionPool = mysql.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-  port: process.env.DB_PORT,
-});
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+// Database create connection
+const dbConfig = {
+  host: "localhost",
+  user: "root",
+  password: "root",
+  database: "gg_database",
+  port: 3306,
+};
 
 // Routes
+const gamesRouter = require("./js/routes/gamesRoutes");
 
-const adminRoutes = require("./js/routes/adminRoutes");
-const dealsRoutes = require("./js/routes/dealsRoutes");
-const freeGamesRoutes = require("./js/routes/freeGamesRoutes");
-const gamesRoutes = require("./js/routes/gamesRoutes");
-const gamingGearRoutes = require("./js/routes/gamingGearRoutes");
-const upcomingRoutes = require("./js/routes/upcomingRoutes");
-const usersRoutes = require("./js/routes/usersRoutes");
+app.use("/games", gamesRouter);
 
-app.use("/admin", adminRoutes);
-app.use("/deals", dealsRoutes);
-app.use("/freeGames", freeGamesRoutes);
-app.use("/games", gamesRoutes);
-app.use("/gamingGear", gamingGearRoutes);
-app.use("/upcoming", upcomingRoutes);
-app.use("/users", usersRoutes);
-
-// Error handling
-app.use((error, req, res, next) => {
-  res.status(error.status || 500);
-  res.json({
-    error: {
-      message: error.message,
-    },
+// Connect to the database
+const connection = mysql.createConnection(dbConfig);
+connection.connect((error) => {
+  if (error) {
+    console.error("Error connecting to the database:", error);
+    return;
+  }
+  console.log("Connected to the database:", dbConfig.database);
+  app.listen(8080, () => {
+    console.log(`Server running on port 8080`);
   });
-  console.error(error);
-});
-
-// Database connection
-connectionPool.on("connection", () => {
-  console.log("Connected to the database");
-});
-
-connectionPool.on("error", (error) => {
-  console.error("Error connecting to the database", error);
 });
