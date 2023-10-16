@@ -16,7 +16,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "",
+  "license": "ISC",
   "dependencies": {
     "apicalypse": "^0.2.0",
     "axios": "^1.5.1",
