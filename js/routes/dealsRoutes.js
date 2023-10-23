@@ -36,19 +36,19 @@ dealsRouter.get("/:id", async (req, res) => {
   const dealId = req.params.id;
 
   try {
-    const response = await axios.get(`http://localhost:${PORT}/games/${gameId}`
+    const response = await axios.get(`http://localhost:${PORT}/games/${dealId}`
     );
     const deal = response.data;
-    if (!game) {
-      res.status(404).json({ error: "Game not found" });
+    if (!deal) {
+      res.status(404).json({ error: "Deal not found" });
     } else {
-      res.json(game);
+      res.json(deal);
     }
   } catch (error) {
-    console.error("Error fetching game details from the database:", error);
+    console.error("Error fetching deal details from the database:", error);
     res
       .status(500)
-      .json({ error: "Error fetching game details from the database" });
+      .json({ error: "Error fetching deal details from the database" });
   }
 });
 

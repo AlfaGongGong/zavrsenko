@@ -130,3 +130,4 @@ router.delete("/upcoming/:id", authenticate, isAdmin, async (req, res) => {
 });
 
 module.exports = router;
+

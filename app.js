@@ -19,10 +19,13 @@ const dbConfig = {
 // Routes
 const gamesRouter = require("./js/routes/gamesRoutes");
 const dealsRouter = require("./js/routes/dealsRoutes");
+const gamingGearRouter = require("./js/routes/gamingGearRoutes");
 
 app.use("/games", gamesRouter);
 
 app.use("/deals", dealsRouter);
+
+app.use("/gaming_gear", gamingGearRouter);
 
 // Connect to the database
 const connection = mysql.createConnection(dbConfig);
