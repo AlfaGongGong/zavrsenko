@@ -1,62 +1,61 @@
 const express = require("express");
-const router = express.Router();
-const mysql = require("mysql2/promise");
+const dealsRouter = express.Router();
+const mysql = require("mysql2");
 const authenticate = require("../authentication/authToken");
 const isAdmin = require("../authentication/isAdmin");
-require("dotenv").config();
+require("dotenv").config({ path: "zavrsenko/.env" });
+const PORT = process.env.PORT;
 
-// MySQL pool
-const pool = mysql.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE,
-  port: process.env.DB_PORT,
-});
+// Database connection configuration
+const dbConfig = {
+  host: process.env.MYSQL_HOST,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASS,
+  database: process.env.MYSQL_DATABASE,
+  port: process.env.MYSQL_PORT,
+};
+
+// Create a MySQL connection pool
+const pool = mysql.createPool(dbConfig);
 
 //  get all deals
-router.get("/", async (req, res) => {
-  try {
-    const connection = await pool.getConnection();
-    const [rows] = await connection.query("SELECT * FROM deals");
-    connection.release();
-    res.json(rows);
-  } catch (error) {
-    console.error("Error executing MySQL query:", error);
-    res.status(500).json({ error: "Error fetching deals from the database" });
-  }
+dealsRouter.get("/", (req, res) => {
+// Use the pool to query the database
+  pool.query("SELECT * FROM deals", (error, results) => {
+    if (error) {
+      console.error("Error fetching deals from the database:", error);
+      res.status(500).json({ error: "Error fetching deals from the database" });
+    } else {
+      res.json(results);
+    }
+  });
 });
 
 //  get a specific deal by ID
-router.get("/:id", async (req, res) => {
+dealsRouter.get("/:id", async (req, res) => {
   const dealId = req.params.id;
 
   try {
-    const connection = await pool.getConnection();
-    const [rows] = await connection.query("SELECT * FROM deals WHERE id = ?", [
-      dealId,
-    ]);
-    connection.release();
-
-    if (rows.length === 0) {
-      res.status(404).json({ error: "Deal not found" });
+    const response = await axios.get(`http://localhost:${PORT}/games/${gameId}`
+    );
+    const deal = response.data;
+    if (!game) {
+      res.status(404).json({ error: "Game not found" });
     } else {
-      res.json(rows[0]);
+      res.json(game);
     }
   } catch (error) {
-    console.error("Error executing MySQL query:", error);
+    console.error("Error fetching game details from the database:", error);
     res
       .status(500)
-      .json({ error: "Error fetching deal details from the database" });
+      .json({ error: "Error fetching game details from the database" });
   }
 });
-
-
 
 // Admin routes
 
 // Create a new deal
-router.post("/", authenticate, isAdmin, async (req, res) => {
+dealsRouter.post("/", authenticate, isAdmin, async (req, res) => {
   const { title, description, price, discount } = req.body;
 
   if (!title || !description || !price || !discount) {
@@ -64,7 +63,7 @@ router.post("/", authenticate, isAdmin, async (req, res) => {
   }
 
   try {
-    const connection = await pool.getConnection();
+    const response = await pool.getConnection();
     const [result] = await connection.query(
       "INSERT INTO deals (title, description, price, discount) VALUES (?, ?, ?, ?)",
       [title, description, price, discount]
@@ -78,7 +77,7 @@ router.post("/", authenticate, isAdmin, async (req, res) => {
 });
 
 // Update a deal by ID
-router.put("/:id", authenticate, isAdmin, async (req, res) => {
+dealsRouter.put("/:id", authenticate, isAdmin, async (req, res) => {
   const dealId = req.params.id;
   const { title, description, price, discount } = req.body;
 
@@ -106,7 +105,7 @@ router.put("/:id", authenticate, isAdmin, async (req, res) => {
 });
 
 // Delete a deal by ID
-router.delete("/:id", authenticate, isAdmin, async (req, res) => {
+dealsRouter.delete("/:id", authenticate, isAdmin, async (req, res) => {
   const dealId = req.params.id;
 
   try {
@@ -127,4 +126,4 @@ router.delete("/:id", authenticate, isAdmin, async (req, res) => {
   }
 });
 
-module.exports = router;
+module.exports = dealsRouter;

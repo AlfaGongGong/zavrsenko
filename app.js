@@ -18,9 +18,11 @@ const dbConfig = {
 
 // Routes
 const gamesRouter = require("./js/routes/gamesRoutes");
-const { configDotenv } = require("dotenv");
+const dealsRouter = require("./js/routes/dealsRoutes");
 
 app.use("/games", gamesRouter);
+
+app.use("/deals", dealsRouter);
 
 // Connect to the database
 const connection = mysql.createConnection(dbConfig);
