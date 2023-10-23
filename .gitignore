@@ -10,3 +10,13 @@ mysql/gg_database_gaming_gear.sql
 mysql/gg_database_routines.sql
 mysql/gg_database_upcoming.sql
 mysql/gg_database_users.sql
+mysql/gg_database_administrators0.sql
+mysql/gg_database_deals0.sql
+mysql/gg_database_free_games0.sql
+mysql/gg_database_games0.sql
+mysql/gg_database_gaming_gear0.sql
+mysql/gg_database_routines0.sql
+mysql/gg_database_upcoming0.sql
+mysql/gg_database_users0.sql
+node_modules/.package-lock.json
+node_modules/csv-writer/package.json

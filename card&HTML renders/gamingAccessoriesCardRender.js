@@ -1,8 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const replaceImg =
-    "https://cdn.xxl.thumbs.canstockphoto.com/image-not-available-written-in-chalk-on-a-blackboard-stock-image_csp8317846.jpg";
+  
 
-  fetch("http://localhost:3000/gaming_gear")
+  fetch("http://localhost:8080/gaming_gear")
     .then((response) => response.json())
     .then((gamingAccessoriesCards) => {
       const accessoriesCardsContainer = document.querySelector(

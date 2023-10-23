@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  fetch("http://localhost:3000/free_games")
+  fetch("http://localhost:8080/free_games")
     .then((response) => response.json())
     .then((freeGames) => {
       const freeGamesContainer = document.querySelector(".freeGamesContainer");
