@@ -1,63 +1,59 @@
-const express = require("express");
-const router = express.Router();
 const mysql = require("mysql2/promise");
 const authenticate = require("../authentication/authToken");
 const isAdmin = require("../authentication/isAdmin");
-require("dotenv").config();
+require("dotenv").config({ path: "zavrsenko/.env" });
 
-// MySQL pool
-const pool = mysql.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-  port: process.env.DB_PORT,
-});
+// Database connection configuration
+const dbConfig = {
+  host: process.env.MYSQL_HOST,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASS,
+  database: process.env.MYSQL_DATABASE,
+  port: process.env.MYSQL_PORT,
+};
+// Create a MySQL connection pool
+const pool = mysql.createPool(dbConfig);
+
+const upcomingRouter = require("express").Router();
 
 //  get all upcoming items
-router.get("/upcoming", async (req, res) => {
+upcomingRouter.get("/upcoming", async (req, res) => {
   try {
-    const connection = await pool.getConnection();
-    const [rows] = await connection.query("SELECT * FROM upcoming");
-    connection.release();
-    res.json(rows);
+    // Use the pool to query the database
+    const [results] = await pool.query("SELECT * FROM upcoming");
+    res.json(results);
   } catch (error) {
-    console.error("Error executing MySQL query:", error);
-    res
-      .status(500)
-      .json({ error: "Error fetching upcoming items from the database" });
+    console.error("Error fetching game from the database:", error);
+    res.status(500).json({ error: "Error fetching game from the database" });
   }
 });
 
 //  get a specific upcoming item by ID
-router.get("/upcoming/:id", async (req, res) => {
-  const itemId = req.params.id;
+upcomingRouter.get("/upcoming/:id", async (req, res) => {
+  const upcomingId = req.params.id;
 
   try {
-    const connection = await pool.getConnection();
-    const [rows] = await connection.query(
-      "SELECT * FROM upcoming WHERE id = ?",
-      [itemId]
-    );
-    connection.release();
-
-    if (rows.length === 0) {
-      res.status(404).json({ error: "Upcoming item not found" });
+    const [results] = await pool.query("SELECT * FROM upcoming WHERE id = ?", [
+      upcomingId,
+    ]);
+    const upcoming = results[0];
+    if (!upcoming) {
+      res.status(404).json({ error: "Item not found" });
     } else {
-      res.json(rows[0]);
+      res.json(upcoming);
     }
   } catch (error) {
-    console.error("Error executing MySQL query:", error);
-    res.status(500).json({
-      error: "Error fetching upcoming item details from the database",
-    });
+    console.error("Error fetching item details from the database:", error);
+    res
+      .status(500)
+      .json({ error: "Error fetching item details from the database" });
   }
 });
 
 // Admin routes
 
 // Create a new upcoming item
-router.post("/upcoming", authenticate, isAdmin, async (req, res) => {
+upcomingRouter.post("/upcoming", authenticate, isAdmin, async (req, res) => {
   const { title, description, startDate, endDate } = req.body;
 
   if (!title || !description || !startDate || !endDate) {
@@ -79,7 +75,7 @@ router.post("/upcoming", authenticate, isAdmin, async (req, res) => {
 });
 
 // Update an upcoming item by ID
-router.put("/upcoming/:id", authenticate, isAdmin, async (req, res) => {
+upcomingRouter.put("/upcoming/:id", authenticate, isAdmin, async (req, res) => {
   const itemId = req.params.id;
   const { title, description, startDate, endDate } = req.body;
 
@@ -107,27 +103,31 @@ router.put("/upcoming/:id", authenticate, isAdmin, async (req, res) => {
 });
 
 // Delete an upcoming item by ID
-router.delete("/upcoming/:id", authenticate, isAdmin, async (req, res) => {
-  const itemId = req.params.id;
+upcomingRouter.delete(
+  "/upcoming/:id",
+  authenticate,
+  isAdmin,
+  async (req, res) => {
+    const itemId = req.params.id;
 
-  try {
-    const connection = await pool.getConnection();
-    const [result] = await connection.query(
-      "DELETE FROM upcoming WHERE id = ?",
-      [itemId]
-    );
-    connection.release();
+    try {
+      const connection = await pool.getConnection();
+      const [result] = await connection.query(
+        "DELETE FROM upcoming WHERE id = ?",
+        [itemId]
+      );
+      connection.release();
 
-    if (result.affectedRows === 0) {
-      res.status(404).json({ error: "Upcoming item not found" });
-    } else {
-      res.status(204).send();
+      if (result.affectedRows === 0) {
+        res.status(404).json({ error: "Upcoming item not found" });
+      } else {
+        res.status(204).send();
+      }
+    } catch (error) {
+      console.error("Error executing MySQL query:", error);
+      res.status(500).json({ error: "Error deleting upcoming item" });
     }
-  } catch (error) {
-    console.error("Error executing MySQL query:", error);
-    res.status(500).json({ error: "Error deleting upcoming item" });
   }
-});
+);
 
-module.exports = router;
-
+module.exports = upcomingRouter;

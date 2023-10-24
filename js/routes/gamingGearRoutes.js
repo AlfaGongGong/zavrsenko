@@ -55,7 +55,7 @@ gamingGearRouter.get("/:id", async (req, res) => {
 // Admin routes
 
 // Create a new gaming gear item
-gamingGearRouter.post("/", async (req, res) => {
+gamingGearRouter.post("/", authenticate, isAdmin, async (req, res) => {
   const { name, description, price } = req.body;
 
   if (!name || !description || !price) {
@@ -77,7 +77,7 @@ gamingGearRouter.post("/", async (req, res) => {
 });
 
 // Update a gaming gear item by ID
-gamingGearRouter.put("/:id", async (req, res) => {
+gamingGearRouter.put("/:id", authenticate, isAdmin, async (req, res) => {
   const gearId = req.params.id;
   const { name, description, price } = req.body;
 
@@ -107,32 +107,7 @@ gamingGearRouter.put("/:id", async (req, res) => {
 });
 
 // Delete a gaming gear item by ID
-gamingGearRouter.delete("/:id", async (req, res) => {
-  const gearId = req.params.id;
-
-  try {
-    const connection = await pool.getConnection();
-    const [result] = await connection.query(
-      "DELETE FROM gaming_gear WHERE id = ?",
-      [gearId]
-    );
-    connection.release();
-
-    if (result.affectedRows === 0) {
-      res.status(404).json({ error: "Gaming gear item not found" });
-    } else {
-      res.status(204).send();
-    }
-  } catch (error) {
-    console.error("Error executing MySQL query:", error);
-    res.status(500).json({ error: "Error deleting gaming gear item" });
-  }
-});
-
-module.exports = gamingGearRouter;
-
-// Delete a gaming gear item by ID
-gamingGearRouter.delete("/:id", async (req, res) => {
+gamingGearRouter.delete("/:id", authenticate, isAdmin, async (req, res) => {
   const gearId = req.params.id;
 
   try {

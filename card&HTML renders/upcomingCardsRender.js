@@ -1,33 +1,53 @@
-document.addEventListener("DOMContentLoaded", () => {
-  fetch("http://localhost:8080/upcoming")
-    .then((response) => response.json())
-    .then((upcomingCards) => {
-      const upcomingCardsContainer = document.querySelector(
-        ".upcomingCardsContainer"
-      );
-      upcomingCards.forEach((card) => {
-        // Create a product card element
-        const cardElement = document.createElement("div");
-        cardElement.classList.add("product-card", "col-md-4");
+fetch("http://localhost:8080/api/upcoming")
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  })
+  .then((upcomingCards) => {
+    console.log("Data received:", upcomingCards);
 
-        cardElement.innerHTML = `
-              <img src="${card.image}" alt="${card.title}" class="product-image"/>
-              <h2 class="product-name">${card.title}</h2>
-              <div class="card-info">
-                <p class='product-date-info'>Release Date: ${card.startDate} to ${card.endDate}</p>
-                <p class='product-description-'>
-                  ${card.description}
-                </p>
-                <p class='product-rating-info'>Score: ${card.score}</p>
-                <a href="cart.html" class="btn cta-btn">Preorder Now</a>
-              </div>
-            `;
+    const upcomingCardsContainer = document.getElementById(
+      "upcomingCardsContainer"
+    );
+    console.log("Container element:", upcomingCardsContainer);
 
-        // Append the card to the container
-        upcomingCardsContainer.appendChild(cardElement);
+    // Shuffle the array of upcomingCards
+    upcomingCards.sort(() => Math.random() - 0.5);
+
+    // Render the first 6 cards
+    for (let i = 0; i < 6; i++) {
+      const upcoming = upcomingCards[i];
+      const cardElement = document.createElement("div");
+      cardElement.classList.add("product-card", "col-md-4");
+
+      const date = new Date(upcoming.firstReleaseDate);
+      const formattedDate = date.toLocaleDateString("en-GB", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
       });
-    })
-    .catch((error) => {
-      console.error("Error fetching upcoming games cards:", error);
-    });
-});
+
+      cardElement.innerHTML = `
+        <img src="${upcoming.image}" alt="${upcoming.name}" class="product-image"/>
+            <h2 class="product-name">${upcoming.name}</h2>
+            <div class="product-info">
+         <p class='product-description'>Release Date: ${formattedDate}</p>
+        <p class='product-description'>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+         </p>
+         <a href="html/productDetails.html?id=${upcoming.id}" class="btn cta-btn more-info" data-product-id="${upcoming.id}">
+            More Info
+          </a>
+        </div>
+                                                `;
+
+      upcomingCardsContainer.appendChild(cardElement);
+      console.log("Card appended:", upcoming);
+    }
+    console.log("Cards appended to the container:", upcomingCardsContainer);
+  })
+  .catch((error) => {
+    console.error("Error fetching upcoming games cards:", error);
+  });

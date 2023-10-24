@@ -22,12 +22,19 @@ fetch("http://localhost:8080/games")
       const cardElement = document.createElement("div");
       cardElement.classList.add("product-card", "col-md-4");
 
+      const date = new Date(game.released);
+      const formattedDate = date.toLocaleDateString("en-GB", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+      });
+
       cardElement.innerHTML = `
         <img src="${game.background_image}" alt="${game.name}" class="product-image"/>
         <h2 class="product-name">${game.name}</h2>
         <div class="product-info">
           <p class="product-description">
-            Released: ${game.platform_released_at}
+            Released: ${formattedDate}
           </p>
           <p class="product-genre-info">Genre: ${game.genre}</p>
           <p class="product-price-info">Price: ${game.price} KM</p>
