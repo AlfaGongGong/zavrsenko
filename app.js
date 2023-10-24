@@ -21,6 +21,7 @@ const gamesRouter = require("./js/routes/gamesRoutes");
 const dealsRouter = require("./js/routes/dealsRoutes");
 const gamingGearRouter = require("./js/routes/gamingGearRoutes");
 const upcomingRouter = require("./js/routes/upcomingRoutes");
+const freeRouter = require("./js/routes/freeGamesRoutes");
 
 app.use("/games", gamesRouter);
 
@@ -30,6 +31,7 @@ app.use("/gaming_gear", gamingGearRouter);
 
 app.use("/api", upcomingRouter);
 
+app.use("/api", freeRouter);
 // Connect to the database
 const connection = mysql.createConnection(dbConfig);
 connection.connect((error) => {

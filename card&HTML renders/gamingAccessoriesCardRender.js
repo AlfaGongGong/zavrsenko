@@ -20,8 +20,6 @@ fetch("http://localhost:8080/gaming_gear")
       const cardElement = document.createElement("div");
       cardElement.classList.add("product-card", "col-md-4");
 
-  
-
       cardElement.innerHTML = `
         <img src="${gear.image}" alt="${gear.name}" class="product-image"/>
         <h2 class="product-name">${gear.name}</h2>
