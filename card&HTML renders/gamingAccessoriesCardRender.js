@@ -19,9 +19,10 @@ fetch("http://localhost:8080/gaming_gear")
       const gear = gearCards[i];
       const cardElement = document.createElement("div");
       cardElement.classList.add("product-card", "col-md-4");
+      const alt = "../images/dummy_we-will-fix-this-soon.png";
 
       cardElement.innerHTML = `
-        <img src="${gear.image}" alt="${gear.name}" class="product-image"/>
+        <img src="${gear.image}" alt="${alt}" class="product-image"/>
         <h2 class="product-name">${gear.name}</h2>
         <div class="product-info">
           <p class="product-description .product-description--two-rows">

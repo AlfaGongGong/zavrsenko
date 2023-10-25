@@ -21,10 +21,11 @@ fetch("http://localhost:8080/api/free_games")
       const cardElement = document.createElement("div");
 
       cardElement.classList.add("free-game-card", "row", "mb-5");
+      const alt = "../images/dummy_we-will-fix-this-soon.png";
 
       cardElement.innerHTML = `
       <div class="col-md-4">
-      <img src="${free.image}" alt="${free.title}" class="product-image"/></div>
+      <img src="${free.image}" alt="${alt}" class="product-image"/></div>
       <div class="col-md-8">
         <h2 class="product-name">${free.title}</h2>
         <div class="product-info">

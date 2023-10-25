@@ -28,9 +28,10 @@ fetch("http://localhost:8080/games")
         month: "2-digit",
         year: "numeric",
       });
+      const alt = "../images/dummy_we-will-fix-this-soon.png";
 
       cardElement.innerHTML = `
-        <img src="${game.background_image}" alt="${game.name}" class="product-image"/>
+        <img src="${game.background_image}" alt="${alt}" class="product-image"/>
         <h2 class="product-name">${game.name}</h2>
         <div class="product-info">
           <p class="product-description">

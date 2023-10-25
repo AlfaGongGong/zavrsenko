@@ -28,9 +28,10 @@ fetch("http://localhost:8080/api/upcoming")
         month: "2-digit",
         year: "numeric",
       });
+      const alt = "../images/dummy_we-will-fix-this-soon.png";
 
       cardElement.innerHTML = `
-        <img src="${upcoming.image}" alt="${upcoming.name}" class="product-image"/>
+        <img src="${upcoming.image}" alt="${alt}" class="product-image"/>
             <h2 class="product-name">${upcoming.name}</h2>
             <div class="product-info">
          <p class='product-description'>Release Date: ${formattedDate}</p>
