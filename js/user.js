@@ -15,7 +15,7 @@
       }
 
       try {
-        const response = await fetch("/user/register", {
+        const response = await fetch("http://localhost:8080/user/register", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -28,6 +28,7 @@
           registerForm.reset();
         } else {
           const data = await response.json();
+          console.log('here')
           alert(data.message);
         }
       } catch (error) {

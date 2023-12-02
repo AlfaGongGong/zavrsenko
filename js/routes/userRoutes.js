@@ -19,6 +19,7 @@ const pool = mysql.createPool(dbConfig);
 // Registration route
 router.post("/register", (req, res) => {
   const { username, email, password } = req.body;
+  console.log('hit')
 
   bcrypt.hash(password, 10, (err, hash) => {
     if (err) {

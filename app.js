@@ -25,7 +25,6 @@ const gamingGearRouter = require("./js/routes/gamingGearRoutes");
 const upcomingRouter = require("./js/routes/upcomingRoutes");
 const freeRouter = require("./js/routes/freeGamesRoutes");
 const router = require("./js/routes/userRoutes");
-const userapp = require("./js/routes/userRoutes");
 
 app.use("/games", gamesRouter);
 app.use("/deals", dealsRouter);
