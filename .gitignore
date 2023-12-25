@@ -20,3 +20,4 @@ mysql/gg_database_upcoming0.sql
 mysql/gg_database_users0.sql
 node_modules/.package-lock.json
 node_modules/csv-writer/package.json
+node_modules

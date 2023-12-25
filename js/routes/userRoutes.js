@@ -19,7 +19,7 @@ const pool = mysql.createPool(dbConfig);
 // Registration route
 router.post("/register", (req, res) => {
   const { username, email, password } = req.body;
-  console.log('hit')
+  console.log("hit");
 
   bcrypt.hash(password, 10, (err, hash) => {
     if (err) {
@@ -95,6 +95,114 @@ router.post("/login", (req, res) => {
 router.post("/logout", (req, res) => {
   req.session.destroy();
   res.status(200).json({ message: "Logout successful" });
+});
+
+// change password route
+
+router.post("/changePassword", (req, res) => {
+  const { username, password } = req.body;
+
+  bcrypt.hash(password, 10, (err, hash) => {
+    if (err) {
+      console.error("Error hashing password:", err);
+      res.status(500).json({ message: "Internal server error" });
+      return;
+    }
+
+    pool.query(
+      "UPDATE users SET password = ? WHERE username = ?",
+      [hash, username],
+      (error, results) => {
+        if (error) {
+          console.error("Error inserting user into the database:", error);
+          res.status(500).json({ message: "Internal server error" });
+          return;
+        }
+
+        res.status(200).json({ message: "Password changed successfully" });
+      }
+    );
+  });
+});
+
+// change email route
+
+router.post("/changeEmail", (req, res) => {
+  const { username, email } = req.body;
+
+  pool.query(
+    "UPDATE users SET email = ? WHERE username = ?",
+    [email, username],
+    (error, results) => {
+      if (error) {
+        console.error("Error inserting user into the database:", error);
+        res.status(500).json({ message: "Internal server error" });
+        return;
+      }
+
+      res.status(200).json({ message: "Email changed successfully" });
+    }
+  );
+});
+
+// change address route
+
+router.post("/changeAddress", (req, res) => {
+  const { username, address } = req.body;
+
+  pool.query(
+    "UPDATE users SET address = ? WHERE username = ?",
+    [address, username],
+    (error, results) => {
+      if (error) {
+        console.error("Error inserting user into the database:", error);
+        res.status(500).json({ message: "Internal server error" });
+        return;
+      }
+
+      res.status(200).json({ message: "Address changed successfully" });
+    }
+  );
+});
+
+// change first_name route
+
+router.post("/changeFirstName", (req, res) => {
+  const { username, first_name } = req.body;
+
+  pool.query(
+    "UPDATE users SET first_name = ? WHERE username = ?",
+    [first_name, username],
+    (error, results) => {
+      if (error) {
+        console.error("Error inserting user into the database:", error);
+        res.status(500).json({ message: "Internal server error" });
+        return;
+      }
+
+      res.status(200).json({ message: "First name changed successfully" });
+    }
+  );
+});
+
+// change last_name route
+
+router.post("/changeLastName", (req, res) => {
+  const { username, last_name } = req.body;
+
+  pool.query(
+    "UPDATE users SET last_name = ? WHERE username = ?",
+    [last_name, username],
+    (error, results) => {
+      if (error) {
+        console.error("Error inserting user into the database:", error);
+        res.status(500).json({ message: "Internal server error" });
+        return;
+      }
+
+      res.status(200).json({ message: "Last name changed successfully" });
+    }
+  );
 });
 
 module.exports = router;

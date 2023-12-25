@@ -8,6 +8,8 @@ document.querySelectorAll(".icon-container").forEach((element) => {
   });
 });
 
+//check user status and display appropriate navbar links and buttons accordingly
+
 // Event listener for the "More Info" buttons with class "more-info"
 document.querySelectorAll(".more-info").forEach((button) => {
   button.addEventListener("click", () => {
