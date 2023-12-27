@@ -165,7 +165,14 @@
                     </div>
                 </li>
                 <li class="nav-item" id="myAccount" style="display: none">
-                    <a href="./html/myAcc.html" class="nav-link">My Account</a>
+                     <script>
+                        var username = localStorage.getItem("username");
+</script>
+                    <a href="./html/myAcc.html" class="nav-link">
+                        <script>
+                            document.write(username);
+</script> <br> My Account
+</a>
                 </li>
                 <li class="nav-item" id="logOut" style="display: none">
                     <form id="logout-form" method="POST">
@@ -413,7 +420,7 @@
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
         crossorigin="anonymous"></script>
     <script src="script.js"></script>
-    <script src="js/user.js"></script>
+    <script  src="js/user.js"></script>
 </body>
 
 </html>

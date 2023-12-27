@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const bodyParser = require("body-parser");
 const session = require("express-session");
+const e = require("connect-flash");
 require("dotenv").config();
 
 const dbConfig = {
@@ -93,8 +94,14 @@ router.post("/login", (req, res) => {
 
 // Logout route
 router.post("/logout", (req, res) => {
-  req.session.destroy();
-  res.status(200).json({ message: "Logout successful" });
+  localStorage.clear();
+  if (err) {
+    console.error("Error logging out:", err);
+    res.status(500).json({ message: "Internal server error" });
+    return;
+  } else {
+    res.status(200).json({ message: "Logout successful" });
+  }
 });
 
 // change password route

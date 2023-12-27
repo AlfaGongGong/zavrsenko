@@ -8,7 +8,31 @@ document.querySelectorAll(".icon-container").forEach((element) => {
   });
 });
 
-//check user status and display appropriate navbar links and buttons accordingly
+// Check if user is logged in
+
+const isLoggedIn = localStorage.getItem("token") ? true : false;
+
+const logInRegister = document.getElementById("logInRegister");
+const myAccount = document.getElementById("myAccount");
+const logOut = document.getElementById("logOut");
+
+if (isLoggedIn) {
+  logInRegister.style.display = "none";
+  myAccount.style.display = "block";
+  logOut.style.display = "block";
+} else {
+  logInRegister.style.display = "block";
+  myAccount.style.display = "none";
+  logOut.style.display = "none";
+}
+
+// Log out logic
+document.getElementById("logOut").addEventListener("click", () => {
+  alert("Goodbye and come back soon!");
+
+  localStorage.clear();
+  window.location.href = "/index.html";
+});
 
 // Event listener for the "More Info" buttons with class "more-info"
 document.querySelectorAll(".more-info").forEach((button) => {

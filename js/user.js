@@ -1,5 +1,3 @@
-const jwt = require("jsonwebtoken");
-
 //registration logic
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -65,11 +63,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = await response.json();
         const token = data.token;
         localStorage.setItem("token", token);
+        localStorage.setItem("username", username);
         alert("Login successful");
-        loginForm.reset();
-      } else {
-        const data = await response.json();
-        alert(data.message);
+        window.location.href = "/index.html";
       }
     } catch (error) {
       console.error("Error:", error);
@@ -80,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
 //log out logic
 
 document.addEventListener("DOMContentLoaded", () => {
-  const logoutButton = document.getElementById("logout-button");
+  const logoutButton = document.getElementById("logOutButton");
 
   logoutButton.addEventListener("click", async (e) => {
     e.preventDefault();
@@ -92,13 +88,6 @@ document.addEventListener("DOMContentLoaded", () => {
           "Content-Type": "application/json",
         },
       });
-
-      if (response.status === 200) {
-        alert("Logout successful");
-      } else {
-        const data = await response.json();
-        alert(data.message);
-      }
     } catch (error) {
       console.error("Error:", error);
     }
