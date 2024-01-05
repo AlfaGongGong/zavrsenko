@@ -82,12 +82,10 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:8080/user/logout", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      localStorage.removeItem("token");
+      localStorage.removeItem("username");
+      alert("Logout successful");
+      window.location.href = "/index.html";
     } catch (error) {
       console.error("Error:", error);
     }

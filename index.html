@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -165,14 +165,7 @@
                         </div>
                     </li>
                     <li class="nav-item" id="myAccount" style="display: none">
-                         <script>
-                            var username = localStorage.getItem("username");
-    </script>
-                        <a href="./html/myAcc.html" class="nav-link">
-                            <script>
-                                document.write(username);
-    </script> <br> My Account
-    </a>
+            
                     </li>
                     <li class="nav-item" id="logOut" style="display: none">
                         <form id="logout-form" method="POST">
@@ -195,6 +188,7 @@
             <div class="row mostPurchasedCardsContainer" id="mostPurchasedCardsContainer">
                 <script src="card&HTML renders/mostPurchasedCardRender.js"></script>
             </div>
+            
         </div>
         <a href="./html/gamesList.html" class="btn cta-btn" id="all-games-btn">List all games</a>
     </section>
@@ -414,9 +408,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
         crossorigin="anonymous"></script>
-    <script src="script.js"></script>
-    <script  src="js/user.js"></script>
-              <script src="./js/loremIpsum.js"></script>;
+        <script src="./js/productDetails.js"></script>
+    <script src="./js/script.js" defer ></script>
+    <script  src="./js/user.js" ></script>
 
 </body>
 

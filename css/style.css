@@ -679,6 +679,35 @@ input.mail_bt::placeholder {
   transform: scale(1.5);
 }
 
+.animate__shakeX {
+  --animate-duration: 1s;
+  --animate-delay: 0.5s;
+}
+
+.animate__animated {
+  animation-duration: 1s;
+  animation-delay: 0.5s;
+  animation-fill-mode: both;
+}
+
+.animate__animated.animate__shakeX {
+  animation-name: shakeX;
+}
+
+@keyframes shakeX {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
 .product-card:hover {
   animation: pulse 0.5s ease-in-out infinite;
 }

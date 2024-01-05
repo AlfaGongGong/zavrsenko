@@ -60,28 +60,30 @@ fetch("http://localhost:8080/games")
           <p class="product-genre">Genre: ${game.genre}</p>
           <p class="product-info">${getRandomLoremIpsumText()}</p>
           <p class="product-price-normal">Price: ${game.price} KM</p>
-        <div class="product-buttons">
+        <div class="product-buttons" id="productButtons">
             <a href="html/productDetails.html?data-product=${encodeURIComponent(
               game.id.toString()
-            )}" class="btn more-info" title="More Info" id="more-info" data-product="${
+            )}" class="btn btn-primary more-info" title="More Info" id="more-info" data-product="${
               game.id
             }">
               <i class="fas fa-info-circle"></i> 
             </a>
-            <a href="html/myAcc.html?data-product=${encodeURIComponent(
-              game.id.toString()
-            )}" class="btn wishlist-btn" title="Add to your wishlist" id="wishlist-btn" data-product="${
-              game.id
-            }">
-              <i class="fas fa-heart"></i> 
+           <a href="html/myAcc.html?data-product=${encodeURIComponent(
+             game.id.toString()
+           )}" class="btn btn-primary wishlist-btn logged-in" title="Add to your wishlist" id="wishlist-btn" data-product="${
+             game.id
+           }">
+              <i class="fas fa-heart"></i>
             </a>
             <a href="html/shoppingCart.html?data-product=${encodeURIComponent(
               game.id.toString()
-            )}" class="btn cart-btn" title="Add to shopping cart" id="cart-btn" data-product="${
+            )}" class="btn cart-btn logged-in" title="Add to shopping cart" id="cart-btn" data-product="${
               game.id
             }">
-              <i class="fas fa-shopping-cart"></i> 
+              <i class="fas fa-shopping-cart"></i>
             </a>
+            
+           
         </div>
       </div>
       `;
