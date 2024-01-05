@@ -69,12 +69,12 @@ document.addEventListener("DOMContentLoaded", function () {
              <div class="product-buttons col-md-12">
             <a href="html/myAcc.html?data-product=${encodeURIComponent(
               gameId.toString()
-            )}" class="btn wishlist-btn" title="Add to your wishlist" id="wishlist-btn" data-product="${gameId}">
+            )}" role="button" class="btn btn-primary wishlist-btn" title="Add to your wishlist" id="wishlist-btn" data-product="${gameId}">
               <i class="fas fa-heart"></i> 
             </a>
             <a href="html/shoppingCart.html?data-product=${encodeURIComponent(
               gameId.toString()
-            )}" class="btn cart-btn" title="Add to shopping cart" id="cart-btn" data-product="${gameId}">
+            )}" role="button" class="btn btn-primary cart-btn" title="Add to shopping cart" id="cart-btn" data-product="${gameId}">
               <i class="fas fa-shopping-cart"></i> 
             </a>
             </div>
