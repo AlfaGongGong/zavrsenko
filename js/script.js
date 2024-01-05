@@ -1,10 +1,10 @@
 // Function to handle user login
 function handleLogin() {
   const isLoggedIn = localStorage.getItem("token") !== null;
-  const user = localStorage.getItem("username");
-
+  const myAccount = document.getElementById("myAccount");
   const logInRegister = document.getElementById("logInRegister");
   const logOut = document.getElementById("logOut");
+  const moreInfoBtn = document.querySelectorAll(".more-info");
   const wishlistBtn = document.querySelectorAll(".wishlist-btn");
   const cartBtn = document.querySelectorAll(".cart-btn");
 
@@ -16,6 +16,25 @@ function handleLogin() {
     logInRegister.style.display = "block";
     myAccount.style.display = "none";
     logOut.style.display = "none";
+    moreInfoBtn.forEach((button) => {
+      button.classList.remove("more-info", "btn", "btn-primary");
+      button.classList.add("btn", "btn-secondary");
+      button.disabled = true;
+      button.title = "You must be logged in to view more details";
+      button.addEventListener("mouseover", (event) => {
+        button.classList.add("animate__animated", "animate__shakeX");
+      });
+
+      button.addEventListener("mouseout", (event) => {
+        button.classList.remove("animate__animated", "animate__shakeX");
+      });
+
+      button.addEventListener("click", (event) => {
+        event.preventDefault();
+        document.location.href = "../html/plsLogin.html";
+      });
+    });
+
     wishlistBtn.forEach((button) => {
       button.classList.remove("wishlist-btn", "btn", "btn-primary");
       button.classList.add("btn", "btn-secondary");

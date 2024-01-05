@@ -648,14 +648,25 @@ input.mail_bt::placeholder {
   overflow-x: hidden;
   text-align: center;
 }
-.product-info-container .product-buttons {
+
+#productButtons {
   display: flex;
+  align-items: center;
   justify-content: space-evenly;
   width: 100%;
+  height: 100%;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  text-align: center;
+  text-shadow: 0 0 0.125rem rgba(0, 0, 0, 0.3);
+  font-family: "Raleway", sans-serif;
+  font-size: 1rem;
+  color: #0099ff;
 }
-.product-info-container .more-info,
-.product-info-container .wishlist-btn,
-.product-info-container .cart-btn {
+
+.more-info,
+.wishlist-btn,
+.cart-btn {
   background-color: transparent;
   color: #ffff00;
   font-family: "Press Start 2P", cursive;
@@ -671,9 +682,9 @@ input.mail_bt::placeholder {
   width: 3.125rem;
   height: 3.125rem;
 }
-.product-info-container .more-info:hover,
-.product-info-container .wishlist-btn:hover,
-.product-info-container .cart-btn:hover {
+.more-info:hover,
+.wishlist-btn:hover,
+.cart-btn:hover {
   background-color: #cc0052;
   transform: scale(1.5);
 }
@@ -728,32 +739,29 @@ input.mail_bt::placeholder {
   background-color: #e6e6e6;
   text-decoration: none;
 }
-
-section {
+.list-btn section {
   background-color: rgba(0, 0, 0, 0.5);
   padding: 40px 0;
   text-align: center;
 }
-section h1 {
+.list-btn section h1 {
   font-family: "Orbitron", sans-serif;
   color: #ffff00;
   margin-bottom: 20px;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
-section hr {
+.list-btn section hr {
   border-color: #0099ff;
   width: 80%;
   margin: 10px auto;
 }
-
-.genre-navbar {
+.list-btn .genre-navbar {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin-bottom: 40px;
 }
-
-.icon-container {
+.list-btn .icon-container {
   background-color: #000000;
   border-radius: 10px;
   padding: 20px;
@@ -762,40 +770,36 @@ section hr {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   transition: box-shadow 0.2s ease-in-out;
 }
-.icon-container:hover {
+.list-btn .icon-container:hover {
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
   transform: translateY(-5px);
 }
-
-.icon {
+.list-btn .icon {
   margin-bottom: 10px;
   width: auto;
   height: auto;
 }
-.icon img {
+.list-btn .icon img {
   width: 80px;
   height: 80px;
   border-radius: 50%;
   filter: brightness(0.8);
   transition: filter 0.2s ease-in-out;
 }
-.icon:hover img {
+.list-btn .icon:hover img {
   filter: brightness(1);
 }
-
-.icon-text {
+.list-btn .icon-text {
   font-family: "Press Start 2P", cursive;
   color: #ffff00;
   font-size: 18px;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
-
-.icon-container:hover .icon img {
+.list-btn .icon-container:hover .icon img {
   animation: pulse 0.5s ease-in-out infinite;
   background-image: linear-gradient(to bottom, rgba(255, 255, 0, 0.2) 0%, rgba(255, 255, 0, 0) 100%);
 }
-
 @keyframes pulse {
   0% {
     transform: scale(1);
@@ -807,23 +811,22 @@ section hr {
     transform: scale(1);
   }
 }
-.free-games-container {
+.list-btn .free-games-container {
   padding: 40px 0;
   text-align: center;
 }
-.free-games-container h1 {
+.list-btn .free-games-container h1 {
   font-family: "Orbitron", sans-serif;
   color: #ffff00;
   margin-bottom: 20px;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
-.free-games-container hr {
+.list-btn .free-games-container hr {
   border-color: #0099ff;
   width: 80%;
   margin: 10px auto;
 }
-
-.free-game-card {
+.list-btn .free-game-card {
   background: radial-gradient(circle at 50%, #000000 0%, rgba(0, 0, 0, 0.148) 80%);
   border-radius: 0.625rem;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
@@ -839,7 +842,7 @@ section hr {
   margin: 0 auto;
   margin-bottom: 20px;
 }
-.free-game-card img {
+.list-btn .free-game-card img {
   width: 100%;
   height: 12.5rem;
   -o-object-fit: cover;
@@ -847,18 +850,18 @@ section hr {
   border-radius: 0.625rem;
   position: relative;
 }
-.free-game-card:hover {
+.list-btn .free-game-card:hover {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
   transform: translateY(-0.3125rem);
   cursor: pointer;
 }
-.free-game-card h2 {
+.list-btn .free-game-card h2 {
   font-family: "Orbitron", sans-serif;
   font-size: 1.5rem;
   color: #ffff00;
   text-shadow: 0 0 0.125rem rgba(0, 0, 0, 0.3);
 }
-.free-game-card p {
+.list-btn .free-game-card p {
   font-family: "Raleway", sans-serif;
   font-size: 1rem;
   color: #0099ff;
@@ -1019,6 +1022,127 @@ section hr {
   height: auto;
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
+  gap: 20px;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-details-section {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.product-details-section .product-details-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.product-details-section .product-details-container .product-details-image {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.product-details-section .product-details-container .product-details-image img {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.product-details-section .product-details-info {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.product-details-section .product-details-info .product-details-name {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.product-details-section .product-details-info .product-details-price {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.product-details-section .product-details-info .product-details-description {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.product-details-section .product-details-info .product-details-genre {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.product-details-section .product-details-info .product-details-platform {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 20px;
   margin: 20px;

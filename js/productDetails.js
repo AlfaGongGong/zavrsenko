@@ -49,7 +49,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const gameDataGenre = gameData.genre;
 
         productDetailsContainer.innerHTML = `
-        <div class="row">
           <div class="col-md-6 product-image-container">
           <img src="${
             gameData.background_image
@@ -66,19 +65,24 @@ document.addEventListener("DOMContentLoaded", function () {
               <p class="product-description">${getRandomLoremIpsumText()}</p>
               <p class="product-price-normal">Price: ${gameData.price} KM</p>
             </div>
-             <div class="product-buttons col-md-12">
+ <div class="product-buttons" id="productButtons">
+
             <a href="html/myAcc.html?data-product=${encodeURIComponent(
-              gameId.toString()
-            )}" role="button" class="btn btn-primary wishlist-btn" title="Add to your wishlist" id="wishlist-btn" data-product="${gameId}">
-              <i class="fas fa-heart"></i> 
+              gameData.id.toString()
+            )}" type="button" role="button" class="btn btn-primary wishlist-btn" title="Add to your wishlist" id="wishlist-btn" data-product="${
+              gameData.id
+            }">
+              <i class="fas fa-heart"></i>
             </a>
             <a href="html/shoppingCart.html?data-product=${encodeURIComponent(
-              gameId.toString()
-            )}" role="button" class="btn btn-primary cart-btn" title="Add to shopping cart" id="cart-btn" data-product="${gameId}">
-              <i class="fas fa-shopping-cart"></i> 
+              gameData.id.toString()
+            )}" type="button" role="button" class="btn btn-primary cart-btn" title="Add to shopping cart" id="cart-btn" data-product="${
+              gameData.id
+            }">
+              <i class="fas fa-shopping-cart"></i>
             </a>
             </div>
-          </div>
+
      `;
       })
       .catch(function (error) {
