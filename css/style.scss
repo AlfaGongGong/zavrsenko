@@ -4,14 +4,14 @@ $btnColor: #ff0066;
 $btnText: #ffff00;
 $accentColor: #ffff00;
 $background: #000000;
-
 $main: "Open Sans", sans-serif;
-
 $title: "Orbitron", sans-serif;
-
 $callToAction: "Press Start 2P", cursive;
-
 $secondary: "Raleway", sans-serif;
+$min-width: 200px;
+$max-width: 350px;
+$min-height: 250px;
+$max-height: 400px;
 
 h1,
 h2,
@@ -22,6 +22,7 @@ h6 {
   font-family: $title;
   color: $mainColor;
 }
+
 html {
   scroll-behavior: smooth;
   margin: 0;
@@ -31,6 +32,7 @@ html {
   color: $mainColor;
   transition: all 0.2s;
 }
+
 body {
   background: url("../images/background-blob-animated.svg") no-repeat;
   background-size: cover;
@@ -46,19 +48,20 @@ body {
   width: 100%;
   height: 100%;
 }
+
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 1rem;
 }
 
 ::-webkit-scrollbar-track {
   background-color: $background;
-  border-radius: 5px;
-  margin-left: 10px;
+  border-radius: 0.5rem;
+  margin-left: 1rem;
 }
 
 ::-webkit-scrollbar-thumb {
   background-color: $mainColor;
-  border-radius: 5px;
+  border-radius: 0.5rem;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -90,36 +93,36 @@ body {
   -moz-transition: all 0.2s;
   -o-transition: all 0.2s;
   transition: all 0.2s;
-  font-size: 20px;
+  font-size: 1.25rem;
   transition: all 0.2s;
 }
 
 .carousel-container {
-  padding: 20px;
+  padding: 1.25rem;
 
-  @media (max-width: 768px) {
-    padding: 10px;
+  @media (max-width: 48rem) {
+    padding: 0.625rem;
   }
 }
 
 .carousel-item {
   text-align: center;
 
-  @media (max-width: 768px) {
+  @media (max-width: 48rem) {
     text-align: center;
   }
 }
 
 .hero-content {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 1.25rem;
 
-  @media (max-width: 768px) {
-    margin-top: 10px;
+  @media (max-width: 48rem) {
+    margin-top: 0.625rem;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .navbar-brand {
     text-align: center;
     width: 100%;
@@ -128,7 +131,7 @@ body {
 
 .carousel-container {
   position: relative;
-  max-height: 500px;
+  max-height: 31.25rem;
   overflow: hidden;
   padding: 0;
   margin: 0;
@@ -141,26 +144,27 @@ body {
   h2 {
     font-size: 2rem;
     font-weight: bold;
-    margin: 20px 0;
+    margin: 1.25rem 0;
     text-align: center;
     text-transform: uppercase;
     color: $background;
     font-family: $title;
     transition: all 0.3s ease;
     text-shadow:
-      0 0 5px #fff,
-      0 0 10px #fff,
-      0 0 15px #fff,
-      0 0 20px #ff0066,
-      0 0 30px #ff0066,
-      0 0 40px #ff0066,
-      0 0 55px #ff0066,
-      0 0 75px #ff0066;
+      0 0 0.3125rem #fff,
+      0 0 0.625rem #fff,
+      0 0 0.9375rem #fff,
+      0 0 1.25rem #ff0066,
+      0 0 1.875rem #ff0066,
+      0 0 2.5rem #ff0066,
+      0 0 3.4375rem #ff0066,
+      0 0 4.6875rem #ff0066;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
   }
+
   p {
     font-size: 1rem;
     text-align: center;
@@ -168,19 +172,19 @@ body {
     font-family: $title;
     transition: all 0.3s ease;
     text-shadow:
-      0 0 5px #fff,
-      0 0 10px #fff,
-      0 0 15px #fff,
-      0 0 20px #ff0066,
-      0 0 30px #ff0066,
-      0 0 40px #ff0066,
-      0 0 55px #ff0066,
-      0 0 75px #ff0066;
+      0 0 0.3125rem #fff,
+      0 0 0.625rem #fff,
+      0 0 0.9375rem #fff,
+      0 0 1.25rem #ff0066,
+      0 0 1.875rem #ff0066,
+      0 0 2.5rem #ff0066,
+      0 0 3.4375rem #ff0066,
+      0 0 4.6875rem #ff0066;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
-    margin: 20px 0;
+    margin: 1.25rem 0;
     text-align: center;
   }
 }
@@ -205,14 +209,15 @@ body {
   cursor: pointer;
   z-index: 1;
 
-  padding: 5px;
+  padding: 0.3125rem;
 }
+
 .carousel-control {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50px;
-  height: 50px;
+  width: 3.125rem;
+  height: 3.125rem;
   border-radius: 50%;
   background-color: $btnColor;
   color: $btnText;
@@ -223,11 +228,12 @@ body {
   -ms-transition: background-color 0.3s ease;
   cursor: pointer;
   z-index: 1;
-  margin: 10px;
+  margin: 0.625rem;
 }
+
 .carousel-control-prev {
-  width: 50px;
-  height: 50px;
+  width: 3.125rem;
+  height: 3.125rem;
   border-radius: 50%;
   background-color: $btnColor;
   color: $btnText;
@@ -235,8 +241,8 @@ body {
 }
 
 .carousel-control-next {
-  width: 50px;
-  height: 50px;
+  width: 3.125rem;
+  height: 3.125rem;
   border-radius: 50%;
   background-color: $btnColor;
   color: $btnText;
@@ -244,30 +250,30 @@ body {
 }
 
 .carousel-control-prev:hover {
-  background-color: darken ($btnColor, 10%);
+  background-color: darken($btnColor, 10%);
 }
 
 .carousel-control-next:hover {
-  background-color: darken ($btnColor, 10%);
+  background-color: darken($btnColor, 10%);
 }
 
 /* Hero Content */
 .hero-content h1 {
-  font-size: 36px;
+  font-size: 2.25rem;
   font-weight: bold;
-  margin: 20px;
+  margin: 1.25rem;
   color: $background;
   font-family: $title;
   transition: all 0.3s ease;
   text-shadow:
-    0 0 5px #fff,
-    0 0 10px #fff,
-    0 0 15px #fff,
-    0 0 20px #ff0066,
-    0 0 30px #ff0066,
-    0 0 40px #ff0066,
-    0 0 55px #ff0066,
-    0 0 75px #ff0066;
+    0 0 0.3125rem #fff,
+    0 0 0.625rem #fff,
+    0 0 0.9375rem #fff,
+    0 0 1.25rem #ff0066,
+    0 0 1.875rem #ff0066,
+    0 0 2.5rem #ff0066,
+    0 0 3.4375rem #ff0066,
+    0 0 4.6875rem #ff0066;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
@@ -275,20 +281,20 @@ body {
 }
 
 .hero-content p {
-  font-size: 18px;
-  margin-bottom: 30px;
+  font-size: 1.125rem;
+  margin-bottom: 1.875rem;
   color: $background;
   font-family: $title;
   transition: all 0.3s ease;
   text-shadow:
-    0 0 5px #fff,
-    0 0 10px #fff,
-    0 0 15px #fff,
-    0 0 20px #ff0066,
-    0 0 30px #ff0066,
-    0 0 40px #ff0066,
-    0 0 55px #ff0066,
-    0 0 75px #ff0066;
+    0 0 0.3125rem #fff,
+    0 0 0.625rem #fff,
+    0 0 0.9375rem #fff,
+    0 0 1.25rem #ff0066,
+    0 0 1.875rem #ff0066,
+    0 0 2.5rem #ff0066,
+    0 0 3.4375rem #ff0066,
+    0 0 4.6875rem #ff0066;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
@@ -298,9 +304,9 @@ body {
 .cta-btn {
   background-color: #ff0066;
   color: #fff;
-  font-size: 14px;
+  font-size: 0.875rem;
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: 0.3125rem;
   transition: background-color 0.3s ease;
   cursor: pointer;
   font-family: $callToAction;
@@ -309,18 +315,18 @@ body {
 }
 
 .cta-btn:hover {
-  background-color: darken ($btnColor, 10%);
+  background-color: darken($btnColor, 10%);
   color: #fff;
   transition: all 0.3s ease;
   text-shadow:
-    0 0 5px #fff,
-    0 0 10px #fff,
-    0 0 15px #fff,
-    0 0 20px #ff0066,
-    0 0 30px #ff0066,
-    0 0 40px #ff0066,
-    0 0 55px #ff0066,
-    0 0 75px #ff0066;
+    0 0 0.3125rem #fff,
+    0 0 0.625rem #fff,
+    0 0 0.9375rem #fff,
+    0 0 1.25rem #ff0066,
+    0 0 1.875rem #ff0066,
+    0 0 2.5rem #ff0066,
+    0 0 3.4375rem #ff0066,
+    0 0 4.6875rem #ff0066;
   cursor: pointer;
 }
 
@@ -334,14 +340,14 @@ body {
 
 #adminDashboard a {
   background-color: #ff0066;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.3125rem;
   color: #fff;
   transition: background-color 0.3s ease;
 }
 
 #adminDashboard a:hover {
-  background-color: darken ($btnColor, 10%);
+  background-color: darken($btnColor, 10%);
 }
 
 .banner {
@@ -349,7 +355,6 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
-
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -367,20 +372,20 @@ body {
 }
 
 .banner-content h1 {
-  font-size: 36px;
+  font-size: 2.25rem;
   font-weight: bold;
-  margin-top: 20px;
+  margin-top: 1.25rem;
 }
 
 .banner-content p {
-  font-size: 18px;
-  margin-bottom: 30px;
+  font-size: 1.125rem;
+  margin-bottom: 1.875rem;
 }
 
 .banner-image {
   width: 50%;
   height: auto;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
 }
 
 .footer_section {
@@ -388,16 +393,16 @@ body {
 }
 
 .footer_logo img {
-  width: 6rem;
-  height: 6rem;
+  width: 3rem;
+  height: 3rem;
   margin: 0 auto;
   display: flex;
   justify-content: center;
 }
 
 .footer_menu ul {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -407,7 +412,7 @@ body {
 .footer_menu li {
   font-size: 1rem;
   color: #f1f1f1;
-  padding: 20px 10px 0px 10px;
+  padding: 1.25rem 0.625rem 0 0.625rem;
 }
 
 .footer_menu li a {
@@ -430,25 +435,28 @@ input.mail_bt::placeholder {
   width: 100%;
   margin: 0 auto;
   text-align: center;
-  padding: 20px 0px;
+  padding: 1.25rem 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   h3 {
     font-size: 1.5rem;
     color: #f1f1f1;
-    padding: 20px 10px 0px 10px;
+    padding: 1.25rem 0.625rem 0 0.625rem;
   }
+
   ul {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     display: inline-block;
   }
+
   li {
-    font-size: 16px;
+    font-size: 1rem;
     color: #f1f1f1;
-    padding: 20px 10px 0px 10px;
+    padding: 1.25rem 0.625rem 0px 0.625rem;
   }
 }
 
@@ -461,73 +469,315 @@ input.mail_bt::placeholder {
   text-decoration: none;
 }
 
-.copyright_text {
+.footer_section {
+  background-color: #252525;
+}
+
+.footer_logo img {
+  width: 6rem;
+  height: 6rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.footer_menu ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer_menu li {
+  font-size: 1rem;
+  color: #f1f1f1;
+  padding: 1.25rem 0.625rem 0px 0.625rem;
+}
+
+.footer_menu li a {
+  color: #f1f1f1;
+}
+
+.footer_menu li a:hover {
+  color: #f26522;
+}
+
+.footer_logo img:hover {
+  transform: scale(1.05);
+}
+
+input.mail_bt::placeholder {
+  color: #fff;
+}
+
+.footer_menu {
   width: 100%;
-  color: #ffffff;
+  margin: 0 auto;
   text-align: center;
-  font-size: 16px;
-  margin: 20px 0px;
+  padding: 1.25rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h3 {
+    font-size: 1.5rem;
+    color: #f1f1f1;
+    padding: 1.25rem 0.625rem 0px 0.625rem;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+  }
+
+  li {
+    font-size: 1rem;
+    color: #f1f1f1;
+    padding: 1.25rem 0.625rem 0px 0.625rem;
+  }
 }
 
-#agg {
-  color: $btnText;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  text-shadow:
-    0 0 5px #fff,
-    0 0 10px #fff,
-    0 0 15px #fff,
-    0 0 20px #ff0066,
-    0 0 30px #ff0066,
-    0 0 40px #ff0066,
-    0 0 55px #ff0066,
-    0 0 75px #ff0066;
+.footer_menu li a {
+  color: #f1f1f1;
 }
 
-#agg:hover {
+.footer_menu li a:hover {
   color: #f26522;
   text-decoration: none;
 }
 
+.footer_menu {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 1.25rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h3 {
+    font-size: 1.5rem;
+    color: #f1f1f1;
+    padding: 1.25rem 0.625rem 0 0.625rem;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+  }
+
+  li {
+    font-size: 1rem;
+    color: #f1f1f1;
+    padding: 1.25rem 0.625rem 0px 0.625rem;
+  }
+}
+
+.footer_menu li a {
+  color: #f1f1f1;
+}
+
+.footer_menu li a:hover {
+  color: #f26522;
+  text-decoration: none;
+}
+
+.footer_menu {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 1.25rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h3 {
+    font-size: 1.5rem;
+    color: #f1f1f1;
+    padding: 1.25rem 0.625rem 0 0.625rem;
+  }
+
+  ul {
+    margin: 0px;
+    padding: 0px;
+    display: inline-block;
+  }
+
+  li {
+    font-size: 16px;
+    color: #f1f1f1;
+    padding: 1.25rem 0.625rem 0px 0.625rem;
+  }
+}
+
+.footer_menu li a {
+  color: #f1f1f1;
+}
+
+.footer_menu li a:hover {
+  color: #f26522;
+  text-decoration: none;
+}
+
+
+
 .product-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  background: radial-gradient(circle at 50%, $background 0%, rgba(0, 0, 0, 0.148) 80%);
+  border-radius: 0.625rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
   cursor: pointer;
-}
-
-.product-card:hover {
-  transform: scale(1.05);
-}
-
-img.product-image {
-  width: 50%;
-  height: 50%;
-  border-radius: 10px 10px 0 0;
-}
-
-.product-info {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  justify-content: space-evenly;
+  padding: 0.625rem;
+  border: 1px solid $mainColor;
+  width: 33%;
+
+
+
+  &:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+    transform: translateY(-0.3125rem);
+    cursor: pointer;
+  }
+}
+
+.product-image {
+  width: 100%;
+  height: 12.5rem;
+  object-fit: cover;
+  border-radius: 0.625rem;
+  position: relative;
+
+  &:hover {
+    opacity: 1;
+  }
 }
 
 .product-name {
+  font-family: $title;
   font-size: 1.5rem;
-  color: $mainColor;
-  text-align: center;
+  color: $accentColor;
+  text-shadow: 0 0 0.125rem rgba(0, 0, 0, 0.3);
 }
 
-.product-description {
-  font-size: 1.125rem;
-  color: $mainColor;
-  text-align: center;
+.product-info-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+
+  .product-dates,
+  .product-genre,
+  .product-description {
+    font-family: $secondary;
+    font-size: 1rem;
+    color: $mainColor;
+    margin-bottom: .3125rem;
+    text-shadow: 0 0 .125rem rgba(0, 0, 0, 0.3);
+
+  }
+
+  .product-price-normal {
+    font-family: $secondary;
+    font-size: 2rem;
+    color: $accentColor;
+    text-shadow: 0 0 .125rem rgba(0, 0, 0, 0.3);
+
+  }
+
+  .product-price-sale {
+    font-family: $secondary;
+    font-size: 2rem;
+    color: $accentColor;
+    text-shadow: 0 0 .125rem rgba(0, 0, 0, 0.3);
+    text-decoration: line-through;
+  }
+
+  .product-price-discount {
+    font-family: $secondary;
+    font-size: 2rem;
+    color: $accentColor;
+    text-shadow: 0 0 .125rem rgba(0, 0, 0, 0.3);
+  }
+
+  .product-info {
+    font-family: "Raleway", sans-serif;
+    color: #0099ff;
+    font-size: 1rem;
+    margin-bottom: .3125rem;
+    text-shadow: 0 0 .125rem rgba(0, 0, 0, 0.3);
+    height: 40%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    text-align: center;
+
+  }
+
+  .product-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+
+  .more-info,
+  .wishlist-btn,
+  .cart-btn {
+    background-color: transparent;
+    color: $btnText;
+    font-family: $callToAction;
+    padding: .625rem 1.25rem;
+    border: 1px solid $btnColor;
+    margin-right: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: .625rem;
+    width: 3.125rem;
+
+    height: 3.125rem;
+
+    &:hover {
+      background-color: darken($btnColor, 10%);
+      transform: scale(1.5);
+    }
+  }
 }
+
+.product-card:hover {
+  animation: pulse 0.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+
+
 
 .list-btn {
   color: #ffffff;
@@ -537,7 +787,6 @@ img.product-image {
   transition: background-color 0.3s ease;
   cursor: pointer;
   font-family: $callToAction;
-  transition: all 0.3s ease;
   text-align: center;
   text-shadow:
     0 0 5px #fff,
@@ -548,234 +797,179 @@ img.product-image {
     0 0 40px #ff0066,
     0 0 55px #ff0066,
     0 0 75px #ff0066;
+
+  &:hover {
+    background-color: darken(#ffffff, 10%);
+    text-decoration: none;
+  }
 }
 
-.list-btn:hover {
-  background-color: darken(#ffffff, 10%);
-  text-decoration: none;
+
+section {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 40px 0;
+  text-align: center;
+
+  h1 {
+    font-family: $title;
+    color: $accentColor;
+    margin-bottom: 20px;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  }
+
+  hr {
+    border-color: $mainColor;
+    width: 80%;
+    margin: 10px auto;
+  }
 }
 
-section.genre-section {
-  width: 100%;
-  height: auto;
+.genre-navbar {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
+  justify-content: center;
+  margin-bottom: 40px;
+
 }
 
 .icon-container {
-  width: 100%;
-  height: 50px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  background-color: $background;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 0;
+  text-align: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.2s ease-in-out;
+
+  &:hover {
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px);
+  }
 }
 
 .icon {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-}
+  margin-bottom: 10px;
+  width: auto;
+  height: auto;
 
-@-webkit-keyframes flip {
-  from {
-    -webkit-transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0) rotate3d(0, 1, 0, -360deg);
-    transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0) rotate3d(0, 1, 0, -360deg);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
+
+  img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    filter: brightness(0.8);
+    transition: filter 0.2s ease-in-out;
   }
 
-  40% {
-    -webkit-transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg);
-    transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
+  &:hover img {
+    filter: brightness(1);
+  }
+}
+
+.icon-text {
+  font-family: $callToAction;
+  color: $accentColor;
+  font-size: 18px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+
+
+.icon-container:hover .icon img {
+  animation: pulse 0.5s ease-in-out infinite;
+  background-image: linear-gradient(to bottom,
+      rgba($accentColor, 0.2) 0%,
+      rgba($accentColor, 0) 100%);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
   }
 
   50% {
-    -webkit-transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg);
-    transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
+    transform: scale(1.05);
   }
 
-  80% {
-    -webkit-transform: perspective(400px) scale3d(0.95, 0.95, 0.95) translate3d(0, 0, 0) rotate3d(0, 1, 0, 0deg);
-    transform: perspective(400px) scale3d(0.95, 0.95, 0.95) translate3d(0, 0, 0) rotate3d(0, 1, 0, 0deg);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-
-  to {
-    -webkit-transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0) rotate3d(0, 1, 0, 0deg);
-    transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0) rotate3d(0, 1, 0, 0deg);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
+  100% {
+    transform: scale(1);
   }
 }
 
-@keyframes flip {
-  from {
-    -webkit-transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0) rotate3d(0, 1, 0, -360deg);
-    transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0) rotate3d(0, 1, 0, -360deg);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
+
+
+.free-games-container {
+  padding: 40px 0;
+  text-align: center;
+
+  h1 {
+    font-family: $title;
+    color: $accentColor;
+    margin-bottom: 20px;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   }
 
-  40% {
-    -webkit-transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg);
-    transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-  }
-
-  50% {
-    -webkit-transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg);
-    transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-
-  80% {
-    -webkit-transform: perspective(400px) scale3d(0.95, 0.95, 0.95) translate3d(0, 0, 0) rotate3d(0, 1, 0, 0deg);
-    transform: perspective(400px) scale3d(0.95, 0.95, 0.95) translate3d(0, 0, 0) rotate3d(0, 1, 0, 0deg);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-
-  to {
-    -webkit-transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0) rotate3d(0, 1, 0, 0deg);
-    transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0) rotate3d(0, 1, 0, 0deg);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
+  hr {
+    border-color: $mainColor;
+    width: 80%;
+    margin: 10px auto;
   }
 }
 
-.animate__animated.animate__flip {
-  -webkit-backface-visibility: visible;
-  backface-visibility: visible;
-  -webkit-animation-name: flip;
-  animation-name: flip;
-  animation-duration: 2s;
-  -webkit-animation-duration: 2s;
-  animation-iteration-count: infinite;
-  -webkit-animation-iteration-count: infinite;
-}
-
-.freeGamesCardsContainer {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  gap: 20px;
-  margin: 20px;
-  padding: 20px;
-}
 
 .free-game-card {
-  display: flex;
-  width: 100%;
-  height: auto;
-  justify-content: space-around;
-  align-items: center;
-  gap: 20px;
-  margin: 20px;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border: 1px solid $mainColor;
-}
-
-.free-game-card-image {
-  width: 50%;
-  height: auto;
-}
-
-.free-game-card-info {
-  width: 50%;
-  height: auto;
+  background: radial-gradient(circle at 50%, $background 0%, rgba(0, 0, 0, 0.148) 80%);
+  border-radius: 0.625rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
   align-items: center;
-  gap: 20px;
-  margin: 20px;
-  padding: 20px;
-}
-
-.free-game-card-info h2 {
-  font-size: 24px;
-  color: $mainColor;
+  justify-content: space-evenly;
+  padding: 0.625rem;
+  border: 1px solid $mainColor;
+  width: 33%;
+  margin: 0 auto;
   margin-bottom: 20px;
+
+  img {
+    width: 100%;
+    height: 12.5rem;
+    object-fit: cover;
+    border-radius: 0.625rem;
+    position: relative;
+  }
+
+  &:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+    transform: translateY(-0.3125rem);
+    cursor: pointer;
+  }
+
+  h2 {
+    font-family: $title;
+    font-size: 1.5rem;
+    color: $accentColor;
+    text-shadow: 0 0 0.125rem rgba(0, 0, 0, 0.3);
+  }
+
+  p {
+    font-family: $secondary;
+    font-size: 1rem;
+    color: $mainColor;
+    margin-bottom: .3125rem;
+    text-shadow: 0 0 .125rem rgba(0, 0, 0, 0.3);
+  }
+
+
+
 }
 
-.free-game-card-info p {
-  font-size: 18px;
-  color: $mainColor;
-  margin-bottom: 20px;
-}
 
-.free-game-card-info a {
-  font-size: 18px;
-  color: $mainColor;
-  margin-bottom: 20px;
-}
 
-.free-game-card-info a:hover {
-  color: darken($mainColor, 10%);
-}
 
-.free-game-card-info button {
-  background-color: $btnColor;
-  color: $btnText;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.free-game-card-info button:hover {
-  background-color: darken($btnColor, 10%);
-}
-
-.free-game-card-info button a {
-  color: $btnText;
-  text-decoration: none;
-}
-
-.free-game-card-info button a:hover {
-  color: darken($btnText, 10%);
-}
-
-.list-btn {
-  color: #ffffff;
-  font-size: 14px;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-  cursor: pointer;
-  font-family: $callToAction;
-  transition: all 0.3s ease;
-  text-align: center;
-  text-shadow:
-    0 0 5px #fff,
-    0 0 10px #fff,
-    0 0 15px #fff,
-    0 0 20px #ff0066,
-    0 0 30px #ff0066,
-    0 0 40px #ff0066,
-    0 0 55px #ff0066,
-    0 0 75px #ff0066;
-}
-
-.list-btn:hover {
-  background-color: darken(#ffffff, 10%);
-  text-decoration: none;
-}
 
 .second-carousel-section {
   border-radius: 10px;
@@ -791,6 +985,7 @@ section.genre-section {
   margin: 20px;
   padding: 20px;
 }
+
 .navbar {
   background-color: $mainColor;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
@@ -810,7 +1005,8 @@ section.genre-section {
 }
 
 .navbar-toggler-icon {
-  background-color: $accentColor; /* Use your accent color here */
+  background-color: $accentColor;
+  /* Use your accent color here */
 }
 
 .nav-item {
@@ -905,8 +1101,10 @@ section.genre-section {
 
 #login,
 #register {
-  background-color: $btnColor; /* Use your button color here */
-  color: $btnText; /* Use your button text color here */
+  background-color: $btnColor;
+  /* Use your button color here */
+  color: $btnText;
+  /* Use your button text color here */
   border: none;
   border-radius: 5px;
   padding: 10px 20px;

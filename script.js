@@ -33,13 +33,3 @@ document.getElementById("logOut").addEventListener("click", () => {
   localStorage.clear();
   window.location.href = "/index.html";
 });
-
-// Event listener for the "More Info" buttons with class "more-info"
-document.querySelectorAll(".more-info").forEach((button) => {
-  button.addEventListener("click", () => {
-    const product_id = button.getAttribute("data-product-id");
-
-    // Redirect to productDetail.html with the product ID in the URL
-    window.location.href = `productDetail.html?id=${product_id}`;
-  });
-});

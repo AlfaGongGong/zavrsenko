@@ -30,11 +30,24 @@ const freeRouter = require("./js/routes/freeGamesRoutes");
 const router = require("./js/routes/userRoutes");
 
 app.use("/games", gamesRouter);
+// use games route to get all games
+
+app.use("/games/:id", gamesRouter);
+// use id route to get a specific game by game id
+
+app.use("/games/genre", gamesRouter);
+// use genre route to get all games by genre
+
 app.use("/deals", dealsRouter);
+// use deals route to get all deals
 app.use("/gaming_gear", gamingGearRouter);
+// use gaming gear route to get all gaming gear
 app.use("/api", upcomingRouter);
+// use upcoming route to get all upcoming games
 app.use("/api", freeRouter);
+// use free games route to get all free games
 app.use("/user", router);
+// use user route to get all users
 
 // Connect to the database
 const connection = mysql.createConnection(dbConfig);

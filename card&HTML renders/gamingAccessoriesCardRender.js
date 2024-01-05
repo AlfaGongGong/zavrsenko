@@ -24,14 +24,22 @@ fetch("http://localhost:8080/gaming_gear")
       cardElement.innerHTML = `
         <img src="${gear.image}" alt="${alt}" class="product-image"/>
         <h2 class="product-name">${gear.name}</h2>
-        <div class="product-info">
-          <p class="product-description .product-description--two-rows">
+        <div class="product-info-container">
+           <p class="product-info">
           ${gear.description}
           </p>
-          <p class="product-price-info">$${gear.price}</p>
-          <a href="html/productDetails.html?id=${gear.id}" class="btn cta-btn more-info" data-product-id="${gear.id}">
-            More Info
-          </a>
+          <p <p class="product-price-normal">${gear.price} KM</p>
+         <div class="product-buttons">
+            <a href="html/productDetails.html?id=${gear.id}" class="btn more-info" data-product-id="${gear.id}" title="More Info" id="more-info">
+              <i class="fas fa-info-circle"></i> 
+            </a>
+ <a href="html/myAcc.html?id=${gear.id}" class="btn wishlist-btn" data-product-id="${gear.id}" title="Add to your wishlist" id="wishlist-btn">
+                <i class="fas fa-heart"></i> 
+            </a>
+<a href="html/shoppingCart.html?id=${gear.id}" class="btn cart-btn" data-product-id="${gear.id}" title="Add to shopping cart" id="cart-btn">
+                <i class="fas fa-shopping-cart"></i> 
+            </a>
+            </div>
           </div>
       `;
       gearCardsContainer.appendChild(cardElement);

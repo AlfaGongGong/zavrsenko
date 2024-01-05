@@ -29,7 +29,8 @@ fetch("http://localhost:8080/api/free_games")
       cardElement.innerHTML = `
         <img src="${free.image}" alt="${alt}" class="product-image"/>
         <h2 class="product-name">${free.title}</h2>
-        <p class='product-description'>${free.description}</p>
+                <div class="product-info-container">
+ <p class='product-description'>${free.description}</p>
         <a href="${free.url}" class="btn cta-btn">Play Game</a>
       `;
       cardList.appendChild(cardElement);

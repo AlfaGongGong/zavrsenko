@@ -109,83 +109,83 @@
         </div>
     </section>
 
-    <!-- nav section -->
-    <nav class="navbar navbar-expand-md">
-        <img class="navbar-brand" src="images/logo.png" alt="logo"></img>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">Home </a>
-                </li>
+        <!-- nav section -->
+        <nav class="navbar navbar-expand-md">
+            <img class="navbar-brand" src="images/logo.png" alt="logo"></img>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home </a>
+                    </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="./html/gamesList.html">Browse All Games
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <form class="form-inline" id="searchForm">
-                        <div class="input-group">
-                            <input class="form-control" type="search" />
-                            <div class="input-group-append">
-                                <button type="submit" class="btn cta-btn ml-2" id="searchButton">
-                                    <i class="fas fa-search"></i>
-                                </button>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./html/gamesList.html">Browse All Games
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <form class="form-inline" id="searchForm">
+                            <div class="input-group">
+                                <input class="form-control" type="search" />
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn cta-btn ml-2" id="searchButton">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
                             </div>
+                        </form>
+                    </li>
+                    <li class="nav-item dropdown" id="logInRegister">
+                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            Log In / Register
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="logInRegister">
+                            <!-- Login Form -->
+                            <form id="login-form" class="dropdown-item" method="POST">
+                                <h2>Log in</h2>
+                                <input type="text" placeholder="Username" id="login-username" name="username" required />
+                                <input type="password" placeholder="Password" id="login-password" name="password"
+                                    required />
+                                <button type="submit" class="btn cta-btn" id="login-btn">Login</button>
+                            </form>
+                            <!-- Register Form -->
+                            <form id="register-form" class="dropdown-item" method="POST">
+                                <h2>Register</h2>
+                                <input type="text" placeholder="Username" id="register-username" name="username" required />
+                                <input type="email" placeholder="Email" id="register-email" name="email" required />
+                                <input type="password" placeholder="Password" id="register-password" name="password"
+                                    required />
+                                <input type="password" placeholder="Confirm Password" id="register-confirm-password"
+                                    required />
+                                <button type="submit" class="btn cta-btn" id="register-btn">Register</button>
+                            </form>
                         </div>
-                    </form>
-                </li>
-                <li class="nav-item dropdown" id="logInRegister">
-                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        Log In / Register
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="logInRegister">
-                        <!-- Login Form -->
-                        <form id="login-form" class="dropdown-item" method="POST">
-                            <h2>Log in</h2>
-                            <input type="text" placeholder="Username" id="login-username" name="username" required />
-                            <input type="password" placeholder="Password" id="login-password" name="password"
-                                required />
-                            <button type="submit" class="btn cta-btn" id="login-btn">Login</button>
+                    </li>
+                    <li class="nav-item" id="myAccount" style="display: none">
+                         <script>
+                            var username = localStorage.getItem("username");
+    </script>
+                        <a href="./html/myAcc.html" class="nav-link">
+                            <script>
+                                document.write(username);
+    </script> <br> My Account
+    </a>
+                    </li>
+                    <li class="nav-item" id="logOut" style="display: none">
+                        <form id="logout-form" method="POST">
+                            <button type="submit" class="btn cta-btn" id="logOutButton">Log Out</button>
                         </form>
-                        <!-- Register Form -->
-                        <form id="register-form" class="dropdown-item" method="POST">
-                            <h2>Register</h2>
-                            <input type="text" placeholder="Username" id="register-username" name="username" required />
-                            <input type="email" placeholder="Email" id="register-email" name="email" required />
-                            <input type="password" placeholder="Password" id="register-password" name="password"
-                                required />
-                            <input type="password" placeholder="Confirm Password" id="register-confirm-password"
-                                required />
-                            <button type="submit" class="btn cta-btn" id="register-btn">Register</button>
-                        </form>
-                    </div>
-                </li>
-                <li class="nav-item" id="myAccount" style="display: none">
-                     <script>
-                        var username = localStorage.getItem("username");
-</script>
-                    <a href="./html/myAcc.html" class="nav-link">
-                        <script>
-                            document.write(username);
-</script> <br> My Account
-</a>
-                </li>
-                <li class="nav-item" id="logOut" style="display: none">
-                    <form id="logout-form" method="POST">
-                        <button type="submit" class="btn cta-btn" id="logOutButton">Log Out</button>
-                    </form>
-                </li>
+                    </li>
 
 
-            </ul>
-        </div>
-    </nav>
+                </ul>
+            </div>
+        </nav>
 
-    <!-- nav section end -->
+        <!-- nav section end -->
 
     <!-- most purchased section -->
     <section class="most-purchased-section" id="bestSellers">
@@ -196,17 +196,17 @@
                 <script src="card&HTML renders/mostPurchasedCardRender.js"></script>
             </div>
         </div>
-        <a href="./html/gamesList.html" class="list-btn" id="all-games-btn">List all games</a>
+        <a href="./html/gamesList.html" class="btn cta-btn" id="all-games-btn">List all games</a>
     </section>
     <!-- most purchased section end-->
 
     <!--Browse by genre section-->
     <section class="genres-section">
-        <div class="container genres-container">
-            <h1>BROWSE GAMES BY GENRE</h1>
+        <div class=" genres-container">
+            <h1 class="text-center">BROWSE GAMES BY GENRE</h1>
             <hr />
         </div>
-        <div class="box genre-navbar">
+        <div class=" genre-navbar">
             <a href="./html/products.html" class="icon-container">
                 <span class="icon"><img src="images/action.png" alt="action" /></span>
                 <span class="icon-text">ACTION</span>
@@ -254,20 +254,17 @@
     <!--Browse by genre section end-->
 
     <!-- first banner -->
-
     <section class="banner">
         <div class="banner-content">
-            <h1>Experience Epic Adventures</h1>
+            <h1 class="text-center">Experience Epic Adventures</h1>
         </div>
         <div class="banner-image">
             <img src="https://gagadget.com/media/cache/f3/b0/f3b0870837f379b02cf425e457c626aa.jpg"
-                alt="Featured Game" />
+                alt="Featured Game" class="img-fluid" />
         </div>
-        <p>Immerse yourself in a world of action.</p>
-
+        <p class="text-center">Immerse yourself in a world of action.</p>
     </section>
-    <!-- first  banner end -->
-
+    <!-- first banner end -->
     <!-- great deals section -->
 
     <section class="deals-section" id="deals">
@@ -278,7 +275,7 @@
                 <script src="card&HTML renders/dealsCardRender.js"></script>
             </div>
         </div>
-        <a href="./html/gamesList.html" class="list-btn" id="deals-btn">List all deals</a>
+        <a href="./html/gamesList.html" class="btn cta-btn" id="deals-btn">List all deals</a>
 
     </section>
     <!-- great deals section end -->
@@ -293,7 +290,7 @@
                 <script src="card&HTML renders/gamingAccessoriesCardRender.js"></script>
             </div>
         </div>
-        <a href="./html/gamesList.html" class="list-btn" id="gaming-accessories-btn">List all accessories</a>
+        <a href="./html/gamesList.html" class="btn cta-btn" id="gaming-accessories-btn">List all accessories</a>
 
     </section>
 
@@ -313,19 +310,19 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img src="https://c4.wallpaperflare.com/wallpaper/284/354/381/batman-joker-scarecrow-character-two-face-wallpaper-preview.jpg"
-                        alt="batman/joker/scarecrow/two-face" class="banner-image" />
+                        alt="batman/joker/scarecrow/two-face" class="banner-image img-fluid" />
                 </div>
                 <div class="carousel-item">
                     <img src="https://c4.wallpaperflare.com/wallpaper/777/366/331/video-games-ubisoft-collage-hd-wallpaper-preview.jpg"
-                        alt="ubisoft" class="banner-img" />
+                        alt="ubisoft" class="banner-img img-fluid" />
                 </div>
                 <div class="carousel-item">
                     <img src="https://c4.wallpaperflare.com/wallpaper/88/882/447/hitman-the-witcher-3-wild-hunt-mirror-s-edge-battlefield-wallpaper-preview.jpg"
-                        alt="hitman-the-witcher-3-wild-hunt-mirror-s-edge-battlefield" class="banner-img" />
+                        alt="hitman-the-witcher-3-wild-hunt-mirror-s-edge-battlefield" class="banner-img img-fluid" />
                 </div>
                 <div class="carousel-item">
                     <img src="https://c4.wallpaperflare.com/wallpaper/672/852/985/games-art-video-game-art-collage-video-games-wallpaper-preview.jpg"
-                        alt="collage-video-games" class="banner-img" />
+                        alt="collage-video-games" class="banner-img img-fluid" />
                 </div>
             </div>
 
@@ -348,13 +345,13 @@
 
     <section class="upcoming-section" id="upcoming">
         <div class="container-fluid upcoming-container">
-            <h1>UPCOMING GAMES FOR PREORDER</h1>
+            <h1>COMING SOON</h1>
             <hr />
             <div class="row upcomingCardsContainer" id="upcomingCardsContainer">
                 <script src="card&HTML renders/upcomingCardsRender.js"></script>
             </div>
         </div>
-        <a href="./html/gamesList.html" class="list-btn" id="all-upcoming-btn">List all upcoming games</a>
+        <a href="./html/gamesList.html" class="btn cta-btn" id="all-upcoming-btn">List all upcoming games</a>
 
     </section>
 
@@ -370,7 +367,7 @@
                 <script src="card&HTML renders/freeCardsRender.js"></script>
             </div>
         </div>
-        <a href="./html/gamesList.html" class="list-btn" id="all-free-btn">List all free games</a>
+        <a href="./html/gamesList.html" class="btn cta-btn" id="all-free-btn">List all free games</a>
 
     </section>
     <!-- free games section end -->
@@ -411,8 +408,6 @@
     </section>
     <!-- footer section end -->
 
-
-
     <!-- Javascript files-->
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -421,6 +416,8 @@
         crossorigin="anonymous"></script>
     <script src="script.js"></script>
     <script  src="js/user.js"></script>
+              <script src="./js/loremIpsum.js"></script>;
+
 </body>
 
 </html>

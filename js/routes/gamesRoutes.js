@@ -31,27 +31,46 @@ gamesRouter.get("/", (req, res) => {
   });
 });
 
-// get a specific game by ID
-gamesRouter.get("/:id", async (req, res) => {
+// get a specific game by game id
+
+gamesRouter.get("/:id", (req, res) => {
   const gameId = req.params.id;
 
-  try {
-    const response = await axios.get(
-      `http://localhost:${PORT}/games/${gameId}`
-    );
-    const game = response.data;
-
-    if (!game) {
+  // Use the pool to query the database
+  pool.query("SELECT * FROM games WHERE id = ?", [gameId], (error, results) => {
+    if (error) {
+      console.error("Error fetching game from the database:", error);
+      res.status(500).json({ error: "Error fetching game from the database" });
+    } else if (results.length === 0) {
       res.status(404).json({ error: "Game not found" });
     } else {
-      res.json(game);
+      res.json(results[0]);
     }
-  } catch (error) {
-    console.error("Error fetching game details from the database:", error);
-    res
-      .status(500)
-      .json({ error: "Error fetching game details from the database" });
-  }
+  });
+});
+
+// get all games by genre
+
+gamesRouter.get("/genre/:genre", (req, res) => {
+  const genre = req.params.genre;
+
+  // Use the pool to query the database
+  pool.query(
+    "SELECT * FROM games WHERE genre = ?",
+    [genre],
+    (error, results) => {
+      if (error) {
+        console.error("Error fetching games from the database:", error);
+        res
+          .status(500)
+          .json({ error: "Error fetching games from the database" });
+      } else if (results.length === 0) {
+        res.status(404).json({ error: "Games not found" });
+      } else {
+        res.json(results);
+      }
+    }
+  );
 });
 
 // Admin routes
