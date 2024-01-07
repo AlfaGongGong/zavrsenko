@@ -410,4 +410,24 @@
   "liveServer.settings.Watch": [
     "**/*.{html,htm,css,js}"
   ],
+  "chatgpt.gpt3.apiKey": "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",
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
+  "setting sync": true,
+  "settingSync.ignoredExtensions": [
+    "ms-vscode-remote.remote-wsl",
+    "ms-vscode-remote.remote-ssh",
+    "ms-vscode-remote.remote-ssh-edit",
+    "settingSync.quietSync",
+    "settingSync.syncExtensions",
+    "settingSync.syncGist",
+    "settingSync.syncIgnoredFiles",
+    "settingSync.syncLanguage",
+    "settingSync.syncSettings",
+    "settingSync.syncKeybindings",
+    "settingSync.syncExtensions",
+    "settingSync.syncVisualStudioCode",
+    "settingSync.syncKeybindingsPerPlatform",
+    "settingSync.syncExtensions"
+  ],
 }
