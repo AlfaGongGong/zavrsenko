@@ -5,7 +5,7 @@ const cors = require("cors");
 const app = express();
 
 require("dotenv").config({
-  path: "C:\\Users\\AlfaGongGong\\Hakaton\\github repos\\zavrsenko\\.env",
+  path: "./.env",
 });
 const port = process.env.PORT;
 // Middleware
