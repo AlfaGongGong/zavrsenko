@@ -12,11 +12,9 @@ html {
   scroll-behavior: smooth;
   margin: 0;
   padding: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   font-family: "Open Sans", sans-serif;
   color: #0099ff;
-  -webkit-transition: all 0.2s;
   transition: all 0.2s;
 }
 
@@ -28,7 +26,6 @@ body {
   background-blend-mode: soft-light;
   -webkit-backdrop-filter: opacity(0.7);
           backdrop-filter: opacity(0.7);
-  -webkit-transition: all 0.2s;
   transition: all 0.2s;
   padding: 0;
   margin: 0;
@@ -64,15 +61,9 @@ body {
   overflow: hidden;
   height: 100%;
   width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   z-index: 1;
   background: url("../images/hero-background.svg");
@@ -84,7 +75,6 @@ body {
   background-attachment: fixed;
   scroll-snap-align: start;
   transition: all 0.2s;
-  -webkit-transition: all 0.2s;
   transition: all 0.2s;
   font-size: 1.25rem;
   transition: all 0.2s;
@@ -132,8 +122,7 @@ body {
   margin: 0;
   border: 0;
   border-radius: 0;
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
 
 .carousel-item h2 {
@@ -167,15 +156,9 @@ body {
 }
 
 .carousel-control-btn-wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -195,15 +178,9 @@ body {
 }
 
 .carousel-control {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   width: 3.125rem;
   height: 3.125rem;
   border-radius: 50%;
@@ -225,7 +202,6 @@ body {
   border-radius: 50%;
   background-color: #ff0066;
   color: #ffff00;
-  -webkit-transition: background-color 0.3s ease;
   transition: background-color 0.3s ease;
 }
 
@@ -235,7 +211,6 @@ body {
   border-radius: 50%;
   background-color: #ff0066;
   color: #ffff00;
-  -webkit-transition: background-color 0.3s ease;
   transition: background-color 0.3s ease;
 }
 
@@ -281,11 +256,9 @@ body {
   font-size: 0.875rem;
   text-decoration: none;
   border-radius: 0.3125rem;
-  -webkit-transition: background-color 0.3s ease;
   transition: background-color 0.3s ease;
   cursor: pointer;
   font-family: "Press Start 2P", cursive;
-  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   text-align: center;
 }
@@ -293,7 +266,6 @@ body {
 .cta-btn:hover {
   background-color: #cc0052;
   color: #fff;
-  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   text-shadow: 0 0 0.3125rem #fff, 0 0 0.625rem #fff, 0 0 0.9375rem #fff, 0 0 1.25rem #ff0066, 0 0 1.875rem #ff0066, 0 0 2.5rem #ff0066, 0 0 3.4375rem #ff0066, 0 0 4.6875rem #ff0066;
   cursor: pointer;
@@ -312,7 +284,6 @@ body {
   padding: 0.625rem 1.25rem;
   border-radius: 0.3125rem;
   color: #fff;
-  -webkit-transition: background-color 0.3s ease;
   transition: background-color 0.3s ease;
 }
 
@@ -323,19 +294,10 @@ body {
 .banner {
   width: 100%;
   height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   z-index: 1;
 }
@@ -343,15 +305,9 @@ body {
 .banner-content {
   width: 100%;
   height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  align-items: center;
+  justify-content: space-evenly;
   text-align: center;
   z-index: 1;
 }
@@ -381,28 +337,17 @@ body {
   width: 3rem;
   height: 3rem;
   margin: 0 auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
 }
 
 .footer_menu ul {
   margin: 0;
   padding: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .footer_menu li {
@@ -420,23 +365,10 @@ body {
 }
 
 .footer_logo img:hover {
-  -webkit-transform: scale(1.05);
-          transform: scale(1.05);
-}
-
-input.mail_bt::-webkit-input-placeholder {
-  color: #fff;
+  transform: scale(1.05);
 }
 
 input.mail_bt::-moz-placeholder {
-  color: #fff;
-}
-
-input.mail_bt:-ms-input-placeholder {
-  color: #fff;
-}
-
-input.mail_bt::-ms-input-placeholder {
   color: #fff;
 }
 
@@ -449,19 +381,10 @@ input.mail_bt::placeholder {
   margin: 0 auto;
   text-align: center;
   padding: 1.25rem 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .footer_menu h3 {
   font-size: 1.5rem;
@@ -496,28 +419,17 @@ input.mail_bt::placeholder {
   width: 6rem;
   height: 6rem;
   margin: 0 auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
 }
 
 .footer_menu ul {
   margin: 0;
   padding: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .footer_menu li {
@@ -535,23 +447,10 @@ input.mail_bt::placeholder {
 }
 
 .footer_logo img:hover {
-  -webkit-transform: scale(1.05);
-          transform: scale(1.05);
-}
-
-input.mail_bt::-webkit-input-placeholder {
-  color: #fff;
+  transform: scale(1.05);
 }
 
 input.mail_bt::-moz-placeholder {
-  color: #fff;
-}
-
-input.mail_bt:-ms-input-placeholder {
-  color: #fff;
-}
-
-input.mail_bt::-ms-input-placeholder {
   color: #fff;
 }
 
@@ -564,19 +463,10 @@ input.mail_bt::placeholder {
   margin: 0 auto;
   text-align: center;
   padding: 1.25rem 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .footer_menu h3 {
   font-size: 1.5rem;
@@ -608,19 +498,10 @@ input.mail_bt::placeholder {
   margin: 0 auto;
   text-align: center;
   padding: 1.25rem 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .footer_menu h3 {
   font-size: 1.5rem;
@@ -652,19 +533,10 @@ input.mail_bt::placeholder {
   margin: 0 auto;
   text-align: center;
   padding: 1.25rem 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .footer_menu h3 {
   font-size: 1.5rem;
@@ -694,31 +566,19 @@ input.mail_bt::placeholder {
 .product-card {
   background: radial-gradient(circle at 50%, #000000 0%, rgba(0, 0, 0, 0.148) 80%);
   border-radius: 0.625rem;
-  -webkit-box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
-          box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
-  -webkit-transition: all 0.3s ease-in-out;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease-in-out;
   cursor: pointer;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
   padding: 0.625rem;
   border: 1px solid #0099ff;
   width: 33%;
 }
 .product-card:hover {
-  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
-          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
   cursor: pointer;
 }
 
@@ -744,19 +604,10 @@ input.mail_bt::placeholder {
 .product-info-container {
   width: 100%;
   height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }
 .product-info-container .product-dates,
 .product-info-container .product-genre,
@@ -799,15 +650,9 @@ input.mail_bt::placeholder {
 }
 
 #productButtons {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  align-items: center;
+  justify-content: space-evenly;
   width: 100%;
   height: 100%;
   margin-top: 1.25rem;
@@ -830,15 +675,9 @@ input.mail_bt::placeholder {
   margin-right: 10px;
   border-radius: 50%;
   cursor: pointer;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   margin-top: 0.625rem;
   width: 3.125rem;
   height: 3.125rem;
@@ -847,8 +686,7 @@ input.mail_bt::placeholder {
 .wishlist-btn:hover,
 .cart-btn:hover {
   background-color: #cc0052;
-  -webkit-transform: scale(1.5);
-          transform: scale(1.5);
+  transform: scale(1.5);
 }
 
 .btn-secondary {
@@ -860,60 +698,30 @@ input.mail_bt::placeholder {
   margin-right: 10px;
   border-radius: 50%;
   cursor: disabled;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   margin-top: 0.625rem;
   width: 3.125rem;
   height: 3.125rem;
 }
 .btn-secondary:hover {
   background-color: #ff0000;
-  -webkit-animation: shakeX 1s ease-in-out infinite;
-          animation: shakeX 1s ease-in-out infinite;
-}
-
-@-webkit-keyframes shakeX {
-  10%, 90% {
-    -webkit-transform: translate3d(-1px, 0, 0);
-            transform: translate3d(-1px, 0, 0);
-  }
-  20%, 80% {
-    -webkit-transform: translate3d(2px, 0, 0);
-            transform: translate3d(2px, 0, 0);
-  }
-  30%, 50%, 70% {
-    -webkit-transform: translate3d(-4px, 0, 0);
-            transform: translate3d(-4px, 0, 0);
-  }
-  40%, 60% {
-    -webkit-transform: translate3d(4px, 0, 0);
-            transform: translate3d(4px, 0, 0);
-  }
+  animation: shakeX 1s ease-in-out infinite;
 }
 
 @keyframes shakeX {
   10%, 90% {
-    -webkit-transform: translate3d(-1px, 0, 0);
-            transform: translate3d(-1px, 0, 0);
+    transform: translate3d(-1px, 0, 0);
   }
   20%, 80% {
-    -webkit-transform: translate3d(2px, 0, 0);
-            transform: translate3d(2px, 0, 0);
+    transform: translate3d(2px, 0, 0);
   }
   30%, 50%, 70% {
-    -webkit-transform: translate3d(-4px, 0, 0);
-            transform: translate3d(-4px, 0, 0);
+    transform: translate3d(-4px, 0, 0);
   }
   40%, 60% {
-    -webkit-transform: translate3d(4px, 0, 0);
-            transform: translate3d(4px, 0, 0);
+    transform: translate3d(4px, 0, 0);
   }
 }
 .list-btn {
@@ -921,7 +729,6 @@ input.mail_bt::placeholder {
   font-size: 14px;
   text-decoration: none;
   border-radius: 5px;
-  -webkit-transition: background-color 0.3s ease;
   transition: background-color 0.3s ease;
   cursor: pointer;
   font-family: "Press Start 2P", cursive;
@@ -949,14 +756,9 @@ input.mail_bt::placeholder {
   margin: 10px auto;
 }
 .list-btn .genre-navbar {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  flex-wrap: wrap;
+  justify-content: center;
   margin-bottom: 40px;
 }
 .list-btn .icon-container {
@@ -965,18 +767,12 @@ input.mail_bt::placeholder {
   padding: 20px;
   margin: 0;
   text-align: center;
-  -webkit-box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-          box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  -webkit-transition: -webkit-box-shadow 0.2s ease-in-out;
-  transition: -webkit-box-shadow 0.2s ease-in-out;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   transition: box-shadow 0.2s ease-in-out;
-  transition: box-shadow 0.2s ease-in-out, -webkit-box-shadow 0.2s ease-in-out;
 }
 .list-btn .icon-container:hover {
-  -webkit-box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
-          box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
-  -webkit-transform: translateY(-5px);
-          transform: translateY(-5px);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
 }
 .list-btn .icon {
   margin-bottom: 10px;
@@ -987,16 +783,11 @@ input.mail_bt::placeholder {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  -webkit-filter: brightness(0.8);
-          filter: brightness(0.8);
-  -webkit-transition: -webkit-filter 0.2s ease-in-out;
-  transition: -webkit-filter 0.2s ease-in-out;
+  filter: brightness(0.8);
   transition: filter 0.2s ease-in-out;
-  transition: filter 0.2s ease-in-out, -webkit-filter 0.2s ease-in-out;
 }
 .list-btn .icon:hover img {
-  -webkit-filter: brightness(1);
-          filter: brightness(1);
+  filter: brightness(1);
 }
 .list-btn .icon-text {
   font-family: "Press Start 2P", cursive;
@@ -1006,37 +797,18 @@ input.mail_bt::placeholder {
   text-transform: uppercase;
 }
 .list-btn .icon-container:hover .icon img {
-  -webkit-animation: pulse 0.5s ease-in-out infinite;
-          animation: pulse 0.5s ease-in-out infinite;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 0, 0.2)), to(rgba(255, 255, 0, 0)));
+  animation: pulse 0.5s ease-in-out infinite;
   background-image: linear-gradient(to bottom, rgba(255, 255, 0, 0.2) 0%, rgba(255, 255, 0, 0) 100%);
-}
-@-webkit-keyframes pulse {
-  0% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-  }
-  50% {
-    -webkit-transform: scale(1.05);
-            transform: scale(1.05);
-  }
-  100% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-  }
 }
 @keyframes pulse {
   0% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
   }
   50% {
-    -webkit-transform: scale(1.05);
-            transform: scale(1.05);
+    transform: scale(1.05);
   }
   100% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
   }
 }
 .list-btn .free-games-container {
@@ -1057,24 +829,13 @@ input.mail_bt::placeholder {
 .list-btn .free-game-card {
   background: radial-gradient(circle at 50%, #000000 0%, rgba(0, 0, 0, 0.148) 80%);
   border-radius: 0.625rem;
-  -webkit-box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
-          box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
-  -webkit-transition: all 0.3s ease-in-out;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease-in-out;
   cursor: pointer;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
   padding: 0.625rem;
   border: 1px solid #0099ff;
   width: 33%;
@@ -1090,10 +851,8 @@ input.mail_bt::placeholder {
   position: relative;
 }
 .list-btn .free-game-card:hover {
-  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
-          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
-  -webkit-transform: translateY(-0.3125rem);
-          transform: translateY(-0.3125rem);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+  transform: translateY(-0.3125rem);
   cursor: pointer;
 }
 .list-btn .free-game-card h2 {
@@ -1112,24 +871,14 @@ input.mail_bt::placeholder {
 
 .second-carousel-section {
   border-radius: 10px;
-  -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
   width: 100%;
   height: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 20px;
   margin: 20px;
   padding: 20px;
@@ -1137,8 +886,7 @@ input.mail_bt::placeholder {
 
 .navbar {
   background-color: #0099ff;
-  -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-          box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
 
 .navbar-brand {
@@ -1146,7 +894,6 @@ input.mail_bt::placeholder {
   height: 50px;
   padding: 10px;
   border-radius: 50%;
-  -webkit-transition: background-color 0.3s ease;
   transition: background-color 0.3s ease;
   cursor: pointer;
 }
@@ -1166,7 +913,6 @@ input.mail_bt::placeholder {
 
 .nav-link {
   color: #ffffff;
-  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   cursor: pointer;
   text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff0066, 0 0 30px #ff0066, 0 0 40px #ff0066, 0 0 55px #ff0066, 0 0 75px #ff0066;
@@ -1177,12 +923,8 @@ input.mail_bt::placeholder {
 }
 
 #searchForm {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
 
 .form-control {
@@ -1193,25 +935,15 @@ input.mail_bt::placeholder {
 }
 
 .login-register-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 20px;
   background-color: #000000;
   border: 1px solid #0099ff;
   border-radius: 5px;
-  -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   position: relative;
   z-index: 1;
   left: 0;
@@ -1219,30 +951,21 @@ input.mail_bt::placeholder {
   width: 100%;
   margin: 20px auto;
   left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  transform: translateX(-50%);
   padding: 10px;
 }
 
 #login-form,
 #register-form {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  align-items: center;
   gap: 10px;
   padding: 20px;
   background-color: #000000;
   border: 1px solid #0099ff;
   border-radius: 5px;
-  -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 #login-form h2,
@@ -1276,7 +999,6 @@ input.mail_bt::placeholder {
   border-radius: 5px;
   padding: 10px 20px;
   cursor: pointer;
-  -webkit-transition: background-color 0.3s ease;
   transition: background-color 0.3s ease;
 }
 
@@ -1286,308 +1008,145 @@ input.mail_bt::placeholder {
 }
 
 #sessionContainer {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   color: #ffffff;
-  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   cursor: pointer;
   text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff0066, 0 0 30px #ff0066, 0 0 40px #ff0066, 0 0 55px #ff0066, 0 0 75px #ff0066;
 }
 
-.genres-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin-bottom: 40px;
-}
-.genres-container .genre-navbar {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin-bottom: 40px;
-}
-.genres-container .icon-container {
-  background-color: #000000;
-  border-radius: 10px;
-  padding: 20px;
-  margin: 0;
-  text-align: center;
-  -webkit-box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-          box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  -webkit-transition: -webkit-box-shadow 0.2s ease-in-out;
-  transition: -webkit-box-shadow 0.2s ease-in-out;
-  transition: box-shadow 0.2s ease-in-out;
-  transition: box-shadow 0.2s ease-in-out, -webkit-box-shadow 0.2s ease-in-out;
-}
-.genres-container .icon-container:hover {
-  -webkit-box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
-          box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
-  -webkit-transform: translateY(-5px);
-          transform: translateY(-5px);
-}
-.genres-container .icon {
-  margin-bottom: 10px;
-  width: auto;
+.genre-navbar {
+  width: 100%;
   height: auto;
-}
-.genres-container .icon img {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  -webkit-filter: brightness(0.8);
-          filter: brightness(0.8);
-  -webkit-transition: -webkit-filter 0.2s ease-in-out;
-  transition: -webkit-filter 0.2s ease-in-out;
-  transition: filter 0.2s ease-in-out;
-  transition: filter 0.2s ease-in-out, -webkit-filter 0.2s ease-in-out;
-}
-.genres-container .icon:hover img {
-  -webkit-filter: brightness(1);
-          filter: brightness(1);
-}
-.genres-container .icon-text {
-  font-family: "Press Start 2P", cursive;
-  color: #ffff00;
-  font-size: 18px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-.genres-container .icon-container:hover .icon img {
-  -webkit-animation: pulse 0.5s ease-in-out infinite;
-          animation: pulse 0.5s ease-in-out infinite;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 0, 0.2)), to(rgba(255, 255, 0, 0)));
-  background-image: linear-gradient(to bottom, rgba(255, 255, 0, 0.2) 0%, rgba(255, 255, 0, 0) 100%);
-}
-@keyframes pulse {
-  0% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-  }
-  50% {
-    -webkit-transform: scale(1.05);
-            transform: scale(1.05);
-  }
-  100% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-  }
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 20px;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .product-details-section {
   width: 100%;
   height: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  align-items: center;
   gap: 20px;
   margin: 20px;
   padding: 20px;
   border-radius: 10px;
-  -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .product-details-section .product-details-container {
   width: 100%;
   height: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  align-items: center;
   gap: 20px;
   margin: 20px;
   padding: 20px;
   border-radius: 10px;
-  -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .product-details-section .product-details-container .product-details-image {
   width: 100%;
   height: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  align-items: center;
   gap: 20px;
   margin: 20px;
   padding: 20px;
   border-radius: 10px;
-  -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .product-details-section .product-details-container .product-details-image img {
   width: 100%;
   height: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  align-items: center;
   gap: 20px;
   margin: 20px;
   padding: 20px;
   border-radius: 10px;
-  -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .product-details-section .product-details-info {
   width: 100%;
   height: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  align-items: center;
   gap: 20px;
   margin: 20px;
   padding: 20px;
   border-radius: 10px;
-  -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .product-details-section .product-details-info .product-details-name {
   width: 100%;
   height: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  align-items: center;
   gap: 20px;
   margin: 20px;
   padding: 20px;
   border-radius: 10px;
-  -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .product-details-section .product-details-info .product-details-price {
   width: 100%;
   height: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  align-items: center;
   gap: 20px;
   margin: 20px;
   padding: 20px;
   border-radius: 10px;
-  -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .product-details-section .product-details-info .product-details-description {
   width: 100%;
   height: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  align-items: center;
   gap: 20px;
   margin: 20px;
   padding: 20px;
   border-radius: 10px;
-  -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .product-details-section .product-details-info .product-details-genre {
   width: 100%;
   height: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  align-items: center;
   gap: 20px;
   margin: 20px;
   padding: 20px;
   border-radius: 10px;
-  -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .product-details-section .product-details-info .product-details-platform {
   width: 100%;
   height: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  align-items: center;
   gap: 20px;
   margin: 20px;
   padding: 20px;
   border-radius: 10px;
-  -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}/*# sourceMappingURL=style.css.map */
