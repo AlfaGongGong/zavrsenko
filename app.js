@@ -38,6 +38,9 @@ app.use("/games/:id", gamesRouter);
 app.use("/games/genre", gamesRouter);
 // use genre route to get all games by genre
 
+app.use("/search", gamesRouter);
+// use search route to get all games by search
+
 app.use("/deals", dealsRouter);
 // use deals route to get all deals
 app.use("/gaming_gear", gamingGearRouter);

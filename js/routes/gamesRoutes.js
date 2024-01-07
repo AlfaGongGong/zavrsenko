@@ -3,7 +3,7 @@ const gamesRouter = express.Router();
 const mysql = require("mysql2");
 const authenticate = require("../authentication/authToken");
 const isAdmin = require("../authentication/isAdmin");
-require("dotenv").config({ path: "zavrsenko/.env" });
+require("dotenv").config({ path: "./.env" });
 const PORT = process.env.PORT;
 
 // Database connection configuration
@@ -12,19 +12,19 @@ const dbConfig = {
   user: process.env.MYSQL_USER,
   password: process.env.MYSQL_PASS,
   database: process.env.MYSQL_DATABASE,
-  port: process.env.MYSQL_PORT,
+  port: process.env.MYSQL_PORT
 };
 
 // Create a MySQL connection pool
 const pool = mysql.createPool(dbConfig);
 
 // get all games
-gamesRouter.get("/", (req, res) => {
+gamesRouter.get("/", authenticate, (req, res) => {
   // Use the pool to query the database
   pool.query("SELECT * FROM games", (error, results) => {
     if (error) {
       console.error("Error fetching games from the database:", error);
-      res.status(500).json({ error: "Error fetching games from the database" });
+      res.status(500).json({ error: "Internal Server Error" });
     } else {
       res.json(results);
     }
@@ -32,15 +32,18 @@ gamesRouter.get("/", (req, res) => {
 });
 
 // get a specific game by game id
+gamesRouter.get("/:id", authenticate, (req, res) => {
+  const gameId = Number(req.params.id);
 
-gamesRouter.get("/:id", (req, res) => {
-  const gameId = req.params.id;
+  if (!Number.isInteger(gameId)) {
+    return res.status(400).json({ error: "Invalid game ID" });
+  }
 
   // Use the pool to query the database
   pool.query("SELECT * FROM games WHERE id = ?", [gameId], (error, results) => {
     if (error) {
       console.error("Error fetching game from the database:", error);
-      res.status(500).json({ error: "Error fetching game from the database" });
+      res.status(500).json({ error: "Internal Server Error" });
     } else if (results.length === 0) {
       res.status(404).json({ error: "Game not found" });
     } else {
@@ -50,9 +53,12 @@ gamesRouter.get("/:id", (req, res) => {
 });
 
 // get all games by genre
-
-gamesRouter.get("/genre/:genre", (req, res) => {
+gamesRouter.get("/genre/:genre", authenticate, (req, res) => {
   const genre = req.params.genre;
+
+  if (typeof genre !== "string") {
+    return res.status(400).json({ error: "Invalid genre" });
+  }
 
   // Use the pool to query the database
   pool.query(
@@ -61,11 +67,34 @@ gamesRouter.get("/genre/:genre", (req, res) => {
     (error, results) => {
       if (error) {
         console.error("Error fetching games from the database:", error);
-        res
-          .status(500)
-          .json({ error: "Error fetching games from the database" });
+        res.status(500).json({ error: "Internal Server Error" });
       } else if (results.length === 0) {
         res.status(404).json({ error: "Games not found" });
+      } else {
+        res.json(results);
+      }
+    }
+  );
+});
+
+// Search for games
+gamesRouter.post("/search", authenticate, (req, res) => {
+  const searchTerm = req.body.searchTerm;
+
+  if (typeof searchTerm !== "string" || searchTerm.trim().length === 0) {
+    return res.status(400).json({ error: "Invalid search term" });
+  }
+
+  // Use the pool to query the database
+  pool.query(
+    "SELECT * FROM games WHERE name LIKE ?",
+    [`%${searchTerm}%`],
+    (error, results) => {
+      if (error) {
+        console.error("Error fetching games from the database:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+      } else if (results.length === 0) {
+        res.status(404).json({ error: "No games found" });
       } else {
         res.json(results);
       }
@@ -88,7 +117,7 @@ gamesRouter.post("/", authenticate, isAdmin, async (req, res) => {
     const response = await axios.post("http://localhost:${PORT}/games", {
       title,
       description,
-      platform,
+      platform
     });
 
     res.status(201).json({ message: "Game created successfully" });
@@ -114,7 +143,7 @@ gamesRouter.put("/:id", authenticate, isAdmin, async (req, res) => {
       {
         title,
         description,
-        platform,
+        platform
       }
     );
 
