@@ -430,4 +430,5 @@
     "settingSync.syncKeybindingsPerPlatform",
     "settingSync.syncExtensions"
   ],
+  "liveServer.settings.port": 5501,
 }
