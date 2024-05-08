@@ -1,0 +1,402 @@
+[
+  {
+    "title": "Heavy Burden",
+    "salePrice": 5.0,
+    "normalPrice": 70.0,
+    "releaseDate": "2022-01-01",
+    "score": 70.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/2070000/capsule_sm_120.jpg?t=1695297377"
+  },
+  {
+    "title": "The Talos Principle",
+    "salePrice": 3.0,
+    "normalPrice": 30.0,
+    "releaseDate": "2014-12-11",
+    "score": 85.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/257510/capsule_sm_120.jpg?t=1684960733"
+  },
+  {
+    "title": "The Witcher: Enhanced Edition Director's Cut",
+    "salePrice": 1.0,
+    "normalPrice": 10.0,
+    "releaseDate": "2011-09-15",
+    "score": 86.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/20900/capsule_sm_120.jpg?t=1693600271"
+  },
+  {
+    "title": "Torn",
+    "salePrice": 3.0,
+    "normalPrice": 30.0,
+    "releaseDate": "2018-08-16",
+    "score": 74.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/557520/capsule_sm_120.jpg?t=1680629664"
+  },
+  {
+    "title": "Borderlands 2",
+    "salePrice": 5.0,
+    "normalPrice": 20.0,
+    "releaseDate": "2012-09-18",
+    "score": 89.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/49520/capsule_sm_120.jpg?t=1693524237"
+  },
+  {
+    "title": "Wolfenstein II: The New Colossus",
+    "salePrice": 6.0,
+    "normalPrice": 40.0,
+    "releaseDate": "2017-10-27",
+    "score": 86.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/612880/capsule_sm_120.jpg?t=1691683256"
+  },
+  {
+    "title": "BlazBlue: Chronophantasma Extend",
+    "salePrice": 4.0,
+    "normalPrice": 30.0,
+    "releaseDate": "2015-06-30",
+    "score": 85.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/388750/capsule_sm_120.jpg?t=1667790323"
+  },
+  {
+    "title": "The Witcher 2: Assassins of Kings Enhanced Ed",
+    "salePrice": 4.0,
+    "normalPrice": 20.0,
+    "releaseDate": "2012-04-17",
+    "score": 88.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/20920/capsule_sm_120.jpg?t=1693600171"
+  },
+  {
+    "title": "InnerSpace",
+    "salePrice": 2.0,
+    "normalPrice": 20.0,
+    "releaseDate": "2018-01-16",
+    "score": 65.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/347000/capsule_sm_120.jpg?t=1680629656"
+  },
+  {
+    "title": "Star Wars: Knights of the Old Republic",
+    "salePrice": 3.0,
+    "normalPrice": 10.0,
+    "releaseDate": "2003-07-15",
+    "score": 93.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/32370/capsule_sm_120.jpg?t=1681144833"
+  },
+  {
+    "title": "MotoGP20",
+    "salePrice": 4.0,
+    "normalPrice": 25.0,
+    "releaseDate": "2020-04-23",
+    "score": 81.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/1161490/capsule_sm_120.jpg?t=1683646682"
+  },
+  {
+    "title": "Huntdown",
+    "salePrice": 4.0,
+    "normalPrice": 20.0,
+    "releaseDate": "2020-05-12",
+    "score": 85.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/598550/capsule_sm_120.jpg?t=1694199558"
+  },
+  {
+    "title": "Oozi Earth Adventure",
+    "salePrice": 1.0,
+    "normalPrice": 10.0,
+    "releaseDate": "2013-08-29",
+    "score": 66.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/257990/capsule_sm_120.jpg?t=1683194902"
+  },
+  {
+    "title": "Atomik: RunGunJumpGun",
+    "salePrice": 2.0,
+    "normalPrice": 8.0,
+    "releaseDate": "2016-08-30",
+    "score": 82.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/440550/capsule_sm_120.jpg?t=1579700600"
+  },
+  {
+    "title": "To the Moon",
+    "salePrice": 2.0,
+    "normalPrice": 10.0,
+    "releaseDate": "2011-11-01",
+    "score": 81.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/206440/capsule_sm_120.jpg?t=1691637076"
+  },
+  {
+    "title": "Finding Paradise",
+    "salePrice": 2.0,
+    "normalPrice": 10.0,
+    "releaseDate": "2017-12-14",
+    "score": 81.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/337340/capsule_sm_120.jpg?t=1691637084"
+  },
+  {
+    "title": "Machinarium",
+    "salePrice": 3.0,
+    "normalPrice": 20.0,
+    "releaseDate": "2009-10-16",
+    "score": 85.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/40700/capsule_sm_120.jpg?t=1683630220"
+  },
+  {
+    "title": "Steel Rats",
+    "salePrice": 1.0,
+    "normalPrice": 10.0,
+    "releaseDate": "2018-11-07",
+    "score": 68.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/619700/capsule_sm_120.jpg?t=1674053137"
+  },
+  {
+    "title": "Sid Meier's Civilization: Beyond Earth",
+    "salePrice": 12.0,
+    "normalPrice": 60.0,
+    "releaseDate": "2014-10-24",
+    "score": 81.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/65980/capsule_sm_120.jpg?t=1568764824"
+  },
+  {
+    "title": "HOT WHEELS UNLEASHED",
+    "salePrice": 7.0,
+    "normalPrice": 50.0,
+    "releaseDate": "2021-09-30",
+    "score": 78.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/1271700/capsule_sm_120.jpg?t=1685547345"
+  },
+  {
+    "title": "LUFTRAUSERS",
+    "salePrice": 2.0,
+    "normalPrice": 10.0,
+    "releaseDate": "2014-02-25",
+    "score": 80.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/233150/capsule_sm_120.jpg?t=1659054136"
+  },
+  {
+    "title": "Razor2: Hidden Skies",
+    "salePrice": 1.0,
+    "normalPrice": 10.0,
+    "releaseDate": "2012-03-29",
+    "score": 61.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/34920/capsule_sm_120.jpg?t=1573746590"
+  },
+  {
+    "title": "The Witcher 3: Wild Hunt",
+    "salePrice": 12.0,
+    "normalPrice": 40.0,
+    "releaseDate": "2015-05-19",
+    "score": 93.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/capsule_sm_120.jpg?t=1693590732"
+  },
+  {
+    "title": "Ni no Kuni II: Revenant Kingdom",
+    "salePrice": 9.0,
+    "normalPrice": 60.0,
+    "releaseDate": "2018-03-23",
+    "score": 84.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/589360/capsule_sm_120.jpg?t=1693600190"
+  },
+  {
+    "title": "The Witcher 3: Wild Hunt - Game of the Year Edition",
+    "salePrice": 15.0,
+    "normalPrice": 50.0,
+    "releaseDate": "2016-08-30",
+    "score": 93.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/capsule_sm_120.jpg?t=1693590732"
+  },
+  {
+    "title": "The Witcher 3: Wild Hunt - Expansion Pass",
+    "salePrice": 10.0,
+    "normalPrice": 25.0,
+    "releaseDate": "2015-05-19",
+    "score": 93.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/355880/capsule_sm_120.jpg?t=1693590732"
+  },
+  {
+    "title": "The Witcher 3: Wild Hunt - Blood and Wine",
+    "salePrice": 8.0,
+    "normalPrice": 20.0,
+    "releaseDate": "2016-05-30",
+    "score": 93.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/378648/capsule_sm_120.jpg?t=1693590732"
+  },
+  {
+    "title": "The Witcher 3: Wild Hunt - Hearts of Stone",
+    "salePrice": 4.0,
+    "normalPrice": 10.0,
+    "releaseDate": "2015-10-12",
+    "score": 93.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/378649/capsule_sm_120.jpg?t=1693590732"
+  },
+  {
+    "title": "The Witcher 3: Wild Hunt - New Finisher Animations",
+    "salePrice": 1.0,
+    "normalPrice": 2.0,
+    "releaseDate": "2015-10-13",
+    "score": 93.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/378650/capsule_sm_120.jpg?t=1693590732"
+  },
+  {
+    "title": "The Witcher",
+    "salePrice": 1.0,
+    "normalPrice": 10.0,
+    "releaseDate": "2008-10-30",
+    "score": 86.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/20900/capsule_sm_120.jpg?t=1693600271"
+  },
+  {
+    "title": "The Witcher 2: Assassins of Kings Enhanced Edition",
+    "salePrice": 2.0,
+    "normalPrice": 20.0,
+    "releaseDate": "2012-04-17",
+    "score": 88.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/20920/capsule_sm_120.jpg?t=1693600171"
+  },
+  {
+    "title": "The Witcher 3: Wild Hunt - Expansion Pass",
+    "salePrice": 10.0,
+    "normalPrice": 25.0,
+    "releaseDate": "2015-05-19",
+    "score": 93.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/355880/capsule_sm_120.jpg?t=1693590732"
+  },
+  {
+    "title": "The Witcher 3: Wild Hunt - Blood and Wine",
+    "salePrice": 8.0,
+    "normalPrice": 20.0,
+    "releaseDate": "2016-05-30",
+    "score": 93.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/378648/capsule_sm_120.jpg?t=1693590732"
+  },
+  {
+    "title": "The Witcher 3: Wild Hunt - Hearts of Stone",
+    "salePrice": 4.0,
+    "normalPrice": 10.0,
+    "releaseDate": "2015-10-12",
+    "score": 93.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/378649/capsule_sm_120.jpg?t=1693590732"
+  },
+  {
+    "title": "The Witcher 3: Wild Hunt - New Finisher Animations",
+    "salePrice": 1.0,
+    "normalPrice": 2.0,
+    "releaseDate": "2015-10-13",
+    "score": 93.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/378650/capsule_sm_120.jpg?t=1693590732"
+  },
+  {
+    "title": "The Witcher 3: Wild Hunt - Game of the Year Edition",
+    "salePrice": 15.0,
+    "normalPrice": 50.0,
+    "releaseDate": "2016-08-30",
+    "score": 93.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/capsule_sm_120.jpg?t=1693590732"
+  },
+  {
+    "title": "The Witcher 3: Wild Hunt - Expansion Pass",
+    "salePrice": 10.0,
+    "normalPrice": 25.0,
+    "releaseDate": "2015-05-19",
+    "score": 93.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/355880/capsule_sm_120.jpg?t=1693590732"
+  },
+  {
+    "title": "The Witcher 3: Wild Hunt - Blood and Wine",
+    "salePrice": 8.0,
+    "normalPrice": 20.0,
+    "releaseDate": "2016-05-30",
+    "score": 93.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/378648/capsule_sm_120.jpg?t=1693590732"
+  },
+  {
+    "title": "The Witcher 3: Wild Hunt - Hearts of Stone",
+    "salePrice": 4.0,
+    "normalPrice": 10.0,
+    "releaseDate": "2015-10-12",
+    "score": 93.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/378649/capsule_sm_120.jpg?t=1693590732"
+  },
+  {
+    "title": "The Witcher 3: Wild Hunt - New Finisher Animations",
+    "salePrice": 1.0,
+    "normalPrice": 2.0,
+    "releaseDate": "2015-10-13",
+    "score": 93.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/378650/capsule_sm_120.jpg?t=1693590732"
+  },
+  {
+    "title": "The Witcher 3: Wild Hunt - Game of the Year Edition",
+    "salePrice": 15.0,
+    "normalPrice": 50.0,
+    "releaseDate": "2016-08-30",
+    "score": 93.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/capsule_sm_120.jpg?t=1693590732"
+  },
+  {
+    "title": "The Witcher 3: Wild Hunt - Expansion Pass",
+    "salePrice": 10.0,
+    "normalPrice": 25.0,
+    "releaseDate": "2015-05-19",
+    "score": 93.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/355880/capsule_sm_120.jpg?t=1693590732"
+  },
+  {
+    "title": "The Witcher 3: Wild Hunt - Blood and Wine",
+    "salePrice": 8.0,
+    "normalPrice": 20.0,
+    "releaseDate": "2016-05-30",
+    "score": 93.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/378648/capsule_sm_120.jpg?t=1693590732"
+  },
+  {
+    "title": "The Witcher 3: Wild Hunt - Hearts of Stone",
+    "salePrice": 4.0,
+    "normalPrice": 10.0,
+    "releaseDate": "2015-10-12",
+    "score": 93.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/378649/capsule_sm_120.jpg?t=1693590732"
+  },
+  {
+    "title": "The Witcher 3: Wild Hunt - New Finisher Animations",
+    "salePrice": 1.0,
+    "normalPrice": 2.0,
+    "releaseDate": "2015-10-13",
+    "score": 93.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/378650/capsule_sm_120.jpg?t=1693590732"
+  },
+  {
+    "title": "The Witcher 3: Wild Hunt - Game of the Year Edition",
+    "salePrice": 15.0,
+    "normalPrice": 50.0,
+    "releaseDate": "2016-08-30",
+    "score": 93.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/capsule_sm_120.jpg?t=1693590732"
+  },
+  {
+    "title": "The Witcher 3: Wild Hunt - Expansion Pass",
+    "salePrice": 10.0,
+    "normalPrice": 25.0,
+    "releaseDate": "2015-05-19",
+    "score": 93.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/355880/capsule_sm_120.jpg?t=1693590732"
+  },
+  {
+    "title": "The Witcher 3: Wild Hunt - Blood and Wine",
+    "salePrice": 8.0,
+    "normalPrice": 20.0,
+    "releaseDate": "2016-05-30",
+    "score": 93.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/378648/capsule_sm_120.jpg?t=1693590732"
+  },
+  {
+    "title": "The Witcher 3: Wild Hunt - Hearts of Stone",
+    "salePrice": 4.0,
+    "normalPrice": 10.0,
+    "releaseDate": "2015-10-12",
+    "score": 93.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/378649/capsule_sm_120.jpg?t=1693590732"
+  },
+  {
+    "title": "The Witcher 3: Wild Hunt - New Finisher Animations",
+    "salePrice": 1.0,
+    "normalPrice": 2.0,
+    "releaseDate": "2015-10-13",
+    "score": 93.0,
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/378650/capsule_sm_120.jpg?t=1693590732"
+  }
+]

@@ -16,8 +16,11 @@ html {
           box-sizing: border-box;
   font-family: "Open Sans", sans-serif;
   color: #0099ff;
-  -webkit-transition: all 0.2s;
   transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  -ms-transition: all 0.2s;
 }
 
 body {
@@ -25,17 +28,23 @@ body {
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
-  background-blend-mode: soft-light;
+  background-blend-mode: overlay;
   -webkit-backdrop-filter: opacity(0.7);
           backdrop-filter: opacity(0.7);
-  -webkit-transition: all 0.2s;
   transition: all 0.2s;
   padding: 0;
   margin: 0;
   font-family: "Open Sans", sans-serif;
   color: #0099ff;
+  transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  -ms-transition: all 0.2s;
   width: 100%;
   height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 ::-webkit-scrollbar {
@@ -59,10 +68,8 @@ body {
 
 /* Hero Section */
 .hero {
-  position: relative;
-  background-color: transparent;
-  height: 100%;
   width: 100%;
+  height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -92,6 +99,10 @@ body {
 
 .carousel-container {
   padding: 1.25rem;
+  z-index: 1;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  margin-bottom: 2rem;
 }
 @media (max-width: 48rem) {
   .carousel-container {
@@ -101,6 +112,10 @@ body {
 
 .carousel-item {
   text-align: center;
+  z-index: 1;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  margin-bottom: 2rem;
 }
 @media (max-width: 48rem) {
   .carousel-item {
@@ -110,7 +125,10 @@ body {
 
 .hero-content {
   text-align: center;
-  margin-top: 1.25rem;
+  z-index: 1;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  margin-bottom: 2rem;
 }
 @media (max-width: 48rem) {
   .hero-content {
@@ -126,14 +144,24 @@ body {
 }
 .carousel-container {
   position: relative;
-  max-height: 31.25rem;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  z-index: 1;
+  background-color: transparent;
   overflow: hidden;
-  padding: 0;
-  margin: 0;
-  border: 0;
-  border-radius: 0;
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  scroll-snap-align: start;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
 }
 
 .carousel-item h2 {
@@ -145,7 +173,7 @@ body {
   color: #0099ff;
   font-family: "Orbitron", sans-serif;
   transition: all 0.3s ease;
-  text-shadow: 0 0 0.3125rem #fff, 0 0 0.625rem #fff, 0 0 0.9375rem #fff, 0 0 1.25rem #00ff00, 0 0 1.875rem #00ff00, 0 0 2.5rem #00ff00, 0 0 3.4375rem #00ff00, 0 0 4.6875rem #00ff00;
+  text-shadow: 0 0 0.3125rem #fff, 0 0 0.625rem #fff, 0 0 0.9375rem #fff, 0 0 1.25rem #00ff00, 0 0 1.875rem #00ff00, 0 0 2.5rem #00ff00, 0 0 3.4375rem #00ff00, 0 0 4.6875rem #00ff00, 0 0 5.9375rem #00ff00;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
@@ -157,7 +185,7 @@ body {
   color: #0099ff;
   font-family: "Orbitron", sans-serif;
   transition: all 0.3s ease;
-  text-shadow: 0 0 0.3125rem #fff, 0 0 0.625rem #fff, 0 0 0.9375rem #fff, 0 0 1.25rem #00ff00, 0 0 1.875rem #00ff00, 0 0 2.5rem #00ff00, 0 0 3.4375rem #00ff00, 0 0 4.6875rem #00ff00;
+  text-shadow: 0 0 0.3125rem #fff, 0 0 0.625rem #fff, 0 0 0.9375rem #fff, 0 0 1.25rem #00ff00, 0 0 1.875rem #00ff00, 0 0 2.5rem #00ff00, 0 0 3.4375rem #00ff00, 0 0 4.6875rem #00ff00, 0 0 5.9375rem #00ff00;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
