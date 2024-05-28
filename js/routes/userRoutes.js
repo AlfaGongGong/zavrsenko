@@ -40,7 +40,7 @@ router.post("/register", (req, res) => {
         }
 
         res.status(200).json({ message: "Registration successful" });
-      }
+      },
     );
   });
 });
@@ -83,12 +83,12 @@ router.post("/login", (req, res) => {
             email: results[0].email,
           },
           "your-secret-key",
-          { expiresIn: "1h" }
+          { expiresIn: "1h" },
         );
 
         res.status(200).json({ token });
       });
-    }
+    },
   );
 });
 
@@ -127,7 +127,7 @@ router.post("/changePassword", (req, res) => {
         }
 
         res.status(200).json({ message: "Password changed successfully" });
-      }
+      },
     );
   });
 });
@@ -148,7 +148,7 @@ router.post("/changeEmail", (req, res) => {
       }
 
       res.status(200).json({ message: "Email changed successfully" });
-    }
+    },
   );
 });
 
@@ -168,7 +168,7 @@ router.post("/changeAddress", (req, res) => {
       }
 
       res.status(200).json({ message: "Address changed successfully" });
-    }
+    },
   );
 });
 
@@ -188,7 +188,7 @@ router.post("/changeFirstName", (req, res) => {
       }
 
       res.status(200).json({ message: "First name changed successfully" });
-    }
+    },
   );
 });
 
@@ -208,7 +208,7 @@ router.post("/changeLastName", (req, res) => {
       }
 
       res.status(200).json({ message: "Last name changed successfully" });
-    }
+    },
   );
 });
 

@@ -5,9 +5,9 @@
 - [Introduction](#introduction)
   - [Description](#description)
   - [Key Features](#KeyFeatures)
-  - [Technologies Used](#technologies-used) 
+  - [Technologies Used](#technologies-used)
   - [License](#License)
-  - [Authors](#Authors) 
+  - [Authors](#Authors)
 - [Prerequisites](#prerequisites)
 - [Getting Started](#getting-started)
 - [Frontend Documentation](#frontend-documentation)
@@ -38,14 +38,15 @@
   - [Sitemap](#sitemap)
 - [Conclusion](#conclusion)
 
-## Introduction   
+## Introduction
 
 #### Description:
+
 GG Gamestore Web App is a comprehensive online platform that offers PC games and gaming accessories to users. It features client-side fetching, user-friendly interfaces, secure login, and a wide range of gaming products. Whether you're a gamer looking for the latest releases or an admin managing content, GameShop provides a seamless experience.
 
 #### Key Features:
 
-- Extensive game catalog with detailed product information.    - Deals, free games, and upcoming releases sections.
+- Extensive game catalog with detailed product information. - Deals, free games, and upcoming releases sections.
 - User-friendly shopping cart and secure checkout process.
 - Admin dashboard for content management and user monitoring.
 - Robust error handling and security measures.
@@ -53,13 +54,16 @@ GG Gamestore Web App is a comprehensive online platform that offers PC games and
 This documentation provides an overview of the GameShop web app, including server details, database architecture with diagram, user paths with diagram, and sitemap diagram.
 
 #### Technologies Used:
+
 JavaScript, HTML, SCSS, CSS, AnimateCSS, Bootstrap, Google Fonts, Font Awsome, JQuery, Node.JS, Express.JS, MySQL Server and Database on localhost, APIs from RAWG, FreeShark, RapidApi and Amazon Scraper, bcrypt, body-parser, express-session and cors.
 
 #### License:
+
 [Open Source]
 
 #### Authors:
-[AlfaGongGong](https://alfagonggong.github.io/Portfolio/) 
+
+[AlfaGongGong](https://alfagonggong.github.io/Portfolio/)
 
 ## Prerequisites
 
@@ -72,13 +76,14 @@ JavaScript, HTML, SCSS, CSS, AnimateCSS, Bootstrap, Google Fonts, Font Awsome, J
 Follow these steps to get started with the GameShop web app:
 
 1. Clone this repository to your local machine.
-2. Install the required npm packages using 
+2. Install the required npm packages using
 
 ```bash
 npm install
 ```
+
 3. Configure your MySQL database settings in the code.
-4. Start the server using 
+4. Start the server using
 
 ```bash
 npm start
@@ -90,58 +95,63 @@ npm start
 
 The GG PC Games and Gaming Accessories web app uses JavaScript for client-side fetching and dynamic content generation. Below are JavaScript code snippets demonstrating various functionalities:
 
-
 #### Deals Section
 
- ```javascript
- document.addEventListener('DOMContentLoaded', () => {
-      fetch('http://localhost:3000/deals')
-            .then(response => response.json())
-            .then(dealsCards => {
-                  const dealsCardsContainer = document.querySelector('.dealsCardsContainer');
+```javascript
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("http://localhost:3000/deals")
+    .then((response) => response.json())
+    .then((dealsCards) => {
+      const dealsCardsContainer = document.querySelector(
+        ".dealsCardsContainer",
+      );
 
-                  // Loop through the product cards and append them to the container
-                  dealsCards.forEach(card => {
-                        // Create a product card element
-                        const cardElement = document.createElement('div');
-                        cardElement.classList.add('product-card', 'col-md-4');
-                        cardElement.innerHTML = `
-                <img src="${card.image}" alt="${replaceImg}" class="product-image"/> 
-                <h2 class="product-name">${card.title}</h2>
-       <div class="card-info">
-        <p class='product-date-info'>Release Date: ${card.releaseDate}</p>
-        <p class='product-description'>
-        lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-        <p class='product-rating-info'>Score: ${card.score}</p>
-          <p class="product-price-normal">Regular price: ${card.normalPrice}</p>
-          <p class="product-price-sale">Now: ${card.salePrice}</p>
-        <a href="../html/productInfo.html" class="btn cta-btn">More Info</a>
-        </div>
-      `;
+      // Loop through the product cards and append them to the container
+      dealsCards
+        .forEach((card) => {
+          // Create a product card element
+          const cardElement = document.createElement("div");
+          cardElement.classList.add("product-card", "col-md-4");
+          cardElement.innerHTML = `
+               <img src="${card.image}" alt="${replaceImg}" class="product-image"/> 
+               <h2 class="product-name">${card.title}</h2>
+      <div class="card-info">
+       <p class='product-date-info'>Release Date: ${card.releaseDate}</p>
+       <p class='product-description'>
+       lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+       <p class='product-rating-info'>Score: ${card.score}</p>
+         <p class="product-price-normal">Regular price: ${card.normalPrice}</p>
+         <p class="product-price-sale">Now: ${card.salePrice}</p>
+       <a href="../html/productInfo.html" class="btn cta-btn">More Info</a>
+       </div>
+     `;
 
-                        dealsCardsContainer.appendChild(cardElement);
-                  })
+          dealsCardsContainer.appendChild(cardElement);
+        })
 
-                        .catch(error => {
-                              console.error('Error fetching deals cards:', error);
-                        });
-            });
+        .catch((error) => {
+          console.error("Error fetching deals cards:", error);
+        });
+    });
 });
 ```
+
 #### Free Games Section
 
 ```javascript
-
-document.addEventListener('DOMContentLoaded', () => {
-      fetch('http://localhost:3000/free_games')
-            .then(response => response.json())
-            .then(freeGamesCards => {
-                  const freeGamesCardsContainer = document.querySelector('.freeGamesCardsContainer');
-                  freeGamesCards.forEach(card => {
-                        // Create a product card element
-                        const cardElement = document.createElement('div');
-                        cardElement.classList.add('product-card', 'col-md-4');
-                        cardElement.innerHTML = `
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("http://localhost:3000/free_games")
+    .then((response) => response.json())
+    .then((freeGamesCards) => {
+      const freeGamesCardsContainer = document.querySelector(
+        ".freeGamesCardsContainer",
+      );
+      freeGamesCards
+        .forEach((card) => {
+          // Create a product card element
+          const cardElement = document.createElement("div");
+          cardElement.classList.add("product-card", "col-md-4");
+          cardElement.innerHTML = `
         <img src="${card.image}" alt="${card.title}" class="product-image"/>
         <h2 class="product-name">${card.title}</h2>
         <div class="card-info">
@@ -154,30 +164,31 @@ document.addEventListener('DOMContentLoaded', () => {
         <a href="${card.free_to_play}" target="_blank" class="btn cta-btn">Play Now for Free</a>
       `;
 
-                        freeGamesCardsContainer.appendChild(cardElement);
-                  })
+          freeGamesCardsContainer.appendChild(cardElement);
+        })
 
-                        .catch(error => {
-                              console.error('Error fetching free games cards:', error);
-                        });
-            });
+        .catch((error) => {
+          console.error("Error fetching free games cards:", error);
+        });
+    });
 });
 ```
 
 #### Most Purchased Games Section
 
 ```javascript
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("http://localhost:3000/games")
+    .then((response) => response.json())
+    .then((gamesCards) => {
+      const gamesCardsContainer = document.querySelector(
+        ".mostPurchasedCardsContainer",
+      );
+      gamesCards.forEach((card) => {
+        const cardElement = document.createElement("div");
+        cardElement.classList.add("product-card", "col-md-4");
 
-document.addEventListener('DOMContentLoaded', () => {
-fetch('http://localhost:3000/games')
-      .then(response => response.json())
-      .then(gamesCards => {
-            const gamesCardsContainer = document.querySelector('.mostPurchasedCardsContainer');
-            gamesCards.forEach(card => {
-                  const cardElement = document.createElement('div');
-                  cardElement.classList.add('product-card', 'col-md-4');
-
-                  cardElement.innerHTML = `
+        cardElement.innerHTML = `
         <img src="${card.background_image}" alt="${card.game_name}" class="product-image"/>
         <h2 class="product-name">${card.name}</h2>
         <div class="card-info">
@@ -191,32 +202,29 @@ fetch('http://localhost:3000/games')
       </div>
       `;
 
-                  gamesCardsContainer.appendChild(cardElement);
-            });
-
-      })
-      .catch(error => {
-            console.error('Error fetching games cards:', error);
-
+        gamesCardsContainer.appendChild(cardElement);
       });
+    })
+    .catch((error) => {
+      console.error("Error fetching games cards:", error);
+    });
 });
 ```
-
 
 #### Gaming Gear Section
 
 ```javascript
-
-
-document.addEventListener('DOMContentLoaded', () => {
-   fetch('http://localhost:3000/gaming_gear')
-            .then(response => response.json())
-            .then(gamingAccessoriesCards => {
-                  const accessoriesCardsContainer = document.querySelector('.accessoriesCardsContainer');
-                  gamingAccessoriesCards.forEach(card => {
-                        const cardElement = document.createElement('div');
-                        cardElement.classList.add('product-card', 'col-md-4');
-                        cardElement.innerHTML = `
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("http://localhost:3000/gaming_gear")
+    .then((response) => response.json())
+    .then((gamingAccessoriesCards) => {
+      const accessoriesCardsContainer = document.querySelector(
+        ".accessoriesCardsContainer",
+      );
+      gamingAccessoriesCards.forEach((card) => {
+        const cardElement = document.createElement("div");
+        cardElement.classList.add("product-card", "col-md-4");
+        cardElement.innerHTML = `
           <img src="${card.image}" alt="${card.name}" class="product-image"/>
           <h2 class="product-name">${card.name}</h2>
           <div class="card-info">
@@ -227,30 +235,29 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
 
         `;
-accessoriesCardsContainer.appendChild(cardElement);
-                  });
-            })
-            .catch(error => {
-                  console.error('Error fetching gaming accessories cards:', error);
-            });
+        accessoriesCardsContainer.appendChild(cardElement);
+      });
+    })
+    .catch((error) => {
+      console.error("Error fetching gaming accessories cards:", error);
+    });
 });
-
-
 ```
 
 #### Upcoming Games Section
 
 ```javascript
-
-document.addEventListener('DOMContentLoaded', () => {
-     fetch('http://localhost:3000/upcoming')
-            .then(response => response.json())
-            .then(upcomingCards => {
-                  const upcomingCardsContainer = document.querySelector('.upcomingCardsContainer');
-                  upcomingCards.forEach(card => {
-                        const cardElement = document.createElement('div');
-                        cardElement.classList.add('product-card', 'col-md-4');
-                        cardElement.innerHTML = `
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("http://localhost:3000/upcoming")
+    .then((response) => response.json())
+    .then((upcomingCards) => {
+      const upcomingCardsContainer = document.querySelector(
+        ".upcomingCardsContainer",
+      );
+      upcomingCards.forEach((card) => {
+        const cardElement = document.createElement("div");
+        cardElement.classList.add("product-card", "col-md-4");
+        cardElement.innerHTML = `
         <img src="${card.image}" alt="${card.title}" class="product-image"/>
         <h2 class="product-name">${card.title}</h2>
         <div class="card-info">
@@ -263,23 +270,23 @@ document.addEventListener('DOMContentLoaded', () => {
         <a href="cart.html" class="btn cta-btn">Preorder Now</a>
         </div>
       `;
-                        upcomingCardsContainer.appendChild(cardElement);
-
-                  });
-            })
-            .catch(error => {
-                  console.error('Error fetching upcoming games cards:', error);
-            })
+        upcomingCardsContainer.appendChild(cardElement);
+      });
+    })
+    .catch((error) => {
+      console.error("Error fetching upcoming games cards:", error);
+    });
 });
-``` 
+```
 
 These code snippets demonstrate how to fetch data from the server and dynamically generate product cards in the respective HTML sections.
 
-
 ### User Interface Components
+
 The user interface includes the following components:
 
 #### Admin Login Form
+
 The login form allows users to login to the admin dashboard. It includes:
 
 - Username
@@ -294,18 +301,17 @@ The admin dashboard is a secure section for administrators to manage content, us
 - Manage user accounts and permissions.
 - Monitor user activity and data.
 
-
 #### Shopping Cart
 
 The shopping cart allows users to add products (games or gaming gear) to their cart, review cart contents, update quantities, and proceed to checkout.
 
 #### Checkout
+
 The checkout process enables users to complete their purchases securely. It includes:
 
 - Entering shipping and billing information.
 - Selecting payment methods.
 - Confirming and placing orders.
-
 
 #### Product Info Pages
 
@@ -320,12 +326,14 @@ An HTML page displaying all available games. Users can browse and filter games b
 An HTML page showcasing all available gaming accessories. Users can explore and select gaming gear based on their preferences.
 
 ### Error Handling
+
 The server includes error handling middleware to catch and log errors, responding with a 500 Internal Server Error message when errors occur.
 
 ### Middleware
+
 - Express.js:
 
- Express.js is a Node.js web application framework that provides a robust set of features for building web applications.
+Express.js is a Node.js web application framework that provides a robust set of features for building web applications.
 
 - MySQL:
 
@@ -363,7 +371,6 @@ The server includes the following routes:
 - POST /logout
 - GET /details/:id
 
-
 ### IT Diagram
 
 An IT (Information Technology) diagram provides an overview of the web app's technical infrastructure and how different components interact. In the GG PC Games and Gaming Accessories web app, the IT diagram would depict:
@@ -374,8 +381,7 @@ An IT (Information Technology) diagram provides an overview of the web app's tec
 - API endpoints for data retrieval and user authentication.
 - Data flows between the server and the database, as well as between the server and the client.
 
-
-[IT Diagram](https://gitmind.com/app/docs/mcuxciuo?lang=bs) 
+[IT Diagram](https://gitmind.com/app/docs/mcuxciuo?lang=bs)
 
 ### Sitemap
 
@@ -403,6 +409,7 @@ The GG PC Games and Gaming Accessories web app uses Express.js for the server an
 - Port: 3306
 
 ### Permissions Policy
+
 The Permissions Policy header sets the permissions policy for the web app. It allows the web app to request access to the user's location.
 
 ## Database Architecture
@@ -436,15 +443,14 @@ A user path diagram illustrates the typical journey a user takes when interactin
 
 ![image](https://gitmind.com/app/docs/malzlc2u?lang=bs)
 
-
 ## Conclusion
 
 This comprehensive documentation provides all the necessary information for understanding and working with the GameShop web app. Follow the instructions in the ["Getting Started"](#getting-started) section to set up the app and explore the [frontend](#frontend-documentation) and [backend](#backend-documentation) details to gain a deeper understanding of its architecture and functionality.
 
-
 ---
 
 ---
-**[GG PC Games and Gaming Accessories](index.html)**  
+
+**[GG PC Games and Gaming Accessories](index.html)**
 
 &copy; 2023 by AlfaGongGong

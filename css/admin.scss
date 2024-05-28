@@ -4,147 +4,147 @@ $primBackground: #ac27da;
 $primtextcolor: #ffc745;
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 body {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: flex-start;
-    min-height: 100vh;
-    background: #9b59b6;
-    overflow: hidden;
-    padding: 50px;
-    position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  background: #9b59b6;
+  overflow: hidden;
+  padding: 50px;
+  position: relative;
 }
 .wrapper {
-    width: 450px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  width: 450px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
 }
 .wrapper header {
-    display: flex;
-    align-items: center;
-    padding: 25px 30px 10px;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  padding: 25px 30px 10px;
+  justify-content: space-between;
 }
 header .icons {
-    display: flex;
+  display: flex;
 }
 header .icons span {
-    height: 38px;
-    width: 38px;
-    margin: 0 1px;
-    cursor: pointer;
-    color: #878787;
-    text-align: center;
-    line-height: 38px;
-    font-size: 1.9rem;
-    user-select: none;
-    border-radius: 50%;
+  height: 38px;
+  width: 38px;
+  margin: 0 1px;
+  cursor: pointer;
+  color: #878787;
+  text-align: center;
+  line-height: 38px;
+  font-size: 1.9rem;
+  user-select: none;
+  border-radius: 50%;
 }
 .icons span:last-child {
-    margin-right: -10px;
+  margin-right: -10px;
 }
 header .icons span:hover {
-    background: #f2f2f2;
+  background: #f2f2f2;
 }
 header .current-date {
-    font-size: 1.45rem;
-    font-weight: 500;
+  font-size: 1.45rem;
+  font-weight: 500;
 }
 .calendar {
-    padding: 20px;
+  padding: 20px;
 }
 .calendar ul {
-    display: flex;
-    flex-wrap: wrap;
-    list-style: none;
-    text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  text-align: center;
 }
 .calendar .days {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 .calendar li {
-    color: #333;
-    width: calc(100% / 7);
-    font-size: 1.07rem;
+  color: #333;
+  width: calc(100% / 7);
+  font-size: 1.07rem;
 }
 .calendar .weeks li {
-    font-weight: 500;
-    cursor: default;
+  font-weight: 500;
+  cursor: default;
 }
 .calendar .days li {
-    z-index: 1;
-    cursor: pointer;
-    position: relative;
-    margin-top: 30px;
+  z-index: 1;
+  cursor: pointer;
+  position: relative;
+  margin-top: 30px;
 }
 .days li.inactive {
-    color: #aaa;
+  color: #aaa;
 }
 .days li.active {
-    color: #fff;
+  color: #fff;
 }
 .days li::before {
-    position: absolute;
-    content: "";
-    left: 50%;
-    top: 50%;
-    height: 40px;
-    width: 40px;
-    z-index: -1;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
+  position: absolute;
+  content: "";
+  left: 50%;
+  top: 50%;
+  height: 40px;
+  width: 40px;
+  z-index: -1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
 }
 .days li.active::before {
-    background: #9b59b6;
+  background: #9b59b6;
 }
 .days li:not(.active):hover::before {
-    background: #f2f2f2;
+  background: #f2f2f2;
 }
 table {
-    width: 100%;
-    text-align: center;
-    border-collapse: collapse;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-    border: 1px solid #eee;
-    margin-bottom: 20px;
-    background: #fff;
-    color: #333;
-    font-size: 1.07rem;
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  border: 1px solid #eee;
+  margin-bottom: 20px;
+  background: #fff;
+  color: #333;
+  font-size: 1.07rem;
 }
 table thead tr {
-    background: #f2f2f2;
-    color: #333;
+  background: #f2f2f2;
+  color: #333;
 }
 table thead th {
-    padding: 10px 15px;
+  padding: 10px 15px;
 }
 table tbody tr {
-    border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #eee;
 }
 table tbody tr:nth-child(even) {
-    background: #f2f2f2;
+  background: #f2f2f2;
 }
 table tbody tr:last-child {
-    border-bottom: 2px solid #9b59b6;
+  border-bottom: 2px solid #9b59b6;
 }
 table tbody td {
-    padding: 10px 15px;
+  padding: 10px 15px;
 }
 table tbody td:first-child {
-    text-align: left;
+  text-align: left;
 }
 table tbody td:last-child {
-    text-align: right;
+  text-align: right;
 }
 #calendar-container,
 #orders-today-container,
@@ -153,118 +153,116 @@ table tbody td:last-child {
 #add-game-container,
 #products-accessories-container,
 #add-accessories-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: auto;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    margin: 30px;
-    border: #fff solid 2px;
-    padding-bottom: 30px;
-    padding-left: 15px;
-    justify-content: flex-start;
-    align-content: flex-start;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-    border-radius: 10px;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin: 30px;
+  border: #fff solid 2px;
+  padding-bottom: 30px;
+  padding-left: 15px;
+  justify-content: flex-start;
+  align-content: flex-start;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+  gap: 20px;
 }
 .btn-secondary {
-    color: #fff;
-    background-color: #30302e;
-    border-color: #30302e;
+  color: #fff;
+  background-color: #30302e;
+  border-color: #30302e;
 }
 
 .btn-secondary:hover {
-    color: #fff;
-    background-color: $btnHover;
-    border-color: #30302e;
+  color: #fff;
+  background-color: $btnHover;
+  border-color: #30302e;
 }
 
 .show > .btn-secondary.dropdown-toggle:focus {
-    box-shadow: none;
+  box-shadow: none;
 }
 
 #clock-container {
-    display: flex;
-    width: 100%;
-    height: auto;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    margin: 30px;
-    border: #fff solid 2px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-    border-radius: 10px;
-    background: #9b59b6;
-    color: #fff;
-    font-size: 3rem;
-    font-family: Bangers;
-    font-weight: bold;
-    line-height: 100px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  display: flex;
+  width: 100%;
+  height: auto;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  margin: 30px;
+  border: #fff solid 2px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+  background: #9b59b6;
+  color: #fff;
+  font-size: 3rem;
+  font-family: Bangers;
+  font-weight: bold;
+  line-height: 100px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
 }
 .clock {
-    height: 40%;
-    width: 100%;
-    min-width: 300px;
-    max-width: 500px;
-    color: #fee;
-    font-size: 15vw;
-    display: flex;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    align-items: center;
-    justify-content: space-evenly;
-    align-content: space-around;
+  height: 40%;
+  width: 100%;
+  min-width: 300px;
+  max-width: 500px;
+  color: #fee;
+  font-size: 15vw;
+  display: flex;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  align-items: center;
+  justify-content: space-evenly;
+  align-content: space-around;
 }
 
 .clock > div {
-    display: flex;
+  display: flex;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .tick {
-    line-height: 17vh;
+  line-height: 17vh;
 }
 
 .tick-hidden {
-    opacity: 0;
+  opacity: 0;
 }
 
 .move {
-    animation: move linear 1s infinite;
+  animation: move linear 1s infinite;
 }
 
 @keyframes move {
-    from {
-        transform: translateY(0vh);
-    }
+  from {
+    transform: translateY(0vh);
+  }
 
-    to {
-        transform: translateY(-20vh);
-    }
+  to {
+    transform: translateY(-20vh);
+  }
 }
 
 .logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 30px;
-    margin-top: 30px;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-    border: 1px solid #fff;
-    font-size: 3rem;
-    color: #fff;
-    text-align: center;
-    line-height: 200px;
-    font-family: Bangers;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  border: 1px solid #fff;
+  font-size: 3rem;
+  color: #fff;
+  text-align: center;
+  line-height: 200px;
+  font-family: Bangers;
 }
-
-

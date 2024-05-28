@@ -12,7 +12,7 @@ const dbConfig = {
   user: process.env.MYSQL_USER,
   password: process.env.MYSQL_PASS,
   database: process.env.MYSQL_DATABASE,
-  port: process.env.MYSQL_PORT
+  port: process.env.MYSQL_PORT,
 };
 
 // Create a MySQL connection pool
@@ -73,7 +73,7 @@ gamesRouter.get("/genre/:genre", authenticate, (req, res) => {
       } else {
         res.json(results);
       }
-    }
+    },
   );
 });
 
@@ -98,7 +98,7 @@ gamesRouter.post("/search", authenticate, (req, res) => {
       } else {
         res.json(results);
       }
-    }
+    },
   );
 });
 
@@ -117,7 +117,7 @@ gamesRouter.post("/", authenticate, isAdmin, async (req, res) => {
     const response = await axios.post("http://localhost:${PORT}/games", {
       title,
       description,
-      platform
+      platform,
     });
 
     res.status(201).json({ message: "Game created successfully" });
@@ -143,8 +143,8 @@ gamesRouter.put("/:id", authenticate, isAdmin, async (req, res) => {
       {
         title,
         description,
-        platform
-      }
+        platform,
+      },
     );
 
     res.status(200).json({ message: "Game updated successfully" });
@@ -161,7 +161,7 @@ gamesRouter.delete("/:id", authenticate, isAdmin, async (req, res) => {
   try {
     // DELETE request to delete the game by ID
     const response = await axios.delete(
-      `http://localhost:${PORT}/games/${gameId}`
+      `http://localhost:${PORT}/games/${gameId}`,
     );
 
     if (response.status === 204) {

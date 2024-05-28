@@ -1,6 +1,8 @@
 .sql
 .zip
-.env
+/.env
+/.gitignore
+/.vscode
 mysql/gg_database_administrators.sql
 Hakaton.zip
 mysql/gg_database_deals.sql

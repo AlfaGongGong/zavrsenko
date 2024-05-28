@@ -7,8 +7,6 @@
     "start": "node server.js",
     "update-deps": "npm install",
     "purge-deps": "npm prune",
-    "lint": "eslint . --ext .js",
-    "lint:fix": "eslint . --ext .js --fix",
     "prettier": "prettier --write .",
     "prettier:check": "prettier --check .",
     "build": "webpack --mode production",

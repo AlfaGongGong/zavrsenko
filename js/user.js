@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const email = document.getElementById("register-email").value;
     const password = document.getElementById("register-password").value;
     const confirmPassword = document.getElementById(
-      "register-confirm-password"
+      "register-confirm-password",
     ).value;
 
     if (password !== confirmPassword) {
@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const oldPassword = document.getElementById("old-password").value;
     const newPassword = document.getElementById("new-password").value;
     const confirmPassword = document.getElementById(
-      "confirm-new-password"
+      "confirm-new-password",
     ).value;
 
     if (newPassword !== confirmPassword) {
@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ oldPassword, newPassword }),
-        }
+        },
       );
 
       if (response.status === 200) {
@@ -184,7 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ newAddress }),
-        }
+        },
       );
 
       if (response.status === 200) {
@@ -218,7 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ newFirstName }),
-        }
+        },
       );
 
       if (response.status === 200) {
@@ -252,7 +252,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ newLastName }),
-        }
+        },
       );
 
       if (response.status === 200) {

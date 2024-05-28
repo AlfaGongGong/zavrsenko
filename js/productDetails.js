@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .then(function (gameData) {
         console.log("Game data:", gameData);
         const productDetailsContainer = document.querySelector(
-          ".product-details-container"
+          ".product-details-container",
         );
 
         const date = new Date(gameData.released);
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
               <p class="product-dates">Released: ${formattedDate}</p>
               <p class="product-genre">Genre: 
               <a href="html/genre.html?data-genre=${encodeURIComponent(
-                gameDataGenre.toString()
+                gameDataGenre.toString(),
               )}">${gameDataGenre}</a>
               </p>
               <p class="product-description">${getRandomLoremIpsumText()}</p>
@@ -68,14 +68,14 @@ document.addEventListener("DOMContentLoaded", function () {
  <div class="product-buttons" id="productButtons">
 
             <a href="html/myAcc.html?data-product=${encodeURIComponent(
-              gameData.id.toString()
+              gameData.id.toString(),
             )}" type="button" role="button" class="btn btn-primary wishlist-btn" title="Add to your wishlist" id="wishlist-btn" data-product="${
               gameData.id
             }">
               <i class="fas fa-heart"></i>
             </a>
             <a href="html/shoppingCart.html?data-product=${encodeURIComponent(
-              gameData.id.toString()
+              gameData.id.toString(),
             )}" type="button" role="button" class="btn btn-primary cart-btn" title="Add to shopping cart" id="cart-btn" data-product="${
               gameData.id
             }">
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .catch(function (error) {
         console.error("Error fetching game details:", error);
         const productDetailsContainer = document.querySelector(
-          ".product-details-container"
+          ".product-details-container",
         );
         productDetailsContainer.innerHTML =
           "Error fetching game details. Please try again later.";

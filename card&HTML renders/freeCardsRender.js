@@ -8,7 +8,7 @@ fetch("http://localhost:8080/api/free_games")
   .then((freeCards) => {
     console.log("Data received:", freeCards);
     const freeGamesCardContainer = document.getElementById(
-      "freeGamesCardContainer"
+      "freeGamesCardContainer",
     );
     console.log("Container element:", freeGamesCardContainer);
 

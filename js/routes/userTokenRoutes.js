@@ -31,7 +31,7 @@ router.get("/user/:userId", (req, res) => {
       }
 
       res.json(results);
-    }
+    },
   );
 });
 

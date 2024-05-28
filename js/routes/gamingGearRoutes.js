@@ -36,7 +36,7 @@ gamingGearRouter.get("/:id", async (req, res) => {
   try {
     const [results] = await pool.query(
       "SELECT * FROM gaming_gear WHERE id = ?",
-      [gearId]
+      [gearId],
     );
     const gear = results[0]; // fix 5
     if (!gear) {
@@ -66,7 +66,7 @@ gamingGearRouter.post("/", authenticate, isAdmin, async (req, res) => {
     const connection = await pool.getConnection();
     await connection.query(
       "INSERT INTO gaming_gear (name, description, price) VALUES (?, ?, ?)",
-      [name, description, price]
+      [name, description, price],
     );
     connection.release();
     res.status(201).json({ message: "Gaming gear item created successfully" });
@@ -89,7 +89,7 @@ gamingGearRouter.put("/:id", authenticate, isAdmin, async (req, res) => {
     const connection = await pool.getConnection();
     const [result] = await connection.query(
       "UPDATE gaming_gear SET name = ?, description = ?, price = ? WHERE id = ?",
-      [name, description, price, gearId]
+      [name, description, price, gearId],
     );
     connection.release();
 
@@ -114,7 +114,7 @@ gamingGearRouter.delete("/:id", authenticate, isAdmin, async (req, res) => {
     const connection = await pool.getConnection();
     const [result] = await connection.query(
       "DELETE FROM gaming_gear WHERE id = ?",
-      [gearId]
+      [gearId],
     );
     connection.release();
 

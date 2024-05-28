@@ -1,7 +1,6 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
+  <head>
     <!-- basic -->
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -15,265 +14,359 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <!-- bootstrap css -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
     <!-- Responsive-->
     <link rel="stylesheet" href="css/responsive.css" />
     <!-- Tweaks for older IEs-->
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+    <link
+      rel="stylesheet"
+      href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
+    />
     <!-- font awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <!-- Google Font Link for Icons -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
     <script src="script.js" defer></script>
-    <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Poppins:400,700&display=swap&subset=latin-ext"
-        rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Great+Vibes|Poppins:400,700&display=swap&subset=latin-ext"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- style css -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css" />
 
-    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/admin.css" />
+  </head>
 
-</head>
-
-<body>
+  <body>
     <div class="header_section">
-        <div class="container">
-            <div class="containt_main">
-                <div id="mySidenav" class="sidenav">
-                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                    <a href="index.html">Home</a>
-                    <a href="browseAll.html">Browse All</a>
-                    <a href="myAccount.html">My Account</a>
-                    <a href="adminPannel.html">Admin Pannel</a>
-                </div>
-                <span class="toggle_icon" onclick="openNav()"><i class="fa fa-bars"></i></span>
-            </div>
+      <div class="container">
+        <div class="containt_main">
+          <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+              >&times;</a
+            >
+            <a href="index.html">Home</a>
+            <a href="browseAll.html">Browse All</a>
+            <a href="myAccount.html">My Account</a>
+            <a href="adminPannel.html">Admin Pannel</a>
+          </div>
+          <span class="toggle_icon" onclick="openNav()"
+            ><i class="fa fa-bars"></i
+          ></span>
         </div>
+      </div>
     </div>
 
     <h1>Administrator Dashboard</h1>
     <div id="clock-container">
-        <h3>Clock</h3>
-        <div class="clock">
-            <div class="hours">
-                <div class="first">
-                    <div class="number">0</div>
-                </div>
-                <div class="second">
-                    <div class="number">0</div>
-                </div>
-            </div>
-            <div class="tick">:</div>
-            <div class="minutes">
-                <div class="first">
-                    <div class="number">0</div>
-                </div>
-                <div class="second">
-                    <div class="number">0</div>
-                </div>
-            </div>
-            <div class="tick">:</div>
-            <div class="seconds">
-                <div class="first">
-                    <div class="number">0</div>
-                </div>
-                <div class="second infinite">
-                    <div class="number">0</div>
-                </div>
-            </div>
+      <h3>Clock</h3>
+      <div class="clock">
+        <div class="hours">
+          <div class="first">
+            <div class="number">0</div>
+          </div>
+          <div class="second">
+            <div class="number">0</div>
+          </div>
         </div>
+        <div class="tick">:</div>
+        <div class="minutes">
+          <div class="first">
+            <div class="number">0</div>
+          </div>
+          <div class="second">
+            <div class="number">0</div>
+          </div>
+        </div>
+        <div class="tick">:</div>
+        <div class="seconds">
+          <div class="first">
+            <div class="number">0</div>
+          </div>
+          <div class="second infinite">
+            <div class="number">0</div>
+          </div>
+        </div>
+      </div>
     </div>
     <div id="calendar-container">
-        <h3>Calendar</h3>
+      <h3>Calendar</h3>
 
-        <div class="wrapper">
-
-            <header>
-                <p class="current-date"></p>
-                <div class="icons">
-                    <span id="prev" class="material-symbols-rounded">chevron_left</span>
-                    <span id="next" class="material-symbols-rounded">chevron_right</span>
-                </div>
-            </header>
-            <div class="calendar">
-                <ul class="weeks">
-                    <li>Sun</li>
-                    <li>Mon</li>
-                    <li>Tue</li>
-                    <li>Wed</li>
-                    <li>Thu</li>
-                    <li>Fri</li>
-                    <li>Sat</li>
-                </ul>
-                <ul class="days"></ul>
-            </div>
+      <div class="wrapper">
+        <header>
+          <p class="current-date"></p>
+          <div class="icons">
+            <span id="prev" class="material-symbols-rounded">chevron_left</span>
+            <span id="next" class="material-symbols-rounded"
+              >chevron_right</span
+            >
+          </div>
+        </header>
+        <div class="calendar">
+          <ul class="weeks">
+            <li>Sun</li>
+            <li>Mon</li>
+            <li>Tue</li>
+            <li>Wed</li>
+            <li>Thu</li>
+            <li>Fri</li>
+            <li>Sat</li>
+          </ul>
+          <ul class="days"></ul>
         </div>
+      </div>
     </div>
-    <hr>
+    <hr />
     <div id="orders-today-container">
-        <h3>Orders Today</h3>
-        <table id="orders-today">
-            <tr>Order ID</tr>
-            <tr>User ID</tr>
-            <tr>Order Date</tr>
-            <tr>Order Price</tr>
-        </table>
-        <button class="btn btn-secondary" id="list-orders-btn">
-            List
-        </button>
-        <button class="btn btn-secondary" id="clear-orders-btn">Clear</button>
+      <h3>Orders Today</h3>
+      <table id="orders-today">
+        <tr>
+          Order ID
+        </tr>
+        <tr>
+          User ID
+        </tr>
+        <tr>
+          Order Date
+        </tr>
+        <tr>
+          Order Price
+        </tr>
+      </table>
+      <button class="btn btn-secondary" id="list-orders-btn">List</button>
+      <button class="btn btn-secondary" id="clear-orders-btn">Clear</button>
     </div>
-    <hr>
+    <hr />
     <div id="registered-users-container">
-        <h3>Registered Users</h3>
-        <table id="registered-users">
-            <tr>User ID</tr>
-            <tr>User Name</tr>
-            <tr>User Email</tr>
-            <tr>User Payment Details</tr>
-        </table>
-        <button class="btn btn-secondary" id="list-users-btn">
-            List
-        </button>
-        <button class="btn btn-secondary" id="clear-users-btn">Clear</button>
+      <h3>Registered Users</h3>
+      <table id="registered-users">
+        <tr>
+          User ID
+        </tr>
+        <tr>
+          User Name
+        </tr>
+        <tr>
+          User Email
+        </tr>
+        <tr>
+          User Payment Details
+        </tr>
+      </table>
+      <button class="btn btn-secondary" id="list-users-btn">List</button>
+      <button class="btn btn-secondary" id="clear-users-btn">Clear</button>
     </div>
-    <hr>
+    <hr />
     <div id="products-games-container">
-        <h3>Products Games</h3>
-        <table id="products">
-            <tr id="product-id">Product ID</tr>
-            <tr id="product-name">Product Name</tr>
-            <tr id="product-price">Product Price</tr>
-            <tr id="product-description">Product Description</tr>
-            <tr id="product-image">Product Image</tr>
-        </table>
-        <button class="btn btn-secondary" id="list-products-btn">List
-        </button>
-        <button class="btn btn-secondary" id="clear-products-btn">Clear</button>
+      <h3>Products Games</h3>
+      <table id="products">
+        <tr id="product-id">
+          Product ID
+        </tr>
+        <tr id="product-name">
+          Product Name
+        </tr>
+        <tr id="product-price">
+          Product Price
+        </tr>
+        <tr id="product-description">
+          Product Description
+        </tr>
+        <tr id="product-image">
+          Product Image
+        </tr>
+      </table>
+      <button class="btn btn-secondary" id="list-products-btn">List</button>
+      <button class="btn btn-secondary" id="clear-products-btn">Clear</button>
     </div>
-    <hr>
+    <hr />
     <div id="add-game-container">
-        <h3>Add New Game</h3>
-        <form action="" method="post" id="product-form">
-            <div class="form-group">
-                <label for="product-name">Product Name</label>
-                <input type="text" class="form-control" id="product-name" name="product-name">
-            </div>
-            <div class="form-group">
-                <label for="product-price">Product Price</label>
-                <input type="text" class="form-control" id="product-price" name="product-price">
-            </div>
-            <div class="form-group">
-                <label for="product-description">Product Description</label>
-                <textarea class="form-control" id="product-description" name="product-description"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="product-image">Product Image</label>
-                <input type="file" class="form-control" id="product-image" name="product-image">
-            </div>
-            <div class="form-group">
-                <label for="product-genre">Product Genre</label>
-                <input type="text" class="form-control" id="product-genre" name="product-genre">
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-secondary">Add Product</button>
-                <button type="reset" class="btn btn-secondary">Reset</button>
-                <button type="button" class="btn btn-secondary" id="cancel-btn">Cancel</button>
-
-
-            </div>
-        </form>
+      <h3>Add New Game</h3>
+      <form action="" method="post" id="product-form">
+        <div class="form-group">
+          <label for="product-name">Product Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="product-name"
+            name="product-name"
+          />
+        </div>
+        <div class="form-group">
+          <label for="product-price">Product Price</label>
+          <input
+            type="text"
+            class="form-control"
+            id="product-price"
+            name="product-price"
+          />
+        </div>
+        <div class="form-group">
+          <label for="product-description">Product Description</label>
+          <textarea
+            class="form-control"
+            id="product-description"
+            name="product-description"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="product-image">Product Image</label>
+          <input
+            type="file"
+            class="form-control"
+            id="product-image"
+            name="product-image"
+          />
+        </div>
+        <div class="form-group">
+          <label for="product-genre">Product Genre</label>
+          <input
+            type="text"
+            class="form-control"
+            id="product-genre"
+            name="product-genre"
+          />
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-secondary">Add Product</button>
+          <button type="reset" class="btn btn-secondary">Reset</button>
+          <button type="button" class="btn btn-secondary" id="cancel-btn">
+            Cancel
+          </button>
+        </div>
+      </form>
     </div>
-    <hr>
+    <hr />
     <div id="products-accessories-container">
-        <h3>Accessories Products </h3>
-        <table id="accessories">
-            <tr> ID</tr>
-            <tr> Name</tr>
-            <tr> Price</tr>
-            <tr> Description</tr>
-            <tr> Image</tr>
-        </table>
-        <button class="btn btn-secondary" id="list-accessories-btn">List
-        </button>
-        <button class="btn btn-secondary" id="clear-accessories-btn">Clear</button>
+      <h3>Accessories Products</h3>
+      <table id="accessories">
+        <tr>
+          ID
+        </tr>
+        <tr>
+          Name
+        </tr>
+        <tr>
+          Price
+        </tr>
+        <tr>
+          Description
+        </tr>
+        <tr>
+          Image
+        </tr>
+      </table>
+      <button class="btn btn-secondary" id="list-accessories-btn">List</button>
+      <button class="btn btn-secondary" id="clear-accessories-btn">
+        Clear
+      </button>
     </div>
-    <hr>
+    <hr />
     <div id="add-accessories-container">
-        <h3>Add New Accessorie Product</h3>
-        <form action="" method="post" id="accessories-form">
-            <div class="form-group">
-                <label for="accessories-name">Product Name</label>
-                <input type="text" class="form-control" id="accessories-name" name="accessories-name">
-            </div>
-            <div class="form-group">
-                <label for="accessories-price">Product Price</label>
-                <input type="text" class="form-control" id="accessories-price" name="accessories-price">
-            </div>
-            <div class="form-group">
-                <label for="accessories-description">Product Description</label>
-                <textarea class="form-control" id="accessories-description" name="accessories-description"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="accessories-image">Product Image</label>
-                <input type="file" class="form-control" id="accessories-image" name="accessories-image">
-            </div>
+      <h3>Add New Accessorie Product</h3>
+      <form action="" method="post" id="accessories-form">
+        <div class="form-group">
+          <label for="accessories-name">Product Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="accessories-name"
+            name="accessories-name"
+          />
+        </div>
+        <div class="form-group">
+          <label for="accessories-price">Product Price</label>
+          <input
+            type="text"
+            class="form-control"
+            id="accessories-price"
+            name="accessories-price"
+          />
+        </div>
+        <div class="form-group">
+          <label for="accessories-description">Product Description</label>
+          <textarea
+            class="form-control"
+            id="accessories-description"
+            name="accessories-description"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="accessories-image">Product Image</label>
+          <input
+            type="file"
+            class="form-control"
+            id="accessories-image"
+            name="accessories-image"
+          />
+        </div>
 
-            <div class="form-group">
-                <button type="submit" class="btn btn-secondary">Add Product</button>
-                <button type="reset" class="btn btn-secondary">Reset</button>
-                <button type="button" class="btn btn-secondary" id="cancel-accessories-btn">Cancel</button>
-
-
-            </div>
-        </form>
+        <div class="form-group">
+          <button type="submit" class="btn btn-secondary">Add Product</button>
+          <button type="reset" class="btn btn-secondary">Reset</button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            id="cancel-accessories-btn"
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
     </div>
     <!-- footer section start -->
     <div class="footer_section layout_padding">
-        <div class="container">
-            <div class="footer_logo">
-                <a href="index.html"><img src="images/logo.png" class="logo" /></a>
-            </div>
-
-            <div class="footer_menu">
-
-                <ul>
-                    <li><a href="#">Best Sellers</a></li>
-                    <li><a href="#">New Releases</a></li>
-                    <li><a href="#">Today's Deals</a></li>
-                </ul>
-            </div>
-
+      <div class="container">
+        <div class="footer_logo">
+          <a href="index.html"><img src="images/logo.png" class="logo" /></a>
         </div>
+
+        <div class="footer_menu">
+          <ul>
+            <li><a href="#">Best Sellers</a></li>
+            <li><a href="#">New Releases</a></li>
+            <li><a href="#">Today's Deals</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
     <!-- footer section end -->
     <!-- copyright section start -->
     <div class="copyright_section">
-        <div class="container">
-            <p class="copyright_text">
-                © 2023 Design by AlfaGongGong
-            </p>
-        </div>
+      <div class="container">
+        <p class="copyright_text">© 2023 Design by AlfaGongGong</p>
+      </div>
     </div>
     <!-- sidebar -->
     <script>
-        function openNav() {
-            document.getElementById("mySidenav").style.width = "250px";
-        }
+      function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+      }
 
-        function closeNav() {
-            document.getElementById("mySidenav").style.width = "0";
-        }
+      function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+      }
     </script>
-    <script src="./index.js" defer>
-    </script>
-    <script src="./admin.js" defer>
-    </script>
-</body>
-
+    <script src="./index.js" defer></script>
+    <script src="./admin.js" defer></script>
+  </body>
 </html>

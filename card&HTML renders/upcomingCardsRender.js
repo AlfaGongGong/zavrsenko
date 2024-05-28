@@ -29,7 +29,7 @@ fetch("http://localhost:8080/api/upcoming")
     console.log("Data received:", upcomingCards);
 
     const upcomingCardsContainer = document.getElementById(
-      "upcomingCardsContainer"
+      "upcomingCardsContainer",
     );
     console.log("Container element:", upcomingCardsContainer);
 

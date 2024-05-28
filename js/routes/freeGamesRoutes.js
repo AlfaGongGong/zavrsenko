@@ -35,7 +35,7 @@ freeRouter.get("/free_games/:id", async (req, res) => {
   try {
     const [results] = await pool.query(
       "SELECT * FROM free_games WHERE id = ?",
-      [freeId]
+      [freeId],
     );
     const free = results[0];
     if (!free) {
@@ -64,7 +64,7 @@ freeRouter.post("/free_games", authenticate, isAdmin, async (req, res) => {
     const connection = await pool.getConnection();
     const [result] = await connection.query(
       "INSERT INTO free_games (title, description) VALUES (?, ?)",
-      [title, description]
+      [title, description],
     );
     connection.release();
     res.status(201).json({ message: "Free game created successfully" });
@@ -87,7 +87,7 @@ freeRouter.put("/free_games/:id", authenticate, isAdmin, async (req, res) => {
     const connection = await pool.getConnection();
     const [result] = await connection.query(
       "UPDATE free_games SET title = ?, description = ? WHERE id = ?",
-      [title, description, freeId]
+      [title, description, freeId],
     );
     connection.release();
 
@@ -114,7 +114,7 @@ freeRouter.delete(
       const connection = await pool.getConnection();
       const [result] = await connection.query(
         "DELETE FROM free_games WHERE id = ?",
-        [freeId]
+        [freeId],
       );
       connection.release();
 
@@ -127,7 +127,7 @@ freeRouter.delete(
       console.error("Error executing MySQL query:", error);
       res.status(500).json({ error: "Error deleting free game" });
     }
-  }
+  },
 );
 
 module.exports = freeRouter;

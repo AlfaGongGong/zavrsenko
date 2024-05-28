@@ -20,7 +20,7 @@ const pool = mysql.createPool(dbConfig);
 
 //  get all deals
 dealsRouter.get("/", (req, res) => {
-// Use the pool to query the database
+  // Use the pool to query the database
   pool.query("SELECT * FROM deals", (error, results) => {
     if (error) {
       console.error("Error fetching deals from the database:", error);
@@ -36,7 +36,8 @@ dealsRouter.get("/:id", async (req, res) => {
   const dealId = req.params.id;
 
   try {
-    const response = await axios.get(`http://localhost:${PORT}/games/${dealId}`
+    const response = await axios.get(
+      `http://localhost:${PORT}/games/${dealId}`,
     );
     const deal = response.data;
     if (!deal) {
@@ -66,7 +67,7 @@ dealsRouter.post("/", authenticate, isAdmin, async (req, res) => {
     const response = await pool.getConnection();
     const [result] = await connection.query(
       "INSERT INTO deals (title, description, price, discount) VALUES (?, ?, ?, ?)",
-      [title, description, price, discount]
+      [title, description, price, discount],
     );
     connection.release();
     res.status(201).json({ message: "Deal created successfully" });
@@ -89,7 +90,7 @@ dealsRouter.put("/:id", authenticate, isAdmin, async (req, res) => {
     const connection = await pool.getConnection();
     const [result] = await connection.query(
       "UPDATE deals SET title = ?, description = ?, price = ?, discount = ? WHERE id = ?",
-      [title, description, price, discount, dealId]
+      [title, description, price, discount, dealId],
     );
     connection.release();
 

@@ -13,8 +13,6 @@ $max-width: 350px;
 $min-height: 250px;
 $max-height: 400px;
 
-
-
 .product-details-container {
   display: flex;
   flex-direction: column;
@@ -47,8 +45,6 @@ $max-height: 400px;
   display: flex;
   justify-content: center;
   align-items: center;
-
-
 }
 
 .product-image {
@@ -96,6 +92,5 @@ $max-height: 400px;
   &:hover {
     color: $highlightColor;
     transform: scale(1.5);
-
   }
 }

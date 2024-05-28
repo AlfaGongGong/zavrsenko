@@ -110,7 +110,7 @@ window.addEventListener("load", function () {
 const searchInput = document.getElementById("searchInput");
 const searchResults = document.getElementById("searchResults");
 const searchResultsContainer = document.getElementById(
-  "searchResultsContainer"
+  "searchResultsContainer",
 );
 
 searchInput.addEventListener("keyup", (event) => {
@@ -125,9 +125,9 @@ searchInput.addEventListener("keyup", (event) => {
   fetch("http://localhost:8080/games/search", {
     method: "POST",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify({ searchTerm })
+    body: JSON.stringify({ searchTerm }),
   })
     .then((response) => response.json())
     .then((results) => {

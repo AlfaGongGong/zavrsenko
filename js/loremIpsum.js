@@ -4,7 +4,7 @@ const mysql = require("mysql2/promise");
 const texts = [
   "Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro...",
   "Qui animated corpse, cricket bat max brucks terribilem incessu zomby...",
-  "Satoshi Nakamoto launched lots of decentralisation when Litecoin required..."
+  "Satoshi Nakamoto launched lots of decentralisation when Litecoin required...",
 ];
 
 async function updateDescriptions() {
@@ -14,7 +14,7 @@ async function updateDescriptions() {
     user: process.env.MYSQL_USER,
     password: process.env.MYSQL_PASS,
     database: process.env.MYSQL_DATABASE,
-    port: process.env.MYSQL_PORT
+    port: process.env.MYSQL_PORT,
   });
 
   // Fetch all product ids
@@ -25,7 +25,7 @@ async function updateDescriptions() {
     const randomText = texts[Math.floor(Math.random() * texts.length)];
     await connection.execute(
       "UPDATE products SET description = ? WHERE id = ?",
-      [randomText, product.id]
+      [randomText, product.id],
     );
   }
 

@@ -5,7 +5,7 @@ const cors = require("cors");
 const app = express();
 
 require("dotenv").config({
-  path: "./.env"
+  path: "./.env",
 });
 const port = process.env.PORT;
 // Middleware
@@ -18,7 +18,7 @@ const dbConfig = {
   user: process.env.MYSQL_USER,
   password: process.env.MYSQL_PASS,
   database: process.env.MYSQL_DATABASE,
-  port: process.env.MYSQL_PORT
+  port: process.env.MYSQL_PORT,
 };
 
 // Routes

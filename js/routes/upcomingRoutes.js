@@ -64,7 +64,7 @@ upcomingRouter.post("/upcoming", authenticate, isAdmin, async (req, res) => {
     const connection = await pool.getConnection();
     const [result] = await connection.query(
       "INSERT INTO upcoming (title, description, start_date, end_date) VALUES (?, ?, ?, ?)",
-      [title, description, startDate, endDate]
+      [title, description, startDate, endDate],
     );
     connection.release();
     res.status(201).json({ message: "Upcoming item created successfully" });
@@ -87,7 +87,7 @@ upcomingRouter.put("/upcoming/:id", authenticate, isAdmin, async (req, res) => {
     const connection = await pool.getConnection();
     const [result] = await connection.query(
       "UPDATE upcoming SET title = ?, description = ?, start_date = ?, end_date = ? WHERE id = ?",
-      [title, description, startDate, endDate, itemId]
+      [title, description, startDate, endDate, itemId],
     );
     connection.release();
 
@@ -114,7 +114,7 @@ upcomingRouter.delete(
       const connection = await pool.getConnection();
       const [result] = await connection.query(
         "DELETE FROM upcoming WHERE id = ?",
-        [itemId]
+        [itemId],
       );
       connection.release();
 
@@ -127,7 +127,7 @@ upcomingRouter.delete(
       console.error("Error executing MySQL query:", error);
       res.status(500).json({ error: "Error deleting upcoming item" });
     }
-  }
+  },
 );
 
 module.exports = upcomingRouter;
