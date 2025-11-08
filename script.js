@@ -51,7 +51,7 @@ function handleLogin() {
       button.classList.add("btn", "btn-secondary");
       button.disabled = true;
       button.title = "You must be logged in to add to your shopping cart";
-      button.addEventListener("moseover", (event) => {
+      button.addEventListener("mouseover", (event) => {
         button.classList.add("animate__animated", "animate__shakeX");
       });
 
