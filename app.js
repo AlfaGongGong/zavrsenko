@@ -2,6 +2,7 @@
 const express = require("express");
 const mysql = require("mysql2");
 const cors = require("cors");
+const rateLimit = require("express-rate-limit");
 const app = express();
 
 require("dotenv").config({
@@ -11,6 +12,25 @@ const port = process.env.PORT || 3000;
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Rate limiting
+const globalLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 200,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "Too many requests, please try again later." },
+});
+
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 20,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "Too many authentication attempts, please try again later." },
+});
+
+app.use(globalLimiter);
 
 // Database connection configuration
 const dbConfig = {
@@ -37,9 +57,11 @@ app.use("/deals", dealsRouter);
 app.use("/gaming_gear", gamingGearRouter);
 app.use("/api", upcomingRouter);
 app.use("/api", freeRouter);
+app.use("/user/login", authLimiter);
+app.use("/user/register", authLimiter);
 app.use("/user", userRouter);
-app.use("/admin", adminRouter);
-app.use("/auth", authRouter);
+app.use("/admin", authLimiter, adminRouter);
+app.use("/auth", authLimiter, authRouter);
 app.use("/user_tokens", userTokenRouter);
 
 // Connect to the database
