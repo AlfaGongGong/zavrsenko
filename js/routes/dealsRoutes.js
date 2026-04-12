@@ -1,9 +1,10 @@
 const express = require("express");
 const dealsRouter = express.Router();
-const mysql = require("mysql2");
+const mysql = require("mysql2/promise");
+const axios = require("axios");
 const authenticate = require("../authentication/authToken");
 const isAdmin = require("../authentication/isAdmin");
-require("dotenv").config({ path: "zavrsenko/.env" });
+require("dotenv").config({ path: "./.env" });
 const PORT = process.env.PORT;
 
 // Database connection configuration
@@ -64,7 +65,7 @@ dealsRouter.post("/", authenticate, isAdmin, async (req, res) => {
   }
 
   try {
-    const response = await pool.getConnection();
+    const connection = await pool.getConnection();
     const [result] = await connection.query(
       "INSERT INTO deals (title, description, price, discount) VALUES (?, ?, ?, ?)",
       [title, description, price, discount],

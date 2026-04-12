@@ -28,7 +28,7 @@ fetch("http://localhost:8080/gaming_gear")
            <p class="product-info">
           ${gear.description}
           </p>
-          <p <p class="product-price-normal">${gear.price} KM</p>
+          <p class="product-price-normal">${gear.price} KM</p>
          <div class="product-buttons">
             <a href="html/productDetails.html?id=${gear.id}" class="btn more-info" data-product-id="${gear.id}" title="More Info" id="more-info">
               <i class="fas fa-info-circle"></i> 

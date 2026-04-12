@@ -111,9 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      const response = await fetch(
-        "http://localhost:8080/user/change-password",
-        {
+      const response = await fetch("http://localhost:8080/user/changePassword", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -145,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const newEmail = document.getElementById("new-email").value;
 
     try {
-      const response = await fetch("http://localhost:8080/user/change-email", {
+      const response = await fetch("http://localhost:8080/user/changeEmail", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -177,7 +175,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       const response = await fetch(
-        "http://localhost:8080/user/change-address",
+        "http://localhost:8080/user/changeAddress",
         {
           method: "POST",
           headers: {
@@ -211,7 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       const response = await fetch(
-        "http://localhost:8080/user/change-first-name",
+        "http://localhost:8080/user/changeFirstName",
         {
           method: "POST",
           headers: {
@@ -245,7 +243,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       const response = await fetch(
-        "http://localhost:8080/user/change-last-name",
+        "http://localhost:8080/user/changeLastName",
         {
           method: "POST",
           headers: {

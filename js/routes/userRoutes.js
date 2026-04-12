@@ -3,9 +3,6 @@ const router = express.Router();
 const mysql = require("mysql2");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const bodyParser = require("body-parser");
-const session = require("express-session");
-const e = require("connect-flash");
 require("dotenv").config();
 
 const dbConfig = {
@@ -13,6 +10,7 @@ const dbConfig = {
   user: process.env.MYSQL_USER,
   password: process.env.MYSQL_PASS,
   database: process.env.MYSQL_DATABASE,
+  port: process.env.MYSQL_PORT,
 };
 
 const pool = mysql.createPool(dbConfig);
@@ -82,7 +80,7 @@ router.post("/login", (req, res) => {
             username: results[0].username,
             email: results[0].email,
           },
-          "your-secret-key",
+          process.env.JWT_SECRET || "your-secret-key",
           { expiresIn: "1h" },
         );
 
@@ -94,14 +92,7 @@ router.post("/login", (req, res) => {
 
 // Logout route
 router.post("/logout", (req, res) => {
-  localStorage.clear();
-  if (err) {
-    console.error("Error logging out:", err);
-    res.status(500).json({ message: "Internal server error" });
-    return;
-  } else {
-    res.status(200).json({ message: "Logout successful" });
-  }
+  res.status(200).json({ message: "Logout successful" });
 });
 
 // change password route

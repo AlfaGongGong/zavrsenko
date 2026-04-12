@@ -1,7 +1,7 @@
 const mysql = require("mysql2/promise");
 const authenticate = require("../authentication/authToken");
 const isAdmin = require("../authentication/isAdmin");
-require("dotenv").config({ path: "zavrsenko/.env" });
+require("dotenv").config({ path: "./.env" });
 
 // Database connection configuration
 const dbConfig = {
