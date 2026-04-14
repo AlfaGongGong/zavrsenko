@@ -17,7 +17,7 @@ function getRandomLoremIpsumText() {
   const randomIndex = Math.floor(Math.random() * loremsIpsums.length);
   return loremsIpsums[randomIndex];
 }
-fetch("http://localhost:8080/deals")
+fetch(`${API_BASE}/deals`)
   .then((response) => {
     if (!response.ok) {
       throw new Error("Network response was not ok");

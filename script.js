@@ -122,7 +122,7 @@ searchInput.addEventListener("keyup", (event) => {
     return;
   }
 
-  fetch("http://localhost:8080/games/search", {
+  fetch(`${typeof API_BASE !== 'undefined' ? API_BASE : 'http://localhost:3000'}/games/search`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -18,7 +18,7 @@ function getRandomLoremIpsumText() {
   return loremsIpsums[randomIndex];
 }
 
-fetch("http://localhost:8080/api/upcoming")
+fetch(`${API_BASE}/api/upcoming`)
   .then((response) => {
     if (!response.ok) {
       throw new Error("Network response was not ok");

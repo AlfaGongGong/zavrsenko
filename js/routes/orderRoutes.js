@@ -59,12 +59,17 @@ router.get('/my', authenticate, async (req, res) => {
   }
 });
 
-// GET /orders/:id  (requires auth)
+// GET /orders/:id  (requires auth + ownership check)
 router.get('/:id', authenticate, async (req, res) => {
   try {
     const [results] = await pool.query('SELECT * FROM orders WHERE id = ?', [req.params.id]);
     if (results.length === 0) return res.status(404).json({ error: 'Order not found' });
-    res.json(results[0]);
+    const order = results[0];
+    // Only allow the order owner to view it
+    if (order.user_id && String(order.user_id) !== String(req.user.id)) {
+      return res.status(403).json({ error: 'Access denied' });
+    }
+    res.json(order);
   } catch (e) {
     res.status(500).json({ error: 'Internal server error' });
   }
