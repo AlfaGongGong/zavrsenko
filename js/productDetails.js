@@ -1,97 +1,219 @@
-function getRandomLoremIpsumText() {
-  const loremsIpsums = [
-    (text1 =
-      "Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris. Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium."),
-    (text2 =
-      "Qui animated corpse, cricket bat max brucks terribilem incessu zomby. The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus. Zonbi tattered for solum oculi eorum defunctis go lum cerebro. Nescio brains an Undead zombies. Sicut malus putrid voodoo horror. Nigh tofth eliv ingdead."),
-    (text3 =
-      "Satoshi Nakamoto launched lots of decentralisation when Litecoin required many decentralised application, for Augur limited some public key behind lots of multi signature. Blockchain thought some robust smart contract in a algorithm! Since OmiseGo bought few double spend, Augur could be many algo-traded vaporware, but Decred data mining few trusted hard fork!"),
-    (text4 =
-      "Decred thought few robust consensus mechanism, and ERC20 token standard could be some peer-to-peer oracle! Although ERC721 token standard did lots of immutable proof of authority, Stellar chose many provably fair zero knowledge proof. Satoshi Nakamoto broadcast lots of centralised oracle, and although ERC721 token standard broadcast some peer-to-peer oracle, Bitcoin returns some trusted escrow!"),
-    (text5 =
-      "Dingy I'm tellin' you rhubaahb Bangah Jo-Jeezly got in a gaum Powrtland stove up dooryahd from away, paypuh bowee batrees owt Have a good one. hahd tellin' not knowin', p'dayduhs scrod You is sum wicked suhmart over t'. Lobstah buggin' bogan railed 'em gettin' ugly bluebries ayuhpawt Jo-Jeezly, front dooryahd huck naw got in a gaum bluebries."),
-    (text6 =
-      "Lookout flogging bilge rat main sheet bilge water nipper fluke to go on account heave down clap of thunder. Reef sails six pounders skysail code of conduct sloop cog Yellow Jack gunwalls grog blossom starboard. Swab black jack ahoy Brethren of the Coast schooner poop deck main sheet topmast furl marooned."),
-  ];
+// GG Gamestore – productDetails.js
 
-  const randomIndex = Math.floor(Math.random() * loremsIpsums.length);
-  return loremsIpsums[randomIndex];
+async function initProductDetails() {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
+
+  if (!id) {
+    showError('No product ID provided.');
+    return;
+  }
+
+  if (!isLoggedIn()) {
+    showLoginPrompt();
+    return;
+  }
+
+  showLoading(true);
+
+  try {
+    const res = await fetch(`${API_BASE}/games/${id}`, {
+      headers: { 'Authorization': getToken() },
+    });
+    if (!res.ok) throw new Error('Game not found');
+    const game = await res.json();
+    renderProduct(game);
+    fetchRelated(game.genre || '', id);
+  } catch (err) {
+    showError('Failed to load product: ' + err.message);
+  } finally {
+    showLoading(false);
+  }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  // Get the game id from the query parameter
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  const gameId = urlParams.get("data-product");
-  console.log("Game id:", gameId);
+function renderProduct(game) {
+  const name    = game.name || game.title || 'Unknown';
+  const price   = parseFloat(game.price || 0).toFixed(2);
+  const genre   = game.genre || '';
+  const image   = game.image || game.cover || game.image_url || '';
+  const rating  = parseFloat(game.rating || 0);
+  const desc    = game.description || game.summary || 'No description available.';
+  const release = game.release_date || game.year || '';
+  const id      = game.id;
 
-  // Fetch the game details from the database
-  if (gameId) {
-    fetch(`http://localhost:8080/games/${gameId}`)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (gameData) {
-        console.log("Game data:", gameData);
-        const productDetailsContainer = document.querySelector(
-          ".product-details-container",
-        );
+  document.title = name + ' – GG Gamestore';
 
-        const date = new Date(gameData.released);
-        const formattedDate = date.toLocaleDateString("en-GB", {
-          day: "2-digit",
-          month: "2-digit",
-          year: "numeric",
-        });
+  const wishlist   = getWishlist();
+  const inWishlist = wishlist.some(w => w.id === id);
 
-        const alt = "../images/dummy_we-will-fix-this-soon.png";
-
-        const gameDataGenre = gameData.genre;
-
-        productDetailsContainer.innerHTML = `
-          <div class="col-md-6 product-image-container">
-          <img src="${
-            gameData.background_image
-          }" alt="${alt}" class="product-image">
-          </div>
-          <div class="col-md-6 product-info-container">
-              <h1 class="product-name">${gameData.name}</h1>
-              <p class="product-dates">Released: ${formattedDate}</p>
-              <p class="product-genre">Genre: 
-              <a href="html/genre.html?data-genre=${encodeURIComponent(
-                gameDataGenre.toString(),
-              )}">${gameDataGenre}</a>
-              </p>
-              <p class="product-description">${getRandomLoremIpsumText()}</p>
-              <p class="product-price-normal">Price: ${gameData.price} KM</p>
-            </div>
- <div class="product-buttons" id="productButtons">
-
-            <a href="html/myAcc.html?data-product=${encodeURIComponent(
-              gameData.id.toString(),
-            )}" type="button" role="button" class="btn btn-primary wishlist-btn" title="Add to your wishlist" id="wishlist-btn" data-product="${
-              gameData.id
-            }">
-              <i class="fas fa-heart"></i>
-            </a>
-            <a href="html/shoppingCart.html?data-product=${encodeURIComponent(
-              gameData.id.toString(),
-            )}" type="button" role="button" class="btn btn-primary cart-btn" title="Add to shopping cart" id="cart-btn" data-product="${
-              gameData.id
-            }">
-              <i class="fas fa-shopping-cart"></i>
-            </a>
-            </div>
-
-     `;
-      })
-      .catch(function (error) {
-        console.error("Error fetching game details:", error);
-        const productDetailsContainer = document.querySelector(
-          ".product-details-container",
-        );
-        productDetailsContainer.innerHTML =
-          "Error fetching game details. Please try again later.";
-      });
+  // Hero image
+  const heroImg = document.getElementById('productHeroImg');
+  if (heroImg) {
+    heroImg.src = image;
+    heroImg.alt = name;
+    heroImg.onerror = () => { heroImg.src = '../images/dummy_we-will-fix-this-soon.png'; };
   }
-});
+
+  // Name & meta
+  setInner('productName', name);
+  setInner('productGenre', genre ? `<span class="badge badge-primary">${genre}</span>` : '');
+  setInner('productRelease', release ? `<i class="fas fa-calendar-alt"></i> ${release}` : '');
+  setInner('productRating', renderStars(rating));
+  setInner('productPrice', `${price} <small style="font-size:0.6em;">KM</small>`);
+  setInner('productDescription', desc);
+
+  // Add to cart button
+  const cartBtn = document.getElementById('addToCartBtn');
+  if (cartBtn) {
+    cartBtn.onclick = () => {
+      addToCart({ id, name, price, image, type: 'game' });
+      showToast(`"${name}" added to cart!`, 'success');
+    };
+  }
+
+  // Wishlist button
+  const wBtn = document.getElementById('wishlistBtn');
+  if (wBtn) {
+    wBtn.classList.toggle('active', inWishlist);
+    wBtn.innerHTML = `<i class="fa${inWishlist ? 's' : 'r'} fa-heart"></i> ${inWishlist ? 'In Wishlist' : 'Add to Wishlist'}`;
+    wBtn.onclick = () => toggleWishlist({ id, name, price, image, type: 'game' }, wBtn);
+  }
+
+  // System requirements (dummy)
+  setInner('sysReqs', `
+    <div class="grid-2" style="gap:16px; font-size:0.85rem;">
+      <div class="glass-panel p-16">
+        <h5 style="font-family:var(--font-head); font-size:0.7rem; color:var(--primary); margin-bottom:12px;">MINIMUM</h5>
+        <p><span class="text-muted">OS:</span> Windows 10 64-bit</p>
+        <p><span class="text-muted">CPU:</span> Intel Core i5-8600K</p>
+        <p><span class="text-muted">RAM:</span> 8 GB</p>
+        <p><span class="text-muted">GPU:</span> GTX 1060 6GB</p>
+        <p><span class="text-muted">Storage:</span> 50 GB SSD</p>
+      </div>
+      <div class="glass-panel p-16">
+        <h5 style="font-family:var(--font-head); font-size:0.7rem; color:var(--primary); margin-bottom:12px;">RECOMMENDED</h5>
+        <p><span class="text-muted">OS:</span> Windows 11 64-bit</p>
+        <p><span class="text-muted">CPU:</span> Intel Core i7-10700K</p>
+        <p><span class="text-muted">RAM:</span> 16 GB</p>
+        <p><span class="text-muted">GPU:</span> RTX 3070 8GB</p>
+        <p><span class="text-muted">Storage:</span> 50 GB NVMe</p>
+      </div>
+    </div>
+  `);
+
+  // Reveal the content
+  const content = document.getElementById('productContent');
+  if (content) content.style.display = 'block';
+}
+
+async function fetchRelated(genre, excludeId) {
+  if (!genre) return;
+  try {
+    const res = await fetch(`${API_BASE}/games`, {
+      headers: { 'Authorization': getToken() },
+    });
+    if (!res.ok) return;
+    const games = await res.json();
+    const related = games
+      .filter(g => (g.genre || '') === genre && String(g.id) !== String(excludeId))
+      .slice(0, 3);
+    renderRelated(related);
+  } catch (e) { /* ignore */ }
+}
+
+function renderRelated(games) {
+  const el = document.getElementById('relatedGames');
+  if (!el || games.length === 0) return;
+
+  document.getElementById('relatedSection').style.display = 'block';
+  el.innerHTML = games.map(g => {
+    const name  = g.name || g.title || 'Unknown';
+    const price = parseFloat(g.price || 0).toFixed(2);
+    const image = g.image || g.cover || '';
+    return `
+      <a href="ProductDetails.html?id=${g.id}" class="gg-card" style="text-decoration:none;">
+        <img class="gg-card__img" src="${image}" alt="${name}"
+          onerror="this.src='../images/dummy_we-will-fix-this-soon.png'">
+        <div class="gg-card__body">
+          <div class="gg-card__title" title="${name}">${name}</div>
+          <div class="gg-card__price">${price} KM</div>
+        </div>
+      </a>
+    `;
+  }).join('');
+}
+
+function renderStars(rating) {
+  if (!rating) return '<span class="text-muted">No rating</span>';
+  const full  = Math.floor(rating);
+  const half  = rating - full >= 0.5 ? 1 : 0;
+  const empty = 5 - full - half;
+  return '<i class="fas fa-star"></i>'.repeat(full)
+    + (half ? '<i class="fas fa-star-half-alt"></i>' : '')
+    + '<i class="far fa-star empty"></i>'.repeat(empty)
+    + `<span style="margin-left:6px; font-size:0.85rem; color:var(--text-muted);">${rating.toFixed(1)}</span>`;
+}
+
+function setInner(id, html) {
+  const el = document.getElementById(id);
+  if (el) el.innerHTML = html;
+}
+
+function showLoading(show) {
+  const el = document.getElementById('loadingSpinner');
+  if (el) el.style.display = show ? 'flex' : 'none';
+}
+
+function showError(msg) {
+  showLoading(false);
+  const el = document.getElementById('errorMessage');
+  if (el) { el.textContent = msg; el.style.display = 'block'; }
+}
+
+function showLoginPrompt() {
+  showLoading(false);
+  const el = document.getElementById('loginPrompt');
+  if (el) el.style.display = 'block';
+}
+
+// Wishlist helpers
+const WISHLIST_KEY = 'gg_wishlist';
+
+function getWishlist() {
+  try { return JSON.parse(localStorage.getItem(WISHLIST_KEY)) || []; } catch { return []; }
+}
+
+function toggleWishlist(product, btn) {
+  const list = getWishlist();
+  const idx  = list.findIndex(w => w.id === product.id);
+  if (idx >= 0) {
+    list.splice(idx, 1);
+    btn.classList.remove('active');
+    btn.innerHTML = '<i class="far fa-heart"></i> Add to Wishlist';
+    showToast('Removed from wishlist', 'info');
+  } else {
+    list.push(product);
+    btn.classList.add('active');
+    btn.innerHTML = '<i class="fas fa-heart"></i> In Wishlist';
+    showToast(`"${product.name}" added to wishlist!`, 'success');
+  }
+  localStorage.setItem(WISHLIST_KEY, JSON.stringify(list));
+}
+
+// Toast
+function showToast(msg, type = 'info') {
+  let container = document.querySelector('.gg-toast-container');
+  if (!container) {
+    container = document.createElement('div');
+    container.className = 'gg-toast-container';
+    document.body.appendChild(container);
+  }
+  const toast = document.createElement('div');
+  toast.className = `gg-toast ${type}`;
+  const icons = { success:'fa-check-circle', error:'fa-times-circle', info:'fa-info-circle' };
+  toast.innerHTML = `<i class="fas ${icons[type]||'fa-info-circle'}"></i><span>${msg}</span>`;
+  container.appendChild(toast);
+  setTimeout(() => { toast.classList.add('hiding'); setTimeout(() => toast.remove(), 320); }, 3000);
+}
+
+document.addEventListener('DOMContentLoaded', initProductDetails);

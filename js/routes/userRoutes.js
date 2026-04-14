@@ -3,6 +3,7 @@ const router = express.Router();
 const mysql = require("mysql2");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const authenticate = require("../authentication/authToken");
 require("dotenv").config();
 
 const dbConfig = {
@@ -200,6 +201,19 @@ router.post("/changeLastName", (req, res) => {
 
       res.status(200).json({ message: "Last name changed successfully" });
     },
+  );
+});
+
+// GET /user/me - return current user's profile
+router.get("/me", authenticate, (req, res) => {
+  pool.query(
+    "SELECT id, username, email, address, first_name, last_name FROM users WHERE id = ?",
+    [req.user.id],
+    (error, results) => {
+      if (error) return res.status(500).json({ message: "Internal server error" });
+      if (results.length === 0) return res.status(404).json({ message: "User not found" });
+      res.json(results[0]);
+    }
   );
 });
 

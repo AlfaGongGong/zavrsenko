@@ -12,6 +12,15 @@ const port = process.env.PORT || 3000;
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+// Serve only public-facing directories, not the entire working directory
+app.use('/css',    express.static('css'));
+app.use('/js',     express.static('js'));
+app.use('/html',   express.static('html'));
+app.use('/images', express.static('images'));
+app.use(express.static('html')); // allow root access to html files
+// Serve index.html at root
+app.get('/', (req, res) => res.sendFile(__dirname + '/index.html'));
 
 // Rate limiting
 const globalLimiter = rateLimit({
@@ -51,6 +60,7 @@ const userRouter = require("./js/routes/userRoutes");
 const adminRouter = require("./js/routes/adminRoutes");
 const authRouter = require("./js/routes/authRoutes");
 const userTokenRouter = require("./js/routes/userTokenRoutes");
+const orderRouter = require("./js/routes/orderRoutes");
 
 app.use("/games", gamesRouter);
 app.use("/deals", dealsRouter);
@@ -63,6 +73,7 @@ app.use("/user", userRouter);
 app.use("/admin", authLimiter, adminRouter);
 app.use("/auth", authLimiter, authRouter);
 app.use("/user_tokens", userTokenRouter);
+app.use("/orders", orderRouter);
 
 // Connect to the database
 const connection = mysql.createConnection(dbConfig);

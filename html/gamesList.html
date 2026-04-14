@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Browse Games – GG Gamestore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Open+Sans:wght@300;400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/shared.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .games-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 28px;
+      padding: 32px 0;
+    }
+    @media (max-width: 900px) {
+      .games-layout { grid-template-columns: 1fr; }
+      .sidebar-col { display: none; }
+      .sidebar-col.open { display: block; }
+    }
+    .games-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 1100px) { .games-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px)  { .games-grid { grid-template-columns: 1fr; } }
+    .filter-toggle-btn {
+      display: none;
+    }
+    @media (max-width: 900px) { .filter-toggle-btn { display: inline-flex; } }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- NAVBAR -->
+  <nav class="gg-navbar">
+    <a href="../index.html" class="gg-navbar__brand">
+      <img src="../images/logo.png" alt="GG Gamestore" onerror="this.style.display='none'">
+      <span>GG Gamestore</span>
+    </a>
+    <button class="gg-navbar__toggle" id="navToggle"><i class="fas fa-bars"></i></button>
+    <div class="gg-navbar__links" id="navLinks">
+      <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="gamesList.html" class="active"><i class="fas fa-gamepad"></i> Browse</a>
+      <a href="cart.html" class="nav-cart-link">
+        <i class="fas fa-shopping-cart"></i> Cart
+        <span class="cart-count">0</span>
+      </a>
+      <span id="navUsername" style="display:none;"></span>
+      <a href="myAcc.html" id="navMyAccount" style="display:none;"><i class="fas fa-user"></i> My Account</a>
+      <button onclick="logout()" id="navLogout" style="display:none;"><i class="fas fa-sign-out-alt"></i> Logout</button>
+      <a href="login.html" id="navLogin"><i class="fas fa-sign-in-alt"></i> Login</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+
+      <!-- TOP BAR -->
+      <div style="padding: 32px 0 0;">
+        <h1 class="section-title"><i class="fas fa-gamepad"></i> Browse Games</h1>
+        <p class="section-subtitle">Discover and add games to your collection</p>
+
+        <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:12px;">
+          <div class="search-bar" style="flex:1; max-width:500px;">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="searchInput" placeholder="Search games by name or genre...">
+          </div>
+          <button class="btn btn-outline btn-sm filter-toggle-btn" id="filterToggle">
+            <i class="fas fa-filter"></i> Filters
+          </button>
+        </div>
+      </div>
+
+      <div class="games-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar-col" id="sidebarCol">
+          <div class="filter-sidebar">
+            <div class="filter-title"><i class="fas fa-filter"></i> Genre</div>
+            <label class="filter-checkbox"><input type="checkbox" class="genre-checkbox" value="Action"> <span>Action</span></label>
+            <label class="filter-checkbox"><input type="checkbox" class="genre-checkbox" value="RPG"> <span>RPG</span></label>
+            <label class="filter-checkbox"><input type="checkbox" class="genre-checkbox" value="Strategy"> <span>Strategy</span></label>
+            <label class="filter-checkbox"><input type="checkbox" class="genre-checkbox" value="Shooter"> <span>Shooter</span></label>
+            <label class="filter-checkbox"><input type="checkbox" class="genre-checkbox" value="Horror"> <span>Horror</span></label>
+            <label class="filter-checkbox"><input type="checkbox" class="genre-checkbox" value="Racing"> <span>Racing</span></label>
+            <label class="filter-checkbox"><input type="checkbox" class="genre-checkbox" value="Sports"> <span>Sports</span></label>
+            <label class="filter-checkbox"><input type="checkbox" class="genre-checkbox" value="Simulation"> <span>Simulation</span></label>
+            <label class="filter-checkbox"><input type="checkbox" class="genre-checkbox" value="Fighting"> <span>Fighting</span></label>
+            <label class="filter-checkbox"><input type="checkbox" class="genre-checkbox" value="Arcade"> <span>Arcade</span></label>
+            <label class="filter-checkbox"><input type="checkbox" class="genre-checkbox" value="MMORPG"> <span>MMORPG</span></label>
+            <label class="filter-checkbox"><input type="checkbox" class="genre-checkbox" value="Free to Play"> <span>Free to Play</span></label>
+
+            <hr class="divider">
+            <button class="btn btn-ghost btn-sm btn-full" id="clearFiltersBtn">
+              <i class="fas fa-times"></i> Clear Filters
+            </button>
+          </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <div class="main-col">
+          <div class="games-header">
+            <span id="resultCount" style="font-size:0.85rem; color:var(--text-muted);"></span>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <label style="font-size:0.8rem; color:var(--text-muted);">Sort:</label>
+              <select id="sortSelect" class="form-control" style="width:auto; padding:6px 12px; font-size:0.85rem;">
+                <option value="default">Default</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+                <option value="name-asc">Name: A–Z</option>
+                <option value="rating-desc">Rating</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="games-grid" id="gamesGrid"></div>
+
+          <div id="noResults" style="display:none;" class="empty-state">
+            <i class="fas fa-search"></i>
+            <h3>No games found</h3>
+            <p>Try a different search term or clear filters.</p>
+          </div>
+
+          <div id="pagination"></div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="gg-footer">
+    <div class="gg-footer__grid">
+      <div class="gg-footer__col">
+        <h4>GG Gamestore</h4>
+        <p>Your ultimate PC gaming destination.</p>
+      </div>
+      <div class="gg-footer__col">
+        <h4>Quick Links</h4>
+        <a href="../index.html">Home</a>
+        <a href="gamesList.html">Browse Games</a>
+        <a href="cart.html">Cart</a>
+      </div>
+      <div class="gg-footer__col">
+        <h4>Account</h4>
+        <a href="myAcc.html">My Account</a>
+        <a href="login.html">Login / Register</a>
+      </div>
+    </div>
+    <div class="gg-footer__bottom">
+      <p>&copy; 2024 GG Gamestore. All rights reserved.</p>
+    </div>
+  </footer>
+
+</div>
+
+<div class="gg-toast-container"></div>
+
+<script src="../js/config.js"></script>
+<script src="../js/cart.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/gamesList.js"></script>
+<script>
+  // Navbar toggle
+  document.getElementById('navToggle').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+
+  // Filter toggle (mobile)
+  document.getElementById('filterToggle').addEventListener('click', () => {
+    document.getElementById('sidebarCol').classList.toggle('open');
+  });
+
+  // Clear filters
+  document.getElementById('clearFiltersBtn').addEventListener('click', () => {
+    document.querySelectorAll('.genre-checkbox').forEach(cb => cb.checked = false);
+    document.getElementById('searchInput').value = '';
+    applyFilters();
+  });
+
+  // Patch renderGames to update result count
+  const _origRender = renderGames;
+  window.renderGames = function(games) {
+    _origRender(games);
+    const el = document.getElementById('resultCount');
+    if (el) el.textContent = games.length + ' game' + (games.length !== 1 ? 's' : '') + ' found';
+  };
+</script>
+</body>
+</html>

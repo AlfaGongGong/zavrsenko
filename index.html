@@ -64,230 +64,80 @@
     />
 
     <!-- custom css -->
+    <link rel="stylesheet" type="text/css" href="./css/shared.css" />
     <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <style>
+      .gg-index-hero {
+        background: linear-gradient(135deg, #0a0a0f 0%, #0d0d22 50%, #0a1830 100%);
+        padding: calc(var(--nav-h) + 48px) 0 64px;
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+      }
+      .gg-index-hero::before {
+        content:'';
+        position:absolute;
+        inset:0;
+        background: radial-gradient(ellipse at 30% 60%, rgba(0,153,255,0.14) 0%, transparent 55%),
+                    radial-gradient(ellipse at 80% 20%, rgba(255,0,102,0.09) 0%, transparent 50%);
+      }
+      .gg-index-hero h1 {
+        font-size: clamp(1.5rem, 5vw, 3.2rem);
+        text-shadow: 0 0 40px rgba(0,153,255,0.5);
+        margin-bottom: 16px;
+      }
+      .gg-index-hero p {
+        font-size: clamp(0.9rem, 2vw, 1.1rem);
+        color: var(--text-muted);
+        margin-bottom: 8px;
+      }
+      .index-hero-btns { display:flex; gap:16px; justify-content:center; margin-top:28px; flex-wrap:wrap; }
+    </style>
   </head>
 
-  <body>
-    <!-- hero section -->
-    <section class="hero">
-      <div class="container">
-        <div class="hero-content">
-          <h1>GG PC Games And Gaming Accessories</h1>
-          <p>Discover the World of PC Gaming</p>
-          <p>Explore the latest trends in PC gaming culture</p>
-        </div>
-        <div class="carousel-container">
-          <div id="gameCarousel" class="carousel slide" data-ride="carousel">
-            <!-- Slides -->
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <h2>Game of the Month: Cyberpunk 2077</h2>
-                <p>Immerse yourself in a futuristic open-world RPG</p>
-                <button class="cta-button">
-                  <a href="https://www.cyberpunk.net/" target="_blank"
-                    >Learn More</a
-                  >
-                </button>
-                <div class="carousel-image-container">
-                  <img
-                    src="https://static.cdprojektred.com/cms.cdprojektred.com/16x9_big/a2029ba1ec1b7ad4f9e95844eda13264dbc05e88-1280x720.jpg"
-                    alt="Cyberpunk 2077"
-                    class="carousel-image"
-                  />
-                </div>
-              </div>
-              <div class="carousel-item">
-                <h2>Streamer's Choice: Valorant</h2>
-                <p>Join the tactical first-person shooter sensation</p>
-                <button class="cta-button">
-                  <a href="https://playvalorant.com/" target="_blank"
-                    >Play Now</a
-                  >
-                </button>
-                <div>
-                  <video
-                    src="https://assets.contentstack.io/v3/assets/bltb6530b271fddd0b1/bltefd45731d8f9d9df/6217f2ea910a6c613c73168c/VALORANT_PLAY22_16x9_Target4_v005.mp4"
-                    alt="Valorant"
-                    class="carousel-video"
-                    autoplay
-                    loop
-                  ></video>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <h2>ASUS ROG Gaming Setup</h2>
-                <p>Experience the ultimate gaming performance with ASUS ROG</p>
-                <button class="cta-button">
-                  <a
-                    href="https://www.asus.com/ROG-Republic-Of-Gamers/"
-                    target="_blank"
-                    >Get It Now</a
-                  >
-                </button>
-                <div>
-                  <img
-                    src="https://rog.asus.com/media/1695852576605.jpg"
-                    alt="ROG ASUS Computers Setup Display"
-                    class="carousel-image"
-                  />
-                </div>
-              </div>
-            </div>
+  <body style="background-color:#0a0a0f;">
 
-            <!-- Carousel controls -->
-            <div class="carousel-control-btn-wrapper">
-              <a
-                class="carousel-control carousel-control-prev"
-                href="#gameCarousel"
-                role="button"
-                data-slide="prev"
-              >
-                <span
-                  class="carousel-control-prev-icon"
-                  aria-hidden="true"
-                ></span>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a
-                class="carousel-control carousel-control-next"
-                href="#gameCarousel"
-                role="button"
-                data-slide="next"
-              >
-                <span
-                  class="carousel-control-next-icon"
-                  aria-hidden="true"
-                ></span>
-                <span class="sr-only">Next</span>
-              </a>
-            </div>
-          </div>
+  <!-- NAVBAR -->
+  <nav class="gg-navbar">
+    <a href="./index.html" class="gg-navbar__brand">
+      <img src="./images/logo.png" alt="GG Gamestore" onerror="this.style.display='none'">
+      <span>GG Gamestore</span>
+    </a>
+    <button class="gg-navbar__toggle" id="navToggle"><i class="fas fa-bars"></i></button>
+    <div class="gg-navbar__links" id="navLinks">
+      <a href="./index.html" class="active"><i class="fas fa-home"></i> Home</a>
+      <a href="./html/gamesList.html"><i class="fas fa-gamepad"></i> Browse Games</a>
+      <a href="./html/cart.html" class="nav-cart-link">
+        <i class="fas fa-shopping-cart"></i> Cart
+        <span class="cart-count">0</span>
+      </a>
+      <span id="navUsername" style="display:none;"></span>
+      <a href="./html/myAcc.html" id="navMyAccount" style="display:none;"><i class="fas fa-user"></i> My Account</a>
+      <button onclick="logout()" id="navLogout" style="display:none;"><i class="fas fa-sign-out-alt"></i> Logout</button>
+      <a href="./html/login.html" id="navLogin"><i class="fas fa-sign-in-alt"></i> Login</a>
+    </div>
+  </nav>
+  <script>
+    document.getElementById('navToggle').addEventListener('click', () => {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+  </script>
+    <!-- hero section -->
+    <section class="gg-index-hero">
+      <div class="container" style="position:relative; z-index:1;">
+        <h1 class="section-title">GG PC Games &amp; Gaming Gear</h1>
+        <p>Discover the World of PC Gaming</p>
+        <p>Explore the latest titles, exclusive deals, and premium accessories</p>
+        <div class="index-hero-btns">
+          <a href="./html/gamesList.html" class="btn btn-cta btn-lg">
+            <i class="fas fa-gamepad"></i> BROWSE GAMES
+          </a>
+          <a href="./html/login.html" class="btn btn-outline btn-lg" id="heroLoginBtn">
+            <i class="fas fa-sign-in-alt"></i> Login / Register
+          </a>
         </div>
       </div>
     </section>
-
-    <!-- nav section -->
-    <nav class="navbar navbar-expand-md">
-      <img class="navbar-brand" src="images/logo.png" alt="logo" />
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNav"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Home </a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="./html/gamesList.html"
-              >Browse All Games
-            </a>
-          </li>
-          <li class="nav-item">
-            <form class="form-inline" id="searchForm">
-              <div class="input-group">
-                <input class="form-control" type="search" id="searchInput" />
-                <div class="input-group-append">
-                  <button
-                    type="submit"
-                    class="btn cta-btn ml-2"
-                    id="searchButton"
-                  >
-                    <i class="fas fa-search"></i>
-                  </button>
-                </div>
-              </div>
-            </form>
-            <div id="searchResultsContainer" style="display: none">
-              <datalist id="searchResults"></datalist>
-            </div>
-          </li>
-          <li class="nav-item dropdown" id="logInRegister">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Log In / Register
-            </a>
-            <div class="dropdown-menu" aria-labelledby="logInRegister">
-              <!-- Login Form -->
-              <form id="login-form" class="dropdown-item" method="POST">
-                <h2>Log in</h2>
-                <input
-                  type="text"
-                  placeholder="Username"
-                  id="login-username"
-                  name="username"
-                  required
-                />
-                <input
-                  type="password"
-                  placeholder="Password"
-                  id="login-password"
-                  name="password"
-                  required
-                />
-                <button type="submit" class="btn cta-btn" id="login-btn">
-                  Login
-                </button>
-              </form>
-              <!-- Register Form -->
-              <form id="register-form" class="dropdown-item" method="POST">
-                <h2>Register</h2>
-                <input
-                  type="text"
-                  placeholder="Username"
-                  id="register-username"
-                  name="username"
-                  required
-                />
-                <input
-                  type="email"
-                  placeholder="Email"
-                  id="register-email"
-                  name="email"
-                  required
-                />
-                <input
-                  type="password"
-                  placeholder="Password"
-                  id="register-password"
-                  name="password"
-                  required
-                />
-                <input
-                  type="password"
-                  placeholder="Confirm Password"
-                  id="register-confirm-password"
-                  required
-                />
-                <button type="submit" class="btn cta-btn" id="register-btn">
-                  Register
-                </button>
-              </form>
-            </div>
-          </li>
-          <li class="nav-item" id="myAccount" style="display: none">
-            <div id="sessionContainer"></div>
-          </li>
-          <li class="nav-item" id="logOut" style="display: none">
-            <form id="logout-form" method="POST">
-              <button type="submit" class="btn cta-btn" id="logOutButton">
-                Log Out
-              </button>
-            </form>
-          </li>
-        </ul>
-      </div>
-    </nav>
 
     <!-- nav section end -->
 
@@ -521,54 +371,59 @@
     <!-- free games section end -->
 
     <!-- footer section start -->
-    <section class="footer_section">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="footer_logo">
-              <a href="index.html"
-                ><img src="images/logo.png" class="logo"
-              /></a>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="footer_menu">
-              <h3>Quck links</h3>
-              <ul>
-                <li><a href="#bestSellers">Best Sellers</a></li>
-                <li><a href="#upcoming">Upcoming</a></li>
-                <li><a href="#deals">Great Deals</a></li>
-                <li><a href="#gamingAccessories">Gaming Accessories</a></li>
-                <li><a href="#freeGames">Free Games</a></li>
-              </ul>
-            </div>
-          </div>
-          <!-- copyright section start -->
-
-          <div class="col-md-12">
-            <div class="copyright_section">
-              <div class="container">
-                <p class="copyright_text">
-                  © 2023 Design by <a href="" id="agg">AlfaGongGong</a>
-                </p>
-              </div>
-            </div>
-            <!-- copyright section end -->
-          </div>
+    <footer class="gg-footer">
+      <div class="gg-footer__grid">
+        <div class="gg-footer__col">
+          <h4>GG Gamestore</h4>
+          <p>Your ultimate PC gaming destination.</p>
+          <a href="index.html"><img src="images/logo.png" alt="logo" style="height:36px; margin-top:8px;"></a>
+        </div>
+        <div class="gg-footer__col">
+          <h4>Quick Links</h4>
+          <a href="#bestSellers">Best Sellers</a>
+          <a href="#upcoming">Upcoming</a>
+          <a href="#deals">Great Deals</a>
+          <a href="#gamingAccessories">Gaming Accessories</a>
+          <a href="#freeGames">Free Games</a>
+        </div>
+        <div class="gg-footer__col">
+          <h4>Shop</h4>
+          <a href="./html/gamesList.html">Browse All Games</a>
+          <a href="./html/cart.html">Cart</a>
+          <a href="./html/myAcc.html">My Account</a>
+        </div>
+        <div class="gg-footer__col">
+          <h4>Account</h4>
+          <a href="./html/login.html">Login / Register</a>
+          <a href="./html/myAcc.html">My Orders</a>
         </div>
       </div>
-    </section>
+      <div class="gg-footer__bottom">
+        <p>&copy; 2024 GG Gamestore – Design by <a href="">AlfaGongGong</a></p>
+      </div>
+    </footer>
     <!-- footer section end -->
 
-    <!-- Javascript files-->
-
+    <!-- Javascript files -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
       crossorigin="anonymous"
     ></script>
+    <script src="./js/config.js"></script>
+    <script src="./js/cart.js"></script>
+    <script src="./js/auth.js"></script>
     <script src="./js/user.js"></script>
     <script src="./script.js"></script>
+    <script>
+      // Hide hero login button if already logged in
+      document.addEventListener('DOMContentLoaded', () => {
+        if (isLoggedIn()) {
+          const btn = document.getElementById('heroLoginBtn');
+          if (btn) btn.style.display = 'none';
+        }
+      });
+    </script>
   </body>
 </html>
