@@ -1,18 +1,36 @@
-// app.js
 const express = require("express");
 const mysql = require("mysql2");
 const cors = require("cors");
+const rateLimit = require("express-rate-limit");
 const app = express();
 
-require("dotenv").config({
-  path: "./.env",
-});
-const port = process.env.PORT;
-// Middleware
+require("dotenv").config({ path: "./.env" });
+
+const port = process.env.PORT || 3000;
+
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// Database connection configuration
+const globalLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 min window
+  max: 200,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "Too many requests, please try again later." },
+});
+
+// Stricter limit for auth endpoints — brute-force protection
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 20,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "Too many authentication attempts, please try again later." },
+});
+
+app.use(globalLimiter);
+
 const dbConfig = {
   host: process.env.MYSQL_HOST,
   user: process.env.MYSQL_USER,
@@ -21,38 +39,38 @@ const dbConfig = {
   port: process.env.MYSQL_PORT,
 };
 
-// Routes
-const gamesRouter = require("./js/routes/gamesRoutes");
-const dealsRouter = require("./js/routes/dealsRoutes");
+const gamesRouter    = require("./js/routes/gamesRoutes");
+const dealsRouter    = require("./js/routes/dealsRoutes");
 const gamingGearRouter = require("./js/routes/gamingGearRoutes");
 const upcomingRouter = require("./js/routes/upcomingRoutes");
-const freeRouter = require("./js/routes/freeGamesRoutes");
-const router = require("./js/routes/userRoutes");
+const freeRouter     = require("./js/routes/freeGamesRoutes");
+const userRouter     = require("./js/routes/userRoutes");
+const adminRouter    = require("./js/routes/adminRoutes");
+const authRouter     = require("./js/routes/authRoutes");
+const userTokenRouter = require("./js/routes/userTokenRoutes");
+const orderRouter    = require("./js/routes/orderRoutes");
 
-app.use("/games", gamesRouter);
-// use games route to get all games
-
-app.use("/games/:id", gamesRouter);
-// use id route to get a specific game by game id
-
-app.use("/games/genre", gamesRouter);
-// use genre route to get all games by genre
-
-app.use("/search", gamesRouter);
-// use search route to get all games by search
-
-app.use("/deals", dealsRouter);
-// use deals route to get all deals
+app.use("/games",       gamesRouter);
+app.use("/deals",       dealsRouter);
 app.use("/gaming_gear", gamingGearRouter);
-// use gaming gear route to get all gaming gear
-app.use("/api", upcomingRouter);
-// use upcoming route to get all upcoming games
-app.use("/api", freeRouter);
-// use free games route to get all free games
-app.use("/user", router);
-// use user route to get all users
+app.use("/api",         upcomingRouter);
+app.use("/api",         freeRouter);
+app.use("/user/login",    authLimiter);
+app.use("/user/register", authLimiter);
+app.use("/user",        userRouter);
+app.use("/admin",       authLimiter, adminRouter);
+app.use("/auth",        authLimiter, authRouter);
+app.use("/user_tokens", userTokenRouter);
+app.use("/orders",      orderRouter);
 
-// Connect to the database
+// Static files are served after API routes so rate limiting still applies
+app.use("/css",    express.static("css"));
+app.use("/js",     express.static("js"));
+app.use("/html",   express.static("html"));
+app.use("/images", express.static("images"));
+app.use(express.static("html"));
+app.get("/", (req, res) => res.sendFile(__dirname + "/index.html"));
+
 const connection = mysql.createConnection(dbConfig);
 connection.connect((error) => {
   if (error) {
@@ -60,9 +78,5 @@ connection.connect((error) => {
     return;
   }
   console.log("Connected to the database:", dbConfig.database);
-
-  // Start the server
-  app.listen(port, () => {
-    console.log(`Server running on port ${port} ... `);
-  });
+  app.listen(port, () => console.log(`Server running on port ${port}`));
 });

@@ -1,114 +1,191 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- basic -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- mobile metas -->
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
-    <title>Product Details</title>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details – GG Gamestore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Open+Sans:wght@300;400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/shared.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .product-hero {
+      width: 100%;
+      max-height: 460px;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+      margin-bottom: 28px;
+    }
+    .product-layout {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 28px;
+      align-items: start;
+      padding-bottom: 60px;
+    }
+    @media (max-width: 900px) { .product-layout { grid-template-columns: 1fr; } }
+    .product-sidebar {
+      position: sticky;
+      top: calc(var(--nav-h) + 16px);
+    }
+    .product-price-box {
+      background: var(--card-bg);
+      backdrop-filter: var(--card-blur);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+    }
+    .price-large {
+      font-family: var(--font-head);
+      font-size: 2rem;
+      color: var(--success);
+      font-weight: 700;
+      text-shadow: 0 0 20px rgba(0,255,136,0.4);
+      margin: 12px 0 20px;
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
 
-    <meta name="author" content="AlfaGongGong" />
+  <nav class="gg-navbar">
+    <a href="../index.html" class="gg-navbar__brand">
+      <img src="../images/gg-logo.svg" alt="GG Gamestore">
+      <span>GG Gamestore</span>
+    </a>
+    <button class="gg-navbar__toggle" id="navToggle"><i class="fas fa-bars"></i></button>
+    <div class="gg-navbar__links" id="navLinks">
+      <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="gamesList.html"><i class="fas fa-gamepad"></i> Browse</a>
+      <a href="cart.html" class="nav-cart-link">
+        <i class="fas fa-shopping-cart"></i> Cart
+        <span class="cart-count">0</span>
+      </a>
+      <span id="navUsername" style="display:none;"></span>
+      <a href="myAcc.html" id="navMyAccount" style="display:none;"><i class="fas fa-user"></i> My Account</a>
+      <button onclick="logout()" id="navLogout" style="display:none;"><i class="fas fa-sign-out-alt"></i> Logout</button>
+      <a href="login.html" id="navLogin"><i class="fas fa-sign-in-alt"></i> Login</a>
+    </div>
+  </nav>
 
-    <!-- bootstrap css -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
-      crossorigin="anonymous"
-    />
+  <main>
+    <div class="container" style="padding-top:32px;">
 
-    <!-- Animate CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-      referrerpolicy="no-referrer"
-    />
+      <a href="gamesList.html" class="btn btn-ghost btn-sm mb-24">
+        <i class="fas fa-arrow-left"></i> Back to Games
+      </a>
 
-    <!-- Bulma CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.css"
-      integrity="sha512-SI0aF82pT58nyOjCNfyeE2Y5/KHId8cLIX/1VYzdjTRs0HPNswsJR+aLQYSWpb88GDJieAgR4g1XWZvUROQv1A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <!-- Google fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Orbitron:wght@400;700&family=Press+Start+2P&family=Raleway:wght@400;700&display=swap"
-      rel="stylesheet"
-      as="font"
-      crossorigin="anonymous"
-    />
-
-    <!-- font awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-      as="style"
-    />
-
-    <!-- custom css -->
-    <link rel="stylesheet" href="../css/style.css" />
-  </head>
-  <body>
-    <!-- product details section -->
-
-    <section class="product-details-section">
-      <div class="container">
-        <div
-          class="row product-details-container"
-          id="product-details-container"
-        ></div>
+      <!-- Loading -->
+      <div id="loadingSpinner" class="spinner-container">
+        <div class="gg-spinner"></div>
+        <span>Loading product...</span>
       </div>
-    </section>
 
-    <!-- product details section end -->
+      <!-- Error -->
+      <div id="errorMessage" class="empty-state" style="display:none;">
+        <i class="fas fa-exclamation-triangle" style="color:var(--danger);"></i>
+      </div>
 
-    <!-- footer section start -->
-    <section class="footer_section">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="footer_logo">
-              <a href="index.html"
-                ><img src="../images/logo.png" class="logo"
-              /></a>
+      <!-- Login prompt -->
+      <div id="loginPrompt" class="glass-panel text-center" style="display:none; max-width:480px; margin:40px auto;">
+        <i class="fas fa-lock" style="font-size:2.5rem; color:var(--primary); margin-bottom:16px;"></i>
+        <h3 style="font-family:var(--font-head); font-size:0.9rem; margin-bottom:12px;">Login Required</h3>
+        <p class="text-muted mb-16">Please log in to view product details.</p>
+        <a href="login.html" class="btn btn-cta"><i class="fas fa-sign-in-alt"></i> LOGIN</a>
+      </div>
+
+      <!-- Product Content -->
+      <div id="productContent" style="display:none;">
+        <img id="productHeroImg" class="product-hero"
+          src="" alt=""
+          onerror="this.src='../images/dummy_we-will-fix-this-soon.png'">
+
+        <div class="product-layout">
+
+          <!-- Main info -->
+          <div>
+            <div style="display:flex; align-items:flex-start; gap:12px; flex-wrap:wrap; margin-bottom:12px;">
+              <span id="productGenre"></span>
+              <span id="productRelease" style="font-size:0.83rem; color:var(--text-muted);"></span>
+            </div>
+
+            <h1 id="productName" style="font-family:var(--font-head); font-size:clamp(1.2rem,3vw,2rem); color:var(--primary); margin-bottom:12px;"></h1>
+
+            <div id="productRating" class="stars mb-24"></div>
+
+            <!-- Description -->
+            <div class="glass-panel mb-24">
+              <h3 style="font-family:var(--font-head); font-size:0.8rem; color:var(--primary); margin-bottom:12px;">
+                <i class="fas fa-align-left"></i> Description
+              </h3>
+              <p id="productDescription" style="font-size:0.9rem; color:var(--text); line-height:1.7;"></p>
+            </div>
+
+            <!-- System Requirements -->
+            <div class="mb-24">
+              <h3 style="font-family:var(--font-head); font-size:0.8rem; color:var(--primary); margin-bottom:16px;">
+                <i class="fas fa-desktop"></i> System Requirements
+              </h3>
+              <div id="sysReqs"></div>
             </div>
           </div>
 
-          <!-- copyright section start -->
+          <!-- Sidebar: price + CTA -->
+          <aside class="product-sidebar">
+            <div class="product-price-box">
+              <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">Price</div>
+              <div class="price-large" id="productPrice"></div>
 
-          <div class="col-md-12">
-            <div class="copyright_section">
-              <div class="container">
-                <p class="copyright_text">
-                  © 2023 Design by <a href="" id="agg">AlfaGongGong</a>
-                </p>
+              <button id="addToCartBtn" class="btn btn-cta btn-full mb-8">
+                <i class="fas fa-cart-plus"></i> ADD TO CART
+              </button>
+
+              <button id="wishlistBtn" class="wishlist-btn w-full" style="width:100%; padding:10px;">
+                <i class="far fa-heart"></i> Add to Wishlist
+              </button>
+
+              <hr class="divider">
+
+              <div style="font-size:0.75rem; color:var(--text-muted); display:flex; flex-direction:column; gap:6px;">
+                <div><i class="fas fa-download" style="color:var(--primary);"></i> Instant digital delivery</div>
+                <div><i class="fas fa-shield-alt" style="color:var(--success);"></i> Secure payment</div>
+                <div><i class="fas fa-undo" style="color:var(--warning);"></i> 30-day refund policy</div>
               </div>
             </div>
-            <!-- copyright section end -->
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- footer section end -->
+          </aside>
 
-    <script
-      src="https://code.jquery.com/jquery-3.6.0.min.js"
-      as="script"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
-      crossorigin="anonymous"
-      as="script"
-    ></script>
-    <script src="../js/productDetails.js"></script>
-  </body>
+        </div>
+
+        <!-- Related Products -->
+        <div id="relatedSection" style="display:none; padding-bottom:60px;">
+          <h2 class="section-title mb-16"><i class="fas fa-th-large"></i> Related Games</h2>
+          <div id="relatedGames" class="grid-3"></div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="gg-footer">
+    <div class="gg-footer__bottom">
+      <p>&copy; 2024 GG Gamestore. All rights reserved.</p>
+    </div>
+  </footer>
+</div>
+
+<div class="gg-toast-container"></div>
+
+<script src="../js/config.js"></script>
+<script src="../js/cart.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/productDetails.js"></script>
+<script>
+  document.getElementById('navToggle').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+</script>
+</body>
 </html>

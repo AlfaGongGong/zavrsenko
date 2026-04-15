@@ -51,7 +51,7 @@ function handleLogin() {
       button.classList.add("btn", "btn-secondary");
       button.disabled = true;
       button.title = "You must be logged in to add to your shopping cart";
-      button.addEventListener("moseover", (event) => {
+      button.addEventListener("mouseover", (event) => {
         button.classList.add("animate__animated", "animate__shakeX");
       });
 
@@ -122,7 +122,7 @@ searchInput.addEventListener("keyup", (event) => {
     return;
   }
 
-  fetch("http://localhost:8080/games/search", {
+  fetch(`${typeof API_BASE !== 'undefined' ? API_BASE : 'http://localhost:3000'}/games/search`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -140,7 +140,7 @@ searchInput.addEventListener("keyup", (event) => {
         searchResults.appendChild(option);
 
         option.addEventListener("click", () => {
-          preventDefault();
+          event.preventDefault();
           searchInput.value = option.value;
           searchResults.innerHTML = "";
           searchResultsContainer.style.display = "none";

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout – GG Gamestore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Open+Sans:wght@300;400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/shared.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .checkout-layout {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 28px;
+      padding: 32px 0 60px;
+      align-items: start;
+    }
+    @media (max-width: 900px) { .checkout-layout { grid-template-columns: 1fr; } }
+
+    @keyframes successPop {
+      0%   { transform: scale(0) rotate(-15deg); opacity: 0; }
+      60%  { transform: scale(1.15) rotate(5deg); }
+      100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    }
+    .success-icon {
+      font-size: 5rem;
+      color: var(--success);
+      animation: successPop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      text-shadow: 0 0 30px rgba(0,255,136,0.6);
+    }
+    .card-preview {
+      background: linear-gradient(135deg, rgba(0,153,255,0.2), rgba(255,0,102,0.1));
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 24px;
+      position: relative;
+      min-height: 80px;
+    }
+    #cardTypeDisplay {
+      position: absolute;
+      top: 16px; right: 16px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <nav class="gg-navbar">
+    <a href="../index.html" class="gg-navbar__brand">
+      <img src="../images/gg-logo.svg" alt="GG Gamestore">
+      <span>GG Gamestore</span>
+    </a>
+    <button class="gg-navbar__toggle" id="navToggle"><i class="fas fa-bars"></i></button>
+    <div class="gg-navbar__links" id="navLinks">
+      <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="gamesList.html"><i class="fas fa-gamepad"></i> Browse</a>
+      <a href="cart.html" class="nav-cart-link">
+        <i class="fas fa-shopping-cart"></i> Cart
+        <span class="cart-count">0</span>
+      </a>
+      <span id="navUsername" style="display:none;"></span>
+      <a href="myAcc.html" id="navMyAccount" style="display:none;"><i class="fas fa-user"></i> My Account</a>
+      <button onclick="logout()" id="navLogout" style="display:none;"><i class="fas fa-sign-out-alt"></i> Logout</button>
+      <a href="login.html" id="navLogin"><i class="fas fa-sign-in-alt"></i> Login</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+      <div style="padding-top:32px; margin-bottom:28px;">
+        <h1 class="section-title"><i class="fas fa-lock"></i> Checkout</h1>
+
+        <!-- Progress -->
+        <div class="step-progress mt-24">
+          <div class="step-item active" id="stepItem1">
+            <div class="step-circle">1</div>
+            <div class="step-label">Info</div>
+          </div>
+          <div class="step-item" id="stepItem2">
+            <div class="step-circle">2</div>
+            <div class="step-label">Payment</div>
+          </div>
+          <div class="step-item" id="stepItem3">
+            <div class="step-circle">3</div>
+            <div class="step-label">Review</div>
+          </div>
+          <div class="step-item" id="stepItem4">
+            <div class="step-circle"><i class="fas fa-check"></i></div>
+            <div class="step-label">Done</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="checkout-layout">
+
+        <!-- STEPS -->
+        <div>
+
+          <!-- STEP 1: Customer Info -->
+          <div class="checkout-step" id="step1Panel">
+            <div class="glass-panel">
+              <h3 style="font-family:var(--font-head); font-size:0.9rem; color:var(--primary); margin-bottom:24px;">
+                <i class="fas fa-user"></i> Customer Information
+              </h3>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="cust_firstName">First Name *</label>
+                  <input id="cust_firstName" type="text" class="form-control" placeholder="John">
+                  <div class="form-error" id="err_firstName">First name is required.</div>
+                </div>
+                <div class="form-group">
+                  <label for="cust_lastName">Last Name *</label>
+                  <input id="cust_lastName" type="text" class="form-control" placeholder="Doe">
+                  <div class="form-error" id="err_lastName">Last name is required.</div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="cust_email">Email *</label>
+                <input id="cust_email" type="email" class="form-control" placeholder="you@example.com">
+                <div class="form-error" id="err_email">Enter a valid email.</div>
+              </div>
+
+              <div class="form-group">
+                <label for="cust_address">Street Address *</label>
+                <input id="cust_address" type="text" class="form-control" placeholder="123 Main Street">
+                <div class="form-error" id="err_address">Address is required.</div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="cust_city">City *</label>
+                  <input id="cust_city" type="text" class="form-control" placeholder="Sarajevo">
+                  <div class="form-error" id="err_city">City is required.</div>
+                </div>
+                <div class="form-group">
+                  <label for="cust_postalCode">Postal Code *</label>
+                  <input id="cust_postalCode" type="text" class="form-control" placeholder="71000">
+                  <div class="form-error" id="err_postalCode">Postal code is required.</div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="cust_country">Country *</label>
+                <select id="cust_country" class="form-control">
+                  <option value="">Select country...</option>
+                  <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                  <option value="Croatia">Croatia</option>
+                  <option value="Serbia">Serbia</option>
+                  <option value="Slovenia">Slovenia</option>
+                  <option value="Montenegro">Montenegro</option>
+                  <option value="Germany">Germany</option>
+                  <option value="Austria">Austria</option>
+                  <option value="United States">United States</option>
+                  <option value="Other">Other</option>
+                </select>
+                <div class="form-error" id="err_country">Please select a country.</div>
+              </div>
+
+              <button class="btn btn-primary btn-full mt-8" id="toStep2">
+                Continue to Payment <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 2: Payment -->
+          <div class="checkout-step" style="display:none;">
+            <div class="glass-panel">
+              <h3 style="font-family:var(--font-head); font-size:0.9rem; color:var(--primary); margin-bottom:24px;">
+                <i class="fas fa-credit-card"></i> Payment Details
+              </h3>
+
+              <div class="card-preview">
+                <div id="cardTypeDisplay"><i class="fas fa-credit-card"></i> Card</div>
+                <div style="font-family:monospace; font-size:1.1rem; letter-spacing:3px; color:var(--text); margin-top:8px;" id="cardDisplayNum">
+                  **** **** **** ****
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="cardHolder">Cardholder Name *</label>
+                <input id="cardHolder" type="text" class="form-control" placeholder="JOHN DOE" autocomplete="cc-name">
+                <div class="form-error" id="err_cardHolder">Cardholder name is required.</div>
+              </div>
+
+              <div class="form-group">
+                <label for="cardNumber">Card Number *</label>
+                <input id="cardNumber" type="text" class="form-control" placeholder="1234 5678 9012 3456"
+                  maxlength="19" autocomplete="cc-number" inputmode="numeric">
+                <div class="form-error" id="err_cardNumber">Enter a valid card number.</div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="cardExpiry">Expiry (MM/YY) *</label>
+                  <input id="cardExpiry" type="text" class="form-control" placeholder="12/26"
+                    maxlength="5" autocomplete="cc-exp" inputmode="numeric">
+                  <div class="form-error" id="err_cardExpiry">Enter a valid expiry date.</div>
+                </div>
+                <div class="form-group">
+                  <label for="cardCVV">CVV *</label>
+                  <input id="cardCVV" type="password" class="form-control" placeholder="•••"
+                    maxlength="4" autocomplete="cc-csc" inputmode="numeric">
+                  <div class="form-error" id="err_cardCVV">Enter a valid CVV.</div>
+                </div>
+              </div>
+
+              <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:20px;">
+                <i class="fas fa-lock"></i> Your card details are encrypted. This is a demo checkout.
+              </p>
+
+              <div class="flex-between" style="gap:12px;">
+                <button class="btn btn-ghost" id="backToStep1">
+                  <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <button class="btn btn-primary" id="toStep3" style="flex:1;">
+                  Review Order <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 3: Review -->
+          <div class="checkout-step" style="display:none;">
+            <div id="reviewContent"></div>
+            <div class="flex-between mt-16" style="gap:12px;">
+              <button class="btn btn-ghost" id="backToStep2">
+                <i class="fas fa-arrow-left"></i> Back
+              </button>
+              <button class="btn btn-cta" id="payNowBtn" style="flex:1;">
+                <i class="fas fa-lock"></i> PAY NOW
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 4: Confirmation -->
+          <div class="checkout-step" style="display:none;">
+            <div class="glass-panel text-center" style="padding:60px 32px;">
+              <div class="success-icon" id="successCheck">
+                <i class="fas fa-check-circle"></i>
+              </div>
+              <h2 style="font-family:var(--font-head); font-size:1.2rem; color:var(--success); margin:24px 0 12px;">
+                Order Confirmed!
+              </h2>
+              <p style="color:var(--text-muted); margin-bottom:8px;">Thank you for your purchase!</p>
+              <p style="font-size:0.85rem; color:var(--text-muted);">
+                Order ID: <span id="confirmOrderId" style="font-family:monospace; color:var(--primary);"></span>
+              </p>
+              <p style="font-size:0.83rem; color:var(--text-muted); margin-top:8px;">
+                A confirmation will be sent to <strong id="confirmEmail"></strong>
+              </p>
+              <div class="flex-center gap-16 mt-32">
+                <a href="gamesList.html" class="btn btn-outline">
+                  <i class="fas fa-gamepad"></i> Continue Shopping
+                </a>
+                <a href="myAcc.html" class="btn btn-primary">
+                  <i class="fas fa-user"></i> My Orders
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- SIDEBAR SUMMARY -->
+        <aside>
+          <div class="order-summary">
+            <h3 style="font-family:var(--font-head); font-size:0.85rem; color:var(--primary); margin-bottom:16px;">
+              <i class="fas fa-shopping-bag"></i> Order Summary
+            </h3>
+            <div id="cartMiniSummary"></div>
+          </div>
+
+          <div class="glass-panel mt-16" style="padding:16px;">
+            <div style="font-size:0.75rem; color:var(--text-muted); display:flex; flex-direction:column; gap:8px;">
+              <div><i class="fas fa-shield-alt" style="color:var(--success);"></i> SSL Encrypted</div>
+              <div><i class="fas fa-undo" style="color:var(--primary);"></i> 30-day returns</div>
+              <div><i class="fas fa-truck" style="color:var(--warning);"></i> Free shipping over 100 KM</div>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="gg-footer">
+    <div class="gg-footer__bottom">
+      <p>&copy; 2024 GG Gamestore. All rights reserved.</p>
+    </div>
+  </footer>
+</div>
+
+<script src="../js/config.js"></script>
+<script src="../js/cart.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/checkout.js"></script>
+<script>
+  document.getElementById('navToggle').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+
+  // Live card number preview
+  document.getElementById('cardNumber')?.addEventListener('input', e => {
+    const disp = document.getElementById('cardDisplayNum');
+    if (disp) {
+      const raw = e.target.value.replace(/\D/g,'');
+      const padded = raw.padEnd(16,'*');
+      disp.textContent = padded.replace(/(.{4})/g,'$1 ').trim();
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,5 +1,4 @@
 const mysql = require("mysql2");
-import mysql from "mysql2";
 require("dotenv").config({
   path: "./.env"
 });
@@ -3490,15 +3489,9 @@ connection.connect((error) => {
       released: "0000-00-00"
     },
     {
-      // ... your code ...
-
-      connection.query(sql, [jsonData.map(Object.values)], (err) => {
-        if (err) {
-          console.error("Error inserting data into the database:", err);
-          return;
-        }
-        console.log("Data inserted successfully!");
-      });
+      name: "The Lord of the Rings Online",
+      background_image: "https://www.freetogame.com/g/338/thumbnail.jpg",
+      free: "1",
       description:
         "A free to play MMORPG set in the world of J.R.R. Tolkien's \r\nclassic fantasy saga.",
       url: "https://www.freetogame.com/open/lotro",

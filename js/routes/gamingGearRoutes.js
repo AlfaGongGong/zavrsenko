@@ -1,9 +1,8 @@
-const mysql = require("mysql2/promise"); // fix 1
+const mysql = require("mysql2/promise");
 const authenticate = require("../authentication/authToken");
 const isAdmin = require("../authentication/isAdmin");
-require("dotenv").config({ path: "zavrsenko/.env" });
+require("dotenv").config({ path: "./.env" });
 
-// Database connection configuration
 const dbConfig = {
   host: process.env.MYSQL_HOST,
   user: process.env.MYSQL_USER,
@@ -12,49 +11,37 @@ const dbConfig = {
   port: process.env.MYSQL_PORT,
 };
 
-// Create a MySQL connection pool
 const pool = mysql.createPool(dbConfig);
-
 const gamingGearRouter = require("express").Router();
 
-// get all gaming gear items
 gamingGearRouter.get("/", async (req, res) => {
   try {
-    // Use the pool to query the database
     const [results] = await pool.query("SELECT * FROM gaming_gear");
     res.json(results);
   } catch (error) {
-    console.error("Error fetching gear from the database:", error);
-    res.status(500).json({ error: "Error fetching gear from the database" });
+    console.error("Error fetching gear:", error);
+    res.status(500).json({ error: "Error fetching gear" });
   }
 });
 
-// get a specific gaming gear item by ID
 gamingGearRouter.get("/:id", async (req, res) => {
   const gearId = req.params.id;
 
   try {
-    const [results] = await pool.query(
-      "SELECT * FROM gaming_gear WHERE id = ?",
-      [gearId],
-    );
-    const gear = results[0]; // fix 5
+    const [results] = await pool.query("SELECT * FROM gaming_gear WHERE id = ?", [gearId]);
+    const gear = results[0];
     if (!gear) {
-      res.status(404).json({ error: "Item not found" });
-    } else {
-      res.json(gear);
+      return res.status(404).json({ error: "Item not found" });
     }
+    res.json(gear);
   } catch (error) {
-    console.error("Error fetching item details from the database:", error);
-    res
-      .status(500)
-      .json({ error: "Error fetching item details from the database" });
+    console.error("Error fetching gear item:", error);
+    res.status(500).json({ error: "Error fetching gear item" });
   }
 });
 
-// Admin routes
+// Admin — create, update, delete
 
-// Create a new gaming gear item
 gamingGearRouter.post("/", authenticate, isAdmin, async (req, res) => {
   const { name, description, price } = req.body;
 
@@ -71,12 +58,11 @@ gamingGearRouter.post("/", authenticate, isAdmin, async (req, res) => {
     connection.release();
     res.status(201).json({ message: "Gaming gear item created successfully" });
   } catch (error) {
-    console.error("Error executing MySQL query:", error);
+    console.error("Error creating gear item:", error);
     res.status(500).json({ error: "Error creating gaming gear item" });
   }
 });
 
-// Update a gaming gear item by ID
 gamingGearRouter.put("/:id", authenticate, isAdmin, async (req, res) => {
   const gearId = req.params.id;
   const { name, description, price } = req.body;
@@ -94,19 +80,15 @@ gamingGearRouter.put("/:id", authenticate, isAdmin, async (req, res) => {
     connection.release();
 
     if (result.affectedRows === 0) {
-      res.status(404).json({ message: "Gaming gear item not found" });
-    } else {
-      res
-        .status(200)
-        .json({ message: "Gaming gear item updated successfully" });
+      return res.status(404).json({ message: "Gaming gear item not found" });
     }
+    res.status(200).json({ message: "Gaming gear item updated successfully" });
   } catch (error) {
-    console.error("Error executing MySQL query:", error);
+    console.error("Error updating gear item:", error);
     res.status(500).json({ error: "Error updating gaming gear item" });
   }
 });
 
-// Delete a gaming gear item by ID
 gamingGearRouter.delete("/:id", authenticate, isAdmin, async (req, res) => {
   const gearId = req.params.id;
 
@@ -119,12 +101,11 @@ gamingGearRouter.delete("/:id", authenticate, isAdmin, async (req, res) => {
     connection.release();
 
     if (result.affectedRows === 0) {
-      res.status(404).json({ error: "Gaming gear item not found" });
-    } else {
-      res.status(204).send();
+      return res.status(404).json({ error: "Gaming gear item not found" });
     }
+    res.status(204).send();
   } catch (error) {
-    console.error("Error executing MySQL query:", error);
+    console.error("Error deleting gear item:", error);
     res.status(500).json({ error: "Error deleting gaming gear item" });
   }
 });
