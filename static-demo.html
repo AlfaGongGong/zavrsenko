@@ -1,0 +1,1674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="GG Gamestore – Static Demo Page" />
+  <title>GG Gamestore – Demo</title>
+
+  <!-- External CDN resources (fonts + icons only – no framework CSS) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Open+Sans:wght@300;400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    /* =====================================================
+       DESIGN TOKENS
+       ===================================================== */
+    :root {
+      --bg:           #0a0a0f;
+      --bg2:          #0d0d16;
+      --bg3:          #12121e;
+      --primary:      #0099ff;
+      --primary-glow: rgba(0, 153, 255, 0.5);
+      --cta:          #ff0066;
+      --cta-glow:     rgba(255, 0, 102, 0.5);
+      --success:      #00ff88;
+      --warning:      #ffcc00;
+      --text:         #e0e8ff;
+      --text-muted:   #6677aa;
+      --card-bg:      rgba(255, 255, 255, 0.05);
+      --card-border:  rgba(0, 153, 255, 0.2);
+      --radius:       10px;
+      --radius-lg:    16px;
+      --shadow:       0 8px 32px rgba(0, 0, 0, 0.5);
+      --font-head:    'Orbitron', sans-serif;
+      --font-body:    'Open Sans', sans-serif;
+      --font-pixel:   'Press Start 2P', monospace;
+      --transition:   0.25s ease;
+      --nav-h:        68px;
+    }
+
+    /* =====================================================
+       RESET & BASE
+       ===================================================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    a { color: var(--primary); text-decoration: none; transition: color var(--transition); }
+    a:hover { color: #33bbff; }
+
+    img { max-width: 100%; height: auto; display: block; }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-head);
+      color: var(--primary);
+      line-height: 1.2;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg2); }
+    ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
+
+    /* =====================================================
+       NAVBAR
+       ===================================================== */
+    .gg-navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: rgba(10, 10, 15, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      z-index: 1000;
+      gap: 16px;
+    }
+
+    .gg-navbar__brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .gg-navbar__brand .brand-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--primary), #0044cc);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-pixel);
+      font-size: 0.55rem;
+      color: #fff;
+      filter: drop-shadow(0 0 8px var(--primary-glow));
+      flex-shrink: 0;
+    }
+
+    .gg-navbar__brand span {
+      font-family: var(--font-head);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-shadow: 0 0 10px var(--primary-glow);
+      white-space: nowrap;
+    }
+
+    .gg-navbar__links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+
+    .gg-navbar__links a,
+    .gg-navbar__links button {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: var(--radius);
+      font-size: 0.85rem;
+      font-family: var(--font-body);
+      font-weight: 600;
+      color: var(--text);
+      background: transparent;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all var(--transition);
+      white-space: nowrap;
+    }
+
+    .gg-navbar__links a:hover,
+    .gg-navbar__links button:hover {
+      color: var(--primary);
+      border-color: var(--primary);
+      background: rgba(0, 153, 255, 0.08);
+    }
+
+    .gg-navbar__links a.active {
+      color: var(--primary);
+      border-color: var(--card-border);
+    }
+
+    .cart-badge {
+      background: var(--cta);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 700;
+      min-width: 18px;
+      height: 18px;
+      border-radius: 9px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 4px;
+    }
+
+    .gg-navbar__toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--primary);
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .gg-navbar__toggle { display: block; }
+
+      .gg-navbar__links {
+        display: none;
+        position: absolute;
+        top: var(--nav-h);
+        left: 0; right: 0;
+        background: rgba(10, 10, 20, 0.97);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--card-border);
+        padding: 16px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .gg-navbar__links.open { display: flex; }
+    }
+
+    /* =====================================================
+       BUTTONS
+       ===================================================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      border-radius: var(--radius);
+      font-weight: 700;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all var(--transition);
+      text-decoration: none;
+    }
+
+    .btn-cta {
+      background: var(--cta);
+      color: #fff;
+      border-color: var(--cta);
+      box-shadow: 0 0 20px var(--cta-glow);
+    }
+
+    .btn-cta:hover {
+      background: #ff3388;
+      box-shadow: 0 0 32px var(--cta-glow);
+      color: #fff;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .btn-outline:hover {
+      background: rgba(0, 153, 255, 0.12);
+      color: var(--primary);
+    }
+
+    .btn-sm { padding: 8px 18px; font-size: 0.8rem; }
+
+    .btn-add-cart {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+      width: 100%;
+      justify-content: center;
+      font-size: 0.82rem;
+      padding: 9px 16px;
+    }
+
+    .btn-add-cart:hover {
+      background: #007acc;
+      color: #fff;
+    }
+
+    /* =====================================================
+       SECTION SHARED
+       ===================================================== */
+    .section-heading {
+      text-align: center;
+      padding: 56px 24px 8px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(1.2rem, 3.5vw, 2rem);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 0 0 20px var(--primary-glow);
+    }
+
+    .section-divider {
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--cta));
+      margin: 12px auto 0;
+      border-radius: 2px;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 20px;
+      max-width: 1280px;
+      margin: 32px auto 0;
+      padding: 0 24px;
+    }
+
+    .section-cta {
+      text-align: center;
+      padding: 28px 24px 48px;
+    }
+
+    /* =====================================================
+       HERO
+       ===================================================== */
+    .gg-hero {
+      background: linear-gradient(135deg, #0a0a0f 0%, #0d0d22 50%, #0a1830 100%);
+      padding: calc(var(--nav-h) + 72px) 24px 80px;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .gg-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 30% 60%, rgba(0,153,255,0.15) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 20%, rgba(255,0,102,0.10) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .gg-hero__inner {
+      position: relative;
+      z-index: 1;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .gg-hero__eyebrow {
+      display: inline-block;
+      font-family: var(--font-pixel);
+      font-size: 0.55rem;
+      color: var(--cta);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      padding: 6px 14px;
+      border: 1px solid rgba(255,0,102,0.3);
+      border-radius: 20px;
+      background: rgba(255,0,102,0.07);
+    }
+
+    .gg-hero__title {
+      font-size: clamp(1.8rem, 6vw, 3.8rem);
+      font-weight: 900;
+      text-shadow: 0 0 50px var(--primary-glow);
+      margin-bottom: 18px;
+      line-height: 1.1;
+    }
+
+    .gg-hero__title span { color: var(--cta); text-shadow: 0 0 30px var(--cta-glow); }
+
+    .gg-hero__sub {
+      font-size: clamp(0.95rem, 2vw, 1.15rem);
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .gg-hero__btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-top: 36px;
+      flex-wrap: wrap;
+    }
+
+    .gg-hero__stats {
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+      margin-top: 52px;
+      flex-wrap: wrap;
+    }
+
+    .gg-hero__stat strong {
+      display: block;
+      font-family: var(--font-head);
+      font-size: 1.6rem;
+      color: var(--primary);
+      text-shadow: 0 0 12px var(--primary-glow);
+    }
+
+    .gg-hero__stat span {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* =====================================================
+       GENRE BROWSER
+       ===================================================== */
+    .genres-section {
+      background: var(--bg2);
+      padding: 48px 24px;
+      border-top: 1px solid var(--card-border);
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .genres-section h2 {
+      text-align: center;
+      font-size: clamp(1rem, 3vw, 1.4rem);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 4px;
+    }
+
+    .genres-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      max-width: 900px;
+      margin: 28px auto 0;
+    }
+
+    .genre-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 30px;
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      color: var(--text);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: all var(--transition);
+      cursor: pointer;
+    }
+
+    .genre-chip i { color: var(--primary); font-size: 1rem; }
+
+    .genre-chip:hover {
+      border-color: var(--primary);
+      background: rgba(0, 153, 255, 0.1);
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    /* =====================================================
+       FEATURE BANNER
+       ===================================================== */
+    .feature-banner {
+      position: relative;
+      overflow: hidden;
+      height: 340px;
+    }
+
+    .feature-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.55);
+    }
+
+    .feature-banner__overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+      background: linear-gradient(to bottom, transparent 30%, rgba(10,10,15,0.8) 100%);
+    }
+
+    .feature-banner__overlay h2 {
+      font-size: clamp(1.4rem, 4vw, 2.4rem);
+      text-shadow: 0 0 30px var(--primary-glow);
+      margin-bottom: 10px;
+    }
+
+    .feature-banner__overlay p {
+      color: #c0ccee;
+      font-size: 1rem;
+    }
+
+    /* =====================================================
+       GAME CARD
+       ===================================================== */
+    .gg-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .gg-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 28px var(--primary-glow);
+      border-color: var(--primary);
+    }
+
+    .gg-card__img {
+      width: 100%;
+      aspect-ratio: 460 / 215;
+      object-fit: cover;
+    }
+
+    .gg-card__body { padding: 14px 16px 16px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+
+    .gg-card__title {
+      font-family: var(--font-head);
+      font-size: 0.82rem;
+      color: var(--text);
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .gg-card__meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-size: 0.68rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .tag-genre  { background: rgba(0,153,255,0.15); color: var(--primary); border: 1px solid rgba(0,153,255,0.3); }
+    .tag-rating { background: rgba(255,204,0,0.12); color: var(--warning); border: 1px solid rgba(255,204,0,0.3); }
+    .tag-free   { background: rgba(0,255,136,0.12); color: var(--success); border: 1px solid rgba(0,255,136,0.3); }
+    .tag-soon   { background: rgba(255,0,102,0.12); color: var(--cta);     border: 1px solid rgba(255,0,102,0.3); }
+
+    .gg-card__price {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: auto;
+    }
+
+    .price-current {
+      font-family: var(--font-head);
+      font-size: 1rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .price-original {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      text-decoration: line-through;
+    }
+
+    .price-badge {
+      background: var(--cta);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-left: auto;
+    }
+
+    /* =====================================================
+       DEALS SECTION (accent bg)
+       ===================================================== */
+    .deals-section { background: var(--bg2); }
+
+    /* =====================================================
+       ACCESSORIES CARD – wide image ratio
+       ===================================================== */
+    .gg-card--accessory .gg-card__img {
+      aspect-ratio: 4 / 3;
+    }
+
+    /* =====================================================
+       CAROUSEL
+       ===================================================== */
+    .carousel-section {
+      background: var(--bg3);
+      padding: 48px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .carousel-section h2 {
+      text-align: center;
+      font-size: clamp(1rem, 3vw, 1.4rem);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0 24px 24px;
+    }
+
+    .carousel-track-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.55s ease;
+    }
+
+    .carousel-track .slide {
+      min-width: 100%;
+    }
+
+    .carousel-track .slide img {
+      width: 100%;
+      max-height: 440px;
+      object-fit: cover;
+      filter: brightness(0.8);
+    }
+
+    .carousel-controls {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .carousel-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--cta);
+      color: #fff;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background var(--transition);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .carousel-btn:hover { background: #cc0052; }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .carousel-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--text-muted);
+      border: none;
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+
+    .carousel-dot.active { background: var(--primary); }
+
+    /* =====================================================
+       FREE GAMES SECTION
+       ===================================================== */
+    .free-section { background: var(--bg); }
+
+    /* =====================================================
+       UPCOMING SECTION
+       ===================================================== */
+    .upcoming-section { background: var(--bg2); }
+
+    /* =====================================================
+       PROMO BANNER STRIP
+       ===================================================== */
+    .promo-strip {
+      background: linear-gradient(135deg, #0a0f20 0%, #1a0a1f 50%, #0a0f20 100%);
+      border-top: 1px solid var(--card-border);
+      border-bottom: 1px solid var(--card-border);
+      padding: 40px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .promo-strip::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 50%, rgba(255,0,102,0.08), transparent 70%);
+      pointer-events: none;
+    }
+
+    .promo-strip h2 {
+      font-size: clamp(1rem, 3vw, 1.6rem);
+      color: var(--cta);
+      text-shadow: 0 0 20px var(--cta-glow);
+      margin-bottom: 8px;
+    }
+
+    .promo-strip p { color: var(--text-muted); margin-bottom: 20px; }
+
+    /* =====================================================
+       NEWSLETTER
+       ===================================================== */
+    .newsletter {
+      background: var(--bg3);
+      border-top: 1px solid var(--card-border);
+      border-bottom: 1px solid var(--card-border);
+      padding: 56px 24px;
+      text-align: center;
+    }
+
+    .newsletter h2 {
+      font-size: clamp(1.1rem, 3vw, 1.7rem);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .newsletter p { color: var(--text-muted); margin-bottom: 28px; }
+
+    .newsletter-form {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      min-width: 220px;
+      padding: 12px 18px;
+      border-radius: var(--radius);
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      color: var(--text);
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color var(--transition);
+    }
+
+    .newsletter-form input:focus { border-color: var(--primary); }
+
+    .newsletter-form input::placeholder { color: var(--text-muted); }
+
+    /* =====================================================
+       FOOTER
+       ===================================================== */
+    .gg-footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--card-border);
+      padding: 48px 24px 24px;
+    }
+
+    .gg-footer__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 32px;
+      max-width: 1200px;
+      margin: 0 auto 32px;
+    }
+
+    .gg-footer__col h4 {
+      font-family: var(--font-head);
+      font-size: 0.75rem;
+      color: var(--primary);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .gg-footer__col a,
+    .gg-footer__col p {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      transition: color var(--transition);
+    }
+
+    .gg-footer__col a:hover { color: var(--primary); }
+
+    .gg-footer__brand-icon {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--primary), #0044cc);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-pixel);
+      font-size: 0.5rem;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .social-links { display: flex; gap: 12px; margin-top: 16px; }
+
+    .social-links a {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      transition: all var(--transition);
+    }
+
+    .social-links a:hover { border-color: var(--primary); color: var(--primary); }
+
+    .gg-footer__bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 20px;
+      border-top: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .gg-footer__bottom p { font-size: 0.8rem; color: var(--text-muted); }
+
+    /* =====================================================
+       UTILITY
+       ===================================================== */
+    .text-center { text-align: center; }
+    .mt-8 { margin-top: 8px; }
+
+    /* Divider line under section title */
+    .section-heading + .cards-grid { margin-top: 28px; }
+  </style>
+</head>
+
+<body>
+
+  <!-- ======================================================
+       NAVBAR
+       ====================================================== -->
+  <nav class="gg-navbar" id="navbar">
+    <a href="#" class="gg-navbar__brand">
+      <div class="brand-icon">GG</div>
+      <span>GG Gamestore</span>
+    </a>
+
+    <button class="gg-navbar__toggle" id="navToggle" aria-label="Toggle menu">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="gg-navbar__links" id="navLinks">
+      <a href="#" class="active"><i class="fas fa-home"></i> Home</a>
+      <a href="#"><i class="fas fa-gamepad"></i> Browse Games</a>
+      <a href="#"><i class="fas fa-tags"></i> Deals</a>
+      <a href="#"><i class="fas fa-headset"></i> Accessories</a>
+      <a href="#" style="position:relative;">
+        <i class="fas fa-shopping-cart"></i> Cart
+        <span class="cart-badge">3</span>
+      </a>
+      <a href="#"><i class="fas fa-sign-in-alt"></i> Login</a>
+    </div>
+  </nav>
+
+  <!-- ======================================================
+       HERO
+       ====================================================== -->
+  <section class="gg-hero">
+    <div class="gg-hero__inner">
+      <div class="gg-hero__eyebrow">&#9658; Now Available – Summer Sale Up to 75% Off</div>
+      <h1 class="gg-hero__title">GG PC Games<br />&amp; <span>Gaming Gear</span></h1>
+      <p class="gg-hero__sub">Discover the World of PC Gaming</p>
+      <p class="gg-hero__sub">Explore the latest titles, exclusive deals &amp; premium accessories</p>
+      <div class="gg-hero__btns">
+        <a href="#best-sellers" class="btn btn-cta">
+          <i class="fas fa-gamepad"></i> BROWSE GAMES
+        </a>
+        <a href="#" class="btn btn-outline">
+          <i class="fas fa-sign-in-alt"></i> Login / Register
+        </a>
+      </div>
+      <div class="gg-hero__stats">
+        <div class="gg-hero__stat">
+          <strong>1 200+</strong>
+          <span>Games Available</span>
+        </div>
+        <div class="gg-hero__stat">
+          <strong>340+</strong>
+          <span>Accessories</span>
+        </div>
+        <div class="gg-hero__stat">
+          <strong>50K+</strong>
+          <span>Happy Gamers</span>
+        </div>
+        <div class="gg-hero__stat">
+          <strong>24/7</strong>
+          <span>Support</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       GENRE BROWSER
+       ====================================================== -->
+  <section class="genres-section">
+    <h2>Browse Games by Genre</h2>
+    <div class="section-divider" style="margin-top:8px;"></div>
+    <div class="genres-grid">
+      <a href="#" class="genre-chip"><i class="fas fa-fist-raised"></i> Action</a>
+      <a href="#" class="genre-chip"><i class="fas fa-dice-d20"></i> RPG</a>
+      <a href="#" class="genre-chip"><i class="fas fa-crosshairs"></i> Shooter</a>
+      <a href="#" class="genre-chip"><i class="fas fa-car"></i> Racing</a>
+      <a href="#" class="genre-chip"><i class="fas fa-chess"></i> Strategy</a>
+      <a href="#" class="genre-chip"><i class="fas fa-ghost"></i> Horror</a>
+      <a href="#" class="genre-chip"><i class="fas fa-futbol"></i> Sports</a>
+      <a href="#" class="genre-chip"><i class="fas fa-globe"></i> MMORPG</a>
+      <a href="#" class="genre-chip"><i class="fas fa-joystick"></i> Arcade</a>
+      <a href="#" class="genre-chip"><i class="fas fa-plane-departure"></i> Simulation</a>
+      <a href="#" class="genre-chip"><i class="fas fa-swords"></i> Fighting</a>
+      <a href="#" class="genre-chip"><i class="fas fa-puzzle-piece"></i> Puzzle</a>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       FEATURE BANNER
+       ====================================================== -->
+  <div class="feature-banner">
+    <img
+      src="https://c4.wallpaperflare.com/wallpaper/284/354/381/batman-joker-scarecrow-character-two-face-wallpaper-preview.jpg"
+      alt="Epic Adventures" />
+    <div class="feature-banner__overlay">
+      <h2>Experience Epic Adventures</h2>
+      <p>Immerse yourself in worlds crafted by the greatest studios</p>
+    </div>
+  </div>
+
+  <!-- ======================================================
+       MOST PURCHASED – BEST SELLERS
+       ====================================================== -->
+  <section id="best-sellers">
+    <div class="section-heading">
+      <h2>Most Purchased Games</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="cards-grid">
+
+      <!-- Card 1 – Cyberpunk 2077 -->
+      <div class="gg-card">
+        <img class="gg-card__img" src="https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/header.jpg" alt="Cyberpunk 2077" />
+        <div class="gg-card__body">
+          <div class="gg-card__title">Cyberpunk 2077</div>
+          <div class="gg-card__meta">
+            <span class="tag tag-genre">RPG</span>
+            <span class="tag tag-rating">&#9733; 9.1</span>
+          </div>
+          <div class="gg-card__price">
+            <span class="price-current">€29.99</span>
+            <span class="price-original">€59.99</span>
+            <span class="price-badge">-50%</span>
+          </div>
+          <a href="#" class="btn btn-add-cart"><i class="fas fa-cart-plus"></i> Add to Cart</a>
+        </div>
+      </div>
+
+      <!-- Card 2 – Elden Ring -->
+      <div class="gg-card">
+        <img class="gg-card__img" src="https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/header.jpg" alt="Elden Ring" />
+        <div class="gg-card__body">
+          <div class="gg-card__title">Elden Ring</div>
+          <div class="gg-card__meta">
+            <span class="tag tag-genre">Action RPG</span>
+            <span class="tag tag-rating">&#9733; 9.5</span>
+          </div>
+          <div class="gg-card__price">
+            <span class="price-current">€49.99</span>
+          </div>
+          <a href="#" class="btn btn-add-cart"><i class="fas fa-cart-plus"></i> Add to Cart</a>
+        </div>
+      </div>
+
+      <!-- Card 3 – The Witcher 3 -->
+      <div class="gg-card">
+        <img class="gg-card__img" src="https://cdn.cloudflare.steamstatic.com/steam/apps/292030/header.jpg" alt="The Witcher 3" />
+        <div class="gg-card__body">
+          <div class="gg-card__title">The Witcher 3: Wild Hunt</div>
+          <div class="gg-card__meta">
+            <span class="tag tag-genre">RPG</span>
+            <span class="tag tag-rating">&#9733; 9.7</span>
+          </div>
+          <div class="gg-card__price">
+            <span class="price-current">€9.99</span>
+            <span class="price-original">€29.99</span>
+            <span class="price-badge">-67%</span>
+          </div>
+          <a href="#" class="btn btn-add-cart"><i class="fas fa-cart-plus"></i> Add to Cart</a>
+        </div>
+      </div>
+
+      <!-- Card 4 – Red Dead Redemption 2 -->
+      <div class="gg-card">
+        <img class="gg-card__img" src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/header.jpg" alt="Red Dead Redemption 2" />
+        <div class="gg-card__body">
+          <div class="gg-card__title">Red Dead Redemption 2</div>
+          <div class="gg-card__meta">
+            <span class="tag tag-genre">Action</span>
+            <span class="tag tag-rating">&#9733; 9.6</span>
+          </div>
+          <div class="gg-card__price">
+            <span class="price-current">€24.99</span>
+            <span class="price-original">€59.99</span>
+            <span class="price-badge">-58%</span>
+          </div>
+          <a href="#" class="btn btn-add-cart"><i class="fas fa-cart-plus"></i> Add to Cart</a>
+        </div>
+      </div>
+
+      <!-- Card 5 – Baldur's Gate 3 -->
+      <div class="gg-card">
+        <img class="gg-card__img" src="https://cdn.cloudflare.steamstatic.com/steam/apps/1086940/header.jpg" alt="Baldur's Gate 3" />
+        <div class="gg-card__body">
+          <div class="gg-card__title">Baldur's Gate 3</div>
+          <div class="gg-card__meta">
+            <span class="tag tag-genre">RPG</span>
+            <span class="tag tag-rating">&#9733; 9.8</span>
+          </div>
+          <div class="gg-card__price">
+            <span class="price-current">€59.99</span>
+          </div>
+          <a href="#" class="btn btn-add-cart"><i class="fas fa-cart-plus"></i> Add to Cart</a>
+        </div>
+      </div>
+
+      <!-- Card 6 – God of War -->
+      <div class="gg-card">
+        <img class="gg-card__img" src="https://cdn.cloudflare.steamstatic.com/steam/apps/1593500/header.jpg" alt="God of War" />
+        <div class="gg-card__body">
+          <div class="gg-card__title">God of War</div>
+          <div class="gg-card__meta">
+            <span class="tag tag-genre">Action</span>
+            <span class="tag tag-rating">&#9733; 9.3</span>
+          </div>
+          <div class="gg-card__price">
+            <span class="price-current">€39.99</span>
+            <span class="price-original">€49.99</span>
+            <span class="price-badge">-20%</span>
+          </div>
+          <a href="#" class="btn btn-add-cart"><i class="fas fa-cart-plus"></i> Add to Cart</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="section-cta">
+      <a href="#" class="btn btn-outline"><i class="fas fa-list"></i> Browse All Games</a>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       HOT DEALS
+       ====================================================== -->
+  <section id="deals" class="deals-section">
+    <div class="section-heading">
+      <h2>&#128293; Don't Miss These Hot Deals</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="cards-grid">
+
+      <!-- Deal 1 – GTA V -->
+      <div class="gg-card">
+        <img class="gg-card__img" src="https://cdn.cloudflare.steamstatic.com/steam/apps/271590/header.jpg" alt="GTA V" />
+        <div class="gg-card__body">
+          <div class="gg-card__title">Grand Theft Auto V</div>
+          <div class="gg-card__meta">
+            <span class="tag tag-genre">Action</span>
+            <span class="tag tag-rating">&#9733; 8.9</span>
+          </div>
+          <div class="gg-card__price">
+            <span class="price-current">€9.99</span>
+            <span class="price-original">€24.99</span>
+            <span class="price-badge">-60%</span>
+          </div>
+          <a href="#" class="btn btn-add-cart"><i class="fas fa-cart-plus"></i> Add to Cart</a>
+        </div>
+      </div>
+
+      <!-- Deal 2 – Death Stranding -->
+      <div class="gg-card">
+        <img class="gg-card__img" src="https://cdn.cloudflare.steamstatic.com/steam/apps/1190460/header.jpg" alt="Death Stranding" />
+        <div class="gg-card__body">
+          <div class="gg-card__title">Death Stranding</div>
+          <div class="gg-card__meta">
+            <span class="tag tag-genre">Action</span>
+            <span class="tag tag-rating">&#9733; 8.5</span>
+          </div>
+          <div class="gg-card__price">
+            <span class="price-current">€14.99</span>
+            <span class="price-original">€39.99</span>
+            <span class="price-badge">-63%</span>
+          </div>
+          <a href="#" class="btn btn-add-cart"><i class="fas fa-cart-plus"></i> Add to Cart</a>
+        </div>
+      </div>
+
+      <!-- Deal 3 – Starfield -->
+      <div class="gg-card">
+        <img class="gg-card__img" src="https://cdn.cloudflare.steamstatic.com/steam/apps/1716740/header.jpg" alt="Starfield" />
+        <div class="gg-card__body">
+          <div class="gg-card__title">Starfield</div>
+          <div class="gg-card__meta">
+            <span class="tag tag-genre">RPG</span>
+            <span class="tag tag-rating">&#9733; 7.8</span>
+          </div>
+          <div class="gg-card__price">
+            <span class="price-current">€34.99</span>
+            <span class="price-original">€69.99</span>
+            <span class="price-badge">-50%</span>
+          </div>
+          <a href="#" class="btn btn-add-cart"><i class="fas fa-cart-plus"></i> Add to Cart</a>
+        </div>
+      </div>
+
+      <!-- Deal 4 – Hollow Knight -->
+      <div class="gg-card">
+        <img class="gg-card__img" src="https://cdn.cloudflare.steamstatic.com/steam/apps/367520/header.jpg" alt="Hollow Knight" />
+        <div class="gg-card__body">
+          <div class="gg-card__title">Hollow Knight</div>
+          <div class="gg-card__meta">
+            <span class="tag tag-genre">Action</span>
+            <span class="tag tag-rating">&#9733; 9.4</span>
+          </div>
+          <div class="gg-card__price">
+            <span class="price-current">€3.74</span>
+            <span class="price-original">€14.99</span>
+            <span class="price-badge">-75%</span>
+          </div>
+          <a href="#" class="btn btn-add-cart"><i class="fas fa-cart-plus"></i> Add to Cart</a>
+        </div>
+      </div>
+
+      <!-- Deal 5 – Hades -->
+      <div class="gg-card">
+        <img class="gg-card__img" src="https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/header.jpg" alt="Hades" />
+        <div class="gg-card__body">
+          <div class="gg-card__title">Hades</div>
+          <div class="gg-card__meta">
+            <span class="tag tag-genre">Roguelite</span>
+            <span class="tag tag-rating">&#9733; 9.6</span>
+          </div>
+          <div class="gg-card__price">
+            <span class="price-current">€8.74</span>
+            <span class="price-original">€24.99</span>
+            <span class="price-badge">-65%</span>
+          </div>
+          <a href="#" class="btn btn-add-cart"><i class="fas fa-cart-plus"></i> Add to Cart</a>
+        </div>
+      </div>
+
+      <!-- Deal 6 – Among Us -->
+      <div class="gg-card">
+        <img class="gg-card__img" src="https://cdn.cloudflare.steamstatic.com/steam/apps/945360/header.jpg" alt="Among Us" />
+        <div class="gg-card__body">
+          <div class="gg-card__title">Among Us</div>
+          <div class="gg-card__meta">
+            <span class="tag tag-genre">Casual</span>
+            <span class="tag tag-rating">&#9733; 8.0</span>
+          </div>
+          <div class="gg-card__price">
+            <span class="price-current">€2.49</span>
+            <span class="price-original">€4.99</span>
+            <span class="price-badge">-50%</span>
+          </div>
+          <a href="#" class="btn btn-add-cart"><i class="fas fa-cart-plus"></i> Add to Cart</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="section-cta">
+      <a href="#" class="btn btn-cta"><i class="fas fa-tags"></i> View All Deals</a>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       GAMING ACCESSORIES
+       ====================================================== -->
+  <section id="accessories">
+    <div class="section-heading">
+      <h2>PC Gaming Accessories</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="cards-grid">
+
+      <!-- Accessory 1 – Mouse -->
+      <div class="gg-card gg-card--accessory">
+        <img class="gg-card__img" src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=460&h=345&fit=crop" alt="Gaming Mouse" />
+        <div class="gg-card__body">
+          <div class="gg-card__title">Logitech G Pro X Superlight 2</div>
+          <div class="gg-card__meta">
+            <span class="tag tag-genre">Mouse</span>
+            <span class="tag tag-rating">&#9733; 9.4</span>
+          </div>
+          <div class="gg-card__price">
+            <span class="price-current">€139.99</span>
+          </div>
+          <a href="#" class="btn btn-add-cart"><i class="fas fa-cart-plus"></i> Add to Cart</a>
+        </div>
+      </div>
+
+      <!-- Accessory 2 – Keyboard -->
+      <div class="gg-card gg-card--accessory">
+        <img class="gg-card__img" src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=460&h=345&fit=crop" alt="Gaming Keyboard" />
+        <div class="gg-card__body">
+          <div class="gg-card__title">Razer BlackWidow V4 Pro</div>
+          <div class="gg-card__meta">
+            <span class="tag tag-genre">Keyboard</span>
+            <span class="tag tag-rating">&#9733; 9.1</span>
+          </div>
+          <div class="gg-card__price">
+            <span class="price-current">€179.99</span>
+            <span class="price-original">€219.99</span>
+            <span class="price-badge">-18%</span>
+          </div>
+          <a href="#" class="btn btn-add-cart"><i class="fas fa-cart-plus"></i> Add to Cart</a>
+        </div>
+      </div>
+
+      <!-- Accessory 3 – Headset -->
+      <div class="gg-card gg-card--accessory">
+        <img class="gg-card__img" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=460&h=345&fit=crop" alt="Gaming Headset" />
+        <div class="gg-card__body">
+          <div class="gg-card__title">SteelSeries Arctis Nova Pro</div>
+          <div class="gg-card__meta">
+            <span class="tag tag-genre">Headset</span>
+            <span class="tag tag-rating">&#9733; 9.3</span>
+          </div>
+          <div class="gg-card__price">
+            <span class="price-current">€249.99</span>
+          </div>
+          <a href="#" class="btn btn-add-cart"><i class="fas fa-cart-plus"></i> Add to Cart</a>
+        </div>
+      </div>
+
+      <!-- Accessory 4 – Monitor -->
+      <div class="gg-card gg-card--accessory">
+        <img class="gg-card__img" src="https://images.unsplash.com/photo-1547119957-637f8679db1e?w=460&h=345&fit=crop" alt="Gaming Monitor" />
+        <div class="gg-card__body">
+          <div class="gg-card__title">ASUS ROG Swift 360Hz OLED</div>
+          <div class="gg-card__meta">
+            <span class="tag tag-genre">Monitor</span>
+            <span class="tag tag-rating">&#9733; 9.6</span>
+          </div>
+          <div class="gg-card__price">
+            <span class="price-current">€699.99</span>
+            <span class="price-original">€849.99</span>
+            <span class="price-badge">-18%</span>
+          </div>
+          <a href="#" class="btn btn-add-cart"><i class="fas fa-cart-plus"></i> Add to Cart</a>
+        </div>
+      </div>
+
+      <!-- Accessory 5 – Mousepad -->
+      <div class="gg-card gg-card--accessory">
+        <img class="gg-card__img" src="https://images.unsplash.com/photo-1593640495253-23196b27a87f?w=460&h=345&fit=crop" alt="Gaming Mousepad" />
+        <div class="gg-card__body">
+          <div class="gg-card__title">Corsair MM700 RGB XL</div>
+          <div class="gg-card__meta">
+            <span class="tag tag-genre">Mousepad</span>
+            <span class="tag tag-rating">&#9733; 8.8</span>
+          </div>
+          <div class="gg-card__price">
+            <span class="price-current">€59.99</span>
+          </div>
+          <a href="#" class="btn btn-add-cart"><i class="fas fa-cart-plus"></i> Add to Cart</a>
+        </div>
+      </div>
+
+      <!-- Accessory 6 – Controller -->
+      <div class="gg-card gg-card--accessory">
+        <img class="gg-card__img" src="https://images.unsplash.com/photo-1593118247619-e2d6f056869e?w=460&h=345&fit=crop" alt="Gaming Controller" />
+        <div class="gg-card__body">
+          <div class="gg-card__title">Xbox Elite Series 2 Controller</div>
+          <div class="gg-card__meta">
+            <span class="tag tag-genre">Controller</span>
+            <span class="tag tag-rating">&#9733; 9.0</span>
+          </div>
+          <div class="gg-card__price">
+            <span class="price-current">€129.99</span>
+            <span class="price-original">€159.99</span>
+            <span class="price-badge">-19%</span>
+          </div>
+          <a href="#" class="btn btn-add-cart"><i class="fas fa-cart-plus"></i> Add to Cart</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="section-cta">
+      <a href="#" class="btn btn-outline"><i class="fas fa-headset"></i> All Accessories</a>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       IMAGE CAROUSEL
+       ====================================================== -->
+  <section class="carousel-section">
+    <h2>Featured Worlds</h2>
+    <div class="carousel-track-wrap">
+      <div class="carousel-track" id="carouselTrack">
+        <div class="slide">
+          <img src="https://c4.wallpaperflare.com/wallpaper/284/354/381/batman-joker-scarecrow-character-two-face-wallpaper-preview.jpg" alt="DC villains collage" />
+        </div>
+        <div class="slide">
+          <img src="https://c4.wallpaperflare.com/wallpaper/777/366/331/video-games-ubisoft-collage-hd-wallpaper-preview.jpg" alt="Ubisoft games collage" />
+        </div>
+        <div class="slide">
+          <img src="https://c4.wallpaperflare.com/wallpaper/88/882/447/hitman-the-witcher-3-wild-hunt-mirror-s-edge-battlefield-wallpaper-preview.jpg" alt="Hitman, Witcher, Battlefield collage" />
+        </div>
+        <div class="slide">
+          <img src="https://c4.wallpaperflare.com/wallpaper/672/852/985/games-art-video-game-art-collage-video-games-wallpaper-preview.jpg" alt="Video game art collage" />
+        </div>
+      </div>
+    </div>
+    <div class="carousel-controls">
+      <button class="carousel-btn" id="carouselPrev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+      <button class="carousel-btn" id="carouselNext" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+    </div>
+    <div class="carousel-dots" id="carouselDots">
+      <button class="carousel-dot active" data-index="0"></button>
+      <button class="carousel-dot" data-index="1"></button>
+      <button class="carousel-dot" data-index="2"></button>
+      <button class="carousel-dot" data-index="3"></button>
+    </div>
+    <div class="section-cta" style="padding-top:16px;">
+      <a href="#" class="btn btn-cta"><i class="fas fa-rocket"></i> Explore Now</a>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       COMING SOON
+       ====================================================== -->
+  <section id="upcoming" class="upcoming-section">
+    <div class="section-heading">
+      <h2>&#128336; Coming Soon</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="cards-grid">
+
+      <!-- Upcoming 1 – GTA VI -->
+      <div class="gg-card">
+        <img class="gg-card__img" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=460&h=215&fit=crop" alt="GTA VI placeholder" />
+        <div class="gg-card__body">
+          <div class="gg-card__title">Grand Theft Auto VI</div>
+          <div class="gg-card__meta">
+            <span class="tag tag-genre">Action</span>
+            <span class="tag tag-soon">2025</span>
+          </div>
+          <div class="gg-card__price">
+            <span style="font-size:0.82rem; color:var(--text-muted);">Release TBA</span>
+          </div>
+          <a href="#" class="btn btn-outline btn-sm" style="justify-content:center;width:100%;">
+            <i class="fas fa-bell"></i> Notify Me
+          </a>
+        </div>
+      </div>
+
+      <!-- Upcoming 2 – Hollow Knight: Silksong -->
+      <div class="gg-card">
+        <img class="gg-card__img" src="https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?w=460&h=215&fit=crop" alt="Silksong placeholder" />
+        <div class="gg-card__body">
+          <div class="gg-card__title">Hollow Knight: Silksong</div>
+          <div class="gg-card__meta">
+            <span class="tag tag-genre">Action</span>
+            <span class="tag tag-soon">2025</span>
+          </div>
+          <div class="gg-card__price">
+            <span style="font-size:0.82rem; color:var(--text-muted);">Release TBA</span>
+          </div>
+          <a href="#" class="btn btn-outline btn-sm" style="justify-content:center;width:100%;">
+            <i class="fas fa-bell"></i> Notify Me
+          </a>
+        </div>
+      </div>
+
+      <!-- Upcoming 3 – Avowed -->
+      <div class="gg-card">
+        <img class="gg-card__img" src="https://cdn.cloudflare.steamstatic.com/steam/apps/2457220/header.jpg" alt="Avowed" />
+        <div class="gg-card__body">
+          <div class="gg-card__title">Avowed</div>
+          <div class="gg-card__meta">
+            <span class="tag tag-genre">RPG</span>
+            <span class="tag tag-soon">2025</span>
+          </div>
+          <div class="gg-card__price">
+            <span style="font-size:0.82rem; color:var(--text-muted);">Release TBA</span>
+          </div>
+          <a href="#" class="btn btn-outline btn-sm" style="justify-content:center;width:100%;">
+            <i class="fas fa-bell"></i> Notify Me
+          </a>
+        </div>
+      </div>
+
+      <!-- Upcoming 4 – Monster Hunter Wilds -->
+      <div class="gg-card">
+        <img class="gg-card__img" src="https://cdn.cloudflare.steamstatic.com/steam/apps/2246340/header.jpg" alt="Monster Hunter Wilds" />
+        <div class="gg-card__body">
+          <div class="gg-card__title">Monster Hunter Wilds</div>
+          <div class="gg-card__meta">
+            <span class="tag tag-genre">Action RPG</span>
+            <span class="tag tag-soon">2025</span>
+          </div>
+          <div class="gg-card__price">
+            <span style="font-size:0.82rem; color:var(--text-muted);">Pre-order €59.99</span>
+          </div>
+          <a href="#" class="btn btn-add-cart"><i class="fas fa-cart-plus"></i> Pre-order</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="section-cta">
+      <a href="#" class="btn btn-outline"><i class="fas fa-clock"></i> All Upcoming Games</a>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       PROMO STRIP
+       ====================================================== -->
+  <div class="promo-strip">
+    <h2>&#9889; Summer Sale – Up to 75% Off!</h2>
+    <p>Limited time offer. Grab your favourite titles before the sale ends.</p>
+    <a href="#deals" class="btn btn-cta"><i class="fas fa-fire"></i> Shop the Sale</a>
+  </div>
+
+  <!-- ======================================================
+       FREE GAMES
+       ====================================================== -->
+  <section id="free-games" class="free-section">
+    <div class="section-heading">
+      <h2>&#127381; Free Games</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="cards-grid">
+
+      <!-- Free 1 – Counter-Strike 2 -->
+      <div class="gg-card">
+        <img class="gg-card__img" src="https://cdn.cloudflare.steamstatic.com/steam/apps/730/header.jpg" alt="Counter-Strike 2" />
+        <div class="gg-card__body">
+          <div class="gg-card__title">Counter-Strike 2</div>
+          <div class="gg-card__meta">
+            <span class="tag tag-genre">Shooter</span>
+            <span class="tag tag-free">FREE</span>
+          </div>
+          <div class="gg-card__price">
+            <span class="price-current" style="color:var(--success);">Free to Play</span>
+          </div>
+          <a href="#" class="btn btn-add-cart" style="background:var(--success);border-color:var(--success);">
+            <i class="fas fa-download"></i> Get for Free
+          </a>
+        </div>
+      </div>
+
+      <!-- Free 2 – Dota 2 -->
+      <div class="gg-card">
+        <img class="gg-card__img" src="https://cdn.cloudflare.steamstatic.com/steam/apps/570/header.jpg" alt="Dota 2" />
+        <div class="gg-card__body">
+          <div class="gg-card__title">Dota 2</div>
+          <div class="gg-card__meta">
+            <span class="tag tag-genre">MOBA</span>
+            <span class="tag tag-free">FREE</span>
+          </div>
+          <div class="gg-card__price">
+            <span class="price-current" style="color:var(--success);">Free to Play</span>
+          </div>
+          <a href="#" class="btn btn-add-cart" style="background:var(--success);border-color:var(--success);">
+            <i class="fas fa-download"></i> Get for Free
+          </a>
+        </div>
+      </div>
+
+      <!-- Free 3 – Warframe -->
+      <div class="gg-card">
+        <img class="gg-card__img" src="https://cdn.cloudflare.steamstatic.com/steam/apps/230410/header.jpg" alt="Warframe" />
+        <div class="gg-card__body">
+          <div class="gg-card__title">Warframe</div>
+          <div class="gg-card__meta">
+            <span class="tag tag-genre">Action</span>
+            <span class="tag tag-free">FREE</span>
+          </div>
+          <div class="gg-card__price">
+            <span class="price-current" style="color:var(--success);">Free to Play</span>
+          </div>
+          <a href="#" class="btn btn-add-cart" style="background:var(--success);border-color:var(--success);">
+            <i class="fas fa-download"></i> Get for Free
+          </a>
+        </div>
+      </div>
+
+      <!-- Free 4 – Path of Exile -->
+      <div class="gg-card">
+        <img class="gg-card__img" src="https://cdn.cloudflare.steamstatic.com/steam/apps/238960/header.jpg" alt="Path of Exile" />
+        <div class="gg-card__body">
+          <div class="gg-card__title">Path of Exile</div>
+          <div class="gg-card__meta">
+            <span class="tag tag-genre">RPG</span>
+            <span class="tag tag-free">FREE</span>
+          </div>
+          <div class="gg-card__price">
+            <span class="price-current" style="color:var(--success);">Free to Play</span>
+          </div>
+          <a href="#" class="btn btn-add-cart" style="background:var(--success);border-color:var(--success);">
+            <i class="fas fa-download"></i> Get for Free
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="section-cta">
+      <a href="#" class="btn btn-outline"><i class="fas fa-gift"></i> All Free Games</a>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       NEWSLETTER
+       ====================================================== -->
+  <div class="newsletter">
+    <h2>Stay in the Game</h2>
+    <p>Subscribe to get notified about new releases, deals, and exclusive giveaways.</p>
+    <form class="newsletter-form" onsubmit="return false;">
+      <input type="email" placeholder="your@email.com" />
+      <button type="submit" class="btn btn-cta"><i class="fas fa-paper-plane"></i> Subscribe</button>
+    </form>
+  </div>
+
+  <!-- ======================================================
+       FOOTER
+       ====================================================== -->
+  <footer class="gg-footer">
+    <div class="gg-footer__grid">
+
+      <div class="gg-footer__col">
+        <div class="gg-footer__brand-icon">GG</div>
+        <p>Your ultimate PC gaming destination. Find the best games and gear at the best prices.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <div class="gg-footer__col">
+        <h4>Quick Links</h4>
+        <a href="#best-sellers">Best Sellers</a>
+        <a href="#upcoming">Upcoming Games</a>
+        <a href="#deals">Hot Deals</a>
+        <a href="#accessories">Gaming Accessories</a>
+        <a href="#free-games">Free Games</a>
+      </div>
+
+      <div class="gg-footer__col">
+        <h4>Shop</h4>
+        <a href="#">Browse All Games</a>
+        <a href="#">New Releases</a>
+        <a href="#">Pre-orders</a>
+        <a href="#">Gift Cards</a>
+        <a href="#">Shopping Cart</a>
+      </div>
+
+      <div class="gg-footer__col">
+        <h4>Account</h4>
+        <a href="#">Login / Register</a>
+        <a href="#">My Orders</a>
+        <a href="#">Wishlist</a>
+        <a href="#">Settings</a>
+      </div>
+
+      <div class="gg-footer__col">
+        <h4>Support</h4>
+        <a href="#">FAQ</a>
+        <a href="#">Contact Us</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Refund Policy</a>
+      </div>
+
+    </div>
+
+    <div class="gg-footer__bottom">
+      <p>&copy; 2024 GG Gamestore &ndash; Design by <a href="#">AlfaGongGong</a></p>
+      <p>All prices in EUR &bull; VAT included</p>
+    </div>
+  </footer>
+
+  <!-- ======================================================
+       JAVASCRIPT (all inline)
+       ====================================================== -->
+  <script>
+    /* ---- Navbar toggle (mobile) ---- */
+    document.getElementById('navToggle').addEventListener('click', function () {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+
+    /* ---- Navbar scroll shrink ---- */
+    window.addEventListener('scroll', function () {
+      const nav = document.getElementById('navbar');
+      if (window.scrollY > 40) {
+        nav.style.background = 'rgba(10,10,15,0.98)';
+      } else {
+        nav.style.background = 'rgba(10,10,15,0.92)';
+      }
+    });
+
+    /* ---- Carousel ---- */
+    (function () {
+      const track = document.getElementById('carouselTrack');
+      const dots  = document.querySelectorAll('.carousel-dot');
+      let current = 0;
+      const total = track.children.length;
+
+      function goTo(idx) {
+        current = (idx + total) % total;
+        track.style.transform = 'translateX(-' + (current * 100) + '%)';
+        dots.forEach(function (d, i) {
+          d.classList.toggle('active', i === current);
+        });
+      }
+
+      document.getElementById('carouselPrev').addEventListener('click', function () { goTo(current - 1); });
+      document.getElementById('carouselNext').addEventListener('click', function () { goTo(current + 1); });
+
+      dots.forEach(function (d) {
+        d.addEventListener('click', function () { goTo(parseInt(d.dataset.index)); });
+      });
+
+      /* Auto-advance every 5 s */
+      setInterval(function () { goTo(current + 1); }, 5000);
+    }());
+
+    /* ---- Smooth "Add to Cart" feedback ---- */
+    document.querySelectorAll('.btn-add-cart').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        var original = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check"></i> Added!';
+        btn.style.background = 'var(--success)';
+        btn.style.borderColor = 'var(--success)';
+        setTimeout(function () {
+          btn.innerHTML = original;
+          btn.style.background = '';
+          btn.style.borderColor = '';
+        }, 1500);
+      });
+    });
+
+    /* ---- Newsletter form feedback ---- */
+    document.querySelector('.newsletter-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = this.querySelector('button');
+      btn.innerHTML = '<i class="fas fa-check"></i> Subscribed!';
+      btn.style.background = 'var(--success)';
+    });
+  </script>
+
+</body>
+</html>
