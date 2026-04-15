@@ -79,7 +79,7 @@ const login = (req, res) => {
             email: results[0].email,
             isAdmin: true,
           },
-          process.env.JWT_SECRET || "your-secret-key",
+          process.env.JWT_SECRET,
           { expiresIn: "1h" },
         );
 

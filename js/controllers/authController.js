@@ -78,7 +78,7 @@ const login = (req, res) => {
             username: results[0].username,
             email: results[0].email,
           },
-          process.env.JWT_SECRET || "your-secret-key",
+          process.env.JWT_SECRET,
           { expiresIn: "1h" },
         );
 

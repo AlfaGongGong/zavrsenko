@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 44" fill="none" role="img" aria-label="GG Gamestore">
+  <defs>
+    <!-- Neon blue glow -->
+    <filter id="glow-blue" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <!-- Subtle glow for frame -->
+    <filter id="glow-frame" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="1.2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="grad-g1" x1="0" y1="0" x2="1" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0%" stop-color="#00d4ff"/>
+      <stop offset="100%" stop-color="#0066ff"/>
+    </linearGradient>
+    <linearGradient id="grad-g2" x1="0" y1="0" x2="1" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0%" stop-color="#0099ff"/>
+      <stop offset="100%" stop-color="#00ccff"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Outer frame with angled corners (clip top-right and bottom-left) -->
+  <polygon
+    points="8,1 64,1 71,8 71,36 64,43 8,43 1,36 1,8"
+    fill="rgba(0,10,30,0.85)"
+    stroke="#0099ff"
+    stroke-width="1"
+    stroke-opacity="0.55"
+    filter="url(#glow-frame)"
+  />
+
+  <!-- Corner accent top-left -->
+  <polyline points="1,12 1,1 12,1" stroke="#ff0066" stroke-width="1.8" stroke-linecap="square" opacity="0.9"/>
+  <!-- Corner accent bottom-right -->
+  <polyline points="60,43 71,43 71,32" stroke="#ff0066" stroke-width="1.8" stroke-linecap="square" opacity="0.9"/>
+
+  <!-- Pixel-art G1  (unit=4, 5×5 grid = 20×20px, origin x=8 y=12) -->
+  <!-- Left bar: full height -->
+  <rect x="8"  y="12" width="4" height="20" fill="url(#grad-g1)" filter="url(#glow-blue)"/>
+  <!-- Top bar: cols 0-3 -->
+  <rect x="8"  y="12" width="16" height="4" fill="url(#grad-g1)" filter="url(#glow-blue)"/>
+  <!-- Middle shelf: cols 2-4 at row 2 -->
+  <rect x="16" y="20" width="12" height="4" fill="url(#grad-g1)" filter="url(#glow-blue)"/>
+  <!-- Right lower: col 4 at row 3 -->
+  <rect x="24" y="24" width="4"  height="4" fill="url(#grad-g1)" filter="url(#glow-blue)"/>
+  <!-- Bottom bar: all cols -->
+  <rect x="8"  y="28" width="20" height="4" fill="url(#grad-g1)" filter="url(#glow-blue)"/>
+
+  <!-- Thin separator between the two Gs -->
+  <line x1="33" y1="16" x2="33" y2="28" stroke="#0099ff" stroke-width="0.8" opacity="0.4"/>
+
+  <!-- Pixel-art G2  (same shape, origin x=36 y=12) -->
+  <rect x="36" y="12" width="4"  height="20" fill="url(#grad-g2)" filter="url(#glow-blue)"/>
+  <rect x="36" y="12" width="16" height="4"  fill="url(#grad-g2)" filter="url(#glow-blue)"/>
+  <rect x="44" y="20" width="12" height="4"  fill="url(#grad-g2)" filter="url(#glow-blue)"/>
+  <rect x="52" y="24" width="4"  height="4"  fill="url(#grad-g2)" filter="url(#glow-blue)"/>
+  <rect x="36" y="28" width="20" height="4"  fill="url(#grad-g2)" filter="url(#glow-blue)"/>
+
+  <!-- Accent dot — bottom-center glow dot -->
+  <circle cx="36" cy="40" r="1.8" fill="#ff0066" opacity="0.85"/>
+  <circle cx="36" cy="40" r="3.5" fill="#ff0066" opacity="0.15"/>
+</svg>

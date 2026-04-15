@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" fill="none" role="img" aria-label="GG Gamestore – Homepage preview">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"   stop-color="#0a0a0f"/>
+      <stop offset="55%"  stop-color="#0d0d22"/>
+      <stop offset="100%" stop-color="#0a1830"/>
+    </linearGradient>
+    <linearGradient id="hero-glow-left" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#0099ff" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#0099ff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="hero-glow-right" x1="1" y1="0" x2="0" y2="0">
+      <stop offset="0%"   stop-color="#ff0066" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#ff0066" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="card-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#12122a"/>
+      <stop offset="100%" stop-color="#0d0d1e"/>
+    </linearGradient>
+    <linearGradient id="btn-grad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#0099ff"/>
+      <stop offset="100%" stop-color="#006bcc"/>
+    </linearGradient>
+    <filter id="glow-text">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="card-shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#0099ff" flood-opacity="0.18"/>
+    </filter>
+    <clipPath id="screen-clip">
+      <rect width="1280" height="720" rx="12"/>
+    </clipPath>
+  </defs>
+
+  <!-- Screen background -->
+  <rect width="1280" height="720" rx="12" fill="url(#bg)"/>
+
+  <!-- Ambient glow blobs -->
+  <ellipse cx="200" cy="300" rx="380" ry="260" fill="url(#hero-glow-left)"/>
+  <ellipse cx="1100" cy="200" rx="320" ry="220" fill="url(#hero-glow-right)"/>
+
+  <!-- ── NAVBAR ── -->
+  <rect width="1280" height="56" fill="rgba(10,10,18,0.92)" rx="0"/>
+  <line x1="0" y1="56" x2="1280" y2="56" stroke="#0099ff" stroke-width="0.8" stroke-opacity="0.35"/>
+
+  <!-- Navbar logo block (mimics the GG icon) -->
+  <!-- Outer frame -->
+  <polygon points="18,11 60,11 66,17 66,39 60,45 18,45 12,39 12,17"
+    fill="rgba(0,10,30,0.85)" stroke="#0099ff" stroke-width="0.9" stroke-opacity="0.6"/>
+  <!-- G1 pixel art (unit=2.5) -->
+  <rect x="17" y="18" width="2.5" height="12.5" fill="#0099ff" opacity="0.9"/>
+  <rect x="17" y="18" width="10"  height="2.5"  fill="#0099ff" opacity="0.9"/>
+  <rect x="22"  y="22.5" width="7.5" height="2.5" fill="#0099ff" opacity="0.9"/>
+  <rect x="27" y="25" width="2.5" height="2.5" fill="#0099ff" opacity="0.9"/>
+  <rect x="17" y="28" width="12.5" height="2.5" fill="#0099ff" opacity="0.9"/>
+  <!-- G2 pixel art -->
+  <rect x="33" y="18" width="2.5" height="12.5" fill="#00ccff" opacity="0.9"/>
+  <rect x="33" y="18" width="10"  height="2.5"  fill="#00ccff" opacity="0.9"/>
+  <rect x="38"  y="22.5" width="7.5" height="2.5" fill="#00ccff" opacity="0.9"/>
+  <rect x="43" y="25" width="2.5" height="2.5" fill="#00ccff" opacity="0.9"/>
+  <rect x="33" y="28" width="12.5" height="2.5" fill="#00ccff" opacity="0.9"/>
+  <!-- Accent dot -->
+  <circle cx="39" cy="43" r="1.2" fill="#ff0066" opacity="0.9"/>
+
+  <!-- Brand text -->
+  <text x="80" y="34" font-family="monospace" font-size="14" font-weight="900" letter-spacing="2" fill="#0099ff" opacity="0.95">GG</text>
+  <text x="101" y="34" font-family="monospace" font-size="10" font-weight="600" letter-spacing="3" fill="#ffffff" opacity="0.65">GAMESTORE</text>
+
+  <!-- Nav links -->
+  <text x="420" y="33" font-family="sans-serif" font-size="12" fill="#ffffff" opacity="0.7">Home</text>
+  <rect x="415" y="36" width="34" height="1.5" fill="#0099ff" rx="1"/>
+  <text x="490" y="33" font-family="sans-serif" font-size="12" fill="#ffffff" opacity="0.55">Browse Games</text>
+  <text x="620" y="33" font-family="sans-serif" font-size="12" fill="#ffffff" opacity="0.55">Cart  0</text>
+  <text x="1130" y="33" font-family="sans-serif" font-size="12" fill="#0099ff" opacity="0.85">Login</text>
+
+  <!-- ── HERO SECTION ── -->
+  <!-- Grid overlay pattern lines (subtle) -->
+  <g stroke="#0099ff" stroke-opacity="0.04" stroke-width="1">
+    <line x1="0" y1="130" x2="1280" y2="130"/>
+    <line x1="0" y1="210" x2="1280" y2="210"/>
+    <line x1="0" y1="290" x2="1280" y2="290"/>
+    <line x1="260" y1="56"  x2="260" y2="390"/>
+    <line x1="520" y1="56"  x2="520" y2="390"/>
+    <line x1="780" y1="56"  x2="780" y2="390"/>
+    <line x1="1040" y1="56" x2="1040" y2="390"/>
+  </g>
+
+  <!-- Floating hex decorations -->
+  <polygon points="110,90 124,82 138,90 138,106 124,114 110,106" fill="none" stroke="#0099ff" stroke-width="1" stroke-opacity="0.25"/>
+  <polygon points="1150,110 1160,104 1170,110 1170,122 1160,128 1150,122" fill="none" stroke="#ff0066" stroke-width="1" stroke-opacity="0.3"/>
+  <polygon points="60,200 70,194 80,200 80,212 70,218 60,212" fill="none" stroke="#0099ff" stroke-width="0.8" stroke-opacity="0.2"/>
+  <polygon points="1220,170 1228,165 1236,170 1236,180 1228,185 1220,180" fill="none" stroke="#0099ff" stroke-width="0.8" stroke-opacity="0.2"/>
+
+  <!-- Hero headline -->
+  <text x="640" y="148" text-anchor="middle" font-family="monospace" font-size="10" font-weight="700" letter-spacing="8" fill="#0099ff" opacity="0.7">PC GAMES &amp; GAMING GEAR</text>
+  <text x="640" y="210" text-anchor="middle" font-family="monospace" font-size="42" font-weight="900" letter-spacing="2" fill="#ffffff" filter="url(#glow-text)">GG GAMESTORE</text>
+  <text x="640" y="248" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#8899aa" letter-spacing="1">Your destination for PC games, deals, and gaming gear.</text>
+
+  <!-- CTA buttons -->
+  <rect x="470" y="272" width="160" height="40" rx="4" fill="url(#btn-grad)"/>
+  <text x="550" y="297" text-anchor="middle" font-family="monospace" font-size="11" font-weight="700" fill="#ffffff" letter-spacing="2">BROWSE GAMES</text>
+  <rect x="650" y="272" width="160" height="40" rx="4" fill="none" stroke="#0099ff" stroke-width="1.5" stroke-opacity="0.7"/>
+  <text x="730" y="297" text-anchor="middle" font-family="monospace" font-size="11" font-weight="700" fill="#0099ff" letter-spacing="2">VIEW DEALS</text>
+
+  <!-- Section divider -->
+  <line x1="140" y1="340" x2="1140" y2="340" stroke="#0099ff" stroke-width="0.6" stroke-opacity="0.2"/>
+  <text x="640" y="372" text-anchor="middle" font-family="monospace" font-size="13" font-weight="700" letter-spacing="4" fill="#ffffff" opacity="0.85">BEST SELLERS</text>
+  <rect x="556" y="378" width="168" height="1.5" fill="#0099ff" rx="1" opacity="0.6"/>
+
+  <!-- ── GAME CARDS (6 placeholder cards) ── -->
+  <!-- Card 1 -->
+  <rect x="60"  y="400" width="176" height="220" rx="8" fill="url(#card-bg)" stroke="#0099ff" stroke-width="0.8" stroke-opacity="0.3" filter="url(#card-shadow)"/>
+  <rect x="60"  y="400" width="176" height="110" rx="8" fill="#1a1a3a" opacity="0.8"/>
+  <rect x="60"  y="494" width="176" height="12"  rx="0" fill="rgba(0,153,255,0.06)"/>
+  <text x="148" y="524" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#ffffff">Cyberpunk Arena</text>
+  <text x="148" y="540" text-anchor="middle" font-family="sans-serif" font-size="9"  fill="#667788">Action / RPG</text>
+  <text x="148" y="560" text-anchor="middle" font-family="monospace" font-size="12" font-weight="700" fill="#00ff88">49.99 KM</text>
+  <rect x="80"  y="574" width="136" height="30" rx="4" fill="url(#btn-grad)" opacity="0.85"/>
+  <text x="148" y="594" text-anchor="middle" font-family="monospace" font-size="10" fill="#fff">ADD TO CART</text>
+
+  <!-- Card 2 -->
+  <rect x="256" y="400" width="176" height="220" rx="8" fill="url(#card-bg)" stroke="#0099ff" stroke-width="0.8" stroke-opacity="0.3" filter="url(#card-shadow)"/>
+  <rect x="256" y="400" width="176" height="110" rx="8" fill="#1e1230" opacity="0.8"/>
+  <text x="344" y="524" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#ffffff">Neon Striker</text>
+  <text x="344" y="540" text-anchor="middle" font-family="sans-serif" font-size="9"  fill="#667788">Sports / Arcade</text>
+  <text x="344" y="560" text-anchor="middle" font-family="monospace" font-size="12" font-weight="700" fill="#00ff88">29.99 KM</text>
+  <rect x="276" y="574" width="136" height="30" rx="4" fill="url(#btn-grad)" opacity="0.85"/>
+  <text x="344" y="594" text-anchor="middle" font-family="monospace" font-size="10" fill="#fff">ADD TO CART</text>
+
+  <!-- Card 3 -->
+  <rect x="452" y="400" width="176" height="220" rx="8" fill="url(#card-bg)" stroke="#0099ff" stroke-width="0.8" stroke-opacity="0.3" filter="url(#card-shadow)"/>
+  <rect x="452" y="400" width="176" height="110" rx="8" fill="#0d2020" opacity="0.8"/>
+  <text x="540" y="524" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#ffffff">Dark Protocol</text>
+  <text x="540" y="540" text-anchor="middle" font-family="sans-serif" font-size="9"  fill="#667788">Strategy</text>
+  <text x="540" y="560" text-anchor="middle" font-family="monospace" font-size="12" font-weight="700" fill="#ff9900">34.99 KM  <tspan font-size="9" fill="#ff0066" text-decoration="line-through">59.99</tspan></text>
+  <rect x="472" y="574" width="136" height="30" rx="4" fill="url(#btn-grad)" opacity="0.85"/>
+  <text x="540" y="594" text-anchor="middle" font-family="monospace" font-size="10" fill="#fff">ADD TO CART</text>
+
+  <!-- Card 4 -->
+  <rect x="648" y="400" width="176" height="220" rx="8" fill="url(#card-bg)" stroke="#0099ff" stroke-width="0.8" stroke-opacity="0.3" filter="url(#card-shadow)"/>
+  <rect x="648" y="400" width="176" height="110" rx="8" fill="#201010" opacity="0.8"/>
+  <text x="736" y="524" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#ffffff">Voidrunner X</text>
+  <text x="736" y="540" text-anchor="middle" font-family="sans-serif" font-size="9"  fill="#667788">Shooter</text>
+  <text x="736" y="560" text-anchor="middle" font-family="monospace" font-size="12" font-weight="700" fill="#00ff88">54.99 KM</text>
+  <rect x="668" y="574" width="136" height="30" rx="4" fill="url(#btn-grad)" opacity="0.85"/>
+  <text x="736" y="594" text-anchor="middle" font-family="monospace" font-size="10" fill="#fff">ADD TO CART</text>
+
+  <!-- Card 5 -->
+  <rect x="844" y="400" width="176" height="220" rx="8" fill="url(#card-bg)" stroke="#0099ff" stroke-width="0.8" stroke-opacity="0.3" filter="url(#card-shadow)"/>
+  <rect x="844" y="400" width="176" height="110" rx="8" fill="#0a1a28" opacity="0.8"/>
+  <text x="932" y="524" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#ffffff">Phantom Grid</text>
+  <text x="932" y="540" text-anchor="middle" font-family="sans-serif" font-size="9"  fill="#667788">Horror / Puzzle</text>
+  <text x="932" y="560" text-anchor="middle" font-family="monospace" font-size="12" font-weight="700" fill="#ff9900">19.99 KM  <tspan font-size="9" fill="#ff0066" text-decoration="line-through">39.99</tspan></text>
+  <rect x="864" y="574" width="136" height="30" rx="4" fill="url(#btn-grad)" opacity="0.85"/>
+  <text x="932" y="594" text-anchor="middle" font-family="monospace" font-size="10" fill="#fff">ADD TO CART</text>
+
+  <!-- Card 6 -->
+  <rect x="1044" y="400" width="176" height="220" rx="8" fill="url(#card-bg)" stroke="#0099ff" stroke-width="0.8" stroke-opacity="0.3" filter="url(#card-shadow)"/>
+  <rect x="1044" y="400" width="176" height="110" rx="8" fill="#0e1e0e" opacity="0.8"/>
+  <text x="1132" y="524" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#ffffff">Orbital Siege</text>
+  <text x="1132" y="540" text-anchor="middle" font-family="sans-serif" font-size="9"  fill="#667788">RTS / Sci-Fi</text>
+  <text x="1132" y="560" text-anchor="middle" font-family="monospace" font-size="12" font-weight="700" fill="#00ff88">44.99 KM</text>
+  <rect x="1064" y="574" width="136" height="30" rx="4" fill="url(#btn-grad)" opacity="0.85"/>
+  <text x="1132" y="594" text-anchor="middle" font-family="monospace" font-size="10" fill="#fff">ADD TO CART</text>
+
+  <!-- Bottom gradient fade -->
+  <defs>
+    <linearGradient id="bottom-fade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a0a0f" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#0a0a0f" stop-opacity="0.7"/>
+    </linearGradient>
+  </defs>
+  <rect y="580" width="1280" height="140" fill="url(#bottom-fade)"/>
+
+  <!-- Screen border -->
+  <rect width="1280" height="720" rx="12" fill="none" stroke="#0099ff" stroke-width="1.5" stroke-opacity="0.3"/>
+</svg>

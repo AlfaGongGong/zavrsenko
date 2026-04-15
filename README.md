@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="images/gg-logo.svg" alt="GG Gamestore Logo" width="130" height="90"/>
+
 ```
   ██████╗  ██████╗      ██████╗  █████╗ ███╗   ███╗███████╗
  ██╔════╝ ██╔════╝     ██╔════╝ ██╔══██╗████╗ ████║██╔════╝
@@ -25,6 +27,22 @@
 GG Gamestore is a full-stack web shop for PC games and gaming gear. Built as a school/portfolio project — but designed like it could go live tomorrow. It uses real data pulled from external APIs (RAWG, FreeShark, Amazon Scraper) combined with local MySQL data, all served through a Node.js/Express backend.
 
 Everything a proper storefront needs is here: browsing, searching, a cart, a 4-step checkout, user accounts, order history, and an admin panel — styled in a dark cyberpunk aesthetic.
+
+---
+
+## Preview
+
+<div align="center">
+
+**Homepage — hero, cards, deals**
+
+<img src="images/preview-home.svg" alt="GG Gamestore homepage preview" width="100%"/>
+
+**Browse & Filter Games**
+
+<img src="images/preview-shop.svg" alt="GG Gamestore browse games preview" width="100%"/>
+
+</div>
 
 ---
 
