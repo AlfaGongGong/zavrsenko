@@ -16,35 +16,29 @@ const dbConfig = {
 
 const pool = mysql.createPool(dbConfig);
 
-// Registration route
 router.post("/register", (req, res) => {
   const { username, email, password } = req.body;
-  console.log("hit");
 
   bcrypt.hash(password, 10, (err, hash) => {
     if (err) {
       console.error("Error hashing password:", err);
-      res.status(500).json({ message: "Internal server error" });
-      return;
+      return res.status(500).json({ message: "Internal server error" });
     }
 
     pool.query(
       "INSERT INTO users (username, email, password) VALUES (?, ?, ?)",
       [username, email, hash],
-      (error, results) => {
+      (error) => {
         if (error) {
-          console.error("Error inserting user into the database:", error);
-          res.status(500).json({ message: "Internal server error" });
-          return;
+          console.error("Error inserting user:", error);
+          return res.status(500).json({ message: "Internal server error" });
         }
-
         res.status(200).json({ message: "Registration successful" });
       },
     );
   });
 });
 
-// Login route
 router.post("/login", (req, res) => {
   const { username, password } = req.body;
 
@@ -53,26 +47,22 @@ router.post("/login", (req, res) => {
     [username],
     (error, results) => {
       if (error) {
-        console.error("Error finding the user in the database:", error);
-        res.status(500).json({ message: "Internal server error" });
-        return;
+        console.error("Error finding user:", error);
+        return res.status(500).json({ message: "Internal server error" });
       }
 
       if (results.length === 0) {
-        res.status(401).json({ message: "Invalid username or password" });
-        return;
+        return res.status(401).json({ message: "Invalid username or password" });
       }
 
       bcrypt.compare(password, results[0].password, (err, match) => {
         if (err) {
           console.error("Error comparing passwords:", err);
-          res.status(500).json({ message: "Internal server error" });
-          return;
+          return res.status(500).json({ message: "Internal server error" });
         }
 
         if (!match) {
-          res.status(401).json({ message: "Invalid username or password" });
-          return;
+          return res.status(401).json({ message: "Invalid username or password" });
         }
 
         const token = jwt.sign(
@@ -91,12 +81,9 @@ router.post("/login", (req, res) => {
   );
 });
 
-// Logout route
 router.post("/logout", (req, res) => {
   res.status(200).json({ message: "Logout successful" });
 });
-
-// change password route
 
 router.post("/changePassword", (req, res) => {
   const { username, password } = req.body;
@@ -104,27 +91,22 @@ router.post("/changePassword", (req, res) => {
   bcrypt.hash(password, 10, (err, hash) => {
     if (err) {
       console.error("Error hashing password:", err);
-      res.status(500).json({ message: "Internal server error" });
-      return;
+      return res.status(500).json({ message: "Internal server error" });
     }
 
     pool.query(
       "UPDATE users SET password = ? WHERE username = ?",
       [hash, username],
-      (error, results) => {
+      (error) => {
         if (error) {
-          console.error("Error inserting user into the database:", error);
-          res.status(500).json({ message: "Internal server error" });
-          return;
+          console.error("Error updating password:", error);
+          return res.status(500).json({ message: "Internal server error" });
         }
-
         res.status(200).json({ message: "Password changed successfully" });
       },
     );
   });
 });
-
-// change email route
 
 router.post("/changeEmail", (req, res) => {
   const { username, email } = req.body;
@@ -132,19 +114,15 @@ router.post("/changeEmail", (req, res) => {
   pool.query(
     "UPDATE users SET email = ? WHERE username = ?",
     [email, username],
-    (error, results) => {
+    (error) => {
       if (error) {
-        console.error("Error inserting user into the database:", error);
-        res.status(500).json({ message: "Internal server error" });
-        return;
+        console.error("Error updating email:", error);
+        return res.status(500).json({ message: "Internal server error" });
       }
-
       res.status(200).json({ message: "Email changed successfully" });
     },
   );
 });
-
-// change address route
 
 router.post("/changeAddress", (req, res) => {
   const { username, address } = req.body;
@@ -152,19 +130,15 @@ router.post("/changeAddress", (req, res) => {
   pool.query(
     "UPDATE users SET address = ? WHERE username = ?",
     [address, username],
-    (error, results) => {
+    (error) => {
       if (error) {
-        console.error("Error inserting user into the database:", error);
-        res.status(500).json({ message: "Internal server error" });
-        return;
+        console.error("Error updating address:", error);
+        return res.status(500).json({ message: "Internal server error" });
       }
-
       res.status(200).json({ message: "Address changed successfully" });
     },
   );
 });
-
-// change first_name route
 
 router.post("/changeFirstName", (req, res) => {
   const { username, first_name } = req.body;
@@ -172,19 +146,15 @@ router.post("/changeFirstName", (req, res) => {
   pool.query(
     "UPDATE users SET first_name = ? WHERE username = ?",
     [first_name, username],
-    (error, results) => {
+    (error) => {
       if (error) {
-        console.error("Error inserting user into the database:", error);
-        res.status(500).json({ message: "Internal server error" });
-        return;
+        console.error("Error updating first name:", error);
+        return res.status(500).json({ message: "Internal server error" });
       }
-
       res.status(200).json({ message: "First name changed successfully" });
     },
   );
 });
-
-// change last_name route
 
 router.post("/changeLastName", (req, res) => {
   const { username, last_name } = req.body;
@@ -192,19 +162,16 @@ router.post("/changeLastName", (req, res) => {
   pool.query(
     "UPDATE users SET last_name = ? WHERE username = ?",
     [last_name, username],
-    (error, results) => {
+    (error) => {
       if (error) {
-        console.error("Error inserting user into the database:", error);
-        res.status(500).json({ message: "Internal server error" });
-        return;
+        console.error("Error updating last name:", error);
+        return res.status(500).json({ message: "Internal server error" });
       }
-
       res.status(200).json({ message: "Last name changed successfully" });
     },
   );
 });
 
-// GET /user/me - return current user's profile
 router.get("/me", authenticate, (req, res) => {
   pool.query(
     "SELECT id, username, email, address, first_name, last_name FROM users WHERE id = ?",
@@ -213,7 +180,7 @@ router.get("/me", authenticate, (req, res) => {
       if (error) return res.status(500).json({ message: "Internal server error" });
       if (results.length === 0) return res.status(404).json({ message: "User not found" });
       res.json(results[0]);
-    }
+    },
   );
 });
 

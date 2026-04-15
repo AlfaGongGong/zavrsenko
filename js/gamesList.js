@@ -1,5 +1,3 @@
-// GG Gamestore – gamesList.js
-
 let allGames = [];
 let filteredGames = [];
 let currentPage = 1;

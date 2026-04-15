@@ -1,5 +1,3 @@
-// GG Gamestore – frontend authentication helpers
-
 async function register(username, email, password) {
   const res = await fetch(`${API_BASE}/user/register`, {
     method: 'POST',

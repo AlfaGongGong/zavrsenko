@@ -5,9 +5,9 @@ const axios = require("axios");
 const authenticate = require("../authentication/authToken");
 const isAdmin = require("../authentication/isAdmin");
 require("dotenv").config({ path: "./.env" });
+
 const PORT = process.env.PORT;
 
-// Database connection configuration
 const dbConfig = {
   host: process.env.MYSQL_HOST,
   user: process.env.MYSQL_USER,
@@ -16,47 +16,41 @@ const dbConfig = {
   port: process.env.MYSQL_PORT,
 };
 
-// Create a MySQL connection pool
 const pool = mysql.createPool(dbConfig);
 
-//  get all deals
 dealsRouter.get("/", (req, res) => {
-  // Use the pool to query the database
   pool.query("SELECT * FROM deals", (error, results) => {
     if (error) {
-      console.error("Error fetching deals from the database:", error);
-      res.status(500).json({ error: "Error fetching deals from the database" });
-    } else {
-      res.json(results);
+      console.error("Error fetching deals:", error);
+      return res.status(500).json({ error: "Error fetching deals" });
     }
+    res.json(results);
   });
 });
 
-//  get a specific deal by ID
 dealsRouter.get("/:id", async (req, res) => {
-  const dealId = req.params.id;
+  const dealId = Number(req.params.id);
+
+  // Reject non-integer IDs to prevent SSRF via URL injection
+  if (!Number.isInteger(dealId) || dealId <= 0) {
+    return res.status(400).json({ error: "Invalid deal ID" });
+  }
 
   try {
-    const response = await axios.get(
-      `http://localhost:${PORT}/games/${dealId}`,
-    );
+    const response = await axios.get(`http://localhost:${PORT}/games/${dealId}`);
     const deal = response.data;
     if (!deal) {
-      res.status(404).json({ error: "Deal not found" });
-    } else {
-      res.json(deal);
+      return res.status(404).json({ error: "Deal not found" });
     }
+    res.json(deal);
   } catch (error) {
-    console.error("Error fetching deal details from the database:", error);
-    res
-      .status(500)
-      .json({ error: "Error fetching deal details from the database" });
+    console.error("Error fetching deal:", error);
+    res.status(500).json({ error: "Error fetching deal" });
   }
 });
 
-// Admin routes
+// Admin — create, update, delete
 
-// Create a new deal
 dealsRouter.post("/", authenticate, isAdmin, async (req, res) => {
   const { title, description, price, discount } = req.body;
 
@@ -66,19 +60,18 @@ dealsRouter.post("/", authenticate, isAdmin, async (req, res) => {
 
   try {
     const connection = await pool.getConnection();
-    const [result] = await connection.query(
+    await connection.query(
       "INSERT INTO deals (title, description, price, discount) VALUES (?, ?, ?, ?)",
       [title, description, price, discount],
     );
     connection.release();
     res.status(201).json({ message: "Deal created successfully" });
   } catch (error) {
-    console.error("Error executing MySQL query:", error);
+    console.error("Error creating deal:", error);
     res.status(500).json({ error: "Error creating the deal" });
   }
 });
 
-// Update a deal by ID
 dealsRouter.put("/:id", authenticate, isAdmin, async (req, res) => {
   const dealId = req.params.id;
   const { title, description, price, discount } = req.body;
@@ -96,34 +89,29 @@ dealsRouter.put("/:id", authenticate, isAdmin, async (req, res) => {
     connection.release();
 
     if (result.affectedRows === 0) {
-      res.status(404).json({ error: "Deal not found" });
-    } else {
-      res.status(200).json({ message: "Deal updated successfully" });
+      return res.status(404).json({ error: "Deal not found" });
     }
+    res.status(200).json({ message: "Deal updated successfully" });
   } catch (error) {
-    console.error("Error executing MySQL query:", error);
+    console.error("Error updating deal:", error);
     res.status(500).json({ error: "Error updating the deal" });
   }
 });
 
-// Delete a deal by ID
 dealsRouter.delete("/:id", authenticate, isAdmin, async (req, res) => {
   const dealId = req.params.id;
 
   try {
     const connection = await pool.getConnection();
-    const [result] = await connection.query("DELETE FROM deals WHERE id = ?", [
-      dealId,
-    ]);
+    const [result] = await connection.query("DELETE FROM deals WHERE id = ?", [dealId]);
     connection.release();
 
     if (result.affectedRows === 0) {
-      res.status(404).json({ error: "Deal not found" });
-    } else {
-      res.status(204).send();
+      return res.status(404).json({ error: "Deal not found" });
     }
+    res.status(204).send();
   } catch (error) {
-    console.error("Error executing MySQL query:", error);
+    console.error("Error deleting deal:", error);
     res.status(500).json({ error: "Error deleting the deal" });
   }
 });

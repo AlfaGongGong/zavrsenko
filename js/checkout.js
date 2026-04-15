@@ -1,5 +1,3 @@
-// GG Gamestore – checkout.js
-
 let currentStep = 1;
 const TOTAL_STEPS = 4;
 

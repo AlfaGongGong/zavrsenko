@@ -1,51 +1,41 @@
 fetch(`${API_BASE}/gaming_gear`)
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    return response.json();
+  .then((res) => {
+    if (!res.ok) throw new Error("Network response was not ok");
+    return res.json();
   })
   .then((gearCards) => {
-    console.log("Data received:", gearCards);
+    const container = document.getElementById("gearCardsContainer");
+    if (!container) return;
 
-    const gearCardsContainer = document.getElementById("gearCardsContainer");
-    console.log("Container element:", gearCardsContainer);
-
-    // Shuffle the array of gamesCards
+    // Shuffle and show 6
     gearCards.sort(() => Math.random() - 0.5);
+    const fallbackImg = "../images/dummy_we-will-fix-this-soon.png";
 
-    // Render the first 6 cards
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < Math.min(6, gearCards.length); i++) {
       const gear = gearCards[i];
-      const cardElement = document.createElement("div");
-      cardElement.classList.add("product-card", "col-md-4");
-      const alt = "../images/dummy_we-will-fix-this-soon.png";
+      const card = document.createElement("div");
+      card.classList.add("product-card", "col-md-4");
 
-      cardElement.innerHTML = `
-        <img src="${gear.image}" alt="${alt}" class="product-image"/>
+      card.innerHTML = `
+        <img src="${gear.image}" alt="${gear.name}" class="product-image"
+          onerror="this.src='${fallbackImg}'"/>
         <h2 class="product-name">${gear.name}</h2>
         <div class="product-info-container">
-           <p class="product-info">
-          ${gear.description}
-          </p>
+          <p class="product-info">${gear.description}</p>
           <p class="product-price-normal">${gear.price} KM</p>
-         <div class="product-buttons">
-            <a href="html/productDetails.html?id=${gear.id}" class="btn more-info" data-product-id="${gear.id}" title="More Info" id="more-info">
-              <i class="fas fa-info-circle"></i> 
+          <div class="product-buttons">
+            <a href="html/productDetails.html?id=${gear.id}&type=gear" class="btn more-info" title="More Info">
+              <i class="fas fa-info-circle"></i>
             </a>
- <a href="html/myAcc.html?id=${gear.id}" class="btn wishlist-btn" data-product-id="${gear.id}" title="Add to your wishlist" id="wishlist-btn">
-                <i class="fas fa-heart"></i> 
-            </a>
-<a href="html/shoppingCart.html?id=${gear.id}" class="btn cart-btn" data-product-id="${gear.id}" title="Add to shopping cart" id="cart-btn">
-                <i class="fas fa-shopping-cart"></i> 
-            </a>
-            </div>
+            <button class="btn cart-btn" onclick="addToCart({id:'g-${gear.id}',name:'${gear.name}',price:${gear.price},image:'${gear.image}',type:'gear'})" title="Add to cart">
+              <i class="fas fa-shopping-cart"></i>
+            </button>
           </div>
+        </div>
       `;
-      gearCardsContainer.appendChild(cardElement);
-      console.log("Card appended:", gear);
+
+      container.appendChild(card);
     }
-    console.log("Cards appended to the container:", gearCardsContainer);
   })
   .catch((error) => {
     console.error("Error fetching gear cards:", error);

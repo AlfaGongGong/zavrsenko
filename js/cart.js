@@ -1,5 +1,3 @@
-// GG Gamestore – cart helpers (localStorage)
-
 const CART_KEY = 'gg_cart';
 
 function getCart() {

@@ -1,42 +1,37 @@
 fetch(`${API_BASE}/api/free_games`)
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    return response.json();
+  .then((res) => {
+    if (!res.ok) throw new Error("Network response was not ok");
+    return res.json();
   })
   .then((freeCards) => {
-    console.log("Data received:", freeCards);
-    const freeGamesCardContainer = document.getElementById(
-      "freeGamesCardContainer",
-    );
-    console.log("Container element:", freeGamesCardContainer);
+    const container = document.getElementById("freeGamesCardContainer");
+    if (!container) return;
 
-    // Shuffle the array of freeCards
+    // Shuffle and show 6
     freeCards.sort(() => Math.random() - 0.5);
+    const fallbackImg = "../images/dummy_we-will-fix-this-soon.png";
 
-    // Render the cards as an ordered list with all elements in a row
     const cardList = document.createElement("ol");
     cardList.classList.add("row", "list-unstyled");
-    freeGamesCardContainer.appendChild(cardList);
+    container.appendChild(cardList);
 
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < Math.min(6, freeCards.length); i++) {
       const free = freeCards[i];
-      const cardElement = document.createElement("li");
-      cardElement.classList.add("free-game-card", "col-md-12", "mb-5");
-      const alt = "../images/dummy_we-will-fix-this-soon.png";
+      const card = document.createElement("li");
+      card.classList.add("free-game-card", "col-md-12", "mb-5");
 
-      cardElement.innerHTML = `
-        <img src="${free.image}" alt="${alt}" class="product-image"/>
+      card.innerHTML = `
+        <img src="${free.image}" alt="${free.title}" class="product-image"
+          onerror="this.src='${fallbackImg}'"/>
         <h2 class="product-name">${free.title}</h2>
-                <div class="product-info-container">
- <p class='product-description'>${free.description}</p>
-        <a href="${free.url}" class="btn cta-btn">Play Game</a>
+        <div class="product-info-container">
+          <p class="product-description">${free.description}</p>
+          <a href="${free.url}" class="btn cta-btn" target="_blank" rel="noopener">Play for Free</a>
+        </div>
       `;
-      cardList.appendChild(cardElement);
-      console.log("Card appended:", free);
+
+      cardList.appendChild(card);
     }
-    console.log("Cards appended to the container:", freeGamesCardContainer);
   })
   .catch((error) => {
     console.error("Error fetching free games cards:", error);
